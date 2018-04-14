@@ -41,7 +41,7 @@ export default () => {
         </section>
       </main>
       <footer className="footer">
-      <h2>   About | Contact Us</h2>
+      <h2>Made at the Music City Legal Hackathon</h2>
       </footer>
     </div>
   )
