@@ -9,6 +9,7 @@ const MOTHER_ADDRESS = 'motherAddress'
 const FATHER_ADDRESS = 'fatherAddress'
 const CAREGIVER_ADDRESS = 'caregiverAddress'
 
+
 class PoAForm extends React.Component {
   static navigationOptions = ({ navigation }) => ({
 
@@ -143,12 +144,23 @@ class PoAForm extends React.Component {
   } 
 
   render() {
+    let docDefinition = { content: 'This is an sample PDF printed with pdfMake' };
     const pluralizeChild = this.state.numberOfChildren > 1 ? 'Children' : 'Child'
     return (
       <div class='container'>
         <h1>POWER OF ATTORNEY FOR CARE OF A MINOR CHILD</h1>
         <p>Use  of  this  form  is  authorized  by  T.C.A.  §  34-6-301  et  seq.    Completion  of  this  form, along with the proper signatures, is sufficient to authorize enrollment of a minor in school and  to  authorize  medical  treatment.    However,  a  school  district  may  require  additional documentation/information as permitted by this section of Tennessee law before enrolling a child in school or any extracurricular activities.</p>
         <p><strong>Part I:</strong>  To be filled out and/or initialed by parent(s)/legal guardian(s)</p>
+        
+        <div>
+          <h1>
+            PDF FROM
+          </h1>
+          <button onClick={() => pdfMake.createPdf(docDefinition).open()}>
+            Click
+          </button>
+        </div> 
+
         <div className="btn-group">
           <button className="btn dropdown-toggle" data-toggle="dropdown">{`${this.state.numberOfChildren} ${pluralizeChild}`}</button>
           <button className="btn dropdown-toggle" data-toggle="dropdown">
