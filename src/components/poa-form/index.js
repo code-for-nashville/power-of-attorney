@@ -1,27 +1,13 @@
 import * as React from 'react'
-import styles from './styles'
-import { address } from 'ip';
-import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
+import pdfMake from 'pdfmake/build/pdfmake';
+import './main.css'
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const MOTHER_ADDRESS = 'motherAddress'
 const FATHER_ADDRESS = 'fatherAddress'
 const CAREGIVER_ADDRESS = 'caregiverAddress'
-
-{/* <div>
-<h1>
-  heyyyyy
-</h1>
-<button onClick={() => pdfMake.createPdf(docDefinition).open()}>
-  Click
-</button>
-
-{
-  
-}
-</div> */}
 
 class PoAForm extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -89,7 +75,7 @@ class PoAForm extends React.Component {
   renderChildrenInputs = () => {
     const inputs = [...Array(parseInt(this.state.numberOfChildren))].map((_, i) => {
       return (
-        <div key={i} className="row">
+        <div key={i}>
           <input
             type="text"
             className="form-control"
@@ -97,6 +83,7 @@ class PoAForm extends React.Component {
             aria-describedby="basic-addon1"
             onChange={this.updateChildName}
             value={this.state.childrenNames[i]}
+            placeholder={`${i +1} Child's name`}
           />
         </div>
       )
@@ -114,7 +101,7 @@ class PoAForm extends React.Component {
           className="form-control"
           name={name}
           data-address-type={'street_address'}
-          placeholder="street_address"
+          placeholder="Street Address"
           aria-describedby="sizing-addon1"
         />
         <input
@@ -123,8 +110,8 @@ class PoAForm extends React.Component {
           type="text"
           className="form-control"
           name={name}
-          data-address-type={'locality'}
-          placeholder="locality"
+          data-address-type={'Locality'}
+          placeholder="Locality"
           aria-describedby="sizing-addon1"
         />
         <input
@@ -134,7 +121,7 @@ class PoAForm extends React.Component {
           className="form-control"
           name={name}
           data-address-type={'region'}
-          placeholder="region"
+          placeholder="Region"
           aria-describedby="sizing-addon1"
         />
         <input
@@ -143,7 +130,7 @@ class PoAForm extends React.Component {
           type="text"
           className="form-control"
           name={name}
-          data-address-type={'postal_code'}
+          data-address-type={'Postal Code'}
           placeholder="postal_code"
           aria-describedby="sizing-addon1"
         />
@@ -151,10 +138,14 @@ class PoAForm extends React.Component {
     )
   }
 
+  submitForm = () => {
+    // pdfMake.createPdf(docDefinition).open()
+  } 
+
   render() {
     const pluralizeChild = this.state.numberOfChildren > 1 ? 'Children' : 'Child'
     return (
-      <div>
+      <div class='container'>
         <h1>POWER OF ATTORNEY FOR CARE OF A MINOR CHILD</h1>
         <p>Use  of  this  form  is  authorized  by  T.C.A.  §  34-6-301  et  seq.    Completion  of  this  form, along with the proper signatures, is sufficient to authorize enrollment of a minor in school and  to  authorize  medical  treatment.    However,  a  school  district  may  require  additional documentation/information as permitted by this section of Tennessee law before enrolling a child in school or any extracurricular activities.</p>
         <p><strong>Part I:</strong>  To be filled out and/or initialed by parent(s)/legal guardian(s)</p>
@@ -184,7 +175,7 @@ class PoAForm extends React.Component {
           <p>4. Caregiver’s Name & Address</p> {this.renderAddress(CAREGIVER_ADDRESS)}
         </div>
         <div>
-          <p> 5.</p>
+          <p> 5. Parental Status</p>
           <div clasName="input-group">
             <div clasName='row'>
               <span clasName="input-group-addon">
@@ -223,6 +214,7 @@ class PoAForm extends React.Component {
             </div>
           </div>
         </div>
+        <button type="button" onClick={this.submitForm}class="btn btn-default">Submit</button>
       </div>
     )
   }
