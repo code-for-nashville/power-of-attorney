@@ -4,6 +4,8 @@ import './App.css';
 
 import { Home, PoAForm } from './components';
 
+const FORM_PATH = '/form'
+
 class App extends Component {
 
   render() {
@@ -16,15 +18,10 @@ class App extends Component {
               <div className="navbar-header">
                 <Link className="navbar-brand" to="/">Power of Attorney</Link>
               </div>
-              <div className="navbar-right">
-                <Link role="button" className="btn btn-info" to="/form">
-                  Start Filling Out Your Power of Attorney
-                </Link>
-              </div>
             </div>
           </nav>
           <Route exact path="/" component={Home} />
-          <Route exact path="/form" component={PoAForm} />
+          <Route exact path={FORM_PATH} component={PoAForm} />
         </div>
       </Router>
     );
