@@ -11,17 +11,34 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-              <Link to="/form">Form</Link>
-            </li>
-          </ul>
+          <nav class="navbar navbar-default">
+            <div className="container-fluid">
+              <div className="navbar-header">
+                <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                  <span className="sr-only">Toggle navigation</span>
+                  <span className="icon-bar"></span>
+                  <span className="icon-bar"></span>
+                  <span className="icon-bar"></span>
+                </button>
+                <a className="navbar-brand" href="#">Power of Attorney</a>
+              </div>
 
-          <hr />
-
-          <Route exact path="/" component={Home} />
-          <Route exact path="/form" component={Form} />
+              <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul className="nav navbar-nav">
+                  <li>
+                    <Link to="/">Home</Link>
+                  </li>
+                  <li>
+                    <Link to="/form">Form</Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          <section className="container-fluid">
+            <Route exact path="/" component={Home} />
+            <Route exact path="/form" component={Form} />
+          </section>
         </div>
       </Router>
     );
