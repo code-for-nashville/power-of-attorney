@@ -357,11 +357,7 @@ class PoAForm extends React.Component {
             </div>
           </div>
         </div>
-<<<<<<< HEAD
-        <button type="button" onClick={this.submitForm} class="btn btn-default">Submit</button>
-=======
         <button type="button" onClick={this.generateFrom}class="btn btn-default">Submit</button>
->>>>>>> d90c9184bc49cea053a4a58ac2e718dee9532019
       </div>
     )
   }
