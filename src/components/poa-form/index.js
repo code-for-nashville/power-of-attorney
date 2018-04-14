@@ -9,7 +9,26 @@ class PoAForm extends React.Component {
   constructor(props: Form) {
     super(props)
     this.state = {
-      numberOfChildren: 1
+      numberOfChildren: 1,
+      childrenNames: [],
+      motherAddress: {
+        street_address: '',
+        locality: '',
+        region: '',
+        postal_code: '',
+      },
+      fatherAddress: {
+        street_address: '',
+        locality: '',
+        region: '',
+        postal_code: '',
+      },
+      caregiverAddress: {
+        street_address: '',
+        locality: '',
+        region: '',
+        postal_code: '',
+      },
     }
   }
 
@@ -17,14 +36,43 @@ class PoAForm extends React.Component {
     this.setState({ numberOfChildren: e.target.dataset.number })
   }
 
+  updateChildName = (e) => {
+    const idx = e.target.dataset.number
+    this.state.childrenNames[idx] = e.target.value
+  }
+
+  updateAddress = (e) => {
+    const inputName = e.target.name
+
+  }
+
   renderChildrenInputs = () => {
-    [...Array(this.state.numberOfChildren)].map((_, i) => {
+    const inputs = [...Array(parseInt(this.state.numberOfChildren))].map((_, i) => {
       return (
-        <div className="row">
-           <input type="text" class="form-control" aria-describedby="basic-addon1" />
+        <div key={i} className="row">
+          <input
+            type="text"
+            className="form-control"
+            data-number={i}
+            aria-describedby="basic-addon1"
+            onChange={this.updateChildName}
+            value={this.state.childrenNames[i]}
+          />
         </div>
       )
     })
+    return inputs
+  }
+
+  renderAddress = (name) => {
+    return (
+      <div>
+        <input onChange={this.updateAddress} type="text" className="form-control" name={name} data-address-type={'street_address'} placeholder="street_address" aria-describedby="sizing-addon1" />
+        <input onChange={this.updateAddress} type="text" className="form-control" name={name} data-address-type={'locality'} placeholder="locality" aria-describedby="sizing-addon1" />
+        <input onChange={this.updateAddress} type="text" className="form-control" name={name} data-address-type={'region'} placeholder="region" aria-describedby="sizing-addon1" />
+        <input onChange={this.updateAddress} type="text" className="form-control" name={name} data-address-type={'postal_code'} placeholder="postal_code" aria-describedby="sizing-addon1" />
+      </div>
+    )
   }
 
   render() {
@@ -47,17 +95,17 @@ class PoAForm extends React.Component {
           </ul>
         </div>
         <div className="row">
-        <p>1. Minor Child's Name</p>
-        {this.renderChildrenInputs()}
+          <p>1. Minor Child's Name</p>
+          {this.renderChildrenInputs()}
         </div>
         <div className="row">
-          <p>2. Mother/Legal Guardian’s Name & Address</p> <input />
+          <p>2. Mother/Legal Guardian’s Name & Address</p> {this.renderAddress()}
         </div>
         <div className="row">
-          <p>3. Father/Legal Guardian’s Name & Address</p> <input />
+          <p>3. Father/Legal Guardian’s Name & Address</p> {this.renderAddress()}
         </div>
         <div className="row">
-          <p>4. Caregiver’s Name & Address</p> <input />
+          <p>4. Caregiver’s Name & Address</p> {this.renderAddress()}
         </div>
         <div>
           <p> 5. Both  parents  are  living,have  legal  custody  of  the  minor  child  and  have signed this document;OR(____)One parent is deceased;OR(____)One  parent  has  legal  custody  of  the  minor  child  and  both  parents  have signed this document and consent to the appointment of the caregiver;OR(____) One parent has legal custody of the minor child, and has sent by Certified Mail, Return Receipt requested, to the other parent at last known address, a  copy  of  this  document  and  a  notice  of  the  provisions  in  §  34-6-305;  or the non-custodial parent has not consented to the appointment and consent cannot be obtained because ______________________________</p>
