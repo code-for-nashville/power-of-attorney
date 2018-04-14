@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './App.css';
 
-import { PoAForm } from './components';
-import Home from './Home.js';
+import { Home, PoAForm } from './components';
 
 
 class App extends Component {
@@ -11,7 +10,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <nav className="navbar navbar-default">
+          <nav style={{marginBottom: "0px"}} className="navbar navbar-default">
             <div className="container-fluid">
               <div className="navbar-header">
                 <Link className="navbar-brand" to="/">Power of Attorney</Link>
@@ -23,10 +22,8 @@ class App extends Component {
               </div>
             </div>
           </nav>
-          <section className="container-fluid">
-            <Route exact path="/" component={Home} />
-            <Route exact path="/form" component={PoAForm} />
-          </section>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/form" component={PoAForm} />
         </div>
       </Router>
     );
