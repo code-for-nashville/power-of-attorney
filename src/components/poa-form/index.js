@@ -4,6 +4,8 @@ import { address } from 'ip';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
 const MOTHER_ADDRESS = 'motherAddress'
 const FATHER_ADDRESS = 'fatherAddress'
 const CAREGIVER_ADDRESS = 'caregiverAddress'

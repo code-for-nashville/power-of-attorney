@@ -4,8 +4,6 @@ import './App.css';
 
 import { Home, PoAForm } from './components';
 
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
-
 class App extends Component {
 
   render() {
