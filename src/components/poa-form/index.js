@@ -1,15 +1,13 @@
 import * as React from 'react'
-import styles from './styles'
-import { address } from 'ip';
-import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
+import pdfMake from 'pdfmake/build/pdfmake';
+import './main.css'
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const MOTHER_ADDRESS = 'motherAddress'
 const FATHER_ADDRESS = 'fatherAddress'
 const CAREGIVER_ADDRESS = 'caregiverAddress'
-
 
 
 class PoAForm extends React.Component {
@@ -78,7 +76,7 @@ class PoAForm extends React.Component {
   renderChildrenInputs = () => {
     const inputs = [...Array(parseInt(this.state.numberOfChildren))].map((_, i) => {
       return (
-        <div key={i} className="row">
+        <div key={i}>
           <input
             type="text"
             className="form-control"
@@ -86,6 +84,7 @@ class PoAForm extends React.Component {
             aria-describedby="basic-addon1"
             onChange={this.updateChildName}
             value={this.state.childrenNames[i]}
+            placeholder={`${i +1} Child's name`}
           />
         </div>
       )
@@ -103,7 +102,7 @@ class PoAForm extends React.Component {
           className="form-control"
           name={name}
           data-address-type={'street_address'}
-          placeholder="street_address"
+          placeholder="Street Address"
           aria-describedby="sizing-addon1"
         />
         <input
@@ -112,8 +111,8 @@ class PoAForm extends React.Component {
           type="text"
           className="form-control"
           name={name}
-          data-address-type={'locality'}
-          placeholder="locality"
+          data-address-type={'Locality'}
+          placeholder="Locality"
           aria-describedby="sizing-addon1"
         />
         <input
@@ -123,7 +122,7 @@ class PoAForm extends React.Component {
           className="form-control"
           name={name}
           data-address-type={'region'}
-          placeholder="region"
+          placeholder="Region"
           aria-describedby="sizing-addon1"
         />
         <input
@@ -132,7 +131,7 @@ class PoAForm extends React.Component {
           type="text"
           className="form-control"
           name={name}
-          data-address-type={'postal_code'}
+          data-address-type={'Postal Code'}
           placeholder="postal_code"
           aria-describedby="sizing-addon1"
         />
@@ -142,15 +141,90 @@ class PoAForm extends React.Component {
 
   generateFrom = () => {
     let inputInfo = this.state;
-    let docDefinition = { content: 'This is an sample PDF printed with pdfMake' };
+    let docDefinition = { 
+      content:[		{
+        text: 'POWER OF ATTORNEY FOR CARE OF A MINOR CHILD\n\n',
+        style: 'header',
+        alignment: 'center',
+        bold: true,
+        decoration: 'underline',
+      },
+      {
+        text:[
+          '1of 5POWER OF ATTORNEY FOR CARE OF A MINOR CHILDUse of this form is authorized by T.C.A. § 34-6-301 et seq.  Completion of this form, along with the proper signatures, is sufficient to authorize enrollment of a minor in school and to authorize medical treatment.  However, a school district may require additional documentation/information as permitted by this section of Tennessee law before enrolling a child in school or any extracurricular activities.',
+          {
+            text:'Please print clearly\n\n',
+            italics: true
+          }
+        ]
+      },
+      {
+        text: [
+          {
+            text: 'Part I:',
+            bold: true
+          },  'To be filled out and/or initialed by parent(s)/legal guardian(s).\n\n'
+        ]
+      },
+      {
+        text: [
+          '1.Minor Child’s Name     ________________________________________________\n\n\n\n'
+        ]
+      },
+      {
+        text: [
+          '2.Mother/Legal Guardian’s Name & Address:\n\n',
+          `______________________________\n\n`,
+          `______________________________\n\n`,
+          `______________________________\n\n`
+        ]
+      },
+      {
+        text: [
+            '3.Father/Legal Guardian’s Name & Address:\n\n',
+            `______________________________\n\n`,
+            `______________________________\n\n`,
+            `______________________________\n\n`
+        ]
+      },
+      {
+        text: [
+          '4.Caregiver’s Name & Address:\n\n',
+          `______________________________\n\n`,
+          `______________________________\n\n`,
+          `______________________________\n\n`
+        ]
+      },
+      {
+        text: [
+          '5.(____)Both parents are living,have legal custody of the minor child and have signed this document\n',
+          {text: 'OR\n\n', bold: true},
+          '(____)One parent is deceased;\n',
+          {text: 'OR\n\n', bold: true},
+          '(____)One parent has legal custody of the minor child and both parents have signed this document and consent to the appointment of the caregiver;\n',
+          {text: 'OR\n\n', bold: true},
+          '(____) One parent has legal custody of the minor child, and has sent by Certified Mail, Return Receipt requested, to the other parent at last known address, a copy of this document and a notice of the provisions in § 34-6-305; or the non-custodial parent has not consented to the appointment and consent cannot be obtained because ______________________________.\n\n'
+
+        ]
+      },
+      {
+        text: [
+          '6.Temporary care-giving authority regarding the minor child is being given to the caregiver because of the following type of hardship', {text:'(check at least one):\n\n', bold: true}, '(____) the serious illness or incarceration of a parent or legal guardian'
+        ]
+      },
+    ]
+    };
     pdfMake.createPdf(docDefinition).open()
   }
+  // submitForm = () => {
+  //   // pdfMake.createPdf(docDefinition).open()
+  // } 
 
   render() {
     let docDefinition = { content: 'This is an sample PDF printed with pdfMake' };
     const pluralizeChild = this.state.numberOfChildren > 1 ? 'Children' : 'Child'
     return (
-      <div>
+      <div class='container'>
         <h1>POWER OF ATTORNEY FOR CARE OF A MINOR CHILD</h1>
         <p>Use  of  this  form  is  authorized  by  T.C.A.  §  34-6-301  et  seq.    Completion  of  this  form, along with the proper signatures, is sufficient to authorize enrollment of a minor in school and  to  authorize  medical  treatment.    However,  a  school  district  may  require  additional documentation/information as permitted by this section of Tennessee law before enrolling a child in school or any extracurricular activities.</p>
         <p><strong>Part I:</strong>  To be filled out and/or initialed by parent(s)/legal guardian(s)</p>
@@ -190,7 +264,7 @@ class PoAForm extends React.Component {
           <p>4. Caregiver’s Name & Address</p> {this.renderAddress(CAREGIVER_ADDRESS)}
         </div>
         <div>
-          <p> 5.</p>
+          <p> 5. Parental Status</p>
           <div clasName="input-group">
             <div clasName='row'>
               <span clasName="input-group-addon">
@@ -229,6 +303,7 @@ class PoAForm extends React.Component {
             </div>
           </div>
         </div>
+        <button type="button" onClick={this.generateFrom}class="btn btn-default">Submit</button>
       </div>
     )
   }
