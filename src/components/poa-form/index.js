@@ -60,7 +60,8 @@ class PoAForm extends React.Component {
   }
 
   updateParentalStatus = (e) => {
-    console.dir(e.target)
+    const idx = e.target.value
+    this.setState({ parentalStatus: idx })
   }
 
   updateParentalStatusText = (e) => {
@@ -134,7 +135,6 @@ class PoAForm extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     const pluralizeChild = this.state.numberOfChildren > 1 ? 'Children' : 'Child'
     return (
       <div>
