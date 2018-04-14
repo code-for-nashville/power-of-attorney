@@ -1,4 +1,13 @@
 .HeroImage {
-  min-height: 30vh;
+  color: white;
+  min-height: 50vh;
   background-image: url("/kids.jpeg");
+  background-size: cover;
+}
+
+.footer{
+	background: #f8f8f8;
+    bottom:0;
+    width:100%;
+    padding-left: 20px;
 }

@@ -187,9 +187,82 @@ class PoAForm extends React.Component {
     )
   }
 
-  submitForm = () => {
-    // pdfMake.createPdf(docDefinition).open()
-    this.validate()
+  generateFrom = () => {
+    let inputInfo = this.state;
+    let docDefinition = { 
+      content:[		{
+        text: 'POWER OF ATTORNEY FOR CARE OF A MINOR CHILD\n\n',
+        style: 'header',
+        alignment: 'center',
+        bold: true,
+        decoration: 'underline',
+      },
+      {
+        text:[
+          '1of 5POWER OF ATTORNEY FOR CARE OF A MINOR CHILDUse of this form is authorized by T.C.A. § 34-6-301 et seq.  Completion of this form, along with the proper signatures, is sufficient to authorize enrollment of a minor in school and to authorize medical treatment.  However, a school district may require additional documentation/information as permitted by this section of Tennessee law before enrolling a child in school or any extracurricular activities.',
+          {
+            text:'Please print clearly\n\n',
+            italics: true
+          }
+        ]
+      },
+      {
+        text: [
+          {
+            text: 'Part I:',
+            bold: true
+          },  'To be filled out and/or initialed by parent(s)/legal guardian(s).\n\n'
+        ]
+      },
+      {
+        text: [
+          '1.Minor Child’s Name     ________________________________________________\n\n\n\n'
+        ]
+      },
+      {
+        text: [
+          '2.Mother/Legal Guardian’s Name & Address:\n\n',
+          `______________________________\n\n`,
+          `______________________________\n\n`,
+          `______________________________\n\n`
+        ]
+      },
+      {
+        text: [
+            '3.Father/Legal Guardian’s Name & Address:\n\n',
+            `______________________________\n\n`,
+            `______________________________\n\n`,
+            `______________________________\n\n`
+        ]
+      },
+      {
+        text: [
+          '4.Caregiver’s Name & Address:\n\n',
+          `______________________________\n\n`,
+          `______________________________\n\n`,
+          `______________________________\n\n`
+        ]
+      },
+      {
+        text: [
+          '5.(____)Both parents are living,have legal custody of the minor child and have signed this document\n',
+          {text: 'OR\n\n', bold: true},
+          '(____)One parent is deceased;\n',
+          {text: 'OR\n\n', bold: true},
+          '(____)One parent has legal custody of the minor child and both parents have signed this document and consent to the appointment of the caregiver;\n',
+          {text: 'OR\n\n', bold: true},
+          '(____) One parent has legal custody of the minor child, and has sent by Certified Mail, Return Receipt requested, to the other parent at last known address, a copy of this document and a notice of the provisions in § 34-6-305; or the non-custodial parent has not consented to the appointment and consent cannot be obtained because ______________________________.\n\n'
+
+        ]
+      },
+      {
+        text: [
+          '6.Temporary care-giving authority regarding the minor child is being given to the caregiver because of the following type of hardship', {text:'(check at least one):\n\n', bold: true}, '(____) the serious illness or incarceration of a parent or legal guardian'
+        ]
+      },
+    ]
+    };
+    pdfMake.createPdf(docDefinition).open()
   }
 
   render() {
@@ -284,7 +357,11 @@ class PoAForm extends React.Component {
             </div>
           </div>
         </div>
+<<<<<<< HEAD
         <button type="button" onClick={this.submitForm} class="btn btn-default">Submit</button>
+=======
+        <button type="button" onClick={this.generateFrom}class="btn btn-default">Submit</button>
+>>>>>>> d90c9184bc49cea053a4a58ac2e718dee9532019
       </div>
     )
   }
