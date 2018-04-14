@@ -40,6 +40,9 @@ export default () => {
           </p>
         </section>
       </main>
+      <footer className="footer">
+      <h2>   About | Contact Us</h2>
+      </footer>
     </div>
   )
 }
