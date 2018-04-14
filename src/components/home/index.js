@@ -7,7 +7,7 @@ export default () => {
   return (
     <div>
       <header className="HeroImage jumbotron container-fluid">
-        <h1>Power of Attorney for Minor Children</h1>
+        <h1>Power of Attorney for Care of a Minor Child</h1>
       </header>
       <main className="container-fluid">
         <section className="lead">

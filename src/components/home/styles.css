@@ -1,4 +1,5 @@
 .HeroImage {
+  color: white;
   min-height: 30vh;
   background-image: url("/kids.jpeg");
 }
