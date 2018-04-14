@@ -1,4 +1,5 @@
 import Home from './home'
 import PoAForm from './poa-form'
+import Disclaimer from './disclaimer'
 
-export { Home, PoAForm }
+export { Disclaimer, Home, PoAForm }
