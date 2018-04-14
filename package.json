@@ -6,6 +6,7 @@
     "pdfmake": "^0.1.36",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
+    "react-modal": "^3.3.2",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4"
   },
