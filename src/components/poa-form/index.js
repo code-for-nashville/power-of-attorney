@@ -78,8 +78,6 @@ class PoAForm extends React.Component {
   updateAddress = (e) => {
     const inputName = e.target.name
     const addressType = e.target.dataset.addressType
-    console.log('INPUTS CHange ____ = > inputName', inputName )
-    console.log('INPUTS CHange ____ = > addressType', addressType)
     const value = e.target.value
     this.setState({
       [inputName]: {
@@ -204,36 +202,7 @@ class PoAForm extends React.Component {
   }
 
   generateFrom = () => {
-    var inputInfo = this.state;
-    console.log('######### N+>     ', inputInfo);
-    let hello = 'Juan Job '
-        // inputInfo.childrenNames.map((form, i) => {
-        //   console.log('Hellllllooooo @@@@@', i);
-        //   return; 
-        // });
-
-        // this.state = {
-        //   numberOfChildren: 1,
-        //   childrenNames: [],
-        //   [MOTHER_ADDRESS]: {
-        //     street_address: '',
-        //     locality: '',
-        //     region: '',
-        //     postal_code: '',
-        //   },
-        //   [FATHER_ADDRESS]: {
-        //     street_address: '',
-        //     locality: '',
-        //     region: '',
-        //     postal_code: '',
-        //   },
-        //   [CAREGIVER_ADDRESS]: {
-        //     street_address: '',
-        //     locality: '',
-        //     region: '',
-        //     postal_code: '',
-        //   },
-        // }
+    let inputInfo = this.state;
     let docDefinition = {
       content:[		{
         text: 'POWER OF ATTORNEY FOR CARE OF A MINOR CHILD\n\n',
@@ -305,9 +274,18 @@ class PoAForm extends React.Component {
       {
         text: [
           '4.Caregiver’s Name & Address:\n\n',
-          `______________________________\n\n`,
-          `______________________________\n\n`,
-          `______________________________\n\n`
+          {
+            text: `  ${this.state.caregiverAddress.name}  \n\n`,
+            decoration: 'underline'
+          },
+          {
+            text: `  ${inputInfo.caregiverAddress.street_address}  \n\n`,
+            decoration: 'underline'
+          },
+          {
+            text: `  ${inputInfo.caregiverAddress.locality}, ${inputInfo.caregiverAddress.region}, ${inputInfo.caregiverAddress.postal_code}  \n\n`,
+            decoration: 'underline'
+          }
         ]
       },
       {
