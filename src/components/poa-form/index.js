@@ -35,6 +35,7 @@ class PoAForm extends React.Component {
         postal_code: '',
       },
       [CAREGIVER_ADDRESS]: {
+        name: '',
         street_address: '',
         locality: '',
         region: '',
@@ -77,11 +78,13 @@ class PoAForm extends React.Component {
   updateAddress = (e) => {
     const inputName = e.target.name
     const addressType = e.target.dataset.addressType
+    console.log('INPUTS CHange ____ = > inputName', inputName )
+    console.log('INPUTS CHange ____ = > addressType', addressType)
     const value = e.target.value
     this.setState({
       [inputName]: {
         ...this.state[inputName],
-        [addressType]: value,
+        [addressType]: e.target.value,
       }
     })
 
@@ -144,6 +147,17 @@ class PoAForm extends React.Component {
         {errors && this.state.errors[`${name}_street_address`] ? <span class='error'>Please add a street address.</span> : null}
         <input
           onChange={this.updateAddress}
+          value={this.state[name].name}
+          type="text"
+          className="form-control"
+          name={name}
+          data-address-type={'name'}
+          placeholder="Name"
+          aria-describedby="sizing-addon1"
+        />
+        {errors && this.state.errors[`${name}_locality`] ? <span class='error'>Please add a name.</span> : null}
+        <input
+          onChange={this.updateAddress}
           value={this.state[name].street_address}
           type="text"
           className="form-control"
@@ -190,12 +204,13 @@ class PoAForm extends React.Component {
   }
 
   generateFrom = () => {
-    let inputInfo = this.state;
+    var inputInfo = this.state;
+    console.log('######### N+>     ', inputInfo);
     let hello = 'Juan Job '
-        inputInfo.childrenNames.map((form, i) => {
-          console.log('Hellllllooooo @@@@@', i);
-          return; 
-        });
+        // inputInfo.childrenNames.map((form, i) => {
+        //   console.log('Hellllllooooo @@@@@', i);
+        //   return; 
+        // });
 
         // this.state = {
         //   numberOfChildren: 1,
@@ -244,28 +259,47 @@ class PoAForm extends React.Component {
           },  'To be filled out and/or initialed by parent(s)/legal guardian(s).\n\n'
         ]
       },
-      // {
-      //   text: [
-      //     '1.Minor Child’s Name ', {text:`   ${inputInfo.childrenNames[0]}  \n\n\n\n`, decoration: 'underline'}
-      //   ]
-      // },
-      // {
-      //   text: [
-      //     '2.Mother/Legal Guardian’s Name & Address:\n\n',
-      //     `  ${inputInfo.MOTHER_ADDRESS.name}  \n\n`,
-      //     `  ${inputInfo.MOTHER_ADDRESS.street_address} ${inputInfo.MOTHER_ADDRESS.street_address}  \n\n`,
-      //     `  ${inputInfo.MOTHER_ADDRESS.locality}, ${inputInfo.MOTHER_ADDRESS.region}, ${inputInfo.MOTHER_ADDRESS.postal_code}  \n\n`
-      //   ]
-      // },
+      {
+        text: [
+          '1.Minor Child’s Name ',
+            {
+              text:`   ${inputInfo.childrenNames[0]}  \n\n\n\n`,
+              decoration: 'underline'
+            }
+        ]
+      },
+      {
+        text: [
+          '2.Mother/Legal Guardian’s Name & Address:\n\n',
+          {
+            text: `  ${this.state.motherAddress.name}  \n\n`,
+            decoration: 'underline'
+          },
+          {
+            text: `  ${inputInfo.motherAddress.street_address} \n\n`,
+            decoration: 'underline'
+          },
+          {
+            text: `  ${inputInfo.motherAddress.locality}, ${inputInfo.motherAddress.region}, ${inputInfo.motherAddress.postal_code}  \n\n`,
+            decoration: 'underline'
+          }
+        ]
+      },
       {
         text: [
             '3.Father/Legal Guardian’s Name & Address:\n\n',
             {
-              text: `  ${inputInfo.FATHER_ADDRESS.name}  \n\n`,
+              text: `  ${this.state.fatherAddress.name}  \n\n`,
               decoration: 'underline'
             },
-            // `  ${inputInfo.FATHER_ADDRESS.street_address} ${inputInfo.FATHER_ADDRESS.street_address}_____________\n\n`,
-            // `  ${inputInfo.FATHER_ADDRESS.locality}, ${inputInfo.FATHER_ADDRESS.region}, ${inputInfo.FATHER_ADDRESS.postal_code}  \n\n`
+            {
+              text: `  ${inputInfo.fatherAddress.street_address}  \n\n`,
+              decoration: 'underline'
+            },
+            {
+              text: `  ${inputInfo.fatherAddress.locality}, ${inputInfo.fatherAddress.region}, ${inputInfo.fatherAddress.postal_code}  \n\n`,
+              decoration: 'underline'
+            }
         ]
       },
       {
