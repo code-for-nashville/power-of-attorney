@@ -159,6 +159,19 @@ class PoAForm extends React.Component {
         ) : null}
         <input
           onChange={this.updateAddress}
+          value={this.state[name].name}
+          type="text"
+          className="form-control"
+          name={name}
+          data-address-type={'name'}
+          placeholder="Name"
+          aria-describedby="sizing-addon1"
+        />
+        {errors && this.state.errors[`${name}_locality`] ? (
+          <span class="error">Please add a name.</span>
+        ) : null}
+        <input
+          onChange={this.updateAddress}
           value={this.state[name].street_address}
           type="text"
           className="form-control"
@@ -223,7 +236,7 @@ class PoAForm extends React.Component {
         },
         {
           text: [
-            '1of 5POWER OF ATTORNEY FOR CARE OF A MINOR CHILDUse of this form is authorized by T.C.A. § 34-6-301 et seq.  Completion of this form, along with the proper signatures, is sufficient to authorize enrollment of a minor in school and to authorize medical treatment.  However, a school district may require additional documentation/information as permitted by this section of Tennessee law before enrolling a child in school or any extracurricular activities.',
+            'Use of this form is authorized by T.C.A. § 34-6-301 et seq.  Completion of this form, along with the proper signatures, is sufficient to authorize enrollment of a minor in school and to authorize medical treatment.  However, a school district may require additional documentation/information as permitted by this section of Tennessee law before enrolling a child in school or any extracurricular activities.',
             {
               text: 'Please print clearly\n\n',
               italics: true
@@ -241,31 +254,68 @@ class PoAForm extends React.Component {
         },
         {
           text: [
-            '1.Minor Child’s Name     ________________________________________________\n\n\n\n'
+            '1.Minor Child’s Name ',
+            {
+              text: `   ${inputInfo.childrenNames[0]}  \n\n\n\n`,
+              decoration: 'underline'
+            }
           ]
         },
         {
           text: [
             '2.Mother/Legal Guardian’s Name & Address:\n\n',
-            `______________________________\n\n`,
-            `______________________________\n\n`,
-            `______________________________\n\n`
+            {
+              text: `  ${this.state.motherAddress.name}  \n\n`,
+              decoration: 'underline'
+            },
+            {
+              text: `  ${inputInfo.motherAddress.street_address} \n\n`,
+              decoration: 'underline'
+            },
+            {
+              text: `  ${inputInfo.motherAddress.locality}, ${
+                inputInfo.motherAddress.region
+              }, ${inputInfo.motherAddress.postal_code}  \n\n`,
+              decoration: 'underline'
+            }
           ]
         },
         {
           text: [
             '3.Father/Legal Guardian’s Name & Address:\n\n',
-            `______________________________\n\n`,
-            `______________________________\n\n`,
-            `______________________________\n\n`
+            {
+              text: `  ${this.state.fatherAddress.name}  \n\n`,
+              decoration: 'underline'
+            },
+            {
+              text: `  ${inputInfo.fatherAddress.street_address}  \n\n`,
+              decoration: 'underline'
+            },
+            {
+              text: `  ${inputInfo.fatherAddress.locality}, ${
+                inputInfo.fatherAddress.region
+              }, ${inputInfo.fatherAddress.postal_code}  \n\n`,
+              decoration: 'underline'
+            }
           ]
         },
         {
           text: [
             '4.Caregiver’s Name & Address:\n\n',
-            `______________________________\n\n`,
-            `______________________________\n\n`,
-            `______________________________\n\n`
+            {
+              text: `  ${this.state.caregiverAddress.name}  \n\n`,
+              decoration: 'underline'
+            },
+            {
+              text: `  ${inputInfo.caregiverAddress.street_address}  \n\n`,
+              decoration: 'underline'
+            },
+            {
+              text: `  ${inputInfo.caregiverAddress.locality}, ${
+                inputInfo.caregiverAddress.region
+              }, ${inputInfo.caregiverAddress.postal_code}  \n\n`,
+              decoration: 'underline'
+            }
           ]
         },
         {
@@ -292,9 +342,6 @@ class PoAForm extends React.Component {
   };
 
   render() {
-    let docDefinition = {
-      content: 'This is an sample PDF printed with pdfMake'
-    };
     const pluralizeChild =
       this.state.numberOfChildren > 1 ? 'Children' : 'Child';
     const errors = Object.keys(this.state.errors).reduce((acc, curr) => {
@@ -319,13 +366,6 @@ class PoAForm extends React.Component {
           <strong>Part I:</strong> To be filled out and/or initialed by
           parent(s)/legal guardian(s)
         </p>
-
-        <div>
-          <h1>PDF FROM</h1>
-          <button onClick={() => pdfMake.createPdf(docDefinition).open()}>
-            Click
-          </button>
-        </div>
 
         <div className="btn-group">
           <button className="btn dropdown-toggle" data-toggle="dropdown">{`${
