@@ -21,12 +21,14 @@ class PoAForm extends React.Component {
       numberOfChildren: 1,
       childrenNames: [],
       [MOTHER_ADDRESS]: {
+        name: '',
         street_address: '',
         locality: '',
         region: '',
         postal_code: '',
       },
       [FATHER_ADDRESS]: {
+        name: '',
         street_address: '',
         locality: '',
         region: '',
@@ -141,7 +143,35 @@ class PoAForm extends React.Component {
 
   generateFrom = () => {
     let inputInfo = this.state;
-    let docDefinition = { 
+    let hello = 'Juan Job '
+        inputInfo.childrenNames.map((form, i) => {
+          console.log('Hellllllooooo @@@@@', i);
+          return; 
+        });
+
+        // this.state = {
+        //   numberOfChildren: 1,
+        //   childrenNames: [],
+        //   [MOTHER_ADDRESS]: {
+        //     street_address: '',
+        //     locality: '',
+        //     region: '',
+        //     postal_code: '',
+        //   },
+        //   [FATHER_ADDRESS]: {
+        //     street_address: '',
+        //     locality: '',
+        //     region: '',
+        //     postal_code: '',
+        //   },
+        //   [CAREGIVER_ADDRESS]: {
+        //     street_address: '',
+        //     locality: '',
+        //     region: '',
+        //     postal_code: '',
+        //   },
+        // }
+    let docDefinition = {
       content:[		{
         text: 'POWER OF ATTORNEY FOR CARE OF A MINOR CHILD\n\n',
         style: 'header',
@@ -151,7 +181,7 @@ class PoAForm extends React.Component {
       },
       {
         text:[
-          '1of 5POWER OF ATTORNEY FOR CARE OF A MINOR CHILDUse of this form is authorized by T.C.A. § 34-6-301 et seq.  Completion of this form, along with the proper signatures, is sufficient to authorize enrollment of a minor in school and to authorize medical treatment.  However, a school district may require additional documentation/information as permitted by this section of Tennessee law before enrolling a child in school or any extracurricular activities.',
+          'Use of this form is authorized by T.C.A. § 34-6-301 et seq.  Completion of this form, along with the proper signatures, is sufficient to authorize enrollment of a minor in school and to authorize medical treatment.  However, a school district may require additional documentation/information as permitted by this section of Tennessee law before enrolling a child in school or any extracurricular activities.',
           {
             text:'Please print clearly\n\n',
             italics: true
@@ -166,25 +196,28 @@ class PoAForm extends React.Component {
           },  'To be filled out and/or initialed by parent(s)/legal guardian(s).\n\n'
         ]
       },
-      {
-        text: [
-          '1.Minor Child’s Name     ________________________________________________\n\n\n\n'
-        ]
-      },
-      {
-        text: [
-          '2.Mother/Legal Guardian’s Name & Address:\n\n',
-          `______________________________\n\n`,
-          `______________________________\n\n`,
-          `______________________________\n\n`
-        ]
-      },
+      // {
+      //   text: [
+      //     '1.Minor Child’s Name ', {text:`   ${inputInfo.childrenNames[0]}  \n\n\n\n`, decoration: 'underline'}
+      //   ]
+      // },
+      // {
+      //   text: [
+      //     '2.Mother/Legal Guardian’s Name & Address:\n\n',
+      //     `  ${inputInfo.MOTHER_ADDRESS.name}  \n\n`,
+      //     `  ${inputInfo.MOTHER_ADDRESS.street_address} ${inputInfo.MOTHER_ADDRESS.street_address}  \n\n`,
+      //     `  ${inputInfo.MOTHER_ADDRESS.locality}, ${inputInfo.MOTHER_ADDRESS.region}, ${inputInfo.MOTHER_ADDRESS.postal_code}  \n\n`
+      //   ]
+      // },
       {
         text: [
             '3.Father/Legal Guardian’s Name & Address:\n\n',
-            `______________________________\n\n`,
-            `______________________________\n\n`,
-            `______________________________\n\n`
+            {
+              text: `  ${inputInfo.FATHER_ADDRESS.name}  \n\n`,
+              decoration: 'underline'
+            },
+            // `  ${inputInfo.FATHER_ADDRESS.street_address} ${inputInfo.FATHER_ADDRESS.street_address}_____________\n\n`,
+            // `  ${inputInfo.FATHER_ADDRESS.locality}, ${inputInfo.FATHER_ADDRESS.region}, ${inputInfo.FATHER_ADDRESS.postal_code}  \n\n`
         ]
       },
       {
