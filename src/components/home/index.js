@@ -1,12 +1,16 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
+import { FORM_PATH } from '../../paths';
+
 import './styles.css';
+
+const KIDS_IMAGE = `url(${process.env.PUBLIC_URL}/kids.jpeg`;
 
 export default () => {
   return (
     <div>
-      <header className="HeroImage jumbotron container-fluid">
+      <header style={{backgroundImage: KIDS_IMAGE}} className="HeroImage jumbotron container-fluid">
         <h1>Power of Attorney for Care of a Minor Child</h1>
       </header>
       <main className="container-fluid lead">
@@ -18,7 +22,7 @@ export default () => {
         <br/>
         <section className="ActionSection row">
           <div className="col-xs-1 col-md-4"></div>
-          <Link className="col-xs-10 col-md-4 btn btn-lg btn-success" role="button" to="/form">
+          <Link className="col-xs-10 col-md-4 btn btn-lg btn-success" role="button" to={FORM_PATH}>
             Fill Out Your Power of Attorney Form Now
           </Link>
           <div className="col-xs-1 col-md-4"></div>
@@ -41,7 +45,7 @@ export default () => {
         </section>
       </main>
       <footer className="footer">
-      <h2>   About | Contact Us</h2>
+      <h2>Made at the Music City Legal Hackathon</h2>
       </footer>
     </div>
   )

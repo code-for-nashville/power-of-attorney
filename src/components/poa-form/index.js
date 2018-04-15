@@ -40,6 +40,26 @@ class PoAForm extends React.Component {
         region: '',
         postal_code: '',
       },
+      parentalStatus: '',
+      reason: null,
+      errors: {
+        childrenNames: false,
+        parentalStatus: false,
+        reason: false,
+        mother_street_address: false,
+        mother_locality: false,
+        mother_region: false,
+        mother_postal_code: false,
+        father_street_address: false,
+        father_locality: false,
+        father_region: false,
+        father_postal_code: false,
+        caregiver_street_address: false,
+        caregiver_locality: false,
+        caregiver_region: false,
+        caregiver_postal_code: false
+      },
+
     }
   }
 
@@ -49,7 +69,9 @@ class PoAForm extends React.Component {
 
   updateChildName = (e) => {
     const idx = e.target.dataset.number
-    this.state.childrenNames[idx] = e.target.value
+    const names = [...this.state.childrenNames]
+    names[idx] = e.target.value
+    this.setState({ childrenNames: names })
   }
 
   updateAddress = (e) => {
@@ -75,6 +97,28 @@ class PoAForm extends React.Component {
     this.setState({ reason })
   }
 
+  validate = () => {
+    this.setState(() => ({
+      errors: {
+        childrenNames: this.state.childrenNames.length === 0,
+        parentalStatus: this.state.reason === '5' ? this.state.parentalStatus.length === 0 : false,
+        reason: this.state.reason,
+        [`${MOTHER_ADDRESS}_street_address`]: this.state[MOTHER_ADDRESS].street_address.length === 0,
+        [`${MOTHER_ADDRESS}_locality`]: this.state[MOTHER_ADDRESS].locality.length === 0,
+        [`${MOTHER_ADDRESS}_region`]: this.state[MOTHER_ADDRESS].region.length === 0,
+        [`${MOTHER_ADDRESS}_postal_code`]: this.state[MOTHER_ADDRESS].postal_code.length === 0,
+        [`${FATHER_ADDRESS}_street_address`]: this.state[FATHER_ADDRESS].street_address.length === 0,
+        [`${FATHER_ADDRESS}_locality`]: this.state[FATHER_ADDRESS].locality.length === 0,
+        [`${FATHER_ADDRESS}_region`]: this.state[FATHER_ADDRESS].region.length === 0,
+        [`${MOTHER_ADDRESS}_postal_code`]: this.state[FATHER_ADDRESS].postal_code.length === 0,
+        [`${CAREGIVER_ADDRESS}_street_address`]: this.state[CAREGIVER_ADDRESS].street_address.length === 0,
+        [`${CAREGIVER_ADDRESS}_locality`]: this.state[CAREGIVER_ADDRESS].locality.length === 0,
+        [`${CAREGIVER_ADDRESS}_region`]: this.state[CAREGIVER_ADDRESS].region.length === 0,
+        [`${CAREGIVER_ADDRESS}_postal_code`]: this.state[CAREGIVER_ADDRESS].postal_code.length === 0,
+      }
+    }))
+  }
+
   renderChildrenInputs = () => {
     const inputs = [...Array(parseInt(this.state.numberOfChildren))].map((_, i) => {
       return (
@@ -86,7 +130,7 @@ class PoAForm extends React.Component {
             aria-describedby="basic-addon1"
             onChange={this.updateChildName}
             value={this.state.childrenNames[i]}
-            placeholder={`${i +1} Child's name`}
+            placeholder={`${i + 1} Child's name`}
           />
         </div>
       )
@@ -94,9 +138,10 @@ class PoAForm extends React.Component {
     return inputs
   }
 
-  renderAddress = (name) => {
+  renderAddress = (name, errors) => {
     return (
       <div>
+        {errors && this.state.errors[`${name}_street_address`] ? <span class='error'>Please add a street address.</span> : null}
         <input
           onChange={this.updateAddress}
           value={this.state[name].street_address}
@@ -107,16 +152,18 @@ class PoAForm extends React.Component {
           placeholder="Street Address"
           aria-describedby="sizing-addon1"
         />
+        {errors && this.state.errors[`${name}_locality`] ? <span class='error'>Please add a city.</span> : null}
         <input
           onChange={this.updateAddress}
           value={this.state[name].locality}
           type="text"
           className="form-control"
           name={name}
-          data-address-type={'Locality'}
-          placeholder="Locality"
+          data-address-type={'locality'}
+          placeholder="City"
           aria-describedby="sizing-addon1"
         />
+        {errors && this.state.errors[`${name}_region`] ? <span class='error'>Please add at state.</span> : null}
         <input
           onChange={this.updateAddress}
           value={this.state[name].region}
@@ -124,17 +171,18 @@ class PoAForm extends React.Component {
           className="form-control"
           name={name}
           data-address-type={'region'}
-          placeholder="Region"
+          placeholder="State"
           aria-describedby="sizing-addon1"
         />
+        {errors && this.state.errors[`${name}_postal_code`] ? <span class='error'>Please add a zip code.</span> : null}
         <input
           onChange={this.updateAddress}
           value={this.state[name].postal_code}
           type="text"
           className="form-control"
           name={name}
-          data-address-type={'Postal Code'}
-          placeholder="postal_code"
+          data-address-type={'postal_code'}
+          placeholder="Zip Code"
           aria-describedby="sizing-addon1"
         />
       </div>
@@ -249,13 +297,16 @@ class PoAForm extends React.Component {
     };
     pdfMake.createPdf(docDefinition).open()
   }
-  // submitForm = () => {
-  //   // pdfMake.createPdf(docDefinition).open()
-  // } 
 
   render() {
     let docDefinition = { content: 'This is an sample PDF printed with pdfMake' };
     const pluralizeChild = this.state.numberOfChildren > 1 ? 'Children' : 'Child'
+    const errors = Object.keys(this.state.errors).reduce((acc, curr) => {
+      if (this.state.errors[curr]) {
+        acc = true
+      }
+      return acc
+    }, false)
     return (
       <div class='container'>
         <h1>POWER OF ATTORNEY FOR CARE OF A MINOR CHILD</h1>
@@ -269,7 +320,7 @@ class PoAForm extends React.Component {
           <button onClick={() => pdfMake.createPdf(docDefinition).open()}>
             Click
           </button>
-        </div> 
+        </div>
 
         <div className="btn-group">
           <button className="btn dropdown-toggle" data-toggle="dropdown">{`${this.state.numberOfChildren} ${pluralizeChild}`}</button>
@@ -285,19 +336,22 @@ class PoAForm extends React.Component {
         </div>
         <div className="row">
           <p>1. Minor Child's Name</p>
+          {errors && this.state.errors.childrenNames ? <span class='error'>Please add at least on child.</span> : null}
           {this.renderChildrenInputs()}
         </div>
         <div className="row">
-          <p>2. Mother/Legal Guardian’s Name & Address</p> {this.renderAddress(MOTHER_ADDRESS)}
+          <p>2. Mother/Legal Guardian’s Name & Address</p> {this.renderAddress(MOTHER_ADDRESS, errors)}
         </div>
         <div className="row">
-          <p>3. Father/Legal Guardian’s Name & Address</p> {this.renderAddress(FATHER_ADDRESS)}
+          <p>3. Father/Legal Guardian’s Name & Address</p> {this.renderAddress(FATHER_ADDRESS, errors)}
         </div>
         <div className="row">
-          <p>4. Caregiver’s Name & Address</p> {this.renderAddress(CAREGIVER_ADDRESS)}
+          <p>4. Caregiver’s Name & Address</p> {this.renderAddress(CAREGIVER_ADDRESS, errors)}
         </div>
         <div>
           <p> 5. Parental Status</p>
+          {errors && this.state.errors.parental_status ? <span class='error'>Please add a parental status.</span> : null}
+          {errors && this.state.errors.reason ? <span class='error'>Please add a reason.</span> : null}
           <div clasName="input-group">
             <div clasName='row'>
               <span clasName="input-group-addon">

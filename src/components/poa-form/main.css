@@ -5,3 +5,7 @@
 .form-control {
     margin: 6px 0;
 }
+
+.error {
+    color: #cc0000;
+}
