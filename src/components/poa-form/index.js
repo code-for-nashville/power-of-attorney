@@ -204,108 +204,109 @@ class PoAForm extends React.Component {
   generateFrom = () => {
     let inputInfo = this.state;
     let docDefinition = {
-      content:[		{
-        text: 'POWER OF ATTORNEY FOR CARE OF A MINOR CHILD\n\n',
-        style: 'header',
-        alignment: 'center',
-        bold: true,
-        decoration: 'underline',
-      },
-      {
-        text:[
-          'Use of this form is authorized by T.C.A. § 34-6-301 et seq.  Completion of this form, along with the proper signatures, is sufficient to authorize enrollment of a minor in school and to authorize medical treatment.  However, a school district may require additional documentation/information as permitted by this section of Tennessee law before enrolling a child in school or any extracurricular activities.',
-          {
-            text:'Please print clearly\n\n',
-            italics: true
-          }
-        ]
-      },
-      {
-        text: [
-          {
-            text: 'Part I:',
-            bold: true
-          },  'To be filled out and/or initialed by parent(s)/legal guardian(s).\n\n'
-        ]
-      },
-      {
-        text: [
-          '1.Minor Child’s Name ',
+      content:[
+        {
+          text: 'POWER OF ATTORNEY FOR CARE OF A MINOR CHILD\n\n',
+          style: 'header',
+          alignment: 'center',
+          bold: true,
+          decoration: 'underline',
+        },
+        {
+          text:[
+            'Use of this form is authorized by T.C.A. § 34-6-301 et seq.  Completion of this form, along with the proper signatures, is sufficient to authorize enrollment of a minor in school and to authorize medical treatment.  However, a school district may require additional documentation/information as permitted by this section of Tennessee law before enrolling a child in school or any extracurricular activities.',
             {
-              text:`   ${inputInfo.childrenNames[0]}  \n\n\n\n`,
-              decoration: 'underline'
+              text:'Please print clearly\n\n',
+              italics: true
             }
-        ]
-      },
-      {
-        text: [
-          '2.Mother/Legal Guardian’s Name & Address:\n\n',
-          {
-            text: `  ${this.state.motherAddress.name}  \n\n`,
-            decoration: 'underline'
-          },
-          {
-            text: `  ${inputInfo.motherAddress.street_address} \n\n`,
-            decoration: 'underline'
-          },
-          {
-            text: `  ${inputInfo.motherAddress.locality}, ${inputInfo.motherAddress.region}, ${inputInfo.motherAddress.postal_code}  \n\n`,
-            decoration: 'underline'
-          }
-        ]
-      },
-      {
-        text: [
-            '3.Father/Legal Guardian’s Name & Address:\n\n',
+          ]
+        },
+        {
+          text: [
             {
-              text: `  ${this.state.fatherAddress.name}  \n\n`,
+              text: 'Part I:',
+              bold: true
+            },  'To be filled out and/or initialed by parent(s)/legal guardian(s).\n\n'
+          ]
+        },
+        {
+          text: [
+            '1.Minor Child’s Name ',
+              {
+                text:`   ${inputInfo.childrenNames[0]}  \n\n\n\n`,
+                decoration: 'underline'
+              }
+          ]
+        },
+        {
+          text: [
+            '2.Mother/Legal Guardian’s Name & Address:\n\n',
+            {
+              text: `  ${this.state.motherAddress.name}  \n\n`,
               decoration: 'underline'
             },
             {
-              text: `  ${inputInfo.fatherAddress.street_address}  \n\n`,
+              text: `  ${inputInfo.motherAddress.street_address} \n\n`,
               decoration: 'underline'
             },
             {
-              text: `  ${inputInfo.fatherAddress.locality}, ${inputInfo.fatherAddress.region}, ${inputInfo.fatherAddress.postal_code}  \n\n`,
+              text: `  ${inputInfo.motherAddress.locality}, ${inputInfo.motherAddress.region}, ${inputInfo.motherAddress.postal_code}  \n\n`,
               decoration: 'underline'
             }
-        ]
-      },
-      {
-        text: [
-          '4.Caregiver’s Name & Address:\n\n',
-          {
-            text: `  ${this.state.caregiverAddress.name}  \n\n`,
-            decoration: 'underline'
-          },
-          {
-            text: `  ${inputInfo.caregiverAddress.street_address}  \n\n`,
-            decoration: 'underline'
-          },
-          {
-            text: `  ${inputInfo.caregiverAddress.locality}, ${inputInfo.caregiverAddress.region}, ${inputInfo.caregiverAddress.postal_code}  \n\n`,
-            decoration: 'underline'
-          }
-        ]
-      },
-      {
-        text: [
-          '5.(____)Both parents are living,have legal custody of the minor child and have signed this document\n',
-          {text: 'OR\n\n', bold: true},
-          '(____)One parent is deceased;\n',
-          {text: 'OR\n\n', bold: true},
-          '(____)One parent has legal custody of the minor child and both parents have signed this document and consent to the appointment of the caregiver;\n',
-          {text: 'OR\n\n', bold: true},
-          '(____) One parent has legal custody of the minor child, and has sent by Certified Mail, Return Receipt requested, to the other parent at last known address, a copy of this document and a notice of the provisions in § 34-6-305; or the non-custodial parent has not consented to the appointment and consent cannot be obtained because ______________________________.\n\n'
+          ]
+        },
+        {
+          text: [
+              '3.Father/Legal Guardian’s Name & Address:\n\n',
+              {
+                text: `  ${this.state.fatherAddress.name}  \n\n`,
+                decoration: 'underline'
+              },
+              {
+                text: `  ${inputInfo.fatherAddress.street_address}  \n\n`,
+                decoration: 'underline'
+              },
+              {
+                text: `  ${inputInfo.fatherAddress.locality}, ${inputInfo.fatherAddress.region}, ${inputInfo.fatherAddress.postal_code}  \n\n`,
+                decoration: 'underline'
+              }
+          ]
+        },
+        {
+          text: [
+            '4.Caregiver’s Name & Address:\n\n',
+            {
+              text: `  ${this.state.caregiverAddress.name}  \n\n`,
+              decoration: 'underline'
+            },
+            {
+              text: `  ${inputInfo.caregiverAddress.street_address}  \n\n`,
+              decoration: 'underline'
+            },
+            {
+              text: `  ${inputInfo.caregiverAddress.locality}, ${inputInfo.caregiverAddress.region}, ${inputInfo.caregiverAddress.postal_code}  \n\n`,
+              decoration: 'underline'
+            }
+          ]
+        },
+        {
+          text: [
+            '5.(____)Both parents are living,have legal custody of the minor child and have signed this document\n',
+            {text: 'OR\n\n', bold: true},
+            '(____)One parent is deceased;\n',
+            {text: 'OR\n\n', bold: true},
+            '(____)One parent has legal custody of the minor child and both parents have signed this document and consent to the appointment of the caregiver;\n',
+            {text: 'OR\n\n', bold: true},
+            '(____) One parent has legal custody of the minor child, and has sent by Certified Mail, Return Receipt requested, to the other parent at last known address, a copy of this document and a notice of the provisions in § 34-6-305; or the non-custodial parent has not consented to the appointment and consent cannot be obtained because ______________________________.\n\n'
 
-        ]
-      },
-      {
-        text: [
-          '6.Temporary care-giving authority regarding the minor child is being given to the caregiver because of the following type of hardship', {text:'(check at least one):\n\n', bold: true}, '(____) the serious illness or incarceration of a parent or legal guardian'
-        ]
-      },
-    ]
+          ]
+        },
+        {
+          text: [
+            '6.Temporary care-giving authority regarding the minor child is being given to the caregiver because of the following type of hardship', {text:'(check at least one):\n\n', bold: true}, '(____) the serious illness or incarceration of a parent or legal guardian'
+          ]
+        },
+      ]
     };
     pdfMake.createPdf(docDefinition).open()
   }
