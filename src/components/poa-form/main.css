@@ -1,11 +1,11 @@
 .container {
-    margin: 32px;
+  margin: 32px;
 }
 
 .form-control {
-    margin: 6px 0;
+  margin: 6px 0;
 }
 
 .error {
-    color: #cc0000;
+  color: #cc0000;
 }

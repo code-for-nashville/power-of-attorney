@@ -1,4 +1,4 @@
-import Home from './home'
-import PoAForm from './poa-form'
+import Home from './home';
+import PoAForm from './poa-form';
 
-export { Home, PoAForm }
+export { Home, PoAForm };
