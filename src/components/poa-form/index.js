@@ -273,9 +273,7 @@ class PoAForm extends React.Component {
               decoration: 'underline'
             },
             {
-              text: `  ${inputInfo.motherAddress.locality}, ${
-                inputInfo.motherAddress.region
-              }, ${inputInfo.motherAddress.postal_code}  \n\n`,
+              text: `  ${inputInfo.motherAddress.locality}, ${inputInfo.motherAddress.region}, ${inputInfo.motherAddress.postal_code}  \n\n`,
               decoration: 'underline'
             }
           ]
@@ -292,9 +290,7 @@ class PoAForm extends React.Component {
               decoration: 'underline'
             },
             {
-              text: `  ${inputInfo.fatherAddress.locality}, ${
-                inputInfo.fatherAddress.region
-              }, ${inputInfo.fatherAddress.postal_code}  \n\n`,
+              text: `  ${inputInfo.fatherAddress.locality}, ${inputInfo.fatherAddress.region}, ${inputInfo.fatherAddress.postal_code}  \n\n`,
               decoration: 'underline'
             }
           ]
@@ -311,9 +307,7 @@ class PoAForm extends React.Component {
               decoration: 'underline'
             },
             {
-              text: `  ${inputInfo.caregiverAddress.locality}, ${
-                inputInfo.caregiverAddress.region
-              }, ${inputInfo.caregiverAddress.postal_code}  \n\n`,
+              text: `  ${inputInfo.caregiverAddress.locality}, ${inputInfo.caregiverAddress.region}, ${inputInfo.caregiverAddress.postal_code}  \n\n`,
               decoration: 'underline'
             }
           ]
