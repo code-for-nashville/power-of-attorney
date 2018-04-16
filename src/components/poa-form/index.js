@@ -12,7 +12,7 @@ const CAREGIVER_ADDRESS = 'caregiverAddress';
 class PoAForm extends React.Component {
   static navigationOptions = ({ navigation }) => ({});
 
-  constructor(props: Form) {
+  constructor(props) {
     super(props);
     this.state = {
       numberOfChildren: 1,
