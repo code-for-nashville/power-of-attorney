@@ -1,5 +1,5 @@
 import PoAForm from '.';
-import React, { ReactDOM, Component } from 'react';
+import React from 'react';
 import { Route } from "react-router-dom";
 import { Modal as ReactModal } from 'react-modal';
 
@@ -37,8 +37,6 @@ class Disclaimer extends React.Component {
     );
   }
 }
-
-const props = {};
 
 export default Disclaimer
 
