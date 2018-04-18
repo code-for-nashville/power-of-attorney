@@ -38,8 +38,6 @@ class Disclaimer extends React.Component {
 
 const props = {};
 
-ReactDOM.render(<Disclaimer {...props} />, document.getElementById('main'))
-
 export default Disclaimer
 
 
