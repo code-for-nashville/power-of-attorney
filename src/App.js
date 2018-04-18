@@ -18,10 +18,8 @@ class App extends Component {
                 <Link className="navbar-brand" to="/">Power of Attorney</Link>
               </div>
               <div className="navbar-right">
-                <button onClick={Disclaimer.handleOpenModal}>Start Filling Out Your Power of Attorney</button>
-                <Link role="button" className="btn btn-info" to="/form">
-                  Start Filling Out Your Power of Attorney
-                </Link>
+                <button onClick={Disclaimer.handleOpenModal} className="btn btn-info"
+                >Start Filling Out Your Power of Attorney</button>
               </div>
             </div>
           </nav>

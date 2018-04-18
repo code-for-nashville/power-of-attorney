@@ -1,5 +1,6 @@
 import PoAForm from '.';
 import React, { ReactDOM, Component } from 'react';
+import { Route } from "react-router-dom";
 import { Modal as ReactModal } from 'react-modal';
 
 class Disclaimer extends React.Component {
@@ -24,13 +25,14 @@ class Disclaimer extends React.Component {
   render () {
     return (
       <div>
-        <button onClick={this.handleOpenModal}>Trigger Modal</button>
         <ReactModal
            isOpen={this.state.showModal}
-           contentLabel="Minimal Modal Example"
         >
-          <button onClick={this.handleCloseModal}>Accept</button>
+          <button onClick={this.handleCloseModal} to="/form">
+            Accept
+          </button>
         </ReactModal>
+        <Route exact path="/form" component={PoAForm} />
       </div>
     );
   }
