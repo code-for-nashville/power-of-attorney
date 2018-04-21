@@ -33,15 +33,11 @@ Compiles sass files into css for production
 Launches the test runner in the interactive watch mode.<br>
 See the section about [running tests](#running-tests) for more information.
 
-### `yarn run build`
+### `yarn deploy`
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Builds the app for production and deploys it to Github Pages.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](#deployment) for more information.
+Note: You'll need write access to the `gh-pages` branch of our repository to run this command.
 
 ### `yarn run eject`
 
