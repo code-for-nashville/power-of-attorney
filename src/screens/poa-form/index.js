@@ -1,10 +1,9 @@
 import * as React from 'react';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
-import pdfMake from 'pdfmake/build/pdfmake';
-import { MOTHER_ADDRESS, FATHER_ADDRESS, CAREGIVER_ADDRESS } from './constants';
+
+import { DownloadPDF } from '../../components'
+import { MOTHER_ADDRESS, FATHER_ADDRESS, CAREGIVER_ADDRESS } from '../../pdf/pdf-document';
 import './styles.css';
-import createPdfDocument from './pdf-document';
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
 
 const NO_ERRORS = {
   childrenNames: false,
@@ -32,6 +31,7 @@ class PoAForm extends React.Component {
     this.state = {
       numberOfChildren: 1,
       childrenNames: [],
+      submitted: false,
       [MOTHER_ADDRESS]: {
         name: '',
         street_address: '',
@@ -128,9 +128,8 @@ class PoAForm extends React.Component {
           [`${CAREGIVER_ADDRESS}_postal_code`]:
             this.state[CAREGIVER_ADDRESS].postal_code.length === 0
         }
-        // This callback will have access to state after the errors are checked.
       }),
-      callback
+      callback()
     );
   };
 
@@ -227,10 +226,6 @@ class PoAForm extends React.Component {
     );
   };
 
-  /**
-   * generateForm should be called as a callback to the setState call
-   * in this.validate so that it has access to errors.
-   */
   generateForm = () => {
     const { errors, childrenNames, ...inputInfo } = this.state;
     const errArray = Object.keys(errors).filter(errKey => {
@@ -243,10 +238,8 @@ class PoAForm extends React.Component {
     if (errArray.length > 0) {
       this.setState(() => ({ errorCount: errArray.length }));
     } else {
-      childrenNames.forEach(name => {
-        const docDefinition = createPdfDocument(inputInfo, name);
-        pdfMake.createPdf(docDefinition).open();
-      });
+      console.log('submitted')
+      this.setState({ submitted: true })
     }
   };
 
@@ -259,7 +252,7 @@ class PoAForm extends React.Component {
     );
   };
 
-  render() {
+  renderForm() {
     const pluralizeChild =
       this.state.numberOfChildren > 1 ? 'Children' : 'Child';
     const errors = Object.keys(this.state.errors).reduce((acc, curr) => {
@@ -432,6 +425,14 @@ class PoAForm extends React.Component {
         </form>
       </div>
     );
+  }
+
+  render () {
+    console.log(this.state)
+    if (this.state.submitted) {
+      return <DownloadPDF data={this.state} />
+    }
+    return this.renderForm()
   }
 }
 
