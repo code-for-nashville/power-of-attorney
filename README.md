@@ -1,23 +1,24 @@
 # [Power of Attorney](https://musiccitylegalhackers.github.io/power-of-attorney-challenge/)
 Immigrant parents may face detainment or deportation with little warning. Since parents may work in the same location or be in the same location when picked up by ICE/immigration, their children can be left without any legal guardian. When picked up by ICE/Immigration, parents are often unavailable or inaccessible for days or weeks (and can even be deported before ever having access to their children or family). Parents can sign a power of attorney for the minor children to give guardianship of their child to someone they trust, which takes effect only if they are detained or deported.
 
+This project was bootrapped using [Create React App](), and includes some portions of the [Create React App User Guide](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md) particularly relevant to the project in the README.  Check out [the full guide](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md) for a complete list of functionality and answers to common questions.
 
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app)
+## Installation
+Make sure you have [`yarn`](https://yarnpkg.com/) and a recent version of [`node.js`](https://nodejs.org/en/) installed.  Clone this repository, and run
 
-## Available Scripts
+```
+yarn install
+```
 
-In the project directory, you can run:
+in the root to install dependencies.  This app comes configured with a few useful commands for development and deployment:
 
 ### `yarn start`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
+The page will reload if you make edits to both JS, CSS, and SCSS.<br>
 You will also see any lint errors in the console.
-
-Be sure you've installed the dependencies first `yarn install`
-
 
 ### `yarn watch-css`
 
@@ -50,6 +51,11 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 
 Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them.
 
+## Styling
+This project is built with [Grommet](http://grommet.io/), and ships with a custom [SCSS](http://sass-lang.com/) Grommet theme in  `styles/grommet/`.
+
+SCSS file will be automatically watched and built when you run `yarn start`.  The built `.css` output will have the same filename and live in the same directory as it's `.scss` counterpart.  Make sure to import the `.css` output in JavaScript files, not the raw `.scss`.  Create React App is not configured to import `.scss`.
+
 ## Debugging in the Editor
 
 **This feature is currently only supported by [Visual Studio Code](https://code.visualstudio.com) and [WebStorm](https://www.jetbrains.com/webstorm/).**
@@ -67,16 +73,6 @@ In the WebStorm menu `Run` select `Edit Configurations...`. Then click `+` and s
 Start your app by running `yarn start`, then press `^D` on macOS or `F9` on Windows and Linux or click the green debug icon to start debugging in WebStorm.
 
 The same way you can debug your application in IntelliJ IDEA Ultimate, PhpStorm, PyCharm Pro, and RubyMine.
-
-## Sass
-```
-
-Sass imports:
-
-```scss
-@import 'styles/_colors.scss'; // assuming a styles directory under src/
-@import 'nprogress/nprogress'; // importing a css file from the nprogress node module
-```
 
 ## Custom Environment Variables
 
@@ -134,7 +130,3 @@ icons, names, and branding colors to use when the web app is displayed.
 [The Web App Manifest guide](https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/)
 provides more context about what each field means, and how your customizations
 will affect your users' experience.
-
-
-
-

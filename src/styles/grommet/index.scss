@@ -1,0 +1,11 @@
+/*
+  Power of Attorney Grommet theme
+
+  This way of theme-ing was copied from internal grommet themes. See
+  node_modules/grommet/scss/vanilla/index.scss for an example
+*/
+@import 'power-of-attorney.defaults';
+// Import grommet core SCSS
+@import 'grommet/scss/grommet-core/index';
+// Import the vanilla button styling for now
+@import 'grommet/scss/vanilla/objects.button-vanilla';
