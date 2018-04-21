@@ -135,7 +135,7 @@ class PoAForm extends React.Component {
   };
 
   renderChildrenInputs = () => {
-    const inputs = [...Array(parseInt(this.state.numberOfChildren))].map(
+    const inputs = [...Array(parseInt(this.state.numberOfChildren, 10))].map(
       (_, i) => {
         return (
           <div key={i}>
@@ -237,6 +237,7 @@ class PoAForm extends React.Component {
       if (errors[errKey]) {
         return true;
       }
+      return false;
     });
 
     if (errArray.length > 0) {
@@ -301,7 +302,6 @@ class PoAForm extends React.Component {
                 return (
                   <li key={number}>
                     <a
-                      href="#"
                       data-number={number}
                       onClick={this.selectNumberofChilds}
                     >
