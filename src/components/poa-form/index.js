@@ -231,8 +231,8 @@ class PoAForm extends React.Component {
    * generateForm should be called as a callback to the setState call
    * in this.validate so that it has access to errors.
    */
-  generateFrom = () => {
-    const { errors, ...inputInfo } = this.state;
+  generateForm = () => {
+    const { errors, childrenNames, ...inputInfo } = this.state;
     const errArray = Object.keys(errors).filter(errKey => {
       if (errors[errKey]) {
         return true;
@@ -242,7 +242,7 @@ class PoAForm extends React.Component {
     if (errArray.length > 0) {
       this.setState(() => ({ errorCount: errArray.length }));
     } else {
-      inputInfo.childrenNames.forEach(name => {
+      childrenNames.forEach(name => {
         const docDefinition = createPdfDocument(inputInfo, name);
         pdfMake.createPdf(docDefinition).open();
       });
@@ -254,7 +254,7 @@ class PoAForm extends React.Component {
       () => ({
         errors: NO_ERRORS
       }),
-      this.validate(this.generateFrom)
+      this.validate(this.generateForm)
     );
   };
 
