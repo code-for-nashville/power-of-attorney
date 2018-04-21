@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 import {
   Anchor,
   Box,
@@ -8,10 +7,7 @@ import {
   Menu
 } from 'grommet';
 
-
 import { FAQ_PATH, HOME_PATH } from '../../paths';
-
-import './styles.css';
 
 
 export default () => {

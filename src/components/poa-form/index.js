@@ -2,7 +2,7 @@ import * as React from 'react';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import pdfMake from 'pdfmake/build/pdfmake';
 import { MOTHER_ADDRESS, FATHER_ADDRESS, CAREGIVER_ADDRESS } from './constants';
-import './main.css';
+import './styles.css';
 import createPdfDocument from './pdf-document';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 

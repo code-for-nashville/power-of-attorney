@@ -10,7 +10,6 @@ import {
 
 import { FORM_PATH } from '../../paths.js'
 
-import './styles.css';
 
 export default () => {
   return (

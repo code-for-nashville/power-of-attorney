@@ -7,7 +7,6 @@ import {
   Section
 } from 'grommet';
 
-import './styles.css';
 
 export default () => {
   return (
