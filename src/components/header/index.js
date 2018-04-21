@@ -1,8 +1,5 @@
 import React from 'react';
 
-import { FAQ_PATH, HOME_PATH } from '../../paths';
-
-import './styles.css';
 
 import {
   Anchor,
@@ -10,6 +7,11 @@ import {
   Header,
   Menu
 } from 'grommet';
+
+
+import { FAQ_PATH, HOME_PATH } from '../../paths';
+
+import './styles.css';
 
 
 export default () => {
@@ -20,7 +22,9 @@ export default () => {
         direction='row'
         responsive={false}
       >
-        <Menu>
+        <Menu
+          direction='row'
+        >
           <Anchor
             path={HOME_PATH}
           >

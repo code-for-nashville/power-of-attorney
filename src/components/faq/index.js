@@ -1,13 +1,13 @@
 import React from 'react';
 
-import './styles.css';
-
 import {
   Anchor,
   Heading,
   Paragraph,
   Section
 } from 'grommet';
+
+import './styles.css';
 
 export default () => {
   return (

@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './styles.css';
-
 import {
   Button,
   Heading,
@@ -9,6 +7,10 @@ import {
   Paragraph,
   Section
 } from 'grommet';
+
+import { FORM_PATH } from '../../paths.js'
+
+import './styles.css';
 
 export default () => {
   return (
@@ -24,9 +26,14 @@ export default () => {
       <Paragraph>
         Getting started is easy! You can fill out your Power of Attorney form online.
       </Paragraph>
-      <Button>
-        START FORM
-      </Button>
+      <div>
+        <Button
+          path={FORM_PATH}
+          primary={true}
+        >
+          START FORM
+        </Button>
+      </div>
     </Section>
   );
 };
