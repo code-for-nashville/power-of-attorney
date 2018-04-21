@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-
-import { FAQ, Header, Home, PoAForm } from './components';
+import { Header } from './components';
+import { FAQ, Home, PoAForm } from './screens';
 
 import { FAQ_PATH, FORM_PATH, HOME_PATH } from './paths';
 

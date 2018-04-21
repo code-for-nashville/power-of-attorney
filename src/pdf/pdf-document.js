@@ -1,4 +1,7 @@
-import { MOTHER_ADDRESS, FATHER_ADDRESS, CAREGIVER_ADDRESS } from './constants';
+
+export const MOTHER_ADDRESS = 'motherAddress';
+export const FATHER_ADDRESS = 'fatherAddress';
+export const CAREGIVER_ADDRESS = 'caregiverAddress';
 
 let createDocDefinition = (inputInfo, childName) => {
   const statusOne = inputInfo.parentalStatus === '0' ? 'X' : '__';
