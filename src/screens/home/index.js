@@ -52,8 +52,7 @@ export default () => {
           Getting started is easy! You can fill out your Power of Attorney form online.
         </Paragraph>
         <Button
-          className="StartFormButton"
-          label="START FORM"
+          label="Start Form"
           path={FORM_PATH}
           primary={true}
         />
