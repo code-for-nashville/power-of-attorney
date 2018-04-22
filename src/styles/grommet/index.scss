@@ -5,9 +5,10 @@
   node_modules/grommet/scss/vanilla/index.scss for an example
 */
 @import 'power-of-attorney.defaults';
-// The button styling relies on grommet-core
+// The button and checkbox styling relies on grommet-core
 @import 'grommet/scss/grommet-core/index';
 @import 'objects.button-power-of-attorney';
+@import 'objects.checkbox-power-of-attorney';
 
 h1, h2, h3, h4, h5, h6, .grommetux-headline {
   font-family: $brand-header-font-family;

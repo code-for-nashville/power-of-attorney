@@ -1,7 +1,21 @@
 import * as React from 'react';
 
+import {
+  Button,
+  Form,
+  FormField,
+  Heading,
+  Notification,
+  NumberInput,
+  Paragraph,
+  RadioButton,
+  Section,
+  TextInput
+} from 'grommet';
+
 import { DownloadPDF } from '../../components'
 import { MOTHER_ADDRESS, FATHER_ADDRESS, CAREGIVER_ADDRESS } from '../../pdf/pdf-document';
+
 import './styles.css';
 
 
@@ -60,10 +74,6 @@ class PoAForm extends React.Component {
     };
   }
 
-  selectNumberofChilds = e => {
-    this.setState({ numberOfChildren: e.target.dataset.number });
-  };
-
   updateChildName = e => {
     const idx = e.target.dataset.number;
     const names = [...this.state.childrenNames];
@@ -83,9 +93,8 @@ class PoAForm extends React.Component {
     });
   };
 
-  updateParentalStatus = e => {
-    const idx = e.target.value;
-    this.setState({ parentalStatus: idx });
+  updateParentalStatus = (event) => {
+    this.setState({ parentalStatus: event.target.value });
   };
 
   updateParentalStatusText = e => {
@@ -134,20 +143,19 @@ class PoAForm extends React.Component {
   };
 
   renderChildrenInputs = () => {
-    const inputs = [...Array(parseInt(this.state.numberOfChildren, 10))].map(
+    const inputs = [...Array(this.state.numberOfChildren)].map(
       (_, i) => {
         return (
-          <div key={i}>
-            <input
-              type="text"
-              className="form-control"
+          <FormField
+            key={i}
+            label={`Child ${i + 1}${'\''}s full name`}
+          >
+            <TextInput
               data-number={i}
-              aria-describedby="basic-addon1"
               onChange={this.updateChildName}
               value={this.state.childrenNames[i]}
-              placeholder={`${i + 1} Child's name`}
             />
-          </div>
+          </FormField>
         );
       }
     );
@@ -156,73 +164,58 @@ class PoAForm extends React.Component {
 
   renderAddress = (name, errors) => {
     return (
-      <div>
+      <Paragraph>
         {errors && this.state.errors[`${name}_street_address`] ? (
           <span className="error">Please add a street address.</span>
         ) : null}
-        <input
+        <TextInput
           onChange={this.updateAddress}
           value={this.state[name].name}
-          type="text"
-          className="form-control"
           name={name}
           data-address-type={'name'}
-          placeholder="Name"
-          aria-describedby="sizing-addon1"
+          placeHolder="Name"
         />
         {errors && this.state.errors[`${name}_locality`] ? (
           <span className="error">Please add a name.</span>
         ) : null}
-        <input
+        <TextInput
           onChange={this.updateAddress}
           value={this.state[name].street_address}
-          type="text"
-          className="form-control"
           name={name}
           data-address-type={'street_address'}
-          placeholder="Street Address"
-          aria-describedby="sizing-addon1"
+          placeHolder="Street Address"
         />
         {errors && this.state.errors[`${name}_locality`] ? (
           <span className="error">Please add a city.</span>
         ) : null}
-        <input
+        <TextInput
           onChange={this.updateAddress}
           value={this.state[name].locality}
-          type="text"
-          className="form-control"
           name={name}
           data-address-type={'locality'}
-          placeholder="City"
-          aria-describedby="sizing-addon1"
+          placeHolder="City"
         />
         {errors && this.state.errors[`${name}_region`] ? (
           <span className="error">Please add at state.</span>
         ) : null}
-        <input
+        <TextInput
           onChange={this.updateAddress}
           value={this.state[name].region}
-          type="text"
-          className="form-control"
           name={name}
           data-address-type={'region'}
-          placeholder="State"
-          aria-describedby="sizing-addon1"
+          placeHolder="State"
         />
         {errors && this.state.errors[`${name}_postal_code`] ? (
           <span className="error">Please add a zip code.</span>
         ) : null}
-        <input
+        <TextInput
           onChange={this.updateAddress}
           value={this.state[name].postal_code}
-          type="text"
-          className="form-control"
           name={name}
           data-address-type={'postal_code'}
-          placeholder="Zip Code"
-          aria-describedby="sizing-addon1"
+          placeHolder="Zip Code"
         />
-      </div>
+      </Paragraph>
     );
   };
 
@@ -243,6 +236,10 @@ class PoAForm extends React.Component {
     }
   };
 
+  onNumberOfChildrenChange = (event) => {
+    this.setState({numberOfChildren: parseInt(event.target.value, 10)});
+  };
+
   _submit = () => {
     this.setState(
       () => ({
@@ -253,18 +250,27 @@ class PoAForm extends React.Component {
   };
 
   renderForm() {
-    const pluralizeChild =
-      this.state.numberOfChildren > 1 ? 'Children' : 'Child';
     const errors = Object.keys(this.state.errors).reduce((acc, curr) => {
       if (this.state.errors[curr]) {
         acc = true;
       }
       return acc;
     }, false);
+    const FieldHeader = (props) => (<div {...props}/>);
+    const ParentRadioButton = (props) => (
+      <RadioButton
+        checked={props.value === this.state.parentalStatus}
+        id={`parental-status-${props.value}`}
+        name='parental_status'
+        onChange={this.updateParentalStatus}
+        {...props}
+      />
+    )
+
     return (
-      <div className="container">
-        <h1>POWER OF ATTORNEY FOR CARE OF A MINOR CHILD</h1>
-        <p>
+      <Section>
+        <Heading tag='h1'>POWER OF ATTORNEY FOR CARE OF A MINOR CHILD</Heading>
+        <Paragraph>
           Use of this form is authorized by T.C.A. § 34-6-301 et seq. Completion
           of this form, along with the proper signatures, is sufficient to
           authorize enrollment of a minor in school and to authorize medical
@@ -272,163 +278,95 @@ class PoAForm extends React.Component {
           documentation/information as permitted by this section of Tennessee
           law before enrolling a child in school or any extracurricular
           activities.
-        </p>
-        <p>
+        </Paragraph>
+        <Paragraph>
           <strong>Part I:</strong> To be filled out and/or initialed by
           parent(s)/legal guardian(s)
-        </p>
-        <form method="post" action="javascript(void);" autoComplete="off">
-          <div className="btn-group">
-            <button className="btn dropdown-toggle" data-toggle="dropdown">{`${
-              this.state.numberOfChildren
-            } ${pluralizeChild}`}</button>
-            <button className="btn dropdown-toggle" data-toggle="dropdown">
-              <span className="caret" />
-            </button>
-            <ul
-              className="dropdown-menu"
-              role="menu"
-              aria-labelledby="dropdownMenu"
+        </Paragraph>
+        <Form autoComplete="off">
+          <FormField label="Number of children">
+            <NumberInput
+              min={1}
+              onChange={this.onNumberOfChildrenChange}
+              value={this.state.numberOfChildren}
+            />
+          </FormField>
+
+          <FieldHeader>1. Minor Child{'\''}s Name</FieldHeader>
+          {
+            errors && this.state.errors.childrenNames ?
+            (<span className="error">Please add the name of each child.</span>) :
+            null
+          }
+          {this.renderChildrenInputs()}
+
+          <FieldHeader>2. Mother/Legal Guardian’s Name & Address</FieldHeader>
+          {this.renderAddress(MOTHER_ADDRESS, errors)}
+
+          <FieldHeader>3. Father/Legal Guardian’s Name & Address</FieldHeader>
+          {this.renderAddress(FATHER_ADDRESS, errors)}
+
+          <FieldHeader>4. Caregiver’s Name & Address</FieldHeader>
+          {this.renderAddress(CAREGIVER_ADDRESS, errors)}
+
+          <FieldHeader>5. Parental Status</FieldHeader>
+          {
+            errors && this.state.errors.parental_status ?
+            (<span className="error">Please add a parental status.</span>) :
+            null
+          }
+          {
+            errors && this.state.errors.reason ?
+            (<span className="error">Please add a reason.</span>) :
+            null
+          }
+          <FormField>
+            {
+              [
+                ['parents-living', 'Both parents are living, have legal custody of the minor child and have signed this document'],
+                ['parent-deceased', 'One parent is deceased'],
+                ['legal-custody-signed', 'One parent has legal custody of the minor child and both parents have signed this document and consent to the appointment of the caregiver'],
+                ['legal-custody-sent', 'One parent has legal custody of the minor child, and has sent by Certified Mail, Return Receipt requested, to the other parent at last known address, a copy of this document and a notice of the provisions in § 34-6-305;'],
+                ['legal-custody-no-consent', 'The non-custodial parent has not consented to the appointment and consent cannot be obtained.']
+              ].map(
+                ([value, label]) => (<ParentRadioButton label={label} key={value} value={value}/>)
+              )
+            }
+          </FormField>
+          {
+            // Conditionally render a reason they could not be reached when 4
+            // is selected.
+            this.state.parentalStatus === 'legal-custody-no-consent' ?
+            <FormField
+              label='Reason non-custodial parent could not be reached:'
             >
-              {[...Array(20)].map((_, i) => {
-                const number = i + 1;
-                return (
-                  <li key={number}>
-                    <a
-                      data-number={number}
-                      onClick={this.selectNumberofChilds}
-                    >
-                      {number}
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-          <div className="row">
-            <p>1. Minor Child's Name</p>
-            {errors && this.state.errors.childrenNames ? (
-              <span className="error">Please add at least on child.</span>
-            ) : null}
-            {this.renderChildrenInputs()}
-          </div>
-          <div className="row">
-            <p>2. Mother/Legal Guardian’s Name & Address</p>{' '}
-            {this.renderAddress(MOTHER_ADDRESS, errors)}
-          </div>
-          <div className="row">
-            <p>3. Father/Legal Guardian’s Name & Address</p>{' '}
-            {this.renderAddress(FATHER_ADDRESS, errors)}
-          </div>
-          <div className="row">
-            <p>4. Caregiver’s Name & Address</p>{' '}
-            {this.renderAddress(CAREGIVER_ADDRESS, errors)}
-          </div>
-          <div>
-            <p> 5. Parental Status</p>
-            {errors && this.state.errors.parental_status ? (
-              <span className="error">Please add a parental status.</span>
-            ) : null}
-            {errors && this.state.errors.reason ? (
-              <span className="error">Please add a reason.</span>
-            ) : null}
-            <div className="input-group">
-              <div className="row">
-                <span className="">
-                  <input
-                    type="radio"
-                    onChange={this.updateParentalStatus}
-                    value={0}
-                    name="parental_status"
-                    aria-label="parental_status"
-                  />Both parents are living,have legal custody of the minor
-                  child and have signed this document;
-                </span>
-              </div>
-              <div className="row">
-                <span className="">
-                  <input
-                    type="radio"
-                    onChange={this.updateParentalStatus}
-                    value={1}
-                    name="parental_status"
-                    aria-label="parental_status"
-                  />One parent is deceased;
-                </span>
-              </div>
-              <div className="row">
-                <span className="">
-                  <input
-                    type="radio"
-                    onChange={this.updateParentalStatus}
-                    value={2}
-                    name="parental_status"
-                    aria-label="parental_status"
-                  />
-                  One parent has legal custody of the minor child and both
-                  parents have signed this document and consent to the
-                  appointment of the caregiver;
-                </span>
-              </div>
-              <div className="row">
-                <span className="">
-                  <input
-                    type="radio"
-                    onChange={this.updateParentalStatus}
-                    value={3}
-                    name="parental_status"
-                    aria-label="parental_status"
-                  />{' '}
-                  One parent has legal custody of the minor child, and has sent
-                  by Certified Mail, Return Receipt requested, to the other
-                  parent at last known address, a copy of this document and a
-                  notice of the provisions in § 34-6-305;
-                </span>
-              </div>
-              <div className="row">
-                <span className="">
-                  <input
-                    type="radio"
-                    onChange={this.updateParentalStatus}
-                    value={4}
-                    name="parental_status"
-                    aria-label="parental_status"
-                  />
-                  or the non-custodial parent has not consented to the
-                  appointment and consent cannot be obtained because
-                  <input
-                    onChange={this.updateParentalStatusText}
-                    value={this.state.reason}
-                    type="text"
-                    className="form-control"
-                    name={'parent_status_reason'}
-                    aria-describedby="sizing-addon1"
-                  />
-                </span>
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            {this.state.errorCount > 0 ? (
-              <span className="error">{`The form has ${
-                this.state.errorCount
-              } error(s).`}</span>
-            ) : null}
-          </div>
-          <button
-            type="button"
+              <TextInput
+                name='parent-status-reason'
+                onInput={this.updateParentalStatusText}
+                value={this.state.reason}
+              />
+            </FormField> :
+            null
+          }
+          {
+            this.state.errorCount > 0 ?
+            (<Notification
+              message={`The form has ${this.state.errorCount} error(s)`}
+              status='critical'
+            />) :
+            null
+          }
+          <Button
+            label="Submit"
             onClick={this._submit}
-            className="btn btn-default"
-          >
-            Submit
-          </button>
-        </form>
-      </div>
+            primary={true}
+          />
+        </Form>
+      </Section>
     );
   }
 
   render () {
-    console.log(this.state)
     if (this.state.submitted) {
       return <DownloadPDF data={this.state} />
     }
