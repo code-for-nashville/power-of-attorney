@@ -38,6 +38,7 @@ export default () => {
       </Box>
       <Section
         className='HomeCopy'
+        pad={{vertical: 'none'}}
         primary={true}
       >
         <Heading tag='h1'>For Tennessee</Heading>

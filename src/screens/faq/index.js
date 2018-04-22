@@ -11,7 +11,9 @@ import {
 
 export default () => {
   return (
-    <Section>
+    <Section
+      pad={{vertical: 'none'}}
+    >
       <Image
         alt='Dangling light bulb.'
         full='horizontal'
