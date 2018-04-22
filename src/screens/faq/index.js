@@ -33,7 +33,7 @@ export default () => {
         Your caregiver should be someone you trust. This document will give them the power to make decisions for your child as if they were you and in the best interests of the child. You can end this power of attorney at any time by putting in writing that you no longer want this person to have power of attorney over your child.
       </Paragraph>
       <Heading tag='h2'>
-        Where can I learn more about power of Attorney for a minor child?
+        Where can I learn more about Power of Attorney for a minor child?
       </Heading>
       <Paragraph>
         The law itself can be found <Anchor
