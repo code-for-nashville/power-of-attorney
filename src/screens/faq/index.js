@@ -3,6 +3,7 @@ import React from 'react';
 import {
   Anchor,
   Heading,
+  Image,
   Paragraph,
   Section
 } from 'grommet';
@@ -11,6 +12,11 @@ import {
 export default () => {
   return (
     <Section>
+      <Image
+        alt='Dangling light bulb.'
+        full='horizontal'
+        src={`${process.env.PUBLIC_URL}/images/light-bulb.jpg`}
+      />
       <Heading tag='h1'>
         Frequently Asked Questions
       </Heading>

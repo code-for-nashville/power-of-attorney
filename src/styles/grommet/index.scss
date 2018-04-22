@@ -9,3 +9,7 @@
 @import 'grommet/scss/grommet-core/index';
 // Import the vanilla button styling for now
 @import 'grommet/scss/vanilla/objects.button-vanilla';
+
+h1, h2, h3, h4, h5, h6, .grommetux-headline {
+  font-family: $brand-header-font-family;
+}

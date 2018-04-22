@@ -3,11 +3,13 @@
 $power-of-attorney-orange: #F55D3E;
 $power-of-attorney-coral-blue: #679BA1;
 $power-of-attorney-header-link-color: #0F1825;
+$power-of-attorney-shadow: #D8D8D8;
 
 $brand-color: $power-of-attorney-orange;
+// Unchanged
 $brand-neutral-colors: (#0A64A0, #DC2878, #501EB4, #49516F);
 $brand-accent-colors: ($power-of-attorney-coral-blue, #FF7D28);
-$brand-link-color: $power-of-attorney-header-link-color;
+$brand-link-color: $power-of-attorney-coral-blue;
 $brand-status-colors: (
   critical: #FF324D,
   error: #FF324D,
@@ -16,12 +18,14 @@ $brand-status-colors: (
   unknown: #a8a8a8,
   disabled: #a8a8a8
 ) !default;
-$brand-grey-colors: (#000001, #333333, #3B3B3B, #434343, #666666);
+$brand-grey-colors: (#0F1825, #4A4A4A, #A3A3A3, $power-of-attorney-shadow, #FFFFFF);
 
 $button-secondary-color: nth($brand-neutral-colors, 2);
 
 // Linked in public/index.html
 $brand-font-family: 'Lato', Arial, sans-serif;
-$brand-large-number-font-family: 'NotoSerif', 'Times New Roman', serif;
+// $brand-header-font-family, but used in index.scss to override header font-family
+$brand-header-font-family: 'Noto Serif', 'Times New Roman', serif;
+$brand-large-number-font-family: $brand-header-font-family;
 $code-font-family: Consolas, Menlo, 'DejaVu Sans Mono', 'Liberation Mono', monospace;
 $text-strong-font-weight: 500;

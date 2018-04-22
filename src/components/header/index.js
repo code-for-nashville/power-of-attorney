@@ -1,13 +1,17 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 import {
-  Anchor,
   Box,
   Header,
   Menu
 } from 'grommet';
+import GrommetClassnames from 'grommet/utils/CSSClassnames.js';
 
 import { FAQ_PATH, HOME_PATH } from '../../paths';
+
+// Class added to Grommet anchor when `disabled=True`
+const ANCHOR_DISABLED = `${GrommetClassnames.ANCHOR}--disabled`
 
 
 export default () => {
@@ -21,16 +25,22 @@ export default () => {
         <Menu
           direction='row'
         >
-          <Anchor
-            path={HOME_PATH}
+          <NavLink
+            activeClassName={ANCHOR_DISABLED}
+            className={GrommetClassnames.ANCHOR}
+            exact
+            to={HOME_PATH}
           >
             Home
-          </Anchor>
-          <Anchor
-            path={FAQ_PATH}
+          </NavLink>
+          <NavLink
+            activeClassName={ANCHOR_DISABLED}
+            className={GrommetClassnames.ANCHOR}
+            exact
+            to={FAQ_PATH}
           >
             FAQ
-          </Anchor>
+          </NavLink>
         </Menu>
       </Box>
     </Header>

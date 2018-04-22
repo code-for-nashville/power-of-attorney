@@ -17,8 +17,10 @@ class App extends Component {
     return (
       <Router>
         <GrommetApp>
-          <Article>
-            <Header/>
+          <Article
+            pad={{horizontal: 'large'}}
+          >
+            <Header />
             <Route exact path={FAQ_PATH} component={FAQ} />
             <Route exact path={FORM_PATH} component={PoAForm} />
             <Route exact path={HOME_PATH} component={Home} />
