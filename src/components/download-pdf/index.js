@@ -30,19 +30,22 @@ export default class DownloadPDF extends Component {
     return (
       <Header>
         <Box flex={true}
+          className='download-container'
           justify='end'
           direction='row'
-          responsive={false}
+          responsive={true}
+          align='center'
         >
           {this.props.data.childrenNames.map((childName) => {
             return (
               <div>
-                <p>{childName}'s form</p>
+                <h3>{childName}'s form</h3>
                 <Button
+                  className='download-btn'
                   onClick={() => this._downloadPDF(childName)}
                   label='Download'
                 />
-
+                <hr />
               </div>
             )
           })}

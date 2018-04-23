@@ -18,3 +18,13 @@
 .grommetux-text-input.grommetux-input.input-class {
   margin: 0em 1em 1em 0em;
 }
+
+.grommetux-box.grommetux-box--direction-row.grommetux-box--justify-end.grommetux-box--flex.grommetux-box--pad-none.download-container {
+  display: block;
+  hr {
+    max-width: 22em;
+  }
+}
+.grommetux-button.download-btn {
+  margin: 0em 0em 1.8em 0em;
+}
