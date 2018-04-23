@@ -371,17 +371,9 @@ class PoAForm extends React.Component {
 
   render () {
     if (this.state.submitted) {
-      return <div>
-        <p>Hooola 234</p>
-        <DownloadPDF data={this.state} />;
-        </div>
+      return <DownloadPDF data={this.state} />;
     }
-    return (
-      <div>
-        <h1>Hello jjir</h1>
-        {this.renderForm()}
-      </div>
-    )
+    return this.renderForm();
   }
 }
 
