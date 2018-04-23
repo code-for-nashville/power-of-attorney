@@ -4,7 +4,6 @@ export const FATHER_ADDRESS = 'fatherAddress';
 export const CAREGIVER_ADDRESS = 'caregiverAddress';
 
 let createDocDefinition = (inputInfo, childName) => {
-  console.log("DATA IN PDF FILE BUUUM ^___^", inputInfo);
   const statusOne = inputInfo.parentalStatus === '0' ? 'X' : '__';
   const statusTwo = inputInfo.parentalStatus === '1' ? 'X' : '__';
   const statusThree = inputInfo.parentalStatus === '2' ? 'X' : '__';

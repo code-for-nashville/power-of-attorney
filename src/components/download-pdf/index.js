@@ -11,7 +11,6 @@ import {
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 import pdfMake from 'pdfmake/build/pdfmake';
 
-// import { FAQ_PATH, HOME_PATH } from '../../paths';
 import createDocDefinition from '../../pdf/pdf-document'
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
