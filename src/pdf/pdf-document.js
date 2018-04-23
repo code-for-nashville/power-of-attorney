@@ -11,7 +11,6 @@ let createDocDefinition = (inputInfo, childName) => {
   const statusFour = inputInfo.parentalStatus === '3' ? 'X' : '__';
   const docDefinition = {
     footer: (currentPage, pageCount) => {
-      console.log('currentPage, pageCount',currentPage, pageCount)
       if(currentPage < 4){
         return;
       }

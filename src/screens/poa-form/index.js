@@ -78,12 +78,10 @@ class PoAForm extends React.Component {
     const idx = e.target.dataset.number;
     const names = [...this.state.childrenNames];
     names[idx] = e.target.value;
-    console.log('updateChildName ', names);
     this.setState({ childrenNames: names });
   };
 
   updateAddress = e => {
-    console.log('INPUT CHANGE_ :', e.target)
     const inputName = e.target.name;
     const addressType = e.target.dataset.addressType;
     const value = e.target.value;
@@ -165,7 +163,6 @@ class PoAForm extends React.Component {
   };
 
   renderAddress = (name, errors) => {
-    // console.log('INPUT NAME: ', name);
     return (
       <Paragraph>
         {errors && this.state.errors[`${name}_street_address`] ? (
