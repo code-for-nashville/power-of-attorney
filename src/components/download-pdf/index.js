@@ -36,9 +36,14 @@ export default class DownloadPDF extends Component {
         >
           {this.props.data.childrenNames.map((childName) => {
             return (
-              <Button
-                onClick={() => this._downloadPDF(childName)}
-              />
+              <div>
+                <p>{childName}'s form</p>
+                <Button
+                  onClick={() => this._downloadPDF(childName)}
+                  label='Download'
+                />
+
+              </div>
             )
           })}
         </Box>
