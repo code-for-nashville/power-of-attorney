@@ -78,6 +78,7 @@ class PoAForm extends React.Component {
     const idx = e.target.dataset.number;
     const names = [...this.state.childrenNames];
     names[idx] = e.target.value;
+    console.log('updateChildName ', names);
     this.setState({ childrenNames: names });
   };
 
@@ -153,7 +154,7 @@ class PoAForm extends React.Component {
           >
             <TextInput
               data-number={i}
-              onChange={this.updateChildName}
+              onDOMChange={this.updateChildName}
               value={this.state.childrenNames[i]}
             />
           </FormField>
