@@ -10,12 +10,42 @@ let createDocDefinition = (inputInfo, childName) => {
   const statusFour = inputInfo.parentalStatus === '3' ? 'X' : '__';
   const docDefinition = {
     footer: (currentPage, pageCount) => {
+      if(currentPage < 4){
+        return;
+      }
       return {
-        text: currentPage.toString() + ' of ' + pageCount,
+        text: `${currentPage - 3} of ${pageCount - 3}`,
         alignment: 'center'
       };
     },
     content: [
+      {
+        text: 'POWER OF ATTORNEY FOR CARE OF A MINOR CHILD Insctruction TITLE SAMPLE\n\n',
+        alignment: 'center',
+        bold: true,
+        decoration: 'underline'
+      },
+      {
+        // blank page
+        text: '',
+        style: 'header',
+        pageBreak:'before'
+      },
+      {
+        text:'Instroction should be here An instruction document is a step-by-step guide on how to perform an activity. Instruction templates are purposeful templates. They are not for leisure reading. People read them for purpose and they are worthy of it. They are more about ‘how’ rather than ‘what’. There are many kinds of instruction templates: You may also see'
+      },
+      {
+        // blank page
+        text: '',
+        style: 'header',
+        pageBreak:'before'
+      },
+      {
+        // blank page
+        text: '',
+        style: 'header',
+        pageBreak:'before'
+      },
       {
         text: 'POWER OF ATTORNEY FOR CARE OF A MINOR CHILD\n\n',
         alignment: 'center',
@@ -195,6 +225,7 @@ let createDocDefinition = (inputInfo, childName) => {
           '9.(____) I / We understand that this document may be terminated in another written document signed by either parent with legal custody or by any order of a court with competent jurisdiction.\n\n'
         ]
       },
+      
       {
         text: [
           { text: 'Part II: To be initialed by caregiver.\n\n', bold: true },

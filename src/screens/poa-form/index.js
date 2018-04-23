@@ -152,7 +152,7 @@ class PoAForm extends React.Component {
           >
             <TextInput
               data-number={i}
-              onChange={this.updateChildName}
+              onDOMChange={this.updateChildName}
               value={this.state.childrenNames[i]}
             />
           </FormField>
@@ -169,17 +169,20 @@ class PoAForm extends React.Component {
           <span className="error">Please add a street address.</span>
         ) : null}
         <TextInput
-          onChange={this.updateAddress}
+          onDOMChange={this.updateAddress}
+          className='input-class-long'
           value={this.state[name].name}
           name={name}
           data-address-type={'name'}
           placeHolder="Name"
+          margin='small'
         />
         {errors && this.state.errors[`${name}_locality`] ? (
           <span className="error">Please add a name.</span>
         ) : null}
         <TextInput
-          onChange={this.updateAddress}
+          onDOMChange={this.updateAddress}
+          className='input-class-long'
           value={this.state[name].street_address}
           name={name}
           data-address-type={'street_address'}
@@ -189,7 +192,8 @@ class PoAForm extends React.Component {
           <span className="error">Please add a city.</span>
         ) : null}
         <TextInput
-          onChange={this.updateAddress}
+          onDOMChange={this.updateAddress}
+          className='input-class'
           value={this.state[name].locality}
           name={name}
           data-address-type={'locality'}
@@ -199,7 +203,8 @@ class PoAForm extends React.Component {
           <span className="error">Please add at state.</span>
         ) : null}
         <TextInput
-          onChange={this.updateAddress}
+          onDOMChange={this.updateAddress}
+          className='input-class'
           value={this.state[name].region}
           name={name}
           data-address-type={'region'}
@@ -209,7 +214,8 @@ class PoAForm extends React.Component {
           <span className="error">Please add a zip code.</span>
         ) : null}
         <TextInput
-          onChange={this.updateAddress}
+          onDOMChange={this.updateAddress}
+          className='input-class'
           value={this.state[name].postal_code}
           name={name}
           data-address-type={'postal_code'}
@@ -232,6 +238,9 @@ class PoAForm extends React.Component {
       this.setState(() => ({ errorCount: errArray.length }));
     } else {
       console.log('submitted')
+      //
+      //TODO This logic need to be fix
+      //
       this.setState({ submitted: true })
     }
   };
@@ -368,9 +377,9 @@ class PoAForm extends React.Component {
 
   render () {
     if (this.state.submitted) {
-      return <DownloadPDF data={this.state} />
+      return <DownloadPDF data={this.state} />;
     }
-    return this.renderForm()
+    return this.renderForm();
   }
 }
 
