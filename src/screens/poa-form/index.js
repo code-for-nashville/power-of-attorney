@@ -170,16 +170,19 @@ class PoAForm extends React.Component {
         ) : null}
         <TextInput
           onDOMChange={this.updateAddress}
+          className='input-class-long'
           value={this.state[name].name}
           name={name}
           data-address-type={'name'}
           placeHolder="Name"
+          margin='small'
         />
         {errors && this.state.errors[`${name}_locality`] ? (
           <span className="error">Please add a name.</span>
         ) : null}
         <TextInput
           onDOMChange={this.updateAddress}
+          className='input-class-long'
           value={this.state[name].street_address}
           name={name}
           data-address-type={'street_address'}
@@ -190,6 +193,7 @@ class PoAForm extends React.Component {
         ) : null}
         <TextInput
           onDOMChange={this.updateAddress}
+          className='input-class'
           value={this.state[name].locality}
           name={name}
           data-address-type={'locality'}
@@ -200,6 +204,7 @@ class PoAForm extends React.Component {
         ) : null}
         <TextInput
           onDOMChange={this.updateAddress}
+          className='input-class'
           value={this.state[name].region}
           name={name}
           data-address-type={'region'}
@@ -210,6 +215,7 @@ class PoAForm extends React.Component {
         ) : null}
         <TextInput
           onDOMChange={this.updateAddress}
+          className='input-class'
           value={this.state[name].postal_code}
           name={name}
           data-address-type={'postal_code'}
