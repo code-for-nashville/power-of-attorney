@@ -37,12 +37,15 @@ const NO_ERRORS = {
   caregiver_postal_code: false
 };
 
+const FieldHeader = (props) => (<div {...props} />);
+
 class PoAForm extends React.Component {
   static navigationOptions = ({ navigation }) => ({});
 
   constructor(props) {
     super(props);
     this.state = {
+      step: 0,
       numberOfChildren: 1,
       childrenNames: [],
       submitted: false,
@@ -102,7 +105,7 @@ class PoAForm extends React.Component {
     this.setState({ reason });
   };
 
-  validate = (callback = () => {}) => {
+  validate = (callback = () => { }) => {
     this.setState(
       () => ({
         errors: {
@@ -142,6 +145,58 @@ class PoAForm extends React.Component {
     );
   };
 
+  reduceErrors = () => {
+    const errors = Object.keys(this.state.errors).reduce((acc, curr) => {
+      if (this.state.errors[curr]) {
+        acc = true;
+      }
+      return acc;
+    }, false);
+    return errors
+  }
+
+  onNumberOfChildrenChange = (event) => {
+    this.setState({ numberOfChildren: parseInt(event.target.value, 10) });
+  };
+
+  generateForm = () => {
+    const { errors, childrenNames, ...inputInfo } = this.state;
+    const errArray = Object.keys(errors).filter(errKey => {
+      if (errors[errKey]) {
+        return true;
+      }
+      return false;
+    });
+
+    if (errArray.length > 0) {
+      this.setState(() => ({ errorCount: errArray.length }));
+    } else {
+      console.log('submitted')
+      //
+      //TODO This logic need to be fix
+      //
+      this.setState({ submitted: true })
+    }
+  };
+
+  _submit = () => {
+    this.setState(
+      () => ({
+        errors: NO_ERRORS
+      }),
+      this.validate(this.generateForm)
+    );
+  };
+
+  _back = () => {
+    this.setState((state) => ({ step: --state.step }))
+  }
+
+  _next = () => {
+    console.log(this.state.step)
+    this.setState((state) => ({ step: ++state.step }))
+  }
+
   renderChildrenInputs = () => {
     const inputs = [...Array(this.state.numberOfChildren)].map(
       (_, i) => {
@@ -162,7 +217,8 @@ class PoAForm extends React.Component {
     return inputs;
   };
 
-  renderAddress = (name, errors) => {
+  renderAddress = (name) => {
+    const errors = this.reduceErrors()
     return (
       <Paragraph>
         {errors && this.state.errors[`${name}_street_address`] ? (
@@ -225,47 +281,56 @@ class PoAForm extends React.Component {
     );
   };
 
-  generateForm = () => {
-    const { errors, childrenNames, ...inputInfo } = this.state;
-    const errArray = Object.keys(errors).filter(errKey => {
-      if (errors[errKey]) {
-        return true;
-      }
-      return false;
-    });
+  renderStepOne() {
+    const errors = this.reduceErrors()
+    return (
+      <div>
+        <FormField label="Number of children">
+          <NumberInput
+            min={1}
+            onChange={this.onNumberOfChildrenChange}
+            value={this.state.numberOfChildren}
+          />
+        </FormField>
 
-    if (errArray.length > 0) {
-      this.setState(() => ({ errorCount: errArray.length }));
-    } else {
-      console.log('submitted')
-      //
-      //TODO This logic need to be fix
-      //
-      this.setState({ submitted: true })
-    }
-  };
+        <FieldHeader>1. Minor Child{'\''}s Name</FieldHeader>
+        {
+          errors && this.state.errors.childrenNames ?
+            (<span className="error">Please add the name of each child.</span>) :
+            null
+        }
+        {this.renderChildrenInputs()}
+      </div>
+    )
+  }
 
-  onNumberOfChildrenChange = (event) => {
-    this.setState({numberOfChildren: parseInt(event.target.value, 10)});
-  };
+  renderStepTwo() {
+    return (
+      <div>
+        <FieldHeader>2. Mother/Legal Guardian’s Name & Address</FieldHeader>
+        {this.renderAddress(MOTHER_ADDRESS)}
+      </div>
+    )
+  }
 
-  _submit = () => {
-    this.setState(
-      () => ({
-        errors: NO_ERRORS
-      }),
-      this.validate(this.generateForm)
-    );
-  };
+  renderStepThree() {
+    return (<div>
+      <FieldHeader>3. Father/Legal Guardian’s Name & Address</FieldHeader>
+      {this.renderAddress(FATHER_ADDRESS)}
+    </div>
+    )
+  }
 
-  renderForm() {
-    const errors = Object.keys(this.state.errors).reduce((acc, curr) => {
-      if (this.state.errors[curr]) {
-        acc = true;
-      }
-      return acc;
-    }, false);
-    const FieldHeader = (props) => (<div {...props}/>);
+  renderStepFour() {
+    return (
+      <div>
+        <FieldHeader>4. Caregiver’s Name & Address</FieldHeader>
+        {this.renderAddress(CAREGIVER_ADDRESS)}
+      </div>
+
+    )
+  }
+  renderStepFive() {
     const ParentRadioButton = (props) => (
       <RadioButton
         checked={props.value === this.state.parentalStatus}
@@ -275,6 +340,73 @@ class PoAForm extends React.Component {
         {...props}
       />
     )
+    const errors = this.reduceErrors()
+    return (
+      <div>
+        <FieldHeader>5. Parental Status</FieldHeader>
+        {
+          errors && this.state.errors.parental_status ?
+            (<span className="error">Please add a parental status.</span>) :
+            null
+        }
+        {
+          errors && this.state.errors.reason ?
+            (<span className="error">Please add a reason.</span>) :
+            null
+        }
+        <FormField>
+          {
+            [
+              ['parents-living', 'Both parents are living, have legal custody of the minor child and have signed this document'],
+              ['parent-deceased', 'One parent is deceased'],
+              ['legal-custody-signed', 'One parent has legal custody of the minor child and both parents have signed this document and consent to the appointment of the caregiver'],
+              ['legal-custody-sent', 'One parent has legal custody of the minor child, and has sent by Certified Mail, Return Receipt requested, to the other parent at last known address, a copy of this document and a notice of the provisions in § 34-6-305;'],
+              ['legal-custody-no-consent', 'The non-custodial parent has not consented to the appointment and consent cannot be obtained.']
+            ].map(
+              ([value, label]) => (<ParentRadioButton label={label} key={value} value={value} />)
+            )
+          }
+        </FormField>
+        {
+          // Conditionally render a reason they could not be reached when 4
+          // is selected.
+          this.state.parentalStatus === 'legal-custody-no-consent' ?
+            <FormField
+              label='Reason non-custodial parent could not be reached:'
+            >
+              <TextInput
+                name='parent-status-reason'
+                onInput={this.updateParentalStatusText}
+                value={this.state.reason}
+              />
+            </FormField> :
+            null
+        }
+      </div>
+    )
+  }
+
+  renderForm() {
+    switch(this.state.step){
+      case 1:
+        return this.renderStepOne()
+      case 2:
+        return this.renderStepTwo()
+      case 3:
+        return this.renderStepThree()
+      case 4:
+        return this.renderStepFour()
+      case 5:
+        return this.renderStepFive()
+    }
+  }
+
+  render() {
+    console.log(this.state.step)
+    const errors = this.reduceErrors()
+    if (this.state.submitted) {
+      return <DownloadPDF data={this.state} />;
+    }
 
     return (
       <Section>
@@ -287,99 +419,36 @@ class PoAForm extends React.Component {
           documentation/information as permitted by this section of Tennessee
           law before enrolling a child in school or any extracurricular
           activities.
-        </Paragraph>
+    </Paragraph>
         <Paragraph>
           <strong>Part I:</strong> To be filled out and/or initialed by
           parent(s)/legal guardian(s)
-        </Paragraph>
+    </Paragraph>
+
+
         <Form autoComplete="off">
-          <FormField label="Number of children">
-            <NumberInput
-              min={1}
-              onChange={this.onNumberOfChildrenChange}
-              value={this.state.numberOfChildren}
-            />
-          </FormField>
-
-          <FieldHeader>1. Minor Child{'\''}s Name</FieldHeader>
-          {
-            errors && this.state.errors.childrenNames ?
-            (<span className="error">Please add the name of each child.</span>) :
-            null
-          }
-          {this.renderChildrenInputs()}
-
-          <FieldHeader>2. Mother/Legal Guardian’s Name & Address</FieldHeader>
-          {this.renderAddress(MOTHER_ADDRESS, errors)}
-
-          <FieldHeader>3. Father/Legal Guardian’s Name & Address</FieldHeader>
-          {this.renderAddress(FATHER_ADDRESS, errors)}
-
-          <FieldHeader>4. Caregiver’s Name & Address</FieldHeader>
-          {this.renderAddress(CAREGIVER_ADDRESS, errors)}
-
-          <FieldHeader>5. Parental Status</FieldHeader>
-          {
-            errors && this.state.errors.parental_status ?
-            (<span className="error">Please add a parental status.</span>) :
-            null
-          }
-          {
-            errors && this.state.errors.reason ?
-            (<span className="error">Please add a reason.</span>) :
-            null
-          }
-          <FormField>
-            {
-              [
-                ['parents-living', 'Both parents are living, have legal custody of the minor child and have signed this document'],
-                ['parent-deceased', 'One parent is deceased'],
-                ['legal-custody-signed', 'One parent has legal custody of the minor child and both parents have signed this document and consent to the appointment of the caregiver'],
-                ['legal-custody-sent', 'One parent has legal custody of the minor child, and has sent by Certified Mail, Return Receipt requested, to the other parent at last known address, a copy of this document and a notice of the provisions in § 34-6-305;'],
-                ['legal-custody-no-consent', 'The non-custodial parent has not consented to the appointment and consent cannot be obtained.']
-              ].map(
-                ([value, label]) => (<ParentRadioButton label={label} key={value} value={value}/>)
-              )
-            }
-          </FormField>
-          {
-            // Conditionally render a reason they could not be reached when 4
-            // is selected.
-            this.state.parentalStatus === 'legal-custody-no-consent' ?
-            <FormField
-              label='Reason non-custodial parent could not be reached:'
-            >
-              <TextInput
-                name='parent-status-reason'
-                onInput={this.updateParentalStatusText}
-                value={this.state.reason}
-              />
-            </FormField> :
-            null
-          }
+          {this.renderForm()}
           {
             this.state.errorCount > 0 ?
-            (<Notification
-              message={`The form has ${this.state.errorCount} error(s)`}
-              status='critical'
-            />) :
-            null
+              (<Notification
+                message={`The form has ${this.state.errorCount} error(s)`}
+                status='critical'
+              />) :
+              null
           }
           <Button
-            label="Submit"
-            onClick={this._submit}
+            label="Back"
+            onClick={this._back}
+            primary={true}
+          />
+          <Button
+            label="Next"
+            onClick={this._next}
             primary={true}
           />
         </Form>
       </Section>
-    );
-  }
-
-  render () {
-    if (this.state.submitted) {
-      return <DownloadPDF data={this.state} />;
-    }
-    return this.renderForm();
+    )
   }
 }
 
