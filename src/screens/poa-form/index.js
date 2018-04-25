@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import {
+  Box,
   Button,
   Form,
   FormField,
@@ -189,12 +190,13 @@ class PoAForm extends React.Component {
   };
 
   _back = () => {
-    this.setState((state) => ({ step: --state.step }))
+    if (this.state.step > 0)
+      this.setState((state) => ({ step: --state.step }))
   }
 
   _next = () => {
-    console.log(this.state.step)
-    this.setState((state) => ({ step: ++state.step }))
+    if (this.state.step < 4)
+      this.setState((state) => ({ step: ++state.step }))
   }
 
   renderChildrenInputs = () => {
@@ -387,22 +389,21 @@ class PoAForm extends React.Component {
   }
 
   renderForm() {
-    switch(this.state.step){
-      case 1:
+    switch (this.state.step) {
+      case 0:
         return this.renderStepOne()
-      case 2:
+      case 1:
         return this.renderStepTwo()
-      case 3:
+      case 2:
         return this.renderStepThree()
-      case 4:
+      case 3:
         return this.renderStepFour()
-      case 5:
+      case 4:
         return this.renderStepFive()
     }
   }
 
   render() {
-    console.log(this.state.step)
     const errors = this.reduceErrors()
     if (this.state.submitted) {
       return <DownloadPDF data={this.state} />;
@@ -436,16 +437,24 @@ class PoAForm extends React.Component {
               />) :
               null
           }
-          <Button
-            label="Back"
-            onClick={this._back}
-            primary={true}
-          />
-          <Button
-            label="Next"
-            onClick={this._next}
-            primary={true}
-          />
+          <Box
+            direction='row'
+            justify='between'
+            basis='medium'
+            className='button-box'
+          >
+            <Button
+              label="Back"
+              onClick={this._back}
+              primary={true}
+              style={this.state.step === 0 ? {backgroundColor: 'grey', borderColor: 'grey'}: {}}
+            />
+            <Button
+              label={this.state.step === 4 ? "Submit" : "Next"}
+              onClick={this._next}
+              primary={true}
+            />
+          </Box>
         </Form>
       </Section>
     )
