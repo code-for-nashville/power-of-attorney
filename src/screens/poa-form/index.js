@@ -226,7 +226,7 @@ class PoAForm extends React.Component {
   };
 
   generateForm = () => {
-    const { errors, childrenNames, ...inputInfo } = this.state;
+    const { errors } = this.state;
     const errArray = Object.keys(errors).filter(errKey => {
       if (errors[errKey]) {
         return true;
@@ -237,10 +237,6 @@ class PoAForm extends React.Component {
     if (errArray.length > 0) {
       this.setState(() => ({ errorCount: errArray.length }));
     } else {
-      console.log('submitted')
-      //
-      //TODO This logic need to be fix
-      //
       this.setState({ submitted: true })
     }
   };
