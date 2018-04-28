@@ -10,6 +10,8 @@ import {
 
 import { FAQ_PATH } from '../../paths.js';
 
+import './style.css';
+
 /*
   The Disclaimer modal to display before the user is allowed to complet the form
 
@@ -21,28 +23,44 @@ import { FAQ_PATH } from '../../paths.js';
 */
 const Disclaimer = (props) => {
   return (
-    <Layer align='center'>
+    <Layer className='Disclaimer' align='center'>
       <Box
-        full='false'
+        className='DisclaimerHeader'
+        full='true'
         justify='center'
+        pad={{horizontal: 'medium', 'vertical': 'small'}}
       >
-      <div>Before you start...</div>
-      <div>
-        <Paragraph>
+        <div>Before you start...</div>
+      </Box>
+      <Box
+        pad={{horizontal: 'medium', 'vertical': 'none'}}
+      >
+        <Paragraph
+          margin='small'
+        >
           Use of this form is authorized by T.C.A. § 34-6-301 et seq. Completion of this form, along with the proper signatures, is sufficient to authorize enrollment of a minor in school and to authorize medical treatment. However, a school district may require additional documentation/information as permitted by this section of Tennessee law before enrolling a child in school or any extracurricular activities.
         </Paragraph>
-        <Paragraph>
+        <Paragraph
+          margin='small'
+        >
           This form is to be filled out and/or initialed by parent(s)/legal guardian(s).
         </Paragraph>
-      </div>
-      <Menu>
-        <Anchor path={FAQ_PATH}>
-          MORE INFORMATION
-        </Anchor>
-        <Anchor onClick={props.onClose}>
-          I UNDERSTAND
-        </Anchor>
-      </Menu>
+        <Menu
+          direction='row'
+          justify='end'
+          pad={{'vertical': 'medium'}}
+          size='small'
+        >
+          <Anchor
+            className='DisclaimerMoreInformation'
+            path={FAQ_PATH}
+          >
+            MORE INFORMATION
+          </Anchor>
+          <Anchor onClick={props.onClose}>
+            I UNDERSTAND
+          </Anchor>
+        </Menu>
       </Box>
     </Layer>
   );
