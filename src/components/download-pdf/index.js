@@ -19,13 +19,10 @@ export default class DownloadPDF extends Component {
 
   _downloadPDF = (name) => {
       const docDefinition = createDocDefinition(this.props.data);
-      this.props.data.childrenNames.forEach((name) => {
         pdfMake.createPdf(docDefinition).download();
-      });
   }
 
   render() {
-    console.log("DOWLOAD_PDF COMPONENT", this.props.data);
     return (
       <Header>
         <Box flex={true}
@@ -35,19 +32,15 @@ export default class DownloadPDF extends Component {
           responsive={true}
           align='center'
         >
-          {this.props.data.childrenNames.map((childName) => {
-            return (
-              <div>
-                <h3>{childName}'s form</h3>
-                <Button
-                  className='download-btn'
-                  onClick={() => this._downloadPDF(childName)}
-                  label='Download'
-                />
-                <hr />
-              </div>
-            )
-          })}
+          <div>
+            <h3>Form</h3>
+            <Button
+              className='download-btn'
+              onClick={() => this._downloadPDF('')}
+              label='Download'
+            />
+            <hr />
+          </div>
         </Box>
       </Header>
     );
