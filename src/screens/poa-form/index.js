@@ -177,10 +177,6 @@ class PoAForm extends React.Component {
     if (errArray.length > 0) {
       this.setState(() => ({ errorCount: errArray.length }));
     } else {
-      console.log('submitted')
-      //
-      //TODO This logic need to be fix
-      //
       this.setState({ submitted: true })
     }
   };
@@ -200,8 +196,11 @@ class PoAForm extends React.Component {
   }
 
   _next = () => {
-    if (this.state.step < 4)
-      this.setState((state) => ({ step: ++state.step }))
+    if (this.state.step < 4) {
+      this.setState(state => ({ step: state.step + 1 }))
+    } else {
+      this._submit()
+    }
   }
 
   renderChildrenInputs = () => {
