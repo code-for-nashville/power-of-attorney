@@ -448,20 +448,23 @@ class PoAForm extends React.Component {
                   title: 'Caregiver’s Informat',
                   onClick: (e) => {
                     e.preventDefault()
-                    console.log('onClick', 1)
+                    console.log('onClick', 3)
                   }
                 },
                 {
                   title: 'Parental Status',
                   onClick: (e) => {
                     e.preventDefault()
-                    console.log('onClick', 1)
+                    console.log('onClick', 4)
                   }
                 },
               ] 
             } 
             activeColor="#679ba1"
             completeColor="#679ba1"
+            activeBorderColor="#679ba1"
+            barStyle="dashed"
+            completeBorderColor='5px solid rgb(224, 224, 224)'
             activeStep={ this.state.step }
             />
 
