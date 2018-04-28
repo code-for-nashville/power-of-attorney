@@ -3,6 +3,7 @@ import * as React from 'react';
 import {
   Box,
   Button,
+  Carousel,
   Form,
   FormField,
   Heading,
@@ -14,7 +15,7 @@ import {
   TextInput
 } from 'grommet';
 
-import { DownloadPDF } from '../../components'
+import { Disclaimer, DownloadPDF } from '../../components';
 import { MOTHER_ADDRESS, FATHER_ADDRESS, CAREGIVER_ADDRESS } from '../../pdf/pdf-document';
 import Stepper from 'react-stepper-horizontal';
 
@@ -47,6 +48,7 @@ class PoAForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      acceptedModal: false,
       step: 0,
       numberOfChildren: 1,
       childrenNames: [],
@@ -161,6 +163,10 @@ class PoAForm extends React.Component {
     this.setState({ numberOfChildren: parseInt(event.target.value, 10) });
   };
 
+  acceptModal = () => {
+    this.setState({acceptedModal: true})
+  };
+
   generateForm = () => {
     const { errors, childrenNames, ...inputInfo } = this.state;
     const errArray = Object.keys(errors).filter(errKey => {
@@ -173,10 +179,6 @@ class PoAForm extends React.Component {
     if (errArray.length > 0) {
       this.setState(() => ({ errorCount: errArray.length }));
     } else {
-      console.log('submitted')
-      //
-      //TODO This logic need to be fix
-      //
       this.setState({ submitted: true })
     }
   };
@@ -192,12 +194,15 @@ class PoAForm extends React.Component {
 
   _back = () => {
     if (this.state.step > 0)
-      this.setState((state) => ({ step: --state.step }))
+      this.setState((state) => ({ step: --state.step }));
   }
 
   _next = () => {
-    if (this.state.step < 4)
-      this.setState((state) => ({ step: ++state.step }))
+    if (this.state.step < 4) {
+      this.setState(state => ({ step: state.step + 1 }));
+    } else {
+      this._submit()
+    }
   }
 
   renderChildrenInputs = () => {
@@ -333,6 +338,7 @@ class PoAForm extends React.Component {
 
     )
   }
+
   renderStepFive() {
     const ParentRadioButton = (props) => (
       <RadioButton
@@ -410,18 +416,17 @@ class PoAForm extends React.Component {
       return <DownloadPDF data={this.state} />;
     }
 
+    // Hide the disclaimer if `acceptedModal` is true
+    const disclaimer = (
+      !this.state.acceptedModal ?
+      <Disclaimer onClose={this.acceptModal}/> :
+      null
+    );
+
     return (
       <Section>
+        {disclaimer}
         <Heading tag='h1'>POWER OF ATTORNEY FOR CARE OF A MINOR CHILD</Heading>
-        <Paragraph>
-          Use of this form is authorized by T.C.A. § 34-6-301 et seq. Completion
-          of this form, along with the proper signatures, is sufficient to
-          authorize enrollment of a minor in school and to authorize medical
-          treatment. However, a school district may require additional
-          documentation/information as permitted by this section of Tennessee
-          law before enrolling a child in school or any extracurricular
-          activities.
-    </Paragraph>
         <Paragraph>
           <strong>Part I:</strong> To be filled out and/or initialed by
           parent(s)/legal guardian(s)
@@ -433,28 +438,36 @@ class PoAForm extends React.Component {
                   {
                     title: 'Child Information',
                     onClick: (e) => {
-                      e.preventDefault()
+                      e.preventDefault();
+                      this.renderStepOne();
+                      this.setState((state) => ({ step: 0 }));
                       console.log('onClick', 1)
                     }
                   },
                  {
                    title: 'Guardian Information',
                    onClick: (e) => {
-                    e.preventDefault()
+                    e.preventDefault();
+                    this.renderStepTwo();
+                    this.setState((state) => ({ step: 1 }));
                     console.log('onClick', 2)
                   }
                 },
                 {
                   title: 'Caregiver’s Informat',
                   onClick: (e) => {
-                    e.preventDefault()
+                    e.preventDefault();
+                    this.renderStepThree();
+                    this.setState((state) => ({ step: 2 }));
                     console.log('onClick', 3)
                   }
                 },
                 {
                   title: 'Parental Status',
                   onClick: (e) => {
-                    e.preventDefault()
+                    e.preventDefault();
+                    this.renderStepFour();
+                    this.setState((state) => ({ step: 3 }));
                     console.log('onClick', 4)
                   }
                 },
@@ -463,13 +476,24 @@ class PoAForm extends React.Component {
             activeColor="#679ba1"
             completeColor="#679ba1"
             activeBorderColor="#679ba1"
-            barStyle="dashed"
             completeBorderColor='5px solid rgb(224, 224, 224)'
             activeStep={ this.state.step }
             />
 
         <Form autoComplete="off">
-          {this.renderForm()}
+          <Carousel
+            activeIndex={this.state.step}
+            autoplay={false}
+            // persistentNav={false} // Hiding the nav with css because setting this prop causes an infinite update
+            infinite={false}
+          >
+            {this.renderStepOne()}
+            {this.renderStepTwo()}
+            {this.renderStepThree()}
+            {this.renderStepFour()}
+            {this.renderStepFive()}
+            
+          </Carousel>
           {
             this.state.errorCount > 0 ?
               (<Notification
@@ -488,7 +512,7 @@ class PoAForm extends React.Component {
               label="Back"
               onClick={this._back}
               primary={true}
-              style={this.state.step === 0 ? {backgroundColor: 'grey', borderColor: 'grey'}: {}}
+              style={this.state.step === 0 ? { backgroundColor: 'grey', borderColor: 'grey' } : {}}
             />
             <Button
               label={this.state.step === 4 ? "Submit" : "Next"}
