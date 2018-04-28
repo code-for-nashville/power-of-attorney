@@ -426,20 +426,6 @@ class PoAForm extends React.Component {
       <Section>
         {disclaimer}
         <Heading tag='h1'>POWER OF ATTORNEY FOR CARE OF A MINOR CHILD</Heading>
-        <Paragraph>
-          Use of this form is authorized by T.C.A. § 34-6-301 et seq. Completion
-          of this form, along with the proper signatures, is sufficient to
-          authorize enrollment of a minor in school and to authorize medical
-          treatment. However, a school district may require additional
-          documentation/information as permitted by this section of Tennessee
-          law before enrolling a child in school or any extracurricular
-          activities.
-    </Paragraph>
-        <Paragraph>
-          <strong>Part I:</strong> To be filled out and/or initialed by
-          parent(s)/legal guardian(s)
-    </Paragraph>
-
 
         <Form autoComplete="off">
           {this.renderForm()}
