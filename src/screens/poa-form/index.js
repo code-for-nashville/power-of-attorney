@@ -15,7 +15,7 @@ import {
   TextInput
 } from 'grommet';
 
-import { Disclaimer, DownloadPDF } from '../../components';
+import { Disclaimer, AsyncDownloadPDF } from '../../components';
 import { MOTHER_ADDRESS, FATHER_ADDRESS, CAREGIVER_ADDRESS } from '../../pdf/pdf-document';
 
 import './styles.css';
@@ -412,7 +412,7 @@ class PoAForm extends React.Component {
   render() {
     const errors = this.reduceErrors()
     if (this.state.submitted) {
-      return <DownloadPDF data={this.state} />;
+      return <AsyncDownloadPDF data={this.state} />;
     }
 
     // Hide the disclaimer if `acceptedModal` is true
@@ -439,7 +439,7 @@ class PoAForm extends React.Component {
             {this.renderStepThree()}
             {this.renderStepFour()}
             {this.renderStepFive()}
-            
+
           </Carousel>
           {
             this.state.errorCount > 0 ?

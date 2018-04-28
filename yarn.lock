@@ -6566,6 +6566,10 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-async-component@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-async-component/-/react-async-component-2.0.0.tgz#a56c1278ac588291fce6cd5cf033eb97eb36483c"
+
 react-desc@^1.0.0:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/react-desc/-/react-desc-1.4.1.tgz#99beddf7be2575902d159e919408d118823cc78b"
