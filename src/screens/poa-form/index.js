@@ -427,53 +427,56 @@ class PoAForm extends React.Component {
       <Section>
         {disclaimer}
         <Heading tag='h1'>POWER OF ATTORNEY FOR CARE OF A MINOR CHILD</Heading>
+        <div>
+
+        <Stepper 
+          steps={ 
+            [
+              {
+                title: 'Child Information',
+                onClick: (e) => {
+                  e.preventDefault();
+                  this.renderStepOne();
+                  this.setState((state) => ({ step: 0 }));
+                }
+              },
+              {
+                title: 'Guardian Information',
+                onClick: (e) => {
+                e.preventDefault();
+                this.renderStepTwo();
+                this.setState((state) => ({ step: 1 }));
+              }
+            },
+            {
+              title: 'Caregiver’s Informat',
+              onClick: (e) => {
+                e.preventDefault();
+                this.renderStepThree();
+                this.setState((state) => ({ step: 2 }));
+              }
+            },
+            {
+              title: 'Parental Status',
+              onClick: (e) => {
+                e.preventDefault();
+                this.renderStepFour();
+                this.setState((state) => ({ step: 3 }));
+              }
+            },
+          ] 
+        } 
+        activeColor="#679ba1"
+        completeColor="#679ba1"
+        activeBorderColor="#679ba1"
+        activeStep={ this.state.step }
+        />
+        </div>
+
         <Paragraph>
           <strong>Part I:</strong> To be filled out and/or initialed by
           parent(s)/legal guardian(s)
-    </Paragraph>
-
-            <Stepper 
-              steps={ 
-                [
-                  {
-                    title: 'Child Information',
-                    onClick: (e) => {
-                      e.preventDefault();
-                      this.renderStepOne();
-                      this.setState((state) => ({ step: 0 }));
-                    }
-                  },
-                 {
-                   title: 'Guardian Information',
-                   onClick: (e) => {
-                    e.preventDefault();
-                    this.renderStepTwo();
-                    this.setState((state) => ({ step: 1 }));
-                  }
-                },
-                {
-                  title: 'Caregiver’s Informat',
-                  onClick: (e) => {
-                    e.preventDefault();
-                    this.renderStepThree();
-                    this.setState((state) => ({ step: 2 }));
-                  }
-                },
-                {
-                  title: 'Parental Status',
-                  onClick: (e) => {
-                    e.preventDefault();
-                    this.renderStepFour();
-                    this.setState((state) => ({ step: 3 }));
-                  }
-                },
-              ] 
-            } 
-            activeColor="#679ba1"
-            completeColor="#679ba1"
-            activeBorderColor="#679ba1"
-            activeStep={ this.state.step }
-            />
+        </Paragraph>
 
         <Form autoComplete="off">
           <Carousel
