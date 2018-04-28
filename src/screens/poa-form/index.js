@@ -441,7 +441,6 @@ class PoAForm extends React.Component {
                       e.preventDefault();
                       this.renderStepOne();
                       this.setState((state) => ({ step: 0 }));
-                      console.log('onClick', 1)
                     }
                   },
                  {
@@ -450,7 +449,6 @@ class PoAForm extends React.Component {
                     e.preventDefault();
                     this.renderStepTwo();
                     this.setState((state) => ({ step: 1 }));
-                    console.log('onClick', 2)
                   }
                 },
                 {
@@ -459,7 +457,6 @@ class PoAForm extends React.Component {
                     e.preventDefault();
                     this.renderStepThree();
                     this.setState((state) => ({ step: 2 }));
-                    console.log('onClick', 3)
                   }
                 },
                 {
@@ -468,7 +465,6 @@ class PoAForm extends React.Component {
                     e.preventDefault();
                     this.renderStepFour();
                     this.setState((state) => ({ step: 3 }));
-                    console.log('onClick', 4)
                   }
                 },
               ] 
@@ -476,7 +472,6 @@ class PoAForm extends React.Component {
             activeColor="#679ba1"
             completeColor="#679ba1"
             activeBorderColor="#679ba1"
-            completeBorderColor='5px solid rgb(224, 224, 224)'
             activeStep={ this.state.step }
             />
 
