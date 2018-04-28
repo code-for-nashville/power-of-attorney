@@ -3,6 +3,7 @@ import * as React from 'react';
 import {
   Box,
   Button,
+  Carousel,
   Form,
   FormField,
   Heading,
@@ -427,7 +428,19 @@ class PoAForm extends React.Component {
         <Heading tag='h1'>POWER OF ATTORNEY FOR CARE OF A MINOR CHILD</Heading>
 
         <Form autoComplete="off">
-          {this.renderForm()}
+          <Carousel
+            activeIndex={this.state.step}
+            autoplay={false}
+            // persistentNav={false} // Hiding the nav with css because setting this prop causes an infinite update
+            infinite={false}
+          >
+            {this.renderStepOne()}
+            {this.renderStepTwo()}
+            {this.renderStepThree()}
+            {this.renderStepFour()}
+            {this.renderStepFive()}
+            
+          </Carousel>
           {
             this.state.errorCount > 0 ?
               (<Notification
@@ -446,7 +459,7 @@ class PoAForm extends React.Component {
               label="Back"
               onClick={this._back}
               primary={true}
-              style={this.state.step === 0 ? {backgroundColor: 'grey', borderColor: 'grey'}: {}}
+              style={this.state.step === 0 ? { backgroundColor: 'grey', borderColor: 'grey' } : {}}
             />
             <Button
               label={this.state.step === 4 ? "Submit" : "Next"}
