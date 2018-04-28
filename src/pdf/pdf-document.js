@@ -1,13 +1,20 @@
+import {
+  PARENTAL_STATUS_LIVING,
+  PARENTAL_STATUS_DECEASED,
+  PARENTAL_STATUS_LEGAL_CUSTODY_SIGNED,
+  PARENTAL_STATUS_LEGAL_CUSTODY_SENT
+} from '../constants';
 
 export const MOTHER_ADDRESS = 'motherAddress';
 export const FATHER_ADDRESS = 'fatherAddress';
 export const CAREGIVER_ADDRESS = 'caregiverAddress';
 
+
 let createDocDefinition = (inputInfo, childName) => {
-  const statusOne = inputInfo.parentalStatus === '0' ? 'X' : '__';
-  const statusTwo = inputInfo.parentalStatus === '1' ? 'X' : '__';
-  const statusThree = inputInfo.parentalStatus === '2' ? 'X' : '__';
-  const statusFour = inputInfo.parentalStatus === '3' ? 'X' : '__';
+  const statusOne = inputInfo.parentalStatus === PARENTAL_STATUS_LIVING ? 'X' : '__';
+  const statusTwo = inputInfo.parentalStatus === PARENTAL_STATUS_DECEASED ? 'X' : '__';
+  const statusThree = inputInfo.parentalStatus === PARENTAL_STATUS_LEGAL_CUSTODY_SIGNED ? 'X' : '__';
+  const statusFour = inputInfo.parentalStatus === PARENTAL_STATUS_LEGAL_CUSTODY_SENT ? 'X' : '__';
   let multipleFrom = inputInfo.childrenNames.map((child) => {
       return([{
           text: 'POWER OF ATTORNEY FOR CARE OF A MINOR CHILD Insctruction TITLE SAMPLE\n\n',
@@ -215,7 +222,7 @@ let createDocDefinition = (inputInfo, childName) => {
             '9.(____) I / We understand that this document may be terminated in another written document signed by either parent with legal custody or by any order of a court with competent jurisdiction.\n\n'
           ]
         },
-        
+
         {
           text: [
             { text: 'Part II: To be initialed by caregiver.\n\n', bold: true },

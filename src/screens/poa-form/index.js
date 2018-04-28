@@ -15,6 +15,13 @@ import {
   TextInput
 } from 'grommet';
 
+import {
+  PARENTAL_STATUS_LIVING,
+  PARENTAL_STATUS_DECEASED,
+  PARENTAL_STATUS_LEGAL_CUSTODY_SIGNED,
+  PARENTAL_STATUS_LEGAL_CUSTODY_SENT,
+  PARENTAL_STATUS_LEGAL_CUSTODY_NO_CONSENT
+} from '../../constants';
 import { Disclaimer, AsyncDownloadPDF } from '../../components';
 import { MOTHER_ADDRESS, FATHER_ADDRESS, CAREGIVER_ADDRESS } from '../../pdf/pdf-document';
 
@@ -363,17 +370,26 @@ class PoAForm extends React.Component {
             null
         }
         <FormField>
-          {
-            [
-              ['parents-living', 'Both parents are living, have legal custody of the minor child and have signed this document'],
-              ['parent-deceased', 'One parent is deceased'],
-              ['legal-custody-signed', 'One parent has legal custody of the minor child and both parents have signed this document and consent to the appointment of the caregiver'],
-              ['legal-custody-sent', 'One parent has legal custody of the minor child, and has sent by Certified Mail, Return Receipt requested, to the other parent at last known address, a copy of this document and a notice of the provisions in § 34-6-305;'],
-              ['legal-custody-no-consent', 'The non-custodial parent has not consented to the appointment and consent cannot be obtained.']
-            ].map(
-              ([value, label]) => (<ParentRadioButton label={label} key={value} value={value} />)
-            )
-          }
+          <ParentRadioButton
+            label="Both parents are living, have legal custody of the minor child and have signed this document."
+            value={PARENTAL_STATUS_LIVING}
+          />
+          <ParentRadioButton
+            label="One parent is deceased."
+            value={PARENTAL_STATUS_DECEASED}
+          />
+          <ParentRadioButton
+            label="One parent has legal custody of the minor child and both parents have signed this document and consent to the appointment of the caregiver."
+            value={PARENTAL_STATUS_LEGAL_CUSTODY_SIGNED}
+          />
+          <ParentRadioButton
+            label="One parent has legal custody of the minor child, and has sent by Certified Mail, Return Receipt requested, to the other parent at last known address, a copy of this document and a notice of the provisions in § 34-6-305;."
+            value={PARENTAL_STATUS_LEGAL_CUSTODY_SENT}
+          />
+          <ParentRadioButton
+            label="The non-custodial parent has not consented to the appointment and consent cannot be obtained."
+            value={PARENTAL_STATUS_LEGAL_CUSTODY_NO_CONSENT}
+          />
         </FormField>
         {
           // Conditionally render a reason they could not be reached when 4

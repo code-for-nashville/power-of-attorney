@@ -17,11 +17,11 @@ export default class DownloadPDF extends Component {
 
   _downloadPDF = () => {
       const docDefinition = createDocDefinition(this.props.data);
-        pdfMake.createPdf(docDefinition).download();
+      pdfMake.createPdf(docDefinition).download();
   }
   viewPDF = () => {
       const docDefinition = createDocDefinition(this.props.data);
-        pdfMake.createPdf(docDefinition).open();
+      pdfMake.createPdf(docDefinition).open();
   }
 
   render() {

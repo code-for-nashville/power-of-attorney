@@ -8,7 +8,7 @@ import {
 } from 'grommet';
 import GrommetClassnames from 'grommet/utils/CSSClassnames.js';
 
-import { FAQ_PATH, HOME_PATH } from '../../paths';
+import { FAQ_PATH, HOME_PATH } from '../../constants';
 
 // Class added to Grommet anchor when `disabled=True`
 // Below we use NavLink instead of <Anchor tag={NavLink}...> to work around

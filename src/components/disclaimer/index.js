@@ -8,7 +8,7 @@ import {
   Paragraph
 } from 'grommet';
 
-import { FAQ_PATH } from '../../paths.js';
+import { FAQ_PATH } from '../../constants';
 
 import './style.css';
 

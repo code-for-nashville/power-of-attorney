@@ -22,3 +22,6 @@ yarn-error.log*
 
 # css
 src/**/*.css
+
+# Output of src/pdf/pdf-document.test.js
+pdf-document-test.pdf

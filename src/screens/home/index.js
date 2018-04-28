@@ -10,7 +10,7 @@ import {
   Section
 } from 'grommet';
 
-import { FORM_PATH } from '../../paths.js'
+import { FORM_PATH } from '../../constants'
 
 import './styles.css';
 

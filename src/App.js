@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Header } from './components';
 import { FAQ, Home, PoAForm } from './screens';
 
-import { FAQ_PATH, FORM_PATH, HOME_PATH } from './paths';
+import { FAQ_PATH, FORM_PATH, HOME_PATH } from './constants';
 
 import {
   App as GrommetApp,
