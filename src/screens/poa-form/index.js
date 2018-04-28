@@ -14,7 +14,7 @@ import {
   TextInput
 } from 'grommet';
 
-import { DownloadPDF } from '../../components'
+import { Disclaimer, DownloadPDF } from '../../components';
 import { MOTHER_ADDRESS, FATHER_ADDRESS, CAREGIVER_ADDRESS } from '../../pdf/pdf-document';
 
 import './styles.css';
@@ -46,6 +46,7 @@ class PoAForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      acceptedModal: false,
       step: 0,
       numberOfChildren: 1,
       childrenNames: [],
@@ -158,6 +159,10 @@ class PoAForm extends React.Component {
 
   onNumberOfChildrenChange = (event) => {
     this.setState({ numberOfChildren: parseInt(event.target.value, 10) });
+  };
+
+  acceptModal = () => {
+    this.setState({acceptedModal: true})
   };
 
   generateForm = () => {
@@ -332,6 +337,7 @@ class PoAForm extends React.Component {
 
     )
   }
+
   renderStepFive() {
     const ParentRadioButton = (props) => (
       <RadioButton
@@ -409,8 +415,16 @@ class PoAForm extends React.Component {
       return <DownloadPDF data={this.state} />;
     }
 
+    // Hide the disclaimer if `acceptedModal` is true
+    const disclaimer = (
+      !this.state.acceptedModal ?
+      <Disclaimer onClose={this.acceptModal}/> :
+      null
+    );
+
     return (
       <Section>
+        {disclaimer}
         <Heading tag='h1'>POWER OF ATTORNEY FOR CARE OF A MINOR CHILD</Heading>
         <Paragraph>
           Use of this form is authorized by T.C.A. § 34-6-301 et seq. Completion
