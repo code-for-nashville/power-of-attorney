@@ -460,8 +460,9 @@ class PoAForm extends React.Component {
                 },
               ] 
             } 
-              activeStep={ 0 }
-              activeColor="#679ba1"
+            activeColor="#679ba1"
+            completeColor="#679ba1"
+            activeStep={ this.state.step }
             />
 
         <Form autoComplete="off">
