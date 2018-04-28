@@ -17,9 +17,13 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 export default class DownloadPDF extends Component {
 
-  _downloadPDF = (name) => {
+  _downloadPDF = () => {
       const docDefinition = createDocDefinition(this.props.data);
         pdfMake.createPdf(docDefinition).download();
+  }
+  viewPDF = () => {
+      const docDefinition = createDocDefinition(this.props.data);
+        pdfMake.createPdf(docDefinition).open();
   }
 
   render() {
@@ -36,7 +40,12 @@ export default class DownloadPDF extends Component {
             <h3>Form</h3>
             <Button
               className='download-btn'
-              onClick={() => this._downloadPDF('')}
+              onClick={() => this.viewPDF()}
+              label='Open'
+            />
+            <Button
+              className='download-btn'
+              onClick={() => this._downloadPDF()}
               label='Download'
             />
             <hr />
