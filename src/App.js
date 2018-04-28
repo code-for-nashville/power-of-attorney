@@ -24,7 +24,7 @@ class App extends Component {
             <Route exact path={FAQ_PATH} component={FAQ} />
             <Route exact path={FORM_PATH} component={PoAForm} />
             <Route exact path={HOME_PATH} component={Home} />
-            <Footer/>
+            <Footer />
           </Article>
         </GrommetApp>
       </Router>
