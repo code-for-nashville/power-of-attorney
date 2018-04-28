@@ -16,6 +16,7 @@ import {
 
 import { DownloadPDF } from '../../components'
 import { MOTHER_ADDRESS, FATHER_ADDRESS, CAREGIVER_ADDRESS } from '../../pdf/pdf-document';
+import Stepper from 'react-stepper-horizontal';
 
 import './styles.css';
 
@@ -426,6 +427,42 @@ class PoAForm extends React.Component {
           parent(s)/legal guardian(s)
     </Paragraph>
 
+            <Stepper 
+              steps={ 
+                [
+                  {
+                    title: 'Child Information',
+                    onClick: (e) => {
+                      e.preventDefault()
+                      console.log('onClick', 1)
+                    }
+                  },
+                 {
+                   title: 'Guardian Information',
+                   onClick: (e) => {
+                    e.preventDefault()
+                    console.log('onClick', 2)
+                  }
+                },
+                {
+                  title: 'Caregiver’s Informat',
+                  onClick: (e) => {
+                    e.preventDefault()
+                    console.log('onClick', 1)
+                  }
+                },
+                {
+                  title: 'Parental Status',
+                  onClick: (e) => {
+                    e.preventDefault()
+                    console.log('onClick', 1)
+                  }
+                },
+              ] 
+            } 
+              activeStep={ 0 }
+              activeColor="#679ba1"
+            />
 
         <Form autoComplete="off">
           {this.renderForm()}
