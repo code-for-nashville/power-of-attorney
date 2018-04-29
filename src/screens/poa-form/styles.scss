@@ -8,15 +8,20 @@
 
 .error {
   color: #cc0000;
+  display: block;
 }
 
-.grommetux-text-input.grommetux-input.input-class-long {
+.grommetux-text-input.grommetux-input.input-class-long{
   margin: 0em 0.5em 1em 0em;
   width: 100%;
 }
 
-.grommetux-text-input.grommetux-input.input-class {
+.grommetux-text-input.grommetux-input.input-class, .grommetux-select  {
   margin: 0em 1em 1em 0em;
+}
+
+.grommetux-select, .grommetux-select__drop{
+  width: 200px;
 }
 
 .grommetux-box.grommetux-box--direction-row.grommetux-box--justify-end.grommetux-box--flex.grommetux-box--pad-none.download-container {
