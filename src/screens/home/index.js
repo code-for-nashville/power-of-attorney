@@ -47,10 +47,10 @@ export default () => {
           Ensure care of a minor in the case of deportation or detainment by granting power of attorney.
         </Heading>
         <Paragraph>
-          Immigrant parents may face detainment or deportation with little warning. Since parents may work in the same location or be in the same location when picked up by ICE/immigration, their children can be left without any legal guardian. When picked up by ICE/Immigration, parents are often unavailable or inaccessible for days or weeks (and can even be deported before ever having access to their children or family). Parents can sign a power of attorney for the minor children to give guardianship of their child to someone they trust, which takes effect only if they are detained or deported.
+          Immigrant parents face detainment or deportation with little or no warning. In many cases, both parents are in the same location when detained or facing deportation. As a result, children of detained and/or deported parents are left with no legal guardian. Once detained or deported, parents are often inaccessible for days or weeks with little or no contact with their children or family. Parents facing detainment or deportation can prepare, in advance, for the care of their minor children by granting a Power of Attorney. A Power of Attorney allows immigrant parents to grant permission to a trusted adult to care for their minor child in the event of detainment or deportation.
         </Paragraph>
         <Paragraph>
-          Getting started is easy! You can fill out your Power of Attorney form online.
+          Getting started is quick and easy with this online Power of Attorney form!
         </Paragraph>
         <Button
           label="Start Form"

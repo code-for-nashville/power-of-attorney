@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 
 import {
-  Anchor,
   Box,
   Button,
-  Header,
-  Menu
+  Header
 } from 'grommet';
 
 import pdfFonts from 'pdfmake/build/vfs_fonts';

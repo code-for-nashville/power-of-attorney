@@ -1,9 +1,10 @@
+import AsyncDownloadPDF from './async-download-pdf'
 import Disclaimer from './disclaimer'
-import DownloadPDF from './download-pdf'
 import Header from './header'
 
+
 export {
+  AsyncDownloadPDF,
   Disclaimer,
-  DownloadPDF,
   Header
 }
