@@ -12,31 +12,42 @@ import {
   Paragraph,
   RadioButton,
   Section,
+  Select,
   TextInput
 } from 'grommet';
 
 import { Disclaimer, AsyncDownloadPDF } from '../../components';
 import { MOTHER_ADDRESS, FATHER_ADDRESS, CAREGIVER_ADDRESS } from '../../pdf/pdf-document';
-
+import { STATE_OPTIONS } from '../../strings'
 import './styles.css';
 
 
 const NO_ERRORS = {
-  childrenNames: false,
-  parentalStatus: false,
-  reason: false,
-  mother_street_address: false,
-  mother_locality: false,
-  mother_region: false,
-  mother_postal_code: false,
-  father_street_address: false,
-  father_locality: false,
-  father_region: false,
-  father_postal_code: false,
-  caregiver_street_address: false,
-  caregiver_locality: false,
-  caregiver_region: false,
-  caregiver_postal_code: false
+  step0: {
+    childrenNames: false,
+  },
+  [MOTHER_ADDRESS]: {
+    mother_street_address: false,
+    mother_locality: false,
+    mother_region: false,
+    mother_postal_code: false,
+  },
+  [FATHER_ADDRESS]: {
+    father_street_address: false,
+    father_locality: false,
+    father_region: false,
+    father_postal_code: false,
+  },
+  [CAREGIVER_ADDRESS]: {
+    caregiver_street_address: false,
+    caregiver_locality: false,
+    caregiver_region: false,
+    caregiver_postal_code: false
+  },
+  step4: {
+    parentalStatus: false,
+    reason: false,
+  }
 };
 
 const FieldHeader = (props) => (<div {...props} />);
@@ -90,7 +101,7 @@ class PoAForm extends React.Component {
   updateAddress = e => {
     const inputName = e.target.name;
     const addressType = e.target.dataset.addressType;
-    const value = e.target.value;
+    const value = e.option ? e.option.value : e.target.value;
     this.setState({
       [inputName]: {
         ...this.state[inputName],
@@ -109,48 +120,68 @@ class PoAForm extends React.Component {
   };
 
   validate = (callback = () => { }) => {
+    const { step } = this.state
+    const step0Errors = { childrenNames: this.state.childrenNames.length !== this.state.numberOfChildren }
+    const step1Errors = {
+      [`${MOTHER_ADDRESS}_street_address`]:
+        this.state[MOTHER_ADDRESS].street_address.length === 0,
+      [`${MOTHER_ADDRESS}_locality`]:
+        this.state[MOTHER_ADDRESS].locality.length === 0,
+      [`${MOTHER_ADDRESS}_region`]:
+        this.state[MOTHER_ADDRESS].region.length === 0,
+      [`${MOTHER_ADDRESS}_postal_code`]:
+        this.state[MOTHER_ADDRESS].postal_code.length === 0,
+    }
+    const step2Errors = {
+      [`${FATHER_ADDRESS}_street_address`]:
+        this.state[FATHER_ADDRESS].street_address.length === 0,
+      [`${FATHER_ADDRESS}_locality`]:
+        this.state[FATHER_ADDRESS].locality.length === 0,
+      [`${FATHER_ADDRESS}_region`]:
+        this.state[FATHER_ADDRESS].region.length === 0,
+      [`${FATHER_ADDRESS}_postal_code`]:
+        this.state[FATHER_ADDRESS].postal_code.length === 0,
+    }
+    const step3Errors = {
+      [`${CAREGIVER_ADDRESS}_street_address`]:
+        this.state[CAREGIVER_ADDRESS].street_address.length === 0,
+      [`${CAREGIVER_ADDRESS}_locality`]:
+        this.state[CAREGIVER_ADDRESS].locality.length === 0,
+      [`${CAREGIVER_ADDRESS}_region`]:
+        this.state[CAREGIVER_ADDRESS].region.length === 0,
+      [`${CAREGIVER_ADDRESS}_postal_code`]:
+        this.state[CAREGIVER_ADDRESS].postal_code.length === 0
+    }
+    const step4Errors = {
+      parentalStatus: this.state.parentalStatus.length === 1,
+      reason:
+        this.state.parentalStatus === '5'
+          ? this.state.reason.length === 0
+          : false,
+    }
+
     this.setState(
-      () => ({
+      (prevState) => ({
         errors: {
-          childrenNames: this.state.childrenNames.length === 0,
-          parentalStatus: this.state.parentalStatus.length === 1,
-          reason:
-            this.state.parentalStatus === '5'
-              ? this.state.reason.length === 0
-              : false,
-          [`${MOTHER_ADDRESS}_street_address`]:
-            this.state[MOTHER_ADDRESS].street_address.length === 0,
-          [`${MOTHER_ADDRESS}_locality`]:
-            this.state[MOTHER_ADDRESS].locality.length === 0,
-          [`${MOTHER_ADDRESS}_region`]:
-            this.state[MOTHER_ADDRESS].region.length === 0,
-          [`${MOTHER_ADDRESS}_postal_code`]:
-            this.state[MOTHER_ADDRESS].postal_code.length === 0,
-          [`${FATHER_ADDRESS}_street_address`]:
-            this.state[FATHER_ADDRESS].street_address.length === 0,
-          [`${FATHER_ADDRESS}_locality`]:
-            this.state[FATHER_ADDRESS].locality.length === 0,
-          [`${FATHER_ADDRESS}_region`]:
-            this.state[FATHER_ADDRESS].region.length === 0,
-          [`${FATHER_ADDRESS}_postal_code`]:
-            this.state[FATHER_ADDRESS].postal_code.length === 0,
-          [`${CAREGIVER_ADDRESS}_street_address`]:
-            this.state[CAREGIVER_ADDRESS].street_address.length === 0,
-          [`${CAREGIVER_ADDRESS}_locality`]:
-            this.state[CAREGIVER_ADDRESS].locality.length === 0,
-          [`${CAREGIVER_ADDRESS}_region`]:
-            this.state[CAREGIVER_ADDRESS].region.length === 0,
-          [`${CAREGIVER_ADDRESS}_postal_code`]:
-            this.state[CAREGIVER_ADDRESS].postal_code.length === 0
+          step0: prevState.step > -1  ? step0Errors : NO_ERRORS.step0,
+          [MOTHER_ADDRESS]: prevState.step > 0  ? step1Errors : NO_ERRORS.step1,
+          [FATHER_ADDRESS]: prevState.step > 1 ? step2Errors : NO_ERRORS.step2,
+          [CAREGIVER_ADDRESS]: prevState.step > 2 ? step3Errors : NO_ERRORS.step3,
+          step4: prevState.step > 3 ? step4Errors : NO_ERRORS.step4,
+
         }
       }),
-      callback()
+      callback
     );
   };
 
-  reduceErrors = () => {
-    const errors = Object.keys(this.state.errors).reduce((acc, curr) => {
-      if (this.state.errors[curr]) {
+  reduceErrors = () => {  
+  const flatErrorObject = Object.keys(this.state.errors).reduce((acc, curr) => { 
+    return {...acc, ...this.state.errors[curr]}
+  }
+  ,{})
+  const errors =  Object.keys(flatErrorObject).reduce((acc, curr) => {
+      if (flatErrorObject[curr]) {
         acc = true;
       }
       return acc;
@@ -163,17 +194,12 @@ class PoAForm extends React.Component {
   };
 
   acceptModal = () => {
-    this.setState({acceptedModal: true})
+    this.setState({ acceptedModal: true })
   };
 
   generateForm = () => {
     const { errors, childrenNames, ...inputInfo } = this.state;
-    const errArray = Object.keys(errors).filter(errKey => {
-      if (errors[errKey]) {
-        return true;
-      }
-      return false;
-    });
+    const errArray = this.reduceErrors()
 
     if (errArray.length > 0) {
       this.setState(() => ({ errorCount: errArray.length }));
@@ -198,7 +224,12 @@ class PoAForm extends React.Component {
 
   _next = () => {
     if (this.state.step < 4) {
-      this.setState(state => ({ step: state.step + 1 }))
+      this.validate(() => {
+        const errors = this.reduceErrors()
+        if (!errors) {
+          this.setState(state => ({ step: state.step + 1 }))
+        }
+      })
     } else {
       this._submit()
     }
@@ -228,8 +259,8 @@ class PoAForm extends React.Component {
     const errors = this.reduceErrors()
     return (
       <Paragraph>
-        {errors && this.state.errors[`${name}_street_address`] ? (
-          <span className="error">Please add a street address.</span>
+        {errors && this.state.errors[name][`${name}_street_address`] ? (
+          <span className="error">Please add a name.</span>
         ) : null}
         <TextInput
           onDOMChange={this.updateAddress}
@@ -240,8 +271,8 @@ class PoAForm extends React.Component {
           placeHolder="Name"
           margin='small'
         />
-        {errors && this.state.errors[`${name}_locality`] ? (
-          <span className="error">Please add a name.</span>
+        {errors && this.state.errors[name][`${name}_locality`] ? (
+          <span className="error">Please add a street address.</span>
         ) : null}
         <TextInput
           onDOMChange={this.updateAddress}
@@ -251,8 +282,11 @@ class PoAForm extends React.Component {
           data-address-type={'street_address'}
           placeHolder="Street Address"
         />
-        {errors && this.state.errors[`${name}_locality`] ? (
+        {errors && this.state.errors[name][`${name}_locality`] ? (
           <span className="error">Please add a city.</span>
+        ) : null}
+        {errors && this.state.errors[name][`${name}_region`] ? (
+          <span className="error">Please add at state.</span>
         ) : null}
         <TextInput
           onDOMChange={this.updateAddress}
@@ -262,18 +296,16 @@ class PoAForm extends React.Component {
           data-address-type={'locality'}
           placeHolder="City"
         />
-        {errors && this.state.errors[`${name}_region`] ? (
-          <span className="error">Please add at state.</span>
-        ) : null}
-        <TextInput
-          onDOMChange={this.updateAddress}
+        <Select
+          onChange={this.updateAddress}
           className='input-class'
           value={this.state[name].region}
           name={name}
           data-address-type={'region'}
           placeHolder="State"
+          options={STATE_OPTIONS}
         />
-        {errors && this.state.errors[`${name}_postal_code`] ? (
+        {errors && this.state.errors[name][`${name}_postal_code`] ? (
           <span className="error">Please add a zip code.</span>
         ) : null}
         <TextInput
@@ -302,7 +334,7 @@ class PoAForm extends React.Component {
 
         <FieldHeader>1. Minor Child{'\''}s Name</FieldHeader>
         {
-          errors && this.state.errors.childrenNames ?
+          errors && this.state.errors.step0.childrenNames ?
             (<span className="error">Please add the name of each child.</span>) :
             null
         }
@@ -418,8 +450,8 @@ class PoAForm extends React.Component {
     // Hide the disclaimer if `acceptedModal` is true
     const disclaimer = (
       !this.state.acceptedModal ?
-      <Disclaimer onClose={this.acceptModal}/> :
-      null
+        <Disclaimer onClose={this.acceptModal} /> :
+        null
     );
 
     return (
