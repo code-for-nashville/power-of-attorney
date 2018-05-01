@@ -18,6 +18,8 @@ import {
 
 import { Disclaimer, AsyncDownloadPDF } from '../../components';
 import { MOTHER_ADDRESS, FATHER_ADDRESS, CAREGIVER_ADDRESS } from '../../pdf/pdf-document';
+import Stepper from 'react-stepper-horizontal';
+
 import { STATE_OPTIONS } from '../../strings'
 import './styles.css';
 
@@ -164,9 +166,9 @@ class PoAForm extends React.Component {
       (prevState) => ({
         errors: {
           step0: prevState.step > -1  ? step0Errors : NO_ERRORS.step0,
-          [MOTHER_ADDRESS]: prevState.step > 0  ? step1Errors : NO_ERRORS.step1,
-          [FATHER_ADDRESS]: prevState.step > 1 ? step2Errors : NO_ERRORS.step2,
-          [CAREGIVER_ADDRESS]: prevState.step > 2 ? step3Errors : NO_ERRORS.step3,
+          [MOTHER_ADDRESS]: prevState.step > 0  ? step1Errors : NO_ERRORS[MOTHER_ADDRESS],
+          [FATHER_ADDRESS]: prevState.step > 1 ? step2Errors : NO_ERRORS[FATHER_ADDRESS],
+          [CAREGIVER_ADDRESS]: prevState.step > 2 ? step3Errors : NO_ERRORS[CAREGIVER_ADDRESS],
           step4: prevState.step > 3 ? step4Errors : NO_ERRORS.step4,
 
         }
@@ -219,7 +221,7 @@ class PoAForm extends React.Component {
 
   _back = () => {
     if (this.state.step > 0)
-      this.setState((state) => ({ step: --state.step }))
+      this.setState((state) => ({ step: --state.step }));
   }
 
   _next = () => {
@@ -256,6 +258,7 @@ class PoAForm extends React.Component {
   };
 
   renderAddress = (name) => {
+    console.log(this.state.errors)
     const errors = this.reduceErrors()
     return (
       <Paragraph>
@@ -458,6 +461,56 @@ class PoAForm extends React.Component {
       <Section>
         {disclaimer}
         <Heading tag='h1'>POWER OF ATTORNEY FOR CARE OF A MINOR CHILD</Heading>
+        <div>
+
+        <Stepper 
+          steps={ 
+            [
+              {
+                title: 'Child Information',
+                onClick: (e) => {
+                  e.preventDefault();
+                  this.renderStepOne();
+                  this.setState((state) => ({ step: 0 }));
+                }
+              },
+              {
+                title: 'Guardian Information',
+                onClick: (e) => {
+                e.preventDefault();
+                this.renderStepTwo();
+                this.setState((state) => ({ step: 1 }));
+              }
+            },
+            {
+              title: 'Caregiver’s Informat',
+              onClick: (e) => {
+                e.preventDefault();
+                this.renderStepThree();
+                this.setState((state) => ({ step: 2 }));
+              }
+            },
+            {
+              title: 'Parental Status',
+              onClick: (e) => {
+                e.preventDefault();
+                this.renderStepFour();
+                this.setState((state) => ({ step: 3 }));
+              }
+            },
+          ] 
+        } 
+        activeColor="#679ba1"
+        completeColor="#679ba1"
+        activeBorderColor="#679ba1"
+        activeStep={ this.state.step }
+        />
+        </div>
+
+        <Paragraph>
+          <strong>Part I:</strong> To be filled out and/or initialed by
+          parent(s)/legal guardian(s)
+        </Paragraph>
 
         <Form autoComplete="off">
           <Carousel
