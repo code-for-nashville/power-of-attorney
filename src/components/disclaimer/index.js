@@ -4,10 +4,9 @@ import {
   Anchor,
   Box,
   Layer,
-  Menu,
   Paragraph
 } from 'grommet';
-
+import { translate } from 'react-i18next';
 import { FAQ_PATH } from '../../paths.js';
 
 import './style.css';
@@ -22,6 +21,7 @@ import './style.css';
   hide the modal when clicked.
 */
 const Disclaimer = (props) => {
+  const { t } = props;
   return (
     <Layer className='Disclaimer' align='center'>
       <Box
@@ -30,7 +30,7 @@ const Disclaimer = (props) => {
         justify='center'
         pad={{horizontal: 'medium', 'vertical': 'small'}}
       >
-        <div>Before you start...</div>
+        <div>{t('beforeStart')}</div>
       </Box>
       <Box
         pad={{horizontal: 'medium', 'vertical': 'none'}}
@@ -38,32 +38,32 @@ const Disclaimer = (props) => {
         <Paragraph
           margin='small'
         >
-          Use of this form is authorized by T.C.A. § 34-6-301 et seq. Completion of this form, along with the proper signatures, is sufficient to authorize enrollment of a minor in school and to authorize medical treatment. However, a school district may require additional documentation/information as permitted by this section of Tennessee law before enrolling a child in school or any extracurricular activities.
+          {t('useOfThisForm')}
         </Paragraph>
         <Paragraph
           margin='small'
         >
-          This form is to be filled out and/or initialed by parent(s)/legal guardian(s).
+          {t('thisFormIsToBeFilled')}
         </Paragraph>
-        <Menu
+        <Box
           direction='row'
-          justify='end'
-          pad={{'vertical': 'medium'}}
-          size='small'
+          justify='between'
+          pad={{'vertical': 'medium', horizontal: 'medium'}}
+          size='large'
         >
           <Anchor
             className='DisclaimerMoreInformation'
             path={FAQ_PATH}
           >
-            MORE INFORMATION
+            {t('MORE_INFORMATION')}
           </Anchor>
           <Anchor onClick={props.onClose}>
-            I UNDERSTAND
+            {t('I_UNDERSTAND')}
           </Anchor>
-        </Menu>
+        </Box>
       </Box>
     </Layer>
   );
 };
 
-export default Disclaimer;
+export default translate()(Disclaimer);

@@ -1,7 +1,7 @@
-const ENGLISH = {
-  forTennessee:'For Tennessee',
-  immigrantParents:'Immigrant Parents',
-  ensureCare: 'Ensure care of a minor in the case of deportation or detainment by granting power of attorney.',
+const SPANISH = {
+  forTennessee: 'Para Tennessee',
+  immigrantParents: 'Padres Inmigrantes',
+  ensureCare: 'Asegurar el cuidado de un menor en el caso de deportación o detención mediante el otorgamiento de un poder notarial.',
   immigrant: 'Immigrant parents face detainment or deportation with little or no warning. In many cases, both parents are in the same location when detained or facing deportation. As a result, children of detained and/or deported parents are left with no legal guardian. Once detained or deported, parents are often inaccessible for days or weeks with little or no contact with their children or family. Parents facing detainment or deportation can prepare, in advance, for the care of their minor children by granting a Power of Attorney. A Power of Attorney allows immigrant parents to grant permission to a trusted adult to care for their minor child in the event of detainment or deportation.',
   gettingStarted: 'Getting started is quick and easy with this online Power of Attorney form!',
   startForm: 'Start Form',
@@ -49,7 +49,7 @@ const ENGLISH = {
   yourCaregiver: 'Your caregiver should be someone you trust. This document will allow the caregiver the right and responsibility to make decisions for your child on your behalf. The person you designate to care for your child should be a U.S. citizen or someone with immigration status who does not also face the threat of detainment or deportation.',
   howCanITerminate: 'How can I terminate the Power of Attorney?',
   youCanTerminate: 'You may terminate the Power of Attorney at any time by putting in writing your desire to do so.',
-  whereCanILearn:'Where can I learn more about Power of Attorney for the care of a minor child?',
+  whereCanILearn: 'Where can I learn more about Power of Attorney for the care of a minor child?',
   lawCanBeFound: 'The law can be found',
   here: 'here',
   tnPOA: 'Tennessee power of attorney for a minor child law',
@@ -58,7 +58,7 @@ const ENGLISH = {
   beforeStart: 'Before you start...',
   useOfThisForm: 'Use of this form is authorized by T.C.A. § 34-6-301 et seq. Completion of this form, along with the proper signatures, is sufficient to authorize enrollment of a minor in school and to authorize medical treatment. However, a school district may require additional documentation/information as permitted by this section of Tennessee law before enrolling a child in school or any extracurricular activities.',
   thisFormIsToBeFilled: 'This form is to be filled out and/or initialed by parent(s)/legal guardian(s).',
-  MORE_INFORMATION: 'MORE INFORMATION',  
+  MORE_INFORMATION: 'MORE INFORMATION',
   I_UNDERSTAND: 'I UNDERSTAND',
   Form: 'Form',
   Open: 'Open',
@@ -68,4 +68,4 @@ const ENGLISH = {
   back: 'Back',
 }
 
-export default ENGLISH
+export default SPANISH

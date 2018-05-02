@@ -7,7 +7,7 @@ import {
   Menu
 } from 'grommet';
 import GrommetClassnames from 'grommet/utils/CSSClassnames.js';
-
+import { translate } from 'react-i18next';
 import { FAQ_PATH, HOME_PATH } from '../../paths';
 
 // Class added to Grommet anchor when `disabled=True`
@@ -16,7 +16,8 @@ import { FAQ_PATH, HOME_PATH } from '../../paths';
 const ANCHOR_DISABLED = `${GrommetClassnames.ANCHOR}--disabled`
 
 
-export default () => {
+const POAHeader = (props) => {
+  const { t } = props;
   return (
     <Header>
       <Box flex={true}
@@ -33,7 +34,7 @@ export default () => {
             exact
             to={HOME_PATH}
           >
-            Home
+            {t('Home')}
           </NavLink>
           <NavLink
             activeClassName={ANCHOR_DISABLED}
@@ -41,10 +42,12 @@ export default () => {
             exact
             to={FAQ_PATH}
           >
-            FAQ
+            {t('FAQ')}
           </NavLink>
         </Menu>
       </Box>
     </Header>
   );
 };
+
+export default translate()(POAHeader)

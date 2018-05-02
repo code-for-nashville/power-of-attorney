@@ -9,13 +9,15 @@ import {
   Paragraph,
   Section
 } from 'grommet';
-
+import { translate } from 'react-i18next';
 import { FORM_PATH } from '../../paths.js'
 
 import './styles.css';
 
 
-export default () => {
+const Home = (props) => {
+  const { t } = props;
+
   return (
     <Section
       basis='full'
@@ -30,7 +32,7 @@ export default () => {
           className='HomeImageShadowWrapper'
         >
           <Image
-            alt='Cute baby boy looking up.'
+            alt={t('cuteBabyBoy')}
             size='large'
             src={`${process.env.PUBLIC_URL}/images/cute-baby.jpg`}
           />
@@ -41,19 +43,19 @@ export default () => {
         pad={{vertical: 'none'}}
         primary={true}
       >
-        <Heading tag='h1'>For Tennessee</Heading>
-        <Headline size='large'>Immigrant Parents:</Headline>
+        <Heading tag='h1'>{t('forTennessee')}</Heading>
+        <Headline size='large'>{t('immigrantParents')}</Headline>
         <Heading tag='h2'>
-          Ensure care of a minor in the case of deportation or detainment by granting power of attorney.
+          {t('ensureCare')}
         </Heading>
         <Paragraph>
-          Immigrant parents face detainment or deportation with little or no warning. In many cases, both parents are in the same location when detained or facing deportation. As a result, children of detained and/or deported parents are left with no legal guardian. Once detained or deported, parents are often inaccessible for days or weeks with little or no contact with their children or family. Parents facing detainment or deportation can prepare, in advance, for the care of their minor children by granting a Power of Attorney. A Power of Attorney allows immigrant parents to grant permission to a trusted adult to care for their minor child in the event of detainment or deportation.
+          {t('immigrant')}
         </Paragraph>
         <Paragraph>
-          Getting started is quick and easy with this online Power of Attorney form!
+          {t('gettingStarted')}
         </Paragraph>
         <Button
-          label="Start Form"
+          label={t('startForm')}
           path={FORM_PATH}
           primary={true}
         />
@@ -61,3 +63,4 @@ export default () => {
     </Section>
   );
 };
+export default translate()(Home)
