@@ -8,7 +8,7 @@ import {
 import { translate } from 'react-i18next';
 
 const ErrorNotification = (props) => {
-  const { t, tReady } = props;
+  const { t } = props;
   return (
     <Toast status='critical'>
       {t('unknownError')}
@@ -25,7 +25,7 @@ PDFMake so that it only loads after the user enters the PDF generation
 screen.
 */
 export default asyncComponent({
-  ErrorComponent: translate()(ErrorNotification),
+  ErrorComponent: translate('translations')(ErrorNotification),
   LoadingComponent: Spinning,
   name: 'AsyncDownloadPDF',
   resolve: () => import('./DownloadPDF')

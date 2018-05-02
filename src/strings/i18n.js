@@ -1,7 +1,7 @@
 import i18n from 'i18next';
 import XHR from 'i18next-xhr-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
-
+import english from './english'
 
 i18n
   .use(XHR)
@@ -18,5 +18,6 @@ i18n
     }
   });
 
+i18n.addResourceBundle('en', 'translations', english, true, true)
 
 export default i18n;

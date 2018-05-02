@@ -16,7 +16,7 @@ import './styles.css';
 
 
 const Home = (props) => {
-  const { t, tReady } = props;
+  const { t } = props;
 
   return (
     <Section
@@ -44,18 +44,18 @@ const Home = (props) => {
         primary={true}
       >
         <Heading tag='h1'>{t('forTennessee')}</Heading>
-        <Headline size='large'>Immigrant Parents:</Headline>
+        <Headline size='large'>{t('immigrantParents')}</Headline>
         <Heading tag='h2'>
-          Ensure care of a minor in the case of deportation or detainment by granting power of attorney.
+          {t('ensureCare')}
         </Heading>
         <Paragraph>
-          Immigrant parents face detainment or deportation with little or no warning. In many cases, both parents are in the same location when detained or facing deportation. As a result, children of detained and/or deported parents are left with no legal guardian. Once detained or deported, parents are often inaccessible for days or weeks with little or no contact with their children or family. Parents facing detainment or deportation can prepare, in advance, for the care of their minor children by granting a Power of Attorney. A Power of Attorney allows immigrant parents to grant permission to a trusted adult to care for their minor child in the event of detainment or deportation.
+          {t('immigrant')}
         </Paragraph>
         <Paragraph>
-          Getting started is quick and easy with this online Power of Attorney form!
+          {t('gettingStarted')}
         </Paragraph>
         <Button
-          label="Start Form"
+          label={t('startForm')}
           path={FORM_PATH}
           primary={true}
         />
@@ -63,4 +63,4 @@ const Home = (props) => {
     </Section>
   );
 };
-export default translate()(Home)
+export default translate('translations')(Home)

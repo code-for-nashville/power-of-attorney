@@ -16,7 +16,8 @@ import { FAQ_PATH, HOME_PATH } from '../../paths';
 const ANCHOR_DISABLED = `${GrommetClassnames.ANCHOR}--disabled`
 
 
-const POAHeader = () => {
+const POAHeader = (props) => {
+  const { t } = props;
   return (
     <Header>
       <Box flex={true}
@@ -33,7 +34,7 @@ const POAHeader = () => {
             exact
             to={HOME_PATH}
           >
-            Home
+            {t('Home')}
           </NavLink>
           <NavLink
             activeClassName={ANCHOR_DISABLED}
@@ -41,7 +42,7 @@ const POAHeader = () => {
             exact
             to={FAQ_PATH}
           >
-            FAQ
+            {t('FAQ')}
           </NavLink>
         </Menu>
       </Box>
@@ -49,4 +50,4 @@ const POAHeader = () => {
   );
 };
 
-export default translate()(POAHeader)
+export default translate('translations')(POAHeader)
