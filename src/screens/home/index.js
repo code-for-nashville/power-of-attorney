@@ -32,7 +32,7 @@ const Home = (props) => {
           className='HomeImageShadowWrapper'
         >
           <Image
-            alt='Cute baby boy looking up.'
+            alt={t('cuteBabyBoy')}
             size='large'
             src={`${process.env.PUBLIC_URL}/images/cute-baby.jpg`}
           />
@@ -63,4 +63,4 @@ const Home = (props) => {
     </Section>
   );
 };
-export default translate('translations')(Home)
+export default translate()(Home)

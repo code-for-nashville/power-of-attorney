@@ -52,7 +52,7 @@ const Faq = (props) => {
       </Heading>
       <Paragraph>
         {t('lawCanBeFound')} <Anchor
-          a11yTitle='Tennessee power of attorney for a minor child law'
+          a11yTitle={t('lawCanBeFound')}
           href='https://law.justia.com/codes/tennessee/2010/title-34/chapter-6/part-3/'
           target='_blank'
         >{t('here')}</Anchor>.
@@ -61,4 +61,4 @@ const Faq = (props) => {
   );
 };
 
-export default translate('translations')(Faq)
+export default translate()(Faq)

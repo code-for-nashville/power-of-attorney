@@ -64,6 +64,8 @@ const SPANISH = {
   Open: 'Open',
   Download: 'Download',
   unknownError: 'An unknown error that occured - please refresh the page and try again.',
+  cuteBabyBoy: 'Cute baby boy looking up.',
+  back: 'Back',
 }
 
 export default SPANISH

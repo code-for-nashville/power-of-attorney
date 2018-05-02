@@ -512,11 +512,11 @@ class PoAForm extends React.Component {
         />
         </div>
 
-        <Paragraph>
+        <Paragraph className="align-center">
           <strong>{t('partI')}</strong>{t('thisFormIsToBeFilled')}
         </Paragraph>
 
-        <Form autoComplete="off">
+        <Form autoComplete="off" className="align-center">
           <Carousel
             activeIndex={this.state.step}
             autoplay={false}
@@ -545,7 +545,7 @@ class PoAForm extends React.Component {
             className='button-box'
           >
             <Button
-              label="Back"
+              label={t('back')}
               onClick={this._back}
               primary={true}
               style={this.state.step === 0 ? { backgroundColor: 'grey', borderColor: 'grey' } : {}}
@@ -562,4 +562,4 @@ class PoAForm extends React.Component {
   }
 }
 
-export default translate('translations')(PoAForm);
+export default translate()(PoAForm);

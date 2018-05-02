@@ -7,14 +7,11 @@ import {
 } from 'grommet';
 import { translate } from 'react-i18next';
 
-const ErrorNotification = (props) => {
-  const { t } = props;
-  return (
-    <Toast status='critical'>
-      {t('unknownError')}
+const ErrorNotification = ({ t }) => (
+  <Toast status='critical'>
+    {t('unknownError')}
   </Toast>
-  );
-}
+);
 
 /*
 We use PDFMake, a fantastic library for generating client side PDFS
@@ -25,7 +22,7 @@ PDFMake so that it only loads after the user enters the PDF generation
 screen.
 */
 export default asyncComponent({
-  ErrorComponent: translate('translations')(ErrorNotification),
+  ErrorComponent: translate()(ErrorNotification),
   LoadingComponent: Spinning,
   name: 'AsyncDownloadPDF',
   resolve: () => import('./DownloadPDF')

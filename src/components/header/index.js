@@ -50,4 +50,4 @@ const POAHeader = (props) => {
   );
 };
 
-export default translate('translations')(POAHeader)
+export default translate()(POAHeader)

@@ -4,7 +4,6 @@ import {
   Anchor,
   Box,
   Layer,
-  Menu,
   Paragraph
 } from 'grommet';
 import { translate } from 'react-i18next';
@@ -31,7 +30,7 @@ const Disclaimer = (props) => {
         justify='center'
         pad={{horizontal: 'medium', 'vertical': 'small'}}
       >
-        <div>{t('beforeYouStart')}</div>
+        <div>{t('beforeStart')}</div>
       </Box>
       <Box
         pad={{horizontal: 'medium', 'vertical': 'none'}}
@@ -46,11 +45,11 @@ const Disclaimer = (props) => {
         >
           {t('thisFormIsToBeFilled')}
         </Paragraph>
-        <Menu
+        <Box
           direction='row'
-          justify='end'
-          pad={{'vertical': 'medium'}}
-          size='small'
+          justify='between'
+          pad={{'vertical': 'medium', horizontal: 'medium'}}
+          size='large'
         >
           <Anchor
             className='DisclaimerMoreInformation'
@@ -61,10 +60,10 @@ const Disclaimer = (props) => {
           <Anchor onClick={props.onClose}>
             {t('I_UNDERSTAND')}
           </Anchor>
-        </Menu>
+        </Box>
       </Box>
     </Layer>
   );
 };
 
-export default translate('translations')(Disclaimer);
+export default translate()(Disclaimer);

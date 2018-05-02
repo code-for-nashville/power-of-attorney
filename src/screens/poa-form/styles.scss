@@ -34,6 +34,10 @@
   margin: 0em 2.5em 1.8em 0em;
 }
 
+.grommetux-carousel .grommetux-box--align-center {
+  justify-content: center;
+}
+
 .grommetux-carousel__arrow, .grommetux-carousel__controls{
   display: none !important;
 }
