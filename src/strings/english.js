@@ -54,6 +54,7 @@ const ENGLISH = {
   Form: 'Form',
   Open: 'Open',
   Download: 'Download',
+  unknownError: 'An unknown error that occured - please refresh the page and try again.',
 }
 
 export default ENGLISH

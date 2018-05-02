@@ -7,9 +7,9 @@ import {
   Paragraph,
   Section
 } from 'grommet';
+import { translate } from 'react-i18next';
 
-
-export default () => {
+const Faq = () => {
   return (
     <Section
       pad={{vertical: 'none'}}
@@ -59,3 +59,5 @@ export default () => {
     </Section>
   );
 };
+
+export default translate()(Faq)

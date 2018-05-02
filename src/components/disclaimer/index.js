@@ -7,7 +7,7 @@ import {
   Menu,
   Paragraph
 } from 'grommet';
-
+import { translate } from 'react-i18next';
 import { FAQ_PATH } from '../../paths.js';
 
 import './style.css';
@@ -66,4 +66,4 @@ const Disclaimer = (props) => {
   );
 };
 
-export default Disclaimer;
+export default translate()(Disclaimer);

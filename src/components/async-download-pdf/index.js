@@ -5,12 +5,16 @@ import {
   Spinning,
   Toast
 } from 'grommet';
+import { translate } from 'react-i18next';
 
-const ErrorNotification = (
-  <Toast status='critical'>
-    An unknown error that occured - please refresh the page and try again.
+const ErrorNotification = (props) => {
+  const { t, tReady } = props;
+  return (
+    <Toast status='critical'>
+      {t('unknownError')}
   </Toast>
-);
+  );
+}
 
 /*
 We use PDFMake, a fantastic library for generating client side PDFS
@@ -21,7 +25,7 @@ PDFMake so that it only loads after the user enters the PDF generation
 screen.
 */
 export default asyncComponent({
-  ErrorComponent: ErrorNotification,
+  ErrorComponent: translate()(ErrorNotification),
   LoadingComponent: Spinning,
   name: 'AsyncDownloadPDF',
   resolve: () => import('./DownloadPDF')

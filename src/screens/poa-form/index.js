@@ -19,7 +19,7 @@ import {
 import { Disclaimer, AsyncDownloadPDF } from '../../components';
 import { MOTHER_ADDRESS, FATHER_ADDRESS, CAREGIVER_ADDRESS } from '../../pdf/pdf-document';
 import Stepper from 'react-stepper-horizontal';
-
+import { translate } from 'react-i18next';
 import { STATE_OPTIONS } from '../../strings'
 import './styles.css';
 
@@ -558,4 +558,4 @@ class PoAForm extends React.Component {
   }
 }
 
-export default PoAForm;
+export default translate()(PoAForm);

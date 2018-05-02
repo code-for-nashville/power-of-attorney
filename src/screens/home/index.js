@@ -9,13 +9,15 @@ import {
   Paragraph,
   Section
 } from 'grommet';
-
+import { translate } from 'react-i18next';
 import { FORM_PATH } from '../../paths.js'
 
 import './styles.css';
 
 
-export default () => {
+const Home = (props) => {
+  const { t, tReady } = props;
+
   return (
     <Section
       basis='full'
@@ -41,7 +43,7 @@ export default () => {
         pad={{vertical: 'none'}}
         primary={true}
       >
-        <Heading tag='h1'>For Tennessee</Heading>
+        <Heading tag='h1'>{t('forTennessee')}</Heading>
         <Headline size='large'>Immigrant Parents:</Headline>
         <Heading tag='h2'>
           Ensure care of a minor in the case of deportation or detainment by granting power of attorney.
@@ -61,3 +63,4 @@ export default () => {
     </Section>
   );
 };
+export default translate()(Home)
