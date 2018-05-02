@@ -1,7 +1,7 @@
 const SPANSH = {
-  forTennessee:'For Tennessee',
-  immigrantParents:'Immigrant Parents',
-  ensureCare: 'Ensure care of a minor in the case of deportation or detainment by granting power of attorney.',
+  forTennessee:'Para Tennessee',
+  immigrantParents:'Padres Inmigrantes',
+  ensureCare: 'Asegurar el cuidado de un menor en el caso de deportación o detención mediante el otorgamiento de un poder notarial.',
   immigrant: 'Immigrant parents face detainment or deportation with little or no warning. In many cases, both parents are in the same location when detained or facing deportation. As a result, children of detained and/or deported parents are left with no legal guardian. Once detained or deported, parents are often inaccessible for days or weeks with little or no contact with their children or family. Parents facing detainment or deportation can prepare, in advance, for the care of their minor children by granting a Power of Attorney. A Power of Attorney allows immigrant parents to grant permission to a trusted adult to care for their minor child in the event of detainment or deportation.'
   gettingStarted: 'Getting started is quick and easy with this online Power of Attorney form!',
   childsfullName: 'Child\'s Full name',
