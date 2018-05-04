@@ -54,6 +54,12 @@
 }
 
 .stepper {
+  div div div div { // HACK: Since the slider sets all styles inline.
+    a, span {
+      line-height: 32px !important;
+    }
+  }
+  
   @media (max-width: 430px) {
     display: none;
   }
