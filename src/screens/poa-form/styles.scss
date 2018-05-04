@@ -41,3 +41,9 @@
 .grommetux-carousel__arrow, .grommetux-carousel__controls{
   display: none !important;
 }
+
+.stepper div div div div { // HACK: Since the slider sets all styles inline.
+  a, span {
+    line-height: 32px !important;
+  }
+}
