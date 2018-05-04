@@ -17,3 +17,9 @@
     margin-top: 40px;
     min-width: 350px;
 }
+
+.grommetux-headline.grommetux-headline--large.HomeHeadline {
+  @media screen and (max-width: 355px) {
+    font-size: 3rem;
+  }
+}

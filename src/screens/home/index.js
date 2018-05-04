@@ -44,7 +44,7 @@ const Home = (props) => {
         primary={true}
       >
         <Heading tag='h1'>{t('forTennessee')}</Heading>
-        <Headline size='large'>{t('immigrantParents')}</Headline>
+        <Headline size='large' className='HomeHeadline'>{t('immigrantParents')}</Headline>
         <Heading tag='h2'>
           {t('ensureCare')}
         </Heading>

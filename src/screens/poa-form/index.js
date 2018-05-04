@@ -429,41 +429,42 @@ class PoAForm extends React.Component {
         {disclaimer}
         <Heading tag='h1'>{t('powerOfAttorney')}</Heading>
         <div>
-
-        <Stepper
-          steps={
-            [
-              {
-                title: t('childInformation'),
-                onClick: () => {
-                  this.setState((state) => ({ step: 0 }));
+        <div className="stepper">
+          <Stepper
+            steps={
+              [
+                {
+                  title: t('childInformation'),
+                  onClick: () => {
+                    this.setState((state) => ({ step: 0 }));
+                  }
+                },
+                {
+                  title: t('guardianInformation'),
+                  onClick: () => {
+                  this.setState((state) => ({ step: 1 }));
                 }
               },
               {
-                title: t('guardianInformation'),
+                title: t('caregiversInformation'),
                 onClick: () => {
-                this.setState((state) => ({ step: 1 }));
-              }
-            },
-            {
-              title: t('caregiversInformation'),
-              onClick: () => {
-                this.setState((state) => ({ step: 2 }));
-              }
-            },
-            {
-              title: t('parentalstatus'),
-              onClick: () => {
-                this.setState((state) => ({ step: 3 }));
-              }
-            },
-          ]
-        }
-          activeColor="#679ba1"
-          completeColor="#679ba1"
-          activeBorderColor="#679ba1"
-          activeStep={ this.state.step }
-        />
+                  this.setState((state) => ({ step: 2 }));
+                }
+              },
+              {
+                title: t('parentalstatus'),
+                onClick: () => {
+                  this.setState((state) => ({ step: 3 }));
+                }
+              },
+            ]
+          }
+            activeColor="#679ba1"
+            completeColor="#679ba1"
+            activeBorderColor="#679ba1"
+            activeStep={ this.state.step }
+          />
+        </div>
         </div>
 
         <Paragraph className="align-center">
@@ -486,12 +487,14 @@ class PoAForm extends React.Component {
               label={t('back')}
               onClick={this._back}
               primary={true}
+              className='button'
               style={this.state.step === 0 ? { backgroundColor: 'grey', borderColor: 'grey' } : {}}
             />
             <Button
               label={this.isLastStep() ? t('submit') : t('next')}
               onClick={this._next}
               primary={true}
+              className='button'
             />
           </Box>
         </Form>

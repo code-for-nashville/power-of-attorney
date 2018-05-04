@@ -41,3 +41,20 @@
 .grommetux-carousel__arrow, .grommetux-carousel__controls{
   display: none !important;
 }
+
+.grommetux-box--direction-row.grommetux-box--responsive.button-box {
+  @media (max-width: 719px) {
+    flex-direction: column-reverse;
+    .button {
+      width: 100%;
+      max-width: 100%;
+      margin-bottom: 15px;
+    }
+  }
+}
+
+.stepper {
+  @media (max-width: 430px) {
+    display: none;
+  }
+}
