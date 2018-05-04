@@ -15,30 +15,11 @@ import {
 } from 'grommet';
 
 import { Disclaimer, AsyncDownloadPDF } from '../../components';
-import { MOTHER_ADDRESS, FATHER_ADDRESS, CAREGIVER_ADDRESS } from '../../pdf/pdf-document';
 import Stepper from 'react-stepper-horizontal';
 import { translate } from 'react-i18next';
 import { STATE_OPTIONS } from '../../strings'
 import './styles.css';
 
-
-const NO_ERRORS = {
-  childrenNames: false,
-  [`${MOTHER_ADDRESS}_street_address`]: false,
-  [`${MOTHER_ADDRESS}_locality`]: false,
-  [`${MOTHER_ADDRESS}_region`]: false,
-  [`${MOTHER_ADDRESS}_postal_code`]: false,
-  [`${FATHER_ADDRESS}_street_address`]: false,
-  [`${FATHER_ADDRESS}_locality`]: false,
-  [`${FATHER_ADDRESS}_region`]: false,
-  [`${FATHER_ADDRESS}_postal_code`]: false,
-  [`${CAREGIVER_ADDRESS}_street_address`]: false,
-  [`${CAREGIVER_ADDRESS}_locality`]: false,
-  [`${CAREGIVER_ADDRESS}_region`]: false,
-  [`${CAREGIVER_ADDRESS}_postal_code`]: false,
-  parentalStatus: false,
-  reason: false
-};
 
 const FieldHeader = (props) => (<div {...props} />);
 
@@ -53,21 +34,21 @@ class PoAForm extends React.Component {
       numberOfChildren: 1,
       childrenNames: [],
       submitted: false,
-      [MOTHER_ADDRESS]: {
+      motherAddress: {
         name: '',
         street_address: '',
         locality: '',
         region: '',
         postal_code: ''
       },
-      [FATHER_ADDRESS]: {
+      fatherAddress: {
         name: '',
         street_address: '',
         locality: '',
         region: '',
         postal_code: ''
       },
-      [CAREGIVER_ADDRESS]: {
+      caregiverAddress: {
         name: '',
         street_address: '',
         locality: '',
@@ -76,8 +57,22 @@ class PoAForm extends React.Component {
       },
       parentalStatus: '',
       reason: '',
-      errors: NO_ERRORS
+      errors: {}
     };
+  }
+
+  validateAddress = (address) => {
+    const isEmpty = (value) => value.length === 0
+
+    return {
+      name: isEmpty(address.name),
+      street_address: isEmpty(address.street_address),
+      locality: isEmpty(address.locality),
+      region: isEmpty(address.region),
+      // 5 digit postal codes only for now, though there is a valid 10 digit
+      // format (e.g. 12345-4321).
+      postal_code: address.postal_code.length !== 5
+    }
   }
 
   updateChildName = e => {
@@ -108,52 +103,6 @@ class PoAForm extends React.Component {
     this.setState({ reason });
   };
 
-  validate = (callback = () => { }) => {
-    const errors = {
-      childrenNames: this.state.childrenNames.length !== this.state.numberOfChildren,
-      [`${MOTHER_ADDRESS}_street_address`]:
-        this.state[MOTHER_ADDRESS].street_address.length === 0,
-      [`${MOTHER_ADDRESS}_locality`]:
-        this.state[MOTHER_ADDRESS].locality.length === 0,
-      [`${MOTHER_ADDRESS}_region`]:
-        this.state[MOTHER_ADDRESS].region.length === 0,
-      [`${MOTHER_ADDRESS}_postal_code`]:
-        this.state[MOTHER_ADDRESS].postal_code.length === 0,
-      [`${FATHER_ADDRESS}_street_address`]:
-        this.state[FATHER_ADDRESS].street_address.length === 0,
-      [`${FATHER_ADDRESS}_locality`]:
-        this.state[FATHER_ADDRESS].locality.length === 0,
-      [`${FATHER_ADDRESS}_region`]:
-        this.state[FATHER_ADDRESS].region.length === 0,
-      [`${FATHER_ADDRESS}_postal_code`]:
-        this.state[FATHER_ADDRESS].postal_code.length === 0,
-      [`${CAREGIVER_ADDRESS}_street_address`]:
-        this.state[CAREGIVER_ADDRESS].street_address.length === 0,
-      [`${CAREGIVER_ADDRESS}_locality`]:
-        this.state[CAREGIVER_ADDRESS].locality.length === 0,
-      [`${CAREGIVER_ADDRESS}_region`]:
-        this.state[CAREGIVER_ADDRESS].region.length === 0,
-      [`${CAREGIVER_ADDRESS}_postal_code`]:
-        this.state[CAREGIVER_ADDRESS].postal_code.length === 0,
-      parentalStatus: this.state.parentalStatus.length === 1,
-      reason: this.state.parentalStatus === '5'
-          ? this.state.reason.length === 0
-          : false,
-    }
-
-    this.setState(
-      () => ({ errors: errors }),
-      callback
-    );
-  };
-
-  hasErrors = () => {
-    for (let hasError of Object.values(this.state.errors)) {
-      if (hasError) return true
-    }
-    return false
-  }
-
   onNumberOfChildrenChange = (event) => {
     const num = parseInt(event.target.value, 10)
     this.setState(s => {
@@ -165,32 +114,84 @@ class PoAForm extends React.Component {
     this.setState({ acceptedModal: true })
   };
 
-  _submit = () => {
-    if (!this.hasErrors()) {
-      this.setState({ submitted: true })
-    }
-  };
-
   submit = () => {
-    this.validate(this._submit)
+    this.setState({ submitted: true })
   };
 
   _back = () => {
-    if (this.state.step > 0)
-      this.setState((state) => ({ step: --state.step }));
+    if (this.state.step > 0) {
+      this.setState(state => ({ step: --state.step }));
+    }
+  }
+
+  /*
+    Recursively check if an object has errors.
+
+    Error objects are expected to have booleans(true/false) or a nested error
+    object as values.
+  */
+  hasError(object) {
+    return Object.values(object).reduce((result, value) => {
+      if (typeof(value) === "boolean") {
+        return result || value
+      }
+      return result || this.hasError(value)
+    }, false)
   }
 
   _next = () => {
-    if (this.state.step < 4) {
-      this.validate(() => {
-        debugger
-        if (!this.hasErrors()) {
-          this.setState(state => ({ step: state.step + 1 }))
-        }
-      })
+    const errors = this.stepErrors();
+    if (this.hasError(errors)) {
+      this.setState({ errors: errors })
     } else {
-      this.submit()
+      if (this.isLastStep()) {
+        this.submit()
+      } else {
+        this.setState(state => ({ step: state.step + 1 }))
+      }
     }
+  }
+
+  /*
+    Returns an object containing validation errors for just the current step
+
+    Returns: An Array of two elements. The first element is a key of field names
+      to error objects.  The second element is a boolen that is True if any
+      of the fields failed validation.
+  */
+  stepErrors() {
+    const validators = [
+      {
+        childrenNames: () => this.state.childrenNames.length !== this.state.numberOfChildren
+      },
+      {
+        motherAddress: () => this.validateAddress(this.state.motherAddress),
+        fatherAddress: () => this.validateAddress(this.state.fatherAddress)
+      },
+      {
+        caregiverAddress: () => this.validateAddress(
+            this.state.caregiverAddress
+        )
+      },
+      {
+        parentalStatus: () => this.state.parentalStatus.length === 1,
+        reason: () => this.state.parentalStatus === '5'
+            ? this.state.reason.length === 0
+            : false
+      }
+    ][this.state.step]
+
+    const errors = {};
+
+    for(let [key, validator] of Object.entries(validators)) {
+      errors[key] = validator()
+    }
+
+    return errors
+  }
+
+  isLastStep = () => {
+    return this.state.step === 3
   }
 
   renderChildrenInputs = () => {
@@ -218,11 +219,13 @@ class PoAForm extends React.Component {
 
   renderAddress = (name) => {
     const { t } = this.props;
+    const errors = this.state.errors[name] || {}
+
     return (
       <Box>
         <FormField
           label={t('name')}
-          error={this.state.errors[`${name}_street_address`] ? t('pleaseAddName') : null}
+          error={errors.name ? t('pleaseAddName') : null}
         >
           <TextInput
             onDOMChange={this.updateAddress}
@@ -235,7 +238,7 @@ class PoAForm extends React.Component {
         </FormField>
         <FormField
           label={t('streetAddress')}
-          error={this.state.errors[`${name}_locality`] ? t('streetAddress') : null}
+          error={errors.street_address ? t('streetAddress') : null}
         >
           <TextInput
             onDOMChange={this.updateAddress}
@@ -247,7 +250,7 @@ class PoAForm extends React.Component {
         </FormField>
         <FormField
           label={t('city')}
-          error={this.state.errors[`${name}_locality`] ? t('city') : null}
+          error={errors.locality ? t('city') : null}
         >
           <TextInput
             onDOMChange={this.updateAddress}
@@ -258,7 +261,7 @@ class PoAForm extends React.Component {
           />
         </FormField>
         <FormField
-          error={this.state.errors[`${name}_region`] ? t('pleaseAddState') : null}
+          error={errors.region ? t('pleaseAddState') : null}
           label={t('state')}
         >
           <Select
@@ -273,7 +276,7 @@ class PoAForm extends React.Component {
         </FormField>
         <FormField
           label={t('zip')}
-          error={this.state.errors[`${name}_postal_code`] ? t('pleaseAddZip') : null}
+          error={errors.postal_code ? t('pleaseAddZip') : null}
         >
           <TextInput
             onDOMChange={this.updateAddress}
@@ -318,7 +321,11 @@ class PoAForm extends React.Component {
       <div>
         <FieldHeader>{t('motherName')}</FieldHeader>
         <Paragraph>
-          {this.renderAddress(MOTHER_ADDRESS)}
+          {this.renderAddress('motherAddress')}
+        </Paragraph>
+        <FieldHeader>{t('fatherName')}</FieldHeader>
+        <Paragraph>
+          {this.renderAddress('fatherAddress')}
         </Paragraph>
       </div>
     )
@@ -326,29 +333,17 @@ class PoAForm extends React.Component {
 
   renderStepThree() {
     const { t } = this.props;
-    return (<div>
-      <FieldHeader>{t('fatherName')}</FieldHeader>
-      <Paragraph>
-        {this.renderAddress(FATHER_ADDRESS)}
-      </Paragraph>
-    </div>
-    )
-  }
-
-  renderStepFour() {
-    const { t } = this.props;
     return (
       <div>
         <FieldHeader>{t('caregiverName')}</FieldHeader>
         <Paragraph>
-          {this.renderAddress(CAREGIVER_ADDRESS)}
+          {this.renderAddress('caregiverAddress')}
         </Paragraph>
       </div>
-
     )
   }
 
-  renderStepFive() {
+  renderStepFour() {
     const { t } = this.props;
     const ParentRadioButton = (props) => (
       <RadioButton
@@ -360,20 +355,17 @@ class PoAForm extends React.Component {
       />
     )
 
+    let errorMessage = null
+    if (this.state.errors.parental_status) {
+      errorMessage = t('pleaseAddParentalStatus')
+    } else if (this.state.errors.reason) {
+      errorMessage = t('pleaseAddReason')
+    }
+
     return (
       <div>
         <FieldHeader>{t('parentalStatus')}</FieldHeader>
-        {
-          this.state.errors.parental_status ?
-            (<span className="error">{t('pleaseAddParentalStatus')}</span>) :
-            null
-        }
-        {
-          this.state.errors.reason ?
-            (<span className="error">{t('pleaseAddReason')}</span>) :
-            null
-        }
-        <FormField>
+        <FormField error={errorMessage}>
           {
             [
               ['parents-living', t('bothParents')],
@@ -415,8 +407,6 @@ class PoAForm extends React.Component {
         return this.renderStepThree()
       case 3:
         return this.renderStepFour()
-      case 4:
-        return this.renderStepFive()
       default:
         return this.renderStepOne()
     }
@@ -469,10 +459,10 @@ class PoAForm extends React.Component {
             },
           ]
         }
-        activeColor="#679ba1"
-        completeColor="#679ba1"
-        activeBorderColor="#679ba1"
-        activeStep={ this.state.step }
+          activeColor="#679ba1"
+          completeColor="#679ba1"
+          activeBorderColor="#679ba1"
+          activeStep={ this.state.step }
         />
         </div>
 
@@ -499,7 +489,7 @@ class PoAForm extends React.Component {
               style={this.state.step === 0 ? { backgroundColor: 'grey', borderColor: 'grey' } : {}}
             />
             <Button
-              label={this.state.step === 4 ? t('submit') : t('next')}
+              label={this.isLastStep() ? t('submit') : t('next')}
               onClick={this._next}
               primary={true}
             />
