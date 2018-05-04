@@ -51,7 +51,7 @@ const NO_ERRORS = {
   }
 };
 
-const FieldHeader = (props) => (<div {...props} />);
+const FieldHeader = (props) => (<span {...props} />);
 
 class PoAForm extends React.Component {
   static navigationOptions = ({ navigation }) => ({});
@@ -242,9 +242,8 @@ class PoAForm extends React.Component {
     const inputs = [...Array(this.state.numberOfChildren)].map(
       (_, i) => {
         return (
-          <Box pad={{vertical: 'small'}}>
+          <Box key={i} pad={{vertical: 'small'}}>
             <FormField
-              key={i}
               label={t('childsFullName')}
             >
               <TextInput
@@ -264,7 +263,7 @@ class PoAForm extends React.Component {
     const errors = this.reduceErrors()
     const { t } = this.props;
     return (
-      <Box>
+      <Box margin={{vertical: 'medium'}}>
         <FormField
           label={t('name')}
           error={errors && this.state.errors[name][`${name}_street_address`] ? t('pleaseAddName') : null}
@@ -363,9 +362,7 @@ class PoAForm extends React.Component {
     return (
       <div>
         <FieldHeader>{t('motherName')}</FieldHeader>
-        <Paragraph>
-          {this.renderAddress(MOTHER_ADDRESS)}
-        </Paragraph>
+        {this.renderAddress(MOTHER_ADDRESS)}
       </div>
     )
   }
@@ -374,9 +371,7 @@ class PoAForm extends React.Component {
     const { t } = this.props;
     return (<div>
       <FieldHeader>{t('fatherName')}</FieldHeader>
-      <Paragraph>
-        {this.renderAddress(FATHER_ADDRESS)}
-      </Paragraph>
+      {this.renderAddress(FATHER_ADDRESS)}
     </div>
     )
   }
@@ -386,9 +381,7 @@ class PoAForm extends React.Component {
     return (
       <div>
         <FieldHeader>{t('caregiverName')}</FieldHeader>
-        <Paragraph>
-          {this.renderAddress(CAREGIVER_ADDRESS)}
-        </Paragraph>
+        {this.renderAddress(CAREGIVER_ADDRESS)}
       </div>
 
     )
