@@ -1,4 +1,5 @@
 const SPANISH = {
+  chooseOne: 'Choose one',
   forTennessee: 'Para Tennessee',
   immigrantParents: 'Padres Inmigrantes',
   ensureCare: 'Asegurar el cuidado de un menor en el caso de deportación o detención mediante el otorgamiento de un poder notarial.',

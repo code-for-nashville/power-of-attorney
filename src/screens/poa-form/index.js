@@ -3,7 +3,6 @@ import * as React from 'react';
 import {
   Box,
   Button,
-  Carousel,
   Form,
   FormField,
   Heading,
@@ -176,8 +175,8 @@ class PoAForm extends React.Component {
     );
   };
 
-  reduceErrors = () => {  
-  const flatErrorObject = Object.keys(this.state.errors).reduce((acc, curr) => { 
+  reduceErrors = () => {
+  const flatErrorObject = Object.keys(this.state.errors).reduce((acc, curr) => {
     return {...acc, ...this.state.errors[curr]}
   }
   ,{})
@@ -191,7 +190,10 @@ class PoAForm extends React.Component {
   }
 
   onNumberOfChildrenChange = (event) => {
-    this.setState({ numberOfChildren: parseInt(event.target.value, 10) });
+    const num = parseInt(event.target.value, 10)
+    this.setState(s => {
+      return { numberOfChildren: num, childrenNames: s.childrenNames.slice(0, num)}
+    });
   };
 
   acceptModal = () => {
@@ -240,16 +242,18 @@ class PoAForm extends React.Component {
     const inputs = [...Array(this.state.numberOfChildren)].map(
       (_, i) => {
         return (
-          <FormField
-            key={i}
-            label={t('childsFullName')}
-          >
-            <TextInput
-              data-number={i}
-              onDOMChange={this.updateChildName}
-              value={this.state.childrenNames[i]}
-            />
-          </FormField>
+          <Box pad={{vertical: 'small'}}>
+            <FormField
+              key={i}
+              label={t('childsFullName')}
+            >
+              <TextInput
+                data-number={i}
+                onDOMChange={this.updateChildName}
+                value={this.state.childrenNames[i]}
+              />
+            </FormField>
+          </Box>
         );
       }
     );
@@ -260,65 +264,71 @@ class PoAForm extends React.Component {
     const errors = this.reduceErrors()
     const { t } = this.props;
     return (
-      <Paragraph>
-        {errors && this.state.errors[name][`${name}_street_address`] ? (
-          <span className="error">{t('pleaseAddName')}</span>
-        ) : null}
-        <TextInput
-          onDOMChange={this.updateAddress}
-          className='input-class-long'
-          value={this.state[name].name}
-          name={name}
-          data-address-type={'name'}
-          placeHolder={t('name')}
-          margin='small'
-        />
-        {errors && this.state.errors[name][`${name}_locality`] ? (
-          <span className="error">{t('streetAddress')}</span>
-        ) : null}
-        <TextInput
-          onDOMChange={this.updateAddress}
-          className='input-class-long'
-          value={this.state[name].street_address}
-          name={name}
-          data-address-type={'street_address'}
-          placeHolder={t('streetAddress')}
-        />
-        {errors && this.state.errors[name][`${name}_locality`] ? (
-          <span className="error">{t('pleaseAddCity')}</span>
-        ) : null}
-        {errors && this.state.errors[name][`${name}_region`] ? (
-          <span className="error">{t('pleaseAddState')}</span>
-        ) : null}
-        <TextInput
-          onDOMChange={this.updateAddress}
-          className='input-class'
-          value={this.state[name].locality}
-          name={name}
-          data-address-type={'locality'}
-          placeHolder={t('city')}
-        />
-        <Select
-          onChange={this.updateAddress}
-          className='input-class'
-          value={this.state[name].region}
-          name={name}
-          data-address-type={'region'}
-          placeHolder={t('state')}
-          options={STATE_OPTIONS}
-        />
-        {errors && this.state.errors[name][`${name}_postal_code`] ? (
-          <span className="error">{t('pleaseAddZip')}</span>
-        ) : null}
-        <TextInput
-          onDOMChange={this.updateAddress}
-          className='input-class'
-          value={this.state[name].postal_code}
-          name={name}
-          data-address-type={'postal_code'}
-          placeHolder={t('zip')}
-        />
-      </Paragraph>
+      <Box>
+        <FormField
+          label={t('name')}
+          error={errors && this.state.errors[name][`${name}_street_address`] ? t('pleaseAddName') : null}
+        >
+          <TextInput
+            onDOMChange={this.updateAddress}
+            className='input-class-long'
+            value={this.state[name].name}
+            name={name}
+            data-address-type={'name'}
+            margin='small'
+          />
+        </FormField>
+        <FormField
+          label={t('streetAddress')}
+          error={errors && this.state.errors[name][`${name}_locality`] ? t('streetAddress') : null}
+        >
+          <TextInput
+            onDOMChange={this.updateAddress}
+            className='input-class-long'
+            value={this.state[name].street_address}
+            name={name}
+            data-address-type={'street_address'}
+          />
+        </FormField>
+        <FormField
+          label={t('city')}
+          error={errors && this.state.errors[name][`${name}_locality`] ? t('city') : null}
+        >
+          <TextInput
+            onDOMChange={this.updateAddress}
+            className='input-class'
+            value={this.state[name].locality}
+            name={name}
+            data-address-type={'locality'}
+          />
+        </FormField>
+        <FormField
+          error={errors && this.state.errors[name][`${name}_region`] ? t('pleaseAddState') : null}
+          label={t('state')}
+        >
+          <Select
+            onChange={this.updateAddress}
+            className='input-class'
+            value={this.state[name].region}
+            name={name}
+            data-address-type={'region'}
+            options={STATE_OPTIONS}
+            placeHolder={t('chooseOne')}
+          />
+        </FormField>
+        <FormField
+          label={t('zip')}
+          error={this.state.errors[name][`${name}_postal_code`] ? t('pleaseAddZip') : null}
+        >
+          <TextInput
+            onDOMChange={this.updateAddress}
+            className='input-class'
+            value={this.state[name].postal_code}
+            name={name}
+            data-address-type={'postal_code'}
+          />
+        </FormField>
+      </Box>
     );
   };
 
@@ -326,7 +336,7 @@ class PoAForm extends React.Component {
     const { t } = this.props;
     const errors = this.reduceErrors()
     return (
-      <div>
+    <Box>
         <FormField label={t('numberOfChildren')}>
           <NumberInput
             min={1}
@@ -335,14 +345,16 @@ class PoAForm extends React.Component {
           />
         </FormField>
 
-        <FieldHeader>{t('minorName')}</FieldHeader>
-        {
-          errors && this.state.errors.step0.childrenNames ?
-            (<span className="error">{t('pleaseAddChildName')}</span>) :
-            null
-        }
+        <Paragraph>
+          <FieldHeader>{t('minorName')}</FieldHeader>
+          {
+            errors && this.state.errors.step0.childrenNames ?
+              (<span className="error">{t('pleaseAddChildName')}</span>) :
+              null
+          }
+        </Paragraph>
         {this.renderChildrenInputs()}
-      </div>
+      </Box>
     )
   }
 
@@ -351,7 +363,9 @@ class PoAForm extends React.Component {
     return (
       <div>
         <FieldHeader>{t('motherName')}</FieldHeader>
-        {this.renderAddress(MOTHER_ADDRESS)}
+        <Paragraph>
+          {this.renderAddress(MOTHER_ADDRESS)}
+        </Paragraph>
       </div>
     )
   }
@@ -360,7 +374,9 @@ class PoAForm extends React.Component {
     const { t } = this.props;
     return (<div>
       <FieldHeader>{t('fatherName')}</FieldHeader>
-      {this.renderAddress(FATHER_ADDRESS)}
+      <Paragraph>
+        {this.renderAddress(FATHER_ADDRESS)}
+      </Paragraph>
     </div>
     )
   }
@@ -370,7 +386,9 @@ class PoAForm extends React.Component {
     return (
       <div>
         <FieldHeader>{t('caregiverName')}</FieldHeader>
-        {this.renderAddress(CAREGIVER_ADDRESS)}
+        <Paragraph>
+          {this.renderAddress(CAREGIVER_ADDRESS)}
+        </Paragraph>
       </div>
 
     )
@@ -468,8 +486,8 @@ class PoAForm extends React.Component {
         <Heading tag='h1'>{t('powerOfAttorney')}</Heading>
         <div>
 
-        <Stepper 
-          steps={ 
+        <Stepper
+          steps={
             [
               {
                 title: t('childInformation'),
@@ -503,8 +521,8 @@ class PoAForm extends React.Component {
                 this.setState((state) => ({ step: 3 }));
               }
             },
-          ] 
-        } 
+          ]
+        }
         activeColor="#679ba1"
         completeColor="#679ba1"
         activeBorderColor="#679ba1"
@@ -517,19 +535,11 @@ class PoAForm extends React.Component {
         </Paragraph>
 
         <Form autoComplete="off" className="align-center">
-          <Carousel
-            activeIndex={this.state.step}
-            autoplay={false}
-            // persistentNav={false} // Hiding the nav with css because setting this prop causes an infinite update
-            infinite={false}
+          <Box
+            pad={{vertical: 'medium'}}
           >
-            {this.renderStepOne()}
-            {this.renderStepTwo()}
-            {this.renderStepThree()}
-            {this.renderStepFour()}
-            {this.renderStepFive()}
-
-          </Carousel>
+            {this.renderForm()}
+          </Box>
           {
             this.state.errorCount > 0 ?
               (<Notification

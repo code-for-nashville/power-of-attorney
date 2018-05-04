@@ -1,4 +1,5 @@
 const ENGLISH = {
+  chooseOne: 'Choose one',
   forTennessee:'For Tennessee',
   immigrantParents:'Immigrant Parents',
   ensureCare: 'Ensure care of a minor in the case of deportation or detainment by granting power of attorney.',
@@ -58,7 +59,7 @@ const ENGLISH = {
   beforeStart: 'Before you start...',
   useOfThisForm: 'Use of this form is authorized by T.C.A. § 34-6-301 et seq. Completion of this form, along with the proper signatures, is sufficient to authorize enrollment of a minor in school and to authorize medical treatment. However, a school district may require additional documentation/information as permitted by this section of Tennessee law before enrolling a child in school or any extracurricular activities.',
   thisFormIsToBeFilled: 'This form is to be filled out and/or initialed by parent(s)/legal guardian(s).',
-  MORE_INFORMATION: 'MORE INFORMATION',  
+  MORE_INFORMATION: 'MORE INFORMATION',
   I_UNDERSTAND: 'I UNDERSTAND',
   Form: 'Form',
   Open: 'Open',
