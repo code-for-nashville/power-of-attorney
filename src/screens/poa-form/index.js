@@ -20,8 +20,7 @@ import { translate } from 'react-i18next';
 import { STATE_OPTIONS } from '../../strings'
 import './styles.css';
 
-
-const FieldHeader = (props) => (<div {...props} />);
+const FieldHeader = (props) => (<span {...props} />);
 
 class PoAForm extends React.Component {
   static navigationOptions = ({ navigation }) => ({});
@@ -199,9 +198,8 @@ class PoAForm extends React.Component {
     const inputs = [...Array(this.state.numberOfChildren)].map(
       (_, i) => {
         return (
-          <Box pad={{vertical: 'small'}}>
+          <Box key={i} pad={{vertical: 'small'}}>
             <FormField
-              key={i}
               label={t('childsFullName')}
             >
               <TextInput
@@ -222,7 +220,7 @@ class PoAForm extends React.Component {
     const errors = this.state.errors[name] || {}
 
     return (
-      <Box>
+      <Box margin={{vertical: 'medium'}}>
         <FormField
           label={t('name')}
           error={errors.name ? t('pleaseAddName') : null}
@@ -320,13 +318,9 @@ class PoAForm extends React.Component {
     return (
       <div>
         <FieldHeader>{t('motherName')}</FieldHeader>
-        <Paragraph>
-          {this.renderAddress('motherAddress')}
-        </Paragraph>
+        {this.renderAddress('motherAddress')}
         <FieldHeader>{t('fatherName')}</FieldHeader>
-        <Paragraph>
-          {this.renderAddress('fatherAddress')}
-        </Paragraph>
+        {this.renderAddress('fatherAddress')}
       </div>
     )
   }
@@ -336,9 +330,7 @@ class PoAForm extends React.Component {
     return (
       <div>
         <FieldHeader>{t('caregiverName')}</FieldHeader>
-        <Paragraph>
-          {this.renderAddress('caregiverAddress')}
-        </Paragraph>
+        {this.renderAddress('caregiverAddress')}
       </div>
     )
   }
