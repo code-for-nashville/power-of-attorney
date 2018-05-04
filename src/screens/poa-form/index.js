@@ -6,7 +6,6 @@ import {
   Form,
   FormField,
   Heading,
-  Notification,
   NumberInput,
   Paragraph,
   RadioButton,
@@ -24,31 +23,21 @@ import './styles.css';
 
 
 const NO_ERRORS = {
-  step0: {
-    childrenNames: false,
-  },
-  [MOTHER_ADDRESS]: {
-    mother_street_address: false,
-    mother_locality: false,
-    mother_region: false,
-    mother_postal_code: false,
-  },
-  [FATHER_ADDRESS]: {
-    father_street_address: false,
-    father_locality: false,
-    father_region: false,
-    father_postal_code: false,
-  },
-  [CAREGIVER_ADDRESS]: {
-    caregiver_street_address: false,
-    caregiver_locality: false,
-    caregiver_region: false,
-    caregiver_postal_code: false
-  },
-  step4: {
-    parentalStatus: false,
-    reason: false,
-  }
+  childrenNames: false,
+  [`${MOTHER_ADDRESS}_street_address`]: false,
+  [`${MOTHER_ADDRESS}_locality`]: false,
+  [`${MOTHER_ADDRESS}_region`]: false,
+  [`${MOTHER_ADDRESS}_postal_code`]: false,
+  [`${FATHER_ADDRESS}_street_address`]: false,
+  [`${FATHER_ADDRESS}_locality`]: false,
+  [`${FATHER_ADDRESS}_region`]: false,
+  [`${FATHER_ADDRESS}_postal_code`]: false,
+  [`${CAREGIVER_ADDRESS}_street_address`]: false,
+  [`${CAREGIVER_ADDRESS}_locality`]: false,
+  [`${CAREGIVER_ADDRESS}_region`]: false,
+  [`${CAREGIVER_ADDRESS}_postal_code`]: false,
+  parentalStatus: false,
+  reason: false
 };
 
 const FieldHeader = (props) => (<div {...props} />);
@@ -87,7 +76,6 @@ class PoAForm extends React.Component {
       },
       parentalStatus: '',
       reason: '',
-      errorCount: 0,
       errors: NO_ERRORS
     };
   }
@@ -121,8 +109,8 @@ class PoAForm extends React.Component {
   };
 
   validate = (callback = () => { }) => {
-    const step0Errors = { childrenNames: this.state.childrenNames.length !== this.state.numberOfChildren }
-    const step1Errors = {
+    const errors = {
+      childrenNames: this.state.childrenNames.length !== this.state.numberOfChildren,
       [`${MOTHER_ADDRESS}_street_address`]:
         this.state[MOTHER_ADDRESS].street_address.length === 0,
       [`${MOTHER_ADDRESS}_locality`]:
@@ -131,8 +119,6 @@ class PoAForm extends React.Component {
         this.state[MOTHER_ADDRESS].region.length === 0,
       [`${MOTHER_ADDRESS}_postal_code`]:
         this.state[MOTHER_ADDRESS].postal_code.length === 0,
-    }
-    const step2Errors = {
       [`${FATHER_ADDRESS}_street_address`]:
         this.state[FATHER_ADDRESS].street_address.length === 0,
       [`${FATHER_ADDRESS}_locality`]:
@@ -141,8 +127,6 @@ class PoAForm extends React.Component {
         this.state[FATHER_ADDRESS].region.length === 0,
       [`${FATHER_ADDRESS}_postal_code`]:
         this.state[FATHER_ADDRESS].postal_code.length === 0,
-    }
-    const step3Errors = {
       [`${CAREGIVER_ADDRESS}_street_address`]:
         this.state[CAREGIVER_ADDRESS].street_address.length === 0,
       [`${CAREGIVER_ADDRESS}_locality`]:
@@ -150,43 +134,24 @@ class PoAForm extends React.Component {
       [`${CAREGIVER_ADDRESS}_region`]:
         this.state[CAREGIVER_ADDRESS].region.length === 0,
       [`${CAREGIVER_ADDRESS}_postal_code`]:
-        this.state[CAREGIVER_ADDRESS].postal_code.length === 0
-    }
-    const step4Errors = {
+        this.state[CAREGIVER_ADDRESS].postal_code.length === 0,
       parentalStatus: this.state.parentalStatus.length === 1,
-      reason:
-        this.state.parentalStatus === '5'
+      reason: this.state.parentalStatus === '5'
           ? this.state.reason.length === 0
           : false,
     }
 
     this.setState(
-      (prevState) => ({
-        errors: {
-          step0: prevState.step > -1  ? step0Errors : NO_ERRORS.step0,
-          [MOTHER_ADDRESS]: prevState.step > 0  ? step1Errors : NO_ERRORS[MOTHER_ADDRESS],
-          [FATHER_ADDRESS]: prevState.step > 1 ? step2Errors : NO_ERRORS[FATHER_ADDRESS],
-          [CAREGIVER_ADDRESS]: prevState.step > 2 ? step3Errors : NO_ERRORS[CAREGIVER_ADDRESS],
-          step4: prevState.step > 3 ? step4Errors : NO_ERRORS.step4,
-
-        }
-      }),
+      () => ({ errors: errors }),
       callback
     );
   };
 
-  reduceErrors = () => {
-  const flatErrorObject = Object.keys(this.state.errors).reduce((acc, curr) => {
-    return {...acc, ...this.state.errors[curr]}
-  }
-  ,{})
-  const errors =  Object.keys(flatErrorObject).reduce((acc, curr) => {
-      if (flatErrorObject[curr]) {
-        acc = true;
-      }
-      return acc;
-    }, false);
-    return errors
+  hasErrors = () => {
+    for (let hasError of Object.values(this.state.errors)) {
+      if (hasError) return true
+    }
+    return false
   }
 
   onNumberOfChildrenChange = (event) => {
@@ -200,23 +165,14 @@ class PoAForm extends React.Component {
     this.setState({ acceptedModal: true })
   };
 
-  generateForm = () => {
-    const errArray = this.reduceErrors()
-
-    if (errArray.length > 0) {
-      this.setState(() => ({ errorCount: errArray.length }));
-    } else {
+  _submit = () => {
+    if (!this.hasErrors()) {
       this.setState({ submitted: true })
     }
   };
 
-  _submit = () => {
-    this.setState(
-      () => ({
-        errors: NO_ERRORS
-      }),
-      this.validate(this.generateForm)
-    );
+  submit = () => {
+    this.validate(this._submit)
   };
 
   _back = () => {
@@ -227,13 +183,13 @@ class PoAForm extends React.Component {
   _next = () => {
     if (this.state.step < 4) {
       this.validate(() => {
-        const errors = this.reduceErrors()
-        if (!errors) {
+        debugger
+        if (!this.hasErrors()) {
           this.setState(state => ({ step: state.step + 1 }))
         }
       })
     } else {
-      this._submit()
+      this.submit()
     }
   }
 
@@ -261,13 +217,12 @@ class PoAForm extends React.Component {
   };
 
   renderAddress = (name) => {
-    const errors = this.reduceErrors()
     const { t } = this.props;
     return (
       <Box>
         <FormField
           label={t('name')}
-          error={errors && this.state.errors[name][`${name}_street_address`] ? t('pleaseAddName') : null}
+          error={this.state.errors[`${name}_street_address`] ? t('pleaseAddName') : null}
         >
           <TextInput
             onDOMChange={this.updateAddress}
@@ -280,7 +235,7 @@ class PoAForm extends React.Component {
         </FormField>
         <FormField
           label={t('streetAddress')}
-          error={errors && this.state.errors[name][`${name}_locality`] ? t('streetAddress') : null}
+          error={this.state.errors[`${name}_locality`] ? t('streetAddress') : null}
         >
           <TextInput
             onDOMChange={this.updateAddress}
@@ -292,7 +247,7 @@ class PoAForm extends React.Component {
         </FormField>
         <FormField
           label={t('city')}
-          error={errors && this.state.errors[name][`${name}_locality`] ? t('city') : null}
+          error={this.state.errors[`${name}_locality`] ? t('city') : null}
         >
           <TextInput
             onDOMChange={this.updateAddress}
@@ -303,7 +258,7 @@ class PoAForm extends React.Component {
           />
         </FormField>
         <FormField
-          error={errors && this.state.errors[name][`${name}_region`] ? t('pleaseAddState') : null}
+          error={this.state.errors[`${name}_region`] ? t('pleaseAddState') : null}
           label={t('state')}
         >
           <Select
@@ -318,7 +273,7 @@ class PoAForm extends React.Component {
         </FormField>
         <FormField
           label={t('zip')}
-          error={this.state.errors[name][`${name}_postal_code`] ? t('pleaseAddZip') : null}
+          error={this.state.errors[`${name}_postal_code`] ? t('pleaseAddZip') : null}
         >
           <TextInput
             onDOMChange={this.updateAddress}
@@ -334,7 +289,6 @@ class PoAForm extends React.Component {
 
   renderStepOne() {
     const { t } = this.props;
-    const errors = this.reduceErrors()
     return (
     <Box>
         <FormField label={t('numberOfChildren')}>
@@ -348,7 +302,7 @@ class PoAForm extends React.Component {
         <Paragraph>
           <FieldHeader>{t('minorName')}</FieldHeader>
           {
-            errors && this.state.errors.step0.childrenNames ?
+            this.state.errors.childrenNames ?
               (<span className="error">{t('pleaseAddChildName')}</span>) :
               null
           }
@@ -405,17 +359,17 @@ class PoAForm extends React.Component {
         {...props}
       />
     )
-    const errors = this.reduceErrors()
+
     return (
       <div>
         <FieldHeader>{t('parentalStatus')}</FieldHeader>
         {
-          errors && this.state.errors.parental_status ?
+          this.state.errors.parental_status ?
             (<span className="error">{t('pleaseAddParentalStatus')}</span>) :
             null
         }
         {
-          errors && this.state.errors.reason ?
+          this.state.errors.reason ?
             (<span className="error">{t('pleaseAddReason')}</span>) :
             null
         }
@@ -491,33 +445,25 @@ class PoAForm extends React.Component {
             [
               {
                 title: t('childInformation'),
-                onClick: (e) => {
-                  e.preventDefault();
-                  this.renderStepOne();
+                onClick: () => {
                   this.setState((state) => ({ step: 0 }));
                 }
               },
               {
                 title: t('guardianInformation'),
-                onClick: (e) => {
-                e.preventDefault();
-                this.renderStepTwo();
+                onClick: () => {
                 this.setState((state) => ({ step: 1 }));
               }
             },
             {
               title: t('caregiversInformation'),
-              onClick: (e) => {
-                e.preventDefault();
-                this.renderStepThree();
+              onClick: () => {
                 this.setState((state) => ({ step: 2 }));
               }
             },
             {
               title: t('parentalstatus'),
-              onClick: (e) => {
-                e.preventDefault();
-                this.renderStepFour();
+              onClick: () => {
                 this.setState((state) => ({ step: 3 }));
               }
             },
@@ -540,14 +486,6 @@ class PoAForm extends React.Component {
           >
             {this.renderForm()}
           </Box>
-          {
-            this.state.errorCount > 0 ?
-              (<Notification
-                message={t('formWithErrors', {errorCount: this.state.errorCount})}
-                status='critical'
-              />) :
-              null
-          }
           <Box
             direction='row'
             justify='between'
