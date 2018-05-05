@@ -162,6 +162,7 @@ class PoAForm extends React.Component {
     const validators = [
       {
         childrenNames: () => {
+          // Only non-empty child names are valid 
           return this.state.childrenNames.filter(n => !!n).length !== this.state.numberOfChildren
         }
       },
