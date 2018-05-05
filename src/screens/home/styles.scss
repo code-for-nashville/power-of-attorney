@@ -1,0 +1,19 @@
+@import 'styles/grommet/power-of-attorney.defaults';
+
+.HomeImageSection {
+  // // Hide the section on smaller screens
+  @media screen and (max-width: 1050px) {
+    display: none !important;
+  }
+}
+
+.HomeImageShadowWrapper {
+  box-shadow: 40px -40px $power-of-attorney-shadow;
+  // Push the image to the left 120px, giving the copy section some room to
+  // breath.
+  margin-left: -120px;
+  margin-right: 120px;
+  // Put top of the shadow in line with the top of the containing box
+  margin-top: 40px;
+  min-width: 350px;
+}
