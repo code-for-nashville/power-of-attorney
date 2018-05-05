@@ -18,6 +18,7 @@ import { Disclaimer, AsyncDownloadPDF } from '../../components';
 import Stepper from 'react-stepper-horizontal';
 import { translate } from 'react-i18next';
 import { STATE_OPTIONS } from '../../strings'
+import { PARENTAL_STATUSES, PARENTAL_STATUS_WITH_REASON } from '../../pdf/pdf-document.js'
 import './styles.css';
 
 const FieldHeader = (props) => (<span {...props} />);
@@ -55,7 +56,7 @@ class PoAForm extends React.Component {
         postal_code: ''
       },
       parentalStatus: '',
-      reason: '',
+      parentalStatusReason: '',
       errors: {}
     };
   }
@@ -97,9 +98,9 @@ class PoAForm extends React.Component {
     this.setState({ parentalStatus: event.target.value });
   };
 
-  updateParentalStatusText = e => {
-    const reason = e.target.value;
-    this.setState({ reason });
+  updateParentalStatusReason = e => {
+    const parentalStatusReason = e.target.value;
+    this.setState({ parentalStatusReason });
   };
 
   onNumberOfChildrenChange = (event) => {
@@ -358,32 +359,21 @@ class PoAForm extends React.Component {
       <div>
         <FieldHeader>{t('parentalStatus')}</FieldHeader>
         <FormField error={errorMessage}>
-          {
-            [
-              ['parents-living', t('bothParents')],
-              ['parent-deceased', t('parentDeceased')],
-              ['legal-custody-signed', t('legalCustodySigned')],
-              ['legal-custody-sent', t('legalCustodySent')],
-              ['legal-custody-no-consent', t('legalCustodyNoConsent')]
-            ].map(
-              ([value, label]) => (<ParentRadioButton label={label} key={value} value={value} />)
-            )
-          }
+          {PARENTAL_STATUSES.map(value => (<ParentRadioButton label={t(value)} key={value} value={value} />))}
         </FormField>
         {
           // Conditionally render a reason they could not be reached when 4
           // is selected.
-          this.state.parentalStatus === 'legal-custody-no-consent' ?
+          this.state.parentalStatus === PARENTAL_STATUS_WITH_REASON &&
             <FormField
               label={t('reasonNotReached')}
             >
               <TextInput
                 name='parent-status-reason'
-                onInput={this.updateParentalStatusText}
-                value={this.state.reason}
+                onInput={this.updateParentalStatusReason}
+                value={this.state.parentalStatusReason}
               />
-            </FormField> :
-            null
+            </FormField>
         }
       </div>
     )
