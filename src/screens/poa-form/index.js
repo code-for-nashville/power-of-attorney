@@ -420,7 +420,7 @@ class PoAForm extends React.Component {
                 {
                   title: t('guardianInformation'),
                   onClick: () => {
-                    this.setState(state => ({step: 1}))
+                    this.setState(staxwte => ({step: 1}))
                   }
                 },
                 {
