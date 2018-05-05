@@ -5,8 +5,7 @@
   color: $power-of-attorney-coral-blue;
 }
 
-.#{$grommet-namespace}radio-button__input:checked +
-.#{$grommet-namespace}radio-button__control {
+.#{$grommet-namespace}radio-button__input:checked + .#{$grommet-namespace}radio-button__control {
   border-color: $power-of-attorney-coral-blue;
 
   &::after {

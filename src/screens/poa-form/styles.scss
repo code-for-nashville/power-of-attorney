@@ -7,43 +7,49 @@
 }
 
 .error {
-  color: #cc0000;
+  color: #c00;
   display: block;
 }
 
-.grommetux-text-input.grommetux-input.input-class-long{
-  margin: 0em 0.5em 1em 0em;
+.grommetux-text-input.grommetux-input.input-class-long {
+  margin: 0 0.5em 1em 0;
   width: 100%;
 }
 
-.grommetux-text-input.grommetux-input.input-class, .grommetux-select  {
-  margin: 0em 1em 1em 0em;
+.grommetux-text-input.grommetux-input.input-class,
+.grommetux-select {
+  margin: 0 1em 1em 0;
 }
 
-.grommetux-select, .grommetux-select__drop{
+.grommetux-select,
+.grommetux-select__drop {
   width: 200px;
 }
 
 .grommetux-box.grommetux-box--direction-row.grommetux-box--justify-end.grommetux-box--flex.grommetux-box--pad-none.download-container {
   display: block;
+
   hr {
     max-width: 22em;
   }
 }
+
 .grommetux-button.download-btn {
-  margin: 0em 2.5em 1.8em 0em;
+  margin: 0 2.5em 1.8em 0;
 }
 
 .grommetux-carousel .grommetux-box--align-center {
   justify-content: center;
 }
 
-.grommetux-carousel__arrow, .grommetux-carousel__controls{
+.grommetux-carousel__arrow,
+.grommetux-carousel__controls {
   display: none !important;
 }
 
 .stepper div div div div { // HACK: Since the slider sets all styles inline.
-  a, span {
+  a,
+  span {
     line-height: 32px !important;
   }
 }
