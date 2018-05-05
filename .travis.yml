@@ -8,6 +8,7 @@ cache:
 script:
   - yarn lint
   - yarn test
+before_deploy:
   - yarn build
 deploy:
   provider: pages
