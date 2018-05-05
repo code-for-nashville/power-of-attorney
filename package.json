@@ -36,8 +36,8 @@
     "lint:js": "eslint .",
     "lint:scss": "stylelint --config=.stylelintrc '**/*.scss'",
     "lint:fix": "yarn lint:fix:js && yarn lint:fix:scss",
-    "lint:fix:js": "prettier --write 'src/**/*.js'",
-    "lint:fix:scss": "stylelint --config=.stylelintrc --fix",
+    "lint:fix:js": "prettier --write 'src/**/*.{js,json}'",
+    "lint:fix:scss": "stylelint --config=.stylelintrc 'src/**/*.scss' --fix",
     "precommit": "lint-staged"
   },
   "lint-staged": {
