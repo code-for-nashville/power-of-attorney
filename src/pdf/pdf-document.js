@@ -2,11 +2,31 @@ export const MOTHER_ADDRESS = 'motherAddress'
 export const FATHER_ADDRESS = 'fatherAddress'
 export const CAREGIVER_ADDRESS = 'caregiverAddress'
 
+export const PARENTAL_STATUS_WITH_REASON = 'legalCustodyNoConsent'
+export const PARENTAL_STATUSES = [
+  'bothParents',
+  'parentDeceased',
+  'legalCustodySigned',
+  'legalCustodySent',
+  PARENTAL_STATUS_WITH_REASON
+]
+
 let createDocDefinition = (inputInfo, childName) => {
-  const statusOne = inputInfo.parentalStatus === '0' ? 'X' : '__'
-  const statusTwo = inputInfo.parentalStatus === '1' ? 'X' : '__'
-  const statusThree = inputInfo.parentalStatus === '2' ? 'X' : '__'
-  const statusFour = inputInfo.parentalStatus === '3' ? 'X' : '__'
+  const statuses = PARENTAL_STATUSES.reduce((m, s) => {
+    return {
+      ...m,
+      [s]: inputInfo.parentalStatus === s ? 'X' : '__'
+    }
+  }, {})
+  const statusWithReason =
+    inputInfo.parentalStatus === PARENTAL_STATUS_WITH_REASON
+      ? 'X'
+      : statuses.legalCustodySent
+  const statusReason =
+    inputInfo.parentalStatus === PARENTAL_STATUS_WITH_REASON
+      ? inputInfo.parentalStatusReason
+      : '____________________________'
+
   let multipleFrom = inputInfo.childrenNames
     .map(child => {
       return [
@@ -131,13 +151,17 @@ let createDocDefinition = (inputInfo, childName) => {
         },
         {
           text: [
-            `5.(_${statusOne}_) Both parents are living,have legal custody of the minor child and have signed this document\n`,
+            `5.(_${
+              statuses.bothParents
+            }_) Both parents are living,have legal custody of the minor child and have signed this document\n`,
             {text: 'OR\n\n', bold: true},
-            `(_${statusTwo}_) One parent is deceased;\n`,
+            `(_${statuses.parentDeceased}_) One parent is deceased;\n`,
             {text: 'OR\n\n', bold: true},
-            `(_${statusThree}_) One parent has legal custody of the minor child and both parents have signed this document and consent to the appointment of the caregiver;\n`,
+            `(_${
+              statuses.legalCustodySigned
+            }_) One parent has legal custody of the minor child and both parents have signed this document and consent to the appointment of the caregiver;\n`,
             {text: 'OR\n\n', bold: true},
-            `(_${statusFour}_) One parent has legal custody of the minor child, and has sent by Certified Mail, Return Receipt requested, to the other parent at last known address, a copy of this document and a notice of the provisions in § 34-6-305; or the non-custodial parent has not consented to the appointment and consent cannot be obtained because ______________________________.\n\n`
+            `(_${statusWithReason}_) One parent has legal custody of the minor child, and has sent by Certified Mail, Return Receipt requested, to the other parent at last known address, a copy of this document and a notice of the provisions in § 34-6-305; or the non-custodial parent has not consented to the appointment and consent cannot be obtained because _${statusReason}_.\n\n`
           ]
         },
         {
