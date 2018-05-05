@@ -1,7 +1,7 @@
 {
   "name": "power-of-attorney",
   "version": "0.1.0",
-  "homepage": "https://musiccitylegalhackers.github.io/power-of-attorney-challenge/",
+  "homepage": "https://www.codefornashville.org/power-of-attorney/",
   "private": true,
   "dependencies": {
     "gh-pages": "^1.1.0",
@@ -11,7 +11,7 @@
     "lint-staged": "^7.0.4",
     "node-sass-chokidar": "^1.2.2",
     "pdfmake": "^0.1.36",
-    "prettier": "^1.12.0",
+    "prettier": "1.12.1",
     "react": "^16.3.1",
     "react-async-component": "^2.0.0",
     "react-dom": "^16.3.1",
@@ -32,12 +32,28 @@
     "deploy": "yarn build && gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
+    "lint": "yarn lint:js",
+    "lint:js": "eslint .",
+    "lint:scss": "stylelint --config=.stylelintrc '**/*.scss'",
+    "lint:fix": "yarn lint:fix:js && yarn lint:fix:scss",
+    "lint:fix:js": "prettier --write 'src/**/*.{js,json,jsx}'",
+    "lint:fix:scss": "stylelint --config=.stylelintrc 'src/**/*.scss' --fix",
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,json,css}": [
-      "prettier --single-quote --write",
+    "src/**/*.{js,jsx,json}": [
+      "prettier --config .prettierrc --write",
+      "git add"
+    ],
+    "src/**/*.{scss}": [
+      "stylelint --config=.stylelintrc --fix",
+      "prettier --config .prettierrc --write",
       "git add"
     ]
+  },
+  "devDependencies": {
+    "eslint-plugin-prettier": "^2.6.0",
+    "stylelint": "^9.2.0",
+    "stylelint-config-standard": "^18.2.0"
   }
 }

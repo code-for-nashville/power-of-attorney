@@ -1,17 +1,12 @@
-import React from 'react';
-import { asyncComponent } from 'react-async-component';
+import React from 'react'
+import {asyncComponent} from 'react-async-component'
 
-import {
-  Spinning,
-  Toast
-} from 'grommet';
-import { translate } from 'react-i18next';
+import {Spinning, Toast} from 'grommet'
+import {translate} from 'react-i18next'
 
-const ErrorNotification = ({ t }) => (
-  <Toast status='critical'>
-    {t('unknownError')}
-  </Toast>
-);
+const ErrorNotification = ({t}) => (
+  <Toast status="critical">{t('unknownError')}</Toast>
+)
 
 /*
 We use PDFMake, a fantastic library for generating client side PDFS
