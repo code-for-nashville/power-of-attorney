@@ -164,9 +164,10 @@ class PoAForm extends React.Component {
   stepErrors() {
     const validators = [
       {
-        // Only non-empty child names are valid 
+        // Only non-empty child names are valid
         childrenNames: () =>
-          this.state.childrenNames.filter(n => !!n).length !== this.state.numberOfChildren
+          this.state.childrenNames.filter(n => !!n).length !==
+          this.state.numberOfChildren
       },
       {
         motherAddress: () => this.validateAddress(this.state.motherAddress),
