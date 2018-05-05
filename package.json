@@ -34,6 +34,7 @@
     "eject": "react-scripts eject",
     "lint": "yarn lint:js",
     "lint:js": "eslint .",
+    "prettier:write": "prettier --write \"src/**/*.js\"",
     "precommit": "lint-staged"
   },
   "lint-staged": {

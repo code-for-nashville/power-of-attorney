@@ -1,16 +1,18 @@
-
-export const MOTHER_ADDRESS = 'motherAddress';
-export const FATHER_ADDRESS = 'fatherAddress';
-export const CAREGIVER_ADDRESS = 'caregiverAddress';
+export const MOTHER_ADDRESS = 'motherAddress'
+export const FATHER_ADDRESS = 'fatherAddress'
+export const CAREGIVER_ADDRESS = 'caregiverAddress'
 
 let createDocDefinition = (inputInfo, childName) => {
-  const statusOne = inputInfo.parentalStatus === '0' ? 'X' : '__';
-  const statusTwo = inputInfo.parentalStatus === '1' ? 'X' : '__';
-  const statusThree = inputInfo.parentalStatus === '2' ? 'X' : '__';
-  const statusFour = inputInfo.parentalStatus === '3' ? 'X' : '__';
-  let multipleFrom = inputInfo.childrenNames.map((child) => {
-      return([{
-          text: 'POWER OF ATTORNEY FOR CARE OF A MINOR CHILD Insctruction TITLE SAMPLE\n\n',
+  const statusOne = inputInfo.parentalStatus === '0' ? 'X' : '__'
+  const statusTwo = inputInfo.parentalStatus === '1' ? 'X' : '__'
+  const statusThree = inputInfo.parentalStatus === '2' ? 'X' : '__'
+  const statusFour = inputInfo.parentalStatus === '3' ? 'X' : '__'
+  let multipleFrom = inputInfo.childrenNames
+    .map(child => {
+      return [
+        {
+          text:
+            'POWER OF ATTORNEY FOR CARE OF A MINOR CHILD Insctruction TITLE SAMPLE\n\n',
           alignment: 'center',
           bold: true,
           decoration: 'underline'
@@ -19,22 +21,23 @@ let createDocDefinition = (inputInfo, childName) => {
           // blank page
           text: '',
           style: 'header',
-          pageBreak:'before'
+          pageBreak: 'before'
         },
         {
-          text:'Instroction should be here An instruction document is a step-by-step guide on how to perform an activity. Instruction templates are purposeful templates. They are not for leisure reading. People read them for purpose and they are worthy of it. They are more about ‘how’ rather than ‘what’. There are many kinds of instruction templates: You may also see'
-        },
-        {
-          // blank page
-          text: '',
-          style: 'header',
-          pageBreak:'before'
+          text:
+            'Instroction should be here An instruction document is a step-by-step guide on how to perform an activity. Instruction templates are purposeful templates. They are not for leisure reading. People read them for purpose and they are worthy of it. They are more about ‘how’ rather than ‘what’. There are many kinds of instruction templates: You may also see'
         },
         {
           // blank page
           text: '',
           style: 'header',
-          pageBreak:'before'
+          pageBreak: 'before'
+        },
+        {
+          // blank page
+          text: '',
+          style: 'header',
+          pageBreak: 'before'
         },
         {
           text: 'POWER OF ATTORNEY FOR CARE OF A MINOR CHILD\n\n',
@@ -129,18 +132,18 @@ let createDocDefinition = (inputInfo, childName) => {
         {
           text: [
             `5.(_${statusOne}_) Both parents are living,have legal custody of the minor child and have signed this document\n`,
-            { text: 'OR\n\n', bold: true },
+            {text: 'OR\n\n', bold: true},
             `(_${statusTwo}_) One parent is deceased;\n`,
-            { text: 'OR\n\n', bold: true },
+            {text: 'OR\n\n', bold: true},
             `(_${statusThree}_) One parent has legal custody of the minor child and both parents have signed this document and consent to the appointment of the caregiver;\n`,
-            { text: 'OR\n\n', bold: true },
+            {text: 'OR\n\n', bold: true},
             `(_${statusFour}_) One parent has legal custody of the minor child, and has sent by Certified Mail, Return Receipt requested, to the other parent at last known address, a copy of this document and a notice of the provisions in § 34-6-305; or the non-custodial parent has not consented to the appointment and consent cannot be obtained because ______________________________.\n\n`
           ]
         },
         {
           text: [
             '6.Temporary care-giving authority regarding the minor child is being given to the caregiver because of the following type of hardship',
-            { text: '(check at least one):\n\n', bold: true },
+            {text: '(check at least one):\n\n', bold: true},
             '(____) the serious illness or incarceration of a parent or legal guardian\n\n',
             '(____) the physical or mental condition of the parent or legal guardian or the child is such that care and supervisionof the child cannot be provided;\n\n',
             '(____) the loss or uninhabitability of the child’s home as a result of a natural disaster;\n\n',
@@ -155,7 +158,7 @@ let createDocDefinition = (inputInfo, childName) => {
         },
         {
           columns: [
-            { text: '7. (____)', width: 50 },
+            {text: '7. (____)', width: 50},
             {
               text:
                 'I/We the undersigned, authorize the named caregiver to do one or more of the following:\n\n',
@@ -165,7 +168,7 @@ let createDocDefinition = (inputInfo, childName) => {
         },
         {
           columns: [
-            { text: '', width: 50 },
+            {text: '', width: 50},
             {
               text:
                 '(_____) enroll the child in school and extracurricular activities (including but not limited to Boy Scouts, Boys & Girls Club),\n\n'
@@ -174,7 +177,7 @@ let createDocDefinition = (inputInfo, childName) => {
         },
         {
           columns: [
-            { text: '', width: 50 },
+            {text: '', width: 50},
             {
               text:
                 '    (_____) obtain medical, dental, and mental health treatment for the child, and\n\n'
@@ -183,7 +186,7 @@ let createDocDefinition = (inputInfo, childName) => {
         },
         {
           columns: [
-            { text: '', width: 50 },
+            {text: '', width: 50},
             {
               text:
                 '    (_____) provide for the child’s food, lodging, housing, recreation and travel.\n\n'
@@ -192,7 +195,7 @@ let createDocDefinition = (inputInfo, childName) => {
         },
         {
           columns: [
-            { text: '', width: 50 },
+            {text: '', width: 50},
             {
               text: [
                 '(____) I/We grant the following additional power to the named caregiver: ',
@@ -215,10 +218,10 @@ let createDocDefinition = (inputInfo, childName) => {
             '9.(____) I / We understand that this document may be terminated in another written document signed by either parent with legal custody or by any order of a court with competent jurisdiction.\n\n'
           ]
         },
-        
+
         {
           text: [
-            { text: 'Part II: To be initialed by caregiver.\n\n', bold: true },
+            {text: 'Part II: To be initialed by caregiver.\n\n', bold: true},
             '10. (____) I understand that this document, properly executed, gives me the right to enroll the minor child in the local education agency serving the area where I reside.\n\n',
             '11. (____) I understand that this document does not provide me with legal custody.\n\n',
             '12. (____) I understand that, prior to enrollment, the local education agency may require documentation of the minor child’s residence with a caregiver and/or documentation or other verification of the validity of the stated hardship.\n\n',
@@ -236,16 +239,16 @@ let createDocDefinition = (inputInfo, childName) => {
             'I/We declare under penalty of perjury under the laws of the State of Tennessee that the foregoing is true and correct.\n\n',
             // <!-- Start Mother Address -->
             'STATE OF ',
-            { text: 'TENNESSEE ', decoration: 'underline' },
+            {text: 'TENNESSEE ', decoration: 'underline'},
             ')\n\n COUNTY OF ',
-            { text: 'DAVIDSON ', decoration: 'underline' },
+            {text: 'DAVIDSON ', decoration: 'underline'},
             ')\n\n______________________________ Date: ______________\n',
-            { text: 'Mother/Legal Guardian\n\n', bold: true }
+            {text: 'Mother/Legal Guardian\n\n', bold: true}
           ]
         },
         {
           columns: [
-            { text: '', width: 50 },
+            {text: '', width: 50},
             {
               text:
                 'The Mother/Legal Guardian, ______________________, personally appeared before me this _____ day of ____________, 20___.\n\n'
@@ -254,8 +257,8 @@ let createDocDefinition = (inputInfo, childName) => {
         },
         {
           text: [
-            { text: '______________________________\n', alignment: 'right' },
-            { text: 'NOTARY PUBLIC,', alignment: 'right', bold: true },
+            {text: '______________________________\n', alignment: 'right'},
+            {text: 'NOTARY PUBLIC,', alignment: 'right', bold: true},
             '\nMy commission expires:\n ___________________\n\n\n'
           ]
         },
@@ -264,23 +267,23 @@ let createDocDefinition = (inputInfo, childName) => {
         {
           text: [
             'STATE OF ',
-            { text: 'TENNESSEE ', decoration: 'underline' },
+            {text: 'TENNESSEE ', decoration: 'underline'},
             ')\n\n COUNTY OF ',
-            { text: 'DAVIDSON ', decoration: 'underline' },
+            {text: 'DAVIDSON ', decoration: 'underline'},
             ')\n\n______________________________ Date: ______________\n',
-            { text: 'Father/Legal Guardian\n\n', bold: true }
+            {text: 'Father/Legal Guardian\n\n', bold: true}
           ]
         },
         {
           columns: [
-            { text: '', width: 50 },
+            {text: '', width: 50},
             'The Father/Legal Guardian, ______________________, personally appeared before me this _____ day of ____________, 20___.\n\n'
           ]
         },
         {
           text: [
-            { text: '______________________________\n', alignment: 'right' },
-            { text: 'NOTARY PUBLIC,', alignment: 'right', bold: true },
+            {text: '______________________________\n', alignment: 'right'},
+            {text: 'NOTARY PUBLIC,', alignment: 'right', bold: true},
             '\nMy commission expires:\n ___________________\n\n\n'
           ]
         },
@@ -289,23 +292,23 @@ let createDocDefinition = (inputInfo, childName) => {
         {
           text: [
             'STATE OF ',
-            { text: 'TENNESSEE ', decoration: 'underline' },
+            {text: 'TENNESSEE ', decoration: 'underline'},
             ')\n\n COUNTY OF ',
-            { text: 'DAVIDSON ', decoration: 'underline' },
+            {text: 'DAVIDSON ', decoration: 'underline'},
             ')\n\n______________________________ Date: ______________\n',
-            { text: 'Caregiver\n\n', bold: true }
+            {text: 'Caregiver\n\n', bold: true}
           ]
         },
         {
           columns: [
-            { text: '', width: 50 },
+            {text: '', width: 50},
             'The Caregiver, ______________________, personally appeared before me this _____ day of ____________, 20___.\n\n'
           ]
         },
         {
           text: [
-            { text: '______________________________\n', alignment: 'right' },
-            { text: 'NOTARY PUBLIC,', alignment: 'right', bold: true },
+            {text: '______________________________\n', alignment: 'right'},
+            {text: 'NOTARY PUBLIC,', alignment: 'right', bold: true},
             '\nMy commission expires:\n ___________________\n\n\n'
           ]
         },
@@ -354,11 +357,12 @@ let createDocDefinition = (inputInfo, childName) => {
           // blank page
           text: '',
           style: 'header',
-          pageBreak:'before'
-        },
-      ]);
-  }).reduce((acc, val) => acc.concat(val), []);;
-  return {content:[...multipleFrom]};
-};
+          pageBreak: 'before'
+        }
+      ]
+    })
+    .reduce((acc, val) => acc.concat(val), [])
+  return {content: [...multipleFrom]}
+}
 
-export default createDocDefinition;
+export default createDocDefinition
