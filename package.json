@@ -34,7 +34,10 @@
     "eject": "react-scripts eject",
     "lint": "yarn lint:js",
     "lint:js": "eslint .",
-    "prettier:write": "prettier --write \"src/**/*.js\"",
+    "lint:scss": "stylelint --config=.stylelintrc '**/*.scss'",
+    "lint:fix": "yarn lint:fix:js && yarn lint:fix:scss",
+    "lint:fix:js": "prettier --write 'src/**/*.js'",
+    "lint:fix:scss": "stylelint --config=.stylelintrc --fix",
     "precommit": "lint-staged"
   },
   "lint-staged": {
@@ -44,6 +47,8 @@
     ]
   },
   "devDependencies": {
-    "eslint-plugin-prettier": "^2.6.0"
+    "eslint-plugin-prettier": "^2.6.0",
+    "stylelint": "^9.2.0",
+    "stylelint-config-standard": "^18.2.0"
   }
 }
