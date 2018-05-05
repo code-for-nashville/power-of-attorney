@@ -9,13 +9,12 @@
   justify-content: center;
 
   // Make it square
-  border-radius: 0px;
+  border-radius: 0;
 
   // Lower max-width
   max-width: 12rem;
 
   // Match the padding of the design
   padding: 15px 2rem !important;
-
   text-transform: uppercase;
 }

@@ -8,17 +8,17 @@
 }
 
 .HomeImageShadowWrapper {
-    box-shadow: 40px -40px $power-of-attorney-shadow;
-    // Push the image to the left 120px, giving the copy section some room to
-    // breath.
-    margin-left: -120px;
-    margin-right: 120px;
-    // Put top of the shadow in line with the top of the containing box
-    margin-top: 40px;
-    min-width: 350px;
+  box-shadow: 40px -40px $power-of-attorney-shadow;
+  // Push the image to the left 120px, giving the copy section some room to
+  // breath.
+  margin-left: -120px;
+  margin-right: 120px;
+  // Put top of the shadow in line with the top of the containing box
+  margin-top: 40px;
+  min-width: 350px;
 }
 
-.grommetux-headline.grommetux-headline--large.HomeHeadline {
+.grommetux-headline.grommetux-headline--large.home-headline {
   @media screen and (max-width: 355px) {
     font-size: 3rem;
   }

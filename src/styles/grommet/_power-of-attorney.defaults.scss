@@ -1,26 +1,26 @@
 // Power of Attorney Grommet theme variables
 // Adapted from node_modules/grommet/scss/vanilla/_vanilla.defaults.scss
-$power-of-attorney-orange: #F55D3E;
-$power-of-attorney-coral-blue: #679BA1;
-$power-of-attorney-header-link-color: #0F1825;
-$power-of-attorney-shadow: #D8D8D8;
+$power-of-attorney-orange: #f55d3e;
+$power-of-attorney-coral-blue: #679ba1;
+$power-of-attorney-header-link-color: #0f1825;
+$power-of-attorney-shadow: #d8d8d8;
 
 $brand-color: $power-of-attorney-orange;
 $brand-color-darker: $power-of-attorney-coral-blue;
 
 // Unchanged
-$brand-neutral-colors: (#0A64A0, #DC2878, #501EB4, #49516F);
-$brand-accent-colors: ($power-of-attorney-coral-blue, #FF7D28);
+$brand-neutral-colors: (#0a64a0, #dc2878, #501eb4, #49516f);
+$brand-accent-colors: ($power-of-attorney-coral-blue, #ff7d28);
 $brand-link-color: $power-of-attorney-coral-blue;
 $brand-status-colors: (
-  critical: #FF324D,
-  error: #FF324D,
-  warning: #FFD602,
-  ok: #8CC800,
+  critical: #ff324d,
+  error: #ff324d,
+  warning: #ffd602,
+  ok: #8cc800,
   unknown: #a8a8a8,
   disabled: #a8a8a8
 ) !default;
-$brand-grey-colors: (#0F1825, #4A4A4A, #A3A3A3, $power-of-attorney-shadow, #FFFFFF);
+$brand-grey-colors: (#0f1825, #4a4a4a, #a3a3a3, $power-of-attorney-shadow, #fff);
 
 $button-secondary-color: nth($brand-neutral-colors, 2);
 
