@@ -4,7 +4,6 @@
   "homepage": "https://www.codefornashville.org/power-of-attorney/",
   "private": true,
   "dependencies": {
-    "gh-pages": "^1.1.0",
     "grommet": "^1.10.1",
     "i18next": "^11.2.3",
     "i18next-browser-languagedetector": "^2.2.0",
@@ -31,7 +30,6 @@
       "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
     "watch-css":
       "yarn run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
-    "deploy": "yarn build && gh-pages -d build",
     "test": "yarn run build-css && react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint": "yarn lint:js",

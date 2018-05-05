@@ -20,7 +20,6 @@ Make sure you have [`yarn`](https://yarnpkg.com/) and a recent version of [`node
 
 Check out the [Create React App User Guide](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md) for additional commands.
 
-
 ## Custom Commands
 
 We've added a few commands that don't come out-of-the-box for Create React App.
@@ -33,12 +32,6 @@ Watches changes to your sass files for development.
 
 Compiles sass files into css for production
 
-### `yarn deploy`
-
-Builds the app for production and deploys it to Github Pages.
-
-Note: You'll need write access to the `gh-pages` branch of our repository to run this command.
-
 ## Styling
 
 This project is built with [Grommet](http://grommet.io/), and ships with a custom [SCSS](http://sass-lang.com/) Grommet theme in  `styles/grommet/`.
@@ -48,6 +41,10 @@ SCSS file will be automatically watched and built when you run `yarn start`.  Th
 ## Partners
 
 TBD
+
+## Deployment
+
+This is deployed to Github Pages automatically by our [Travis configuration](.travis.yml).
 
 ## License
 [MIT](LICENSE.md)
