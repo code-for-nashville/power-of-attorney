@@ -1,6 +1,6 @@
 # Power of Attorney
 
-A Power of Attorney form for immigrants at risk of deportation.
+An online Power of Attorney form for Tennessee immigrants at risk of deportation.
 
 This project was bootrapped using [Create React App](https://github.com/facebook/create-react-app).  Check out [the Create React App User Guide](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md) for a complete list of commands, how-tos, and FAQs.
 
@@ -47,4 +47,4 @@ TBD
 This is deployed to Github Pages automatically by our [Travis configuration](.travis.yml).
 
 ## License
-[MIT](LICENSE.md)
+[MIT](LICENSE)
