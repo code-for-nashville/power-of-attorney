@@ -154,6 +154,7 @@ class PoAForm extends React.Component {
         this.submit()
       } else {
         this.setState(state => ({step: state.step + 1}))
+        if (typeof window !== 'undefined') window.scrollTo(0, 0)
       }
     }
   }
@@ -420,7 +421,7 @@ class PoAForm extends React.Component {
                 {
                   title: t('guardianInformation'),
                   onClick: () => {
-                    this.setState(staxwte => ({step: 1}))
+                    this.setState(state => ({step: 1}))
                   }
                 },
                 {

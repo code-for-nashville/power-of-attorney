@@ -16,6 +16,13 @@
   width: 100%;
 }
 
+.grommetux-button.grommetux-button--plain.grommetux-number-input__subtract,
+.grommetux-button.grommetux-button--plain.grommetux-number-input__add {
+  @media (max-width: 430px) {
+    padding: 0.5rem !important;
+  }
+}
+
 .grommetux-text-input.grommetux-input.input-class,
 .grommetux-select {
   margin: 0 1em 1em 0;
