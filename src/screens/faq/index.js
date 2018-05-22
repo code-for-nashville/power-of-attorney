@@ -16,11 +16,19 @@ const Faq = props => {
       <Heading tag="h2">{t('whatIsPOA')}</Heading>
       <Paragraph>{t('poaIs')}</Paragraph>
       <Heading tag="h2">{t('WhatIsThisFormUsedFor')}</Heading>
-      <Paragraph>{t('formWasCreated')}</Paragraph>
+      <Paragraph>
+        {t('formWasCreated')}<br/><br/>{t('formWasCreatedNote')}
+      </Paragraph>
       <Heading tag="h2">{t('whoShouldIChoose')}</Heading>
       <Paragraph>{t('yourCaregiver')}</Paragraph>
       <Heading tag="h2">{t('howCanITerminate')}</Heading>
       <Paragraph>{t('youCanTerminate')}</Paragraph>
+      <Heading tag="h2">{t('whatDocuments')}</Heading>
+      <Paragraph>{t('whatDocumentsAnswer')}</Paragraph>
+      <Heading tag="h2">{t('howMuch')}</Heading>
+      <Paragraph>{t('howMuchAnswer')}</Paragraph>
+      <Heading tag="h2">{t('whereSendDocuments')}</Heading>
+      <Paragraph>{t('whereSendDocumentsAnswer')}</Paragraph>
       <Heading tag="h2">{t('whereCanILearn')}</Heading>
       <Paragraph>
         {t('lawCanBeFound')}{' '}
@@ -32,6 +40,8 @@ const Faq = props => {
           {t('here')}
         </Anchor>.
       </Paragraph>
+      <Heading tag="h2">{t('privacy')}</Heading>
+      <Paragraph>{t('doesNotTrack')}</Paragraph>
     </Section>
   )
 }
