@@ -70,9 +70,9 @@ const ENGLISH = {
   FAQ: 'FAQ',
   beforeStart: 'Before you start...',
   useOfThisForm:
-    'Use of this form is authorized by T.C.A. § 34-6-301 et seq. Completion of this form, along with the proper signatures, is sufficient to authorize enrollment of a minor in school and to authorize medical treatment. However, a school district may require additional documentation/information as permitted by this section of Tennessee law before enrolling a child in school or any extracurricular activities.',
+    'This form is legal information, not legal advice. While this form is no way terminates your rights as a parent, it does provide a caregiver authority to care for your child(ren). If you are unsure of your rights or needs, you should consult an attorney to discuss your legal needs. This site does not track, save, or retain any information entered. If you leave this site before completing and downloading the form, you will need to start over. Use of this form is authorized by T.C.A. § 34-6-301 et seq. Completion of this form, along with the proper signatures, is sufficient to authorize enrollment of a minor in school and to authorize medical treatment. However, a school district may require additional documentation/information as permitted by this section of Tennessee law before enrolling a child in school or any extracurricular activities.',
   thisFormIsToBeFilled:
-    'This form is to be filled out and/or initialed by parent(s)/legal guardian(s).',
+    'This form is to be filled out and initialed by parent(s)/legal guardian(s).',
   MORE_INFORMATION: 'MORE INFORMATION',
   I_UNDERSTAND: 'I UNDERSTAND',
   Form: 'Form',
