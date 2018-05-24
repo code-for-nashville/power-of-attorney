@@ -154,6 +154,7 @@ class PoAForm extends React.Component {
         this.submit()
       } else {
         this.setState(state => ({step: state.step + 1}))
+        if (typeof window !== 'undefined') window.scrollTo(0, 0)
       }
     }
   }
@@ -461,6 +462,7 @@ class PoAForm extends React.Component {
               label={t('back')}
               onClick={this._back}
               primary={true}
+              className="button"
               style={
                 this.state.step === 0
                   ? {backgroundColor: 'grey', borderColor: 'grey'}
@@ -471,6 +473,7 @@ class PoAForm extends React.Component {
               label={this.isLastStep() ? t('submit') : t('next')}
               onClick={this._next}
               primary={true}
+              className="button"
             />
           </Box>
         </Form>

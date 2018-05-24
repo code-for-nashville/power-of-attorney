@@ -30,7 +30,9 @@ const Home = props => {
       </Box>
       <Section className="HomeCopy" pad={{vertical: 'none'}} primary={true}>
         <Heading tag="h1">{t('forTennessee')}</Heading>
-        <Headline size="large">{t('immigrantParents')}</Headline>
+        <Headline size="large" className="home-headline">
+          {t('immigrantParents')}
+        </Headline>
         <Heading tag="h2">{t('ensureCare')}</Heading>
         <Paragraph>{t('immigrant')}</Paragraph>
         <Paragraph>{t('gettingStarted')}</Paragraph>

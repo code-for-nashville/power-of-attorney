@@ -16,6 +16,13 @@
   width: 100%;
 }
 
+.grommetux-button.grommetux-button--plain.grommetux-number-input__subtract,
+.grommetux-button.grommetux-button--plain.grommetux-number-input__add {
+  @media (max-width: 430px) {
+    padding: 0.5rem !important;
+  }
+}
+
 .grommetux-text-input.grommetux-input.input-class,
 .grommetux-select {
   margin: 0 1em 1em 0;
@@ -47,9 +54,27 @@
   display: none !important;
 }
 
-.stepper div div div div { // HACK: Since the slider sets all styles inline.
-  a,
-  span {
-    line-height: 32px !important;
+.grommetux-box--direction-row.grommetux-box--responsive.button-box {
+  @media (max-width: 719px) {
+    flex-direction: column-reverse;
+    .button {
+      width: 100%;
+      max-width: 100%;
+      margin-bottom: 15px;
+    }
+  }
+}
+
+.stepper {
+  div div div div {
+    // HACK: Since the slider sets all styles inline.
+    a,
+    span {
+      line-height: 32px !important;
+    }
+  }
+
+  @media (max-width: 430px) {
+    display: none;
   }
 }
