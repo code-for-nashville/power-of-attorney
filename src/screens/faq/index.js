@@ -17,7 +17,10 @@ const Faq = props => {
       <Paragraph>{t('poaIs')}</Paragraph>
       <Heading tag="h2">{t('WhatIsThisFormUsedFor')}</Heading>
       <Paragraph>
-        {t('formWasCreated')}<br/><br/>{t('formWasCreatedNote')}
+        {t('formWasCreated')}
+        <br />
+        <br />
+        {t('formWasCreatedNote')}
       </Paragraph>
       <Heading tag="h2">{t('whoShouldIChoose')}</Heading>
       <Paragraph>{t('yourCaregiver')}</Paragraph>

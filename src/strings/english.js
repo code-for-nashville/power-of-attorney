@@ -55,7 +55,8 @@ const ENGLISH = {
   WhatIsThisFormUsedFor: 'What is this form used for?',
   formWasCreated:
     'This form was created for immigrant parents in Tennessee who face the threat of being detained and/or deported. It allows parents to grant a caregiver temporary rights to make decisions for their minor child on their behalf. The Power of Attorney goes into effect only if the parents have been detained or deported. Completion of this form, along with the proper signatures, authorizes the caregiver to enroll the child in school, obtain medical treatment for the child, and provide for the child’s food, housing, and travel.',
-  formWasCreatedNote: 'NOTE: Each child must have a separate Power of Attorney form.  You cannot use one form for all of your children.',
+  formWasCreatedNote:
+    'NOTE: Each child must have a separate Power of Attorney form.  You cannot use one form for all of your children.',
   whoShouldIChoose: 'Who should I choose as my caregiver?',
   yourCaregiver:
     'Your caregiver should be someone you trust. A caregiver must be at least 18 years old.  This document will allow the caregiver the right and responsibility to make decisions for your child on your behalf. The person you designate to care for your child should be a U.S. citizen or someone with immigration status who does not also face the threat of detention or deportation.',
@@ -63,17 +64,21 @@ const ENGLISH = {
   youCanTerminate:
     'You may terminate the Power of Attorney at any time by putting in writing your desire to do so.',
   whatDocuments: 'What documents do I need?',
-  whatDocumentsAnswer: 'Proof of parents’ ID and proof of ID for the assigned caregiver will be required to get the document notarized.  The document must be signed by all parties in front of a notary or two witnesses.  A notarized document is usually more effective, and it is highly suggested you notarize the document instead of just finding two witnesses.',
+  whatDocumentsAnswer:
+    'Proof of parents’ ID and proof of ID for the assigned caregiver will be required to get the document notarized.  The document must be signed by all parties in front of a notary or two witnesses.  A notarized document is usually more effective, and it is highly suggested you notarize the document instead of just finding two witnesses.',
   howMuch: 'How much does a Power of Attorney Cost?',
-  howMuchAnswer: 'It is free of charge.  There may be a small fee due to the notary public for notarizing the document.',
+  howMuchAnswer:
+    'It is free of charge.  There may be a small fee due to the notary public for notarizing the document.',
   whereSendDocuments: 'Where do I need to send the documents?',
-  whereSendDocumentsAnswer: 'You should provide a copy of the Power of Attorney and the child’s birth certificate to the caregiver.  You may also want to provide a copy of the Power of Attorney to both the child’s school and medical providers.',
+  whereSendDocumentsAnswer:
+    'You should provide a copy of the Power of Attorney and the child’s birth certificate to the caregiver.  You may also want to provide a copy of the Power of Attorney to both the child’s school and medical providers.',
   whereCanILearn:
     'Where can I learn more about Power of Attorney for the care of a minor child?',
   lawCanBeFound: 'The law can be found',
   here: 'here',
   privacy: 'Privacy and Confidentiality',
-  doesNotTrack: 'Your information and privacy is important to us.  This website does not track, keep or otherwise monitor the information inputted.',
+  doesNotTrack:
+    'Your information and privacy is important to us.  This website does not track, keep or otherwise monitor the information inputted.',
   tnPOA: 'Tennessee power of attorney for a minor child law',
   Home: 'Home',
   FAQ: 'FAQ',
