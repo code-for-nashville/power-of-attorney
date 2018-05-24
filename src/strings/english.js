@@ -5,7 +5,7 @@ const ENGLISH = {
   ensureCare:
     'Ensure care of a minor in the case of deportation or detainment by granting power of attorney.',
   immigrant:
-    'Immigrant parents face detainment or deportation with little or no warning. In many cases, both parents are in the same location when detained or facing deportation. As a result, children of detained and/or deported parents are left with no legal guardian. Once detained or deported, parents are often inaccessible for days or weeks with little or no contact with their children or family. Parents facing detainment or deportation can prepare, in advance, for the care of their minor children by granting a Power of Attorney. A Power of Attorney allows immigrant parents to grant permission to a trusted adult to care for their minor child in the event of detainment or deportation.',
+    'Immigrant parents face detention or deportation with little or no warning. In many cases, both parents are in the same location when detained or facing deportation. As a result, children of detained and/or deported parents are left with no legal guardian. Once detained or deported, parents are often inaccessible for days or weeks with little or no contact with their children or family. Parents facing detention or deportation can prepare, in advance, for the care of their minor children by granting a Power of Attorney. A Power of Attorney allows immigrant parents to grant permission to a trusted adult to care for their minor child in the event of detention or deportation. Getting started is quick and easy with this online Power of Attorney form!',
   gettingStarted:
     'Getting started is quick and easy with this online Power of Attorney form!',
   startForm: 'Start Form',
