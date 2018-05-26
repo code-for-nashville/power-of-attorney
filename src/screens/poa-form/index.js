@@ -20,7 +20,9 @@ import {translate} from 'react-i18next'
 import {STATE_OPTIONS} from '../../strings'
 import {
   PARENTAL_STATUSES,
-  PARENTAL_STATUS_WITH_REASON
+  PARENTAL_STATUS_WITH_REASON,
+  CAREGIVER_ADDRESS,
+  SUCCESSOR_CAREGIVER_ADDRESS
 } from '../../pdf/pdf-document.js'
 import './styles.css'
 
@@ -34,31 +36,42 @@ class PoAForm extends React.Component {
     this.state = {
       acceptedModal: false,
       step: 0,
-      numberOfChildren: 1,
-      childrenNames: [],
+      numberOfChildren: 2,
+      childrenNames: ['name', 'second'],
       submitted: false,
       motherAddress: {
-        name: '',
-        street_address: '',
-        locality: '',
-        region: '',
-        postal_code: ''
+        name: 'motehr name',
+        street_address: '789 ad',
+        locality: 'Nashville',
+        region: 'TN',
+        postal_code: '37207'
       },
       fatherAddress: {
-        name: '',
-        street_address: '',
-        locality: '',
-        region: '',
-        postal_code: ''
+        name: 'father name',
+        street_address: '789 ad',
+        locality: 'Nashville',
+        region: 'TN',
+        postal_code: '37207'
       },
       caregiverAddress: {
-        name: '',
-        street_address: '',
-        locality: '',
-        region: '',
-        postal_code: ''
+        name: 'caregiver name',
+        relationship: '',
+        street_address: '789 ad',
+        locality: 'Nashville',
+        region: 'TN',
+        postal_code: '37207',
+        phone: ''
       },
-      parentalStatus: '',
+      successorCaregiverAddress: {
+        name: 'successor caregiver name',
+        relationship: '',
+        street_address: '789 ad',
+        locality: 'Nashville',
+        region: 'TN',
+        postal_code: '37207',
+        phone: ''
+      },
+      parentalStatus: '1',
       parentalStatusReason: '',
       errors: {}
     }
@@ -225,7 +238,8 @@ class PoAForm extends React.Component {
   renderAddress = name => {
     const {t} = this.props
     const errors = this.state.errors[name] || {}
-
+    const isCaregiver =
+      name === CAREGIVER_ADDRESS || name === SUCCESSOR_CAREGIVER_ADDRESS
     return (
       <Box margin={{vertical: 'medium'}}>
         <FormField
@@ -241,6 +255,34 @@ class PoAForm extends React.Component {
             margin="small"
           />
         </FormField>
+        {isCaregiver ? (
+          <FormField
+            label={t('relationship')}
+            error={errors.street_address ? t('pleaseAddRelationship') : null}
+          >
+            <TextInput
+              onDOMChange={this.updateAddress}
+              className="input-class-long"
+              value={this.state[name].relationship}
+              name={name}
+            />
+          </FormField>
+        ) : null}
+        {isCaregiver ? (
+          <FormField
+            label={t('phone')}
+            error={errors.name ? t('pleaseAddPhone') : null}
+          >
+            <TextInput
+              onDOMChange={this.updateAddress}
+              className="input-class-long"
+              value={this.state[name].phone}
+              name={name}
+              margin="small"
+            />
+          </FormField>
+        ) : null}
+
         <FormField
           label={t('streetAddress')}
           error={errors.street_address ? t('streetAddress') : null}
@@ -333,6 +375,8 @@ class PoAForm extends React.Component {
       <div>
         <FieldHeader>{t('caregiverName')}</FieldHeader>
         {this.renderAddress('caregiverAddress')}
+        <FieldHeader>{t('successorCaregiverName')}</FieldHeader>
+        {this.renderAddress('successorCaregiverAddress')}
       </div>
     )
   }
@@ -394,11 +438,14 @@ class PoAForm extends React.Component {
     }
   }
 
-  render() {
+  renderPdfButtons() {
     if (this.state.submitted) {
       return <AsyncDownloadPDF data={this.state} />
     }
+    return null
+  }
 
+  render() {
     // Hide the disclaimer if `acceptedModal` is true
     const disclaimer = !this.state.acceptedModal ? (
       <Disclaimer onClose={this.acceptModal} />
@@ -408,75 +455,81 @@ class PoAForm extends React.Component {
       <Section>
         {disclaimer}
         <Heading tag="h1">{t('powerOfAttorney')}</Heading>
-        <div>
-          <div className="stepper">
-            <Stepper
-              steps={[
-                {
-                  title: t('childInformation'),
-                  onClick: () => {
-                    this.setState(state => ({step: 0}))
-                  }
-                },
-                {
-                  title: t('guardianInformation'),
-                  onClick: () => {
-                    this.setState(state => ({step: 1}))
-                  }
-                },
-                {
-                  title: t('caregiversInformation'),
-                  onClick: () => {
-                    this.setState(state => ({step: 2}))
-                  }
-                },
-                {
-                  title: t('parentalstatus'),
-                  onClick: () => {
-                    this.setState(state => ({step: 3}))
-                  }
+
+        <div className="stepper">
+          <Stepper
+            steps={[
+              {
+                title: t('childInformation'),
+                onClick: () => {
+                  this.setState(state => ({step: 0}))
                 }
-              ]}
-              activeColor="#679ba1"
-              completeColor="#679ba1"
-              activeBorderColor="#679ba1"
-              activeStep={this.state.step}
-            />
-          </div>
+              },
+              {
+                title: t('guardianInformation'),
+                onClick: () => {
+                  this.setState(state => ({step: 1}))
+                }
+              },
+              {
+                title: t('caregiversInformation'),
+                onClick: () => {
+                  this.setState(state => ({step: 2}))
+                }
+              },
+              {
+                title: t('parentalstatus'),
+                onClick: () => {
+                  this.setState(state => ({step: 3}))
+                }
+              }
+            ]}
+            activeColor="#679ba1"
+            completeColor="#679ba1"
+            activeBorderColor="#679ba1"
+            activeStep={this.state.step}
+          />
         </div>
 
         <Paragraph className="align-center">
           <strong>{t('partI')}</strong>
           {t('thisFormIsToBeFilled')}
         </Paragraph>
-
-        <Form autoComplete="off" className="align-center">
-          <Box pad={{vertical: 'medium'}}>{this.renderForm()}</Box>
-          <Box
-            direction="row"
-            justify="between"
-            basis="medium"
-            className="button-box"
-          >
-            <Button
-              label={t('back')}
-              onClick={this._back}
-              primary={true}
-              className="button"
-              style={
-                this.state.step === 0
-                  ? {backgroundColor: 'grey', borderColor: 'grey'}
-                  : {}
-              }
-            />
-            <Button
-              label={this.isLastStep() ? t('submit') : t('next')}
-              onClick={this._next}
-              primary={true}
-              className="button"
-            />
+        <Box direction="row" justify="between">
+          <Box basis="1/3" />
+          <Box basis="1/3">
+            <Form autoComplete="off">
+              <Box pad={{vertical: 'medium'}}>{this.renderForm()}</Box>
+              <Box
+                direction="row"
+                justify="between"
+                basis="medium"
+                className="button-box"
+              >
+                <Button
+                  label={t('back')}
+                  onClick={this._back}
+                  primary={true}
+                  className="button"
+                  style={
+                    this.state.step === 0
+                      ? {backgroundColor: 'grey', borderColor: 'grey'}
+                      : {}
+                  }
+                />
+                <Button
+                  label={this.isLastStep() ? t('submit') : t('next')}
+                  onClick={this._next}
+                  primary={true}
+                  className="button"
+                />
+              </Box>
+            </Form>
           </Box>
-        </Form>
+          <Box pad="small" basis="1/3" alignContent="center">
+            {this.renderPdfButtons()}
+          </Box>
+        </Box>
       </Section>
     )
   }
