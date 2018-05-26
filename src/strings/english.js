@@ -1,4 +1,5 @@
-const ENGLISH = {
+// @flow
+const ENGLISH: TranslateStringsType = {
   chooseOne: 'Choose one',
   forTennessee: 'For Tennessee',
   immigrantParents: 'Immigrant Parents',
