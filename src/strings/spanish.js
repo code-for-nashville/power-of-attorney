@@ -1,5 +1,5 @@
 const SPANISH = {
-  chooseOne: 'Choose one',
+  chooseOne: 'Escojer uno',
   forTennessee: 'Para Tennessee',
   immigrantParents: 'Padres Inmigrantes',
   ensureCare:
