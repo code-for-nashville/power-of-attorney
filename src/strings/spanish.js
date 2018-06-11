@@ -66,7 +66,6 @@ const SPANISH: TranslateStringsType = {
     'Where can I learn more about Power of Attorney for the care of a minor child?',
   lawCanBeFound: 'The law can be found',
   here: 'here',
-  tnPOA: 'Tennessee power of attorney for a minor child law',
   Home: 'Home',
   FAQ: 'FAQ',
   beforeStart: 'Before you start...',

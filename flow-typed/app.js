@@ -62,7 +62,6 @@ type TranslateStringsType = {
   here: string,
   privacy: string,
   doesNotTrack: string,
-  tnPOA: string,
   Home: string,
   FAQ: string,
   beforeStart: string,

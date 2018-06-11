@@ -80,7 +80,6 @@ const ENGLISH: TranslateStringsType = {
   privacy: 'Privacy and Confidentiality',
   doesNotTrack:
     'Your information and privacy is important to us.  This website does not track, keep or otherwise monitor the information inputted.',
-  tnPOA: 'Tennessee power of attorney for a minor child law',
   Home: 'Home',
   FAQ: 'FAQ',
   beforeStart: 'Before you start...',
