@@ -1,4 +1,5 @@
-const SPANISH = {
+// @flow
+const SPANISH: TranslateStringsType = {
   chooseOne: 'Escojer uno',
   forTennessee: 'Para Tennessee',
   immigrantParents: 'Padres Inmigrantes',
@@ -65,7 +66,6 @@ const SPANISH = {
     'Where can I learn more about Power of Attorney for the care of a minor child?',
   lawCanBeFound: 'The law can be found',
   here: 'here',
-  tnPOA: 'Tennessee power of attorney for a minor child law',
   Home: 'Home',
   FAQ: 'FAQ',
   beforeStart: 'Before you start...',
@@ -81,7 +81,21 @@ const SPANISH = {
   unknownError:
     'An unknown error that occured - please refresh the page and try again.',
   cuteBabyBoy: 'Cute baby boy looking up.',
-  back: 'Back'
+  back: 'Back',
+  doesNotTrack:
+    'Your information and privacy is important to us.  This website does not track, keep or otherwise monitor the information inputted.',
+  formWasCreatedNote:
+    'NOTE: Each child must have a separate Power of Attorney form.  You cannot use one form for all of your children.',
+  howMuch: 'How much does a Power of Attorney Cost?',
+  howMuchAnswer:
+    'It is free of charge.  There may be a small fee due to the notary public for notarizing the document.',
+  privacy: 'Privacy and Confidentiality',
+  whatDocuments: 'What documents do I need?',
+  whatDocumentsAnswer:
+    'Proof of parents’ ID and proof of ID for the assigned caregiver will be required to get the document notarized.  The document must be signed by all parties in front of a notary or two witnesses.  A notarized document is usually more effective, and it is highly suggested you notarize the document instead of just finding two witnesses.',
+  whereSendDocuments: 'Where do I need to send the documents?',
+  whereSendDocumentsAnswer:
+    'You should provide a copy of the Power of Attorney and the child’s birth certificate to the caregiver.  You may also want to provide a copy of the Power of Attorney to both the child’s school and medical providers.'
 }
 
 export default SPANISH
