@@ -75,5 +75,5 @@ type TranslateStringsType = {
   Download: string,
   unknownError: string,
   cuteBabyBoy: string,
-  back: string,
+  back: string
 }
