@@ -78,3 +78,11 @@
     display: none;
   }
 }
+
+// hide redundant back button for large screens
+.hidden-large {
+  @media (min-width: 430px) {
+    display: none;
+  }
+}
+
