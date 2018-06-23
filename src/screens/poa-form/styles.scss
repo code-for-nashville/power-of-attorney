@@ -41,10 +41,6 @@
   }
 }
 
-.grommetux-button.download-btn {
-  margin: 0 2.5em 1.8em 0;
-}
-
 .grommetux-carousel .grommetux-box--align-center {
   justify-content: center;
 }
@@ -57,6 +53,7 @@
 .grommetux-box--direction-row.grommetux-box--responsive.button-box {
   @media (max-width: 719px) {
     flex-direction: column-reverse;
+
     .button {
       width: 100%;
       max-width: 100%;
