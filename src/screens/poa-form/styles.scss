@@ -57,6 +57,7 @@
 .grommetux-box--direction-row.grommetux-box--responsive.button-box {
   @media (max-width: 719px) {
     flex-direction: column-reverse;
+
     .button {
       width: 100%;
       max-width: 100%;
