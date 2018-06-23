@@ -462,7 +462,7 @@ class PoAForm extends React.Component {
               label={t('back')}
               onClick={this._back}
               primary={true}
-              className="button"
+              className="button hidden-large"
               style={
                 this.state.step === 0
                   ? {backgroundColor: 'grey', borderColor: 'grey'}
