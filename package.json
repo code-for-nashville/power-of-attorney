@@ -26,10 +26,8 @@
     "start": "npm-run-all -p watch-css start-js",
     "build-js": "react-scripts build",
     "build": "npm-run-all build-css build-js",
-    "build-css":
-      "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
-    "watch-css":
-      "yarn run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "watch-css": "yarn run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "test": "yarn run build-css && react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint": "yarn lint:js",
@@ -53,6 +51,7 @@
   },
   "devDependencies": {
     "eslint-plugin-prettier": "^2.6.0",
+    "flow-bin": "^0.73.0",
     "stylelint": "^9.2.0",
     "stylelint-config-standard": "^18.2.0"
   }

@@ -1,4 +1,5 @@
-const SPANISH = {
+// @flow
+const SPANISH: TranslateStringsType = {
   chooseOne: 'Escojer uno',
   forTennessee: 'Para Tennessee',
   immigrantParents: 'Padres Inmigrantes',
@@ -7,9 +8,9 @@ const SPANISH = {
   immigrant:
     'Immigrant parents face detainment or deportation with little or no warning. In many cases, both parents are in the same location when detained or facing deportation. As a result, children of detained and/or deported parents are left with no legal guardian. Once detained or deported, parents are often inaccessible for days or weeks with little or no contact with their children or family. Parents facing detainment or deportation can prepare, in advance, for the care of their minor children by granting a Power of Attorney. A Power of Attorney allows immigrant parents to grant permission to a trusted adult to care for their minor child in the event of detainment or deportation.',
   gettingStarted:
-    'Comenzar la forma \'en linea\' de Poder Notairal es rapido y facil ',
+    "Comenzar la forma 'en linea' de Poder Notairal es rapido y facil ",
   startForm: 'Comenzar Forma',
-  childsFullName: "Nombre Completo Del Menor",
+  childsFullName: 'Nombre Completo Del Menor',
   pleaseAddStreet: 'Favor de añadir dirección.',
   name: 'Nombre',
   pleaseAddName: 'Ingresar Nombre.',
@@ -21,7 +22,7 @@ const SPANISH = {
   pleaseAddZip: 'Favor de ingresar su codigo postal.',
   zip: 'Codigo Postal',
   numberOfChildren: 'Cantidad de menores',
-  minorName: "Nombre de el menor",
+  minorName: 'Nombre de el menor',
   pleaseAddChildName: 'Favor de anadir nombre de cada menor.',
   motherName: 'Mother/Legal Guardian’s Name & Address',
   fatherName: 'Father/Legal Guardian’s Name & Address',
@@ -81,7 +82,21 @@ const SPANISH = {
   unknownError:
     'Un error desconocido a ocurrido - porfavor refresque la pagina e intente otra vez.',
   cuteBabyBoy: 'Lindo bebé mirando hacia arriba.',
-  back: 'Atrás'
+  back: 'Atrás',
+  doesNotTrack:
+    'Your information and privacy is important to us.  This website does not track, keep or otherwise monitor the information inputted.',
+  formWasCreatedNote:
+    'NOTE: Each child must have a separate Power of Attorney form.  You cannot use one form for all of your children.',
+  howMuch: 'How much does a Power of Attorney Cost?',
+  howMuchAnswer:
+    'It is free of charge.  There may be a small fee due to the notary public for notarizing the document.',
+  privacy: 'Privacy and Confidentiality',
+  whatDocuments: 'What documents do I need?',
+  whatDocumentsAnswer:
+    'Proof of parents’ ID and proof of ID for the assigned caregiver will be required to get the document notarized.  The document must be signed by all parties in front of a notary or two witnesses.  A notarized document is usually more effective, and it is highly suggested you notarize the document instead of just finding two witnesses.',
+  whereSendDocuments: 'Where do I need to send the documents?',
+  whereSendDocumentsAnswer:
+    'You should provide a copy of the Power of Attorney and the child’s birth certificate to the caregiver.  You may also want to provide a copy of the Power of Attorney to both the child’s school and medical providers.'
 }
 
 export default SPANISH
