@@ -64,6 +64,17 @@ class PoAForm extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    // if finished form and if no new changes, submit to access form, else if new changes hide 'open/download form'
+    if (
+      this.state.submitted === true &&
+      this.state.submitted === prevState.submitted &&
+      this.state !== prevState
+    ) {
+      this.setState({submitted: false})
+    }
+  }
+
   validateAddress = address => {
     const isEmpty = value => value.length === 0
 
@@ -394,11 +405,13 @@ class PoAForm extends React.Component {
     }
   }
 
-  render() {
+  renderDownloadButtons() {
     if (this.state.submitted) {
       return <AsyncDownloadPDF data={this.state} />
     }
+  }
 
+  render() {
     // Hide the disclaimer if `acceptedModal` is true
     const disclaimer = !this.state.acceptedModal ? (
       <Disclaimer onClose={this.acceptModal} />
@@ -449,34 +462,42 @@ class PoAForm extends React.Component {
           <strong>{t('partI')}</strong>
           {t('thisFormIsToBeFilled')}
         </Paragraph>
-
-        <Form autoComplete="off" className="align-center">
-          <Box pad={{vertical: 'medium'}}>{this.renderForm()}</Box>
-          <Box
-            direction="row"
-            justify="between"
-            basis="medium"
-            className="button-box"
-          >
-            <Button
-              label={t('back')}
-              onClick={this._back}
-              primary={true}
-              className="button hidden-large"
-              style={
-                this.state.step === 0
-                  ? {backgroundColor: 'grey', borderColor: 'grey'}
-                  : {}
-              }
-            />
-            <Button
-              label={this.isLastStep() ? t('submit') : t('next')}
-              onClick={this._next}
-              primary={true}
-              className="button"
-            />
+        <Box direction="row" justify="between">
+          <Box basis="1/3" />
+          <Box basis="1/3">
+            <Form autoComplete="off" className="align-center">
+              <Box pad={{vertical: 'medium'}}>{this.renderForm()}</Box>
+              <Box
+                alignSelf="center"
+                direction="row"
+                justify="between"
+                basis="medium"
+                className="button-box"
+              >
+                <Button
+                  label={t('back')}
+                  onClick={this._back}
+                  primary={true}
+                  className="button hidden-large"
+                  style={
+                    this.state.step === 0
+                      ? {backgroundColor: 'grey', borderColor: 'grey'}
+                      : {}
+                  }
+                />
+                <Button
+                  label={this.isLastStep() ? t('submit') : t('next')}
+                  onClick={this._next}
+                  primary={true}
+                  className="button"
+                />
+              </Box>
+            </Form>
           </Box>
-        </Form>
+          <Box pad="small" basis="1/3" alignContent="center">
+            {this.renderDownloadButtons()}
+          </Box>
+        </Box>
       </Section>
     )
   }

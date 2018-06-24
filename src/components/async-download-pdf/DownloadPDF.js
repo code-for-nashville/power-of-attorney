@@ -7,6 +7,8 @@ import pdfMake from 'pdfmake/build/pdfmake'
 
 import createDocDefinition from '../../pdf/pdf-document'
 
+import './style.css'
+
 pdfMake.vfs = pdfFonts.pdfMake.vfs
 
 export default class DownloadPDF extends Component {
@@ -25,25 +27,21 @@ export default class DownloadPDF extends Component {
         <Box
           flex={true}
           className="download-container"
-          justify="end"
-          direction="row"
           responsive={true}
           align="center"
         >
-          <div>
-            <h3>Form</h3>
-            <Button
-              className="download-btn"
-              onClick={() => this.viewPDF()}
-              label="Open"
-            />
-            <Button
-              className="download-btn"
-              onClick={() => this._downloadPDF()}
-              label="Download"
-            />
-            <hr />
-          </div>
+          <h3>Form</h3>
+          <Button
+            className="download-btn"
+            onClick={() => this.viewPDF()}
+            label="Open"
+          />
+          <Button
+            className="download-btn"
+            onClick={() => this._downloadPDF()}
+            label="Download"
+          />
+          <hr />
         </Box>
       </Header>
     )
