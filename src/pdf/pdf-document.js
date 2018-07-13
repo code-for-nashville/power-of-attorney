@@ -31,35 +31,6 @@ let createDocDefinition = (inputInfo, childName) => {
     .map(child => {
       return [
         {
-          text:
-            'POWER OF ATTORNEY FOR CARE OF A MINOR CHILD Insctruction TITLE SAMPLE\n\n',
-          alignment: 'center',
-          bold: true,
-          decoration: 'underline'
-        },
-        {
-          // blank page
-          text: '',
-          style: 'header',
-          pageBreak: 'before'
-        },
-        {
-          text:
-            'Instroction should be here An instruction document is a step-by-step guide on how to perform an activity. Instruction templates are purposeful templates. They are not for leisure reading. People read them for purpose and they are worthy of it. They are more about ‘how’ rather than ‘what’. There are many kinds of instruction templates: You may also see'
-        },
-        {
-          // blank page
-          text: '',
-          style: 'header',
-          pageBreak: 'before'
-        },
-        {
-          // blank page
-          text: '',
-          style: 'header',
-          pageBreak: 'before'
-        },
-        {
           text: 'POWER OF ATTORNEY FOR CARE OF A MINOR CHILD\n\n',
           alignment: 'center',
           bold: true,
@@ -67,7 +38,7 @@ let createDocDefinition = (inputInfo, childName) => {
         },
         {
           text: [
-            'Use of this form is authorized by T.C.A. § 34-6-301 et seq.  Completion of this form, along with the proper signatures, is sufficient to authorize enrollment of a minor in school and to authorize medical treatment.  However, a school district may require additional documentation/information as permitted by this section of Tennessee law before enrolling a child in school or any extracurricular activities.',
+            'Use of this form is authorized by T.C.A. § 34-6-301 et seq.  Completion of this form, along with the proper signatures, is sufficient to authorize enrollment of a minor in school and to authorize medical treatment.  However, a school district may require additional documentation/information as permitted by this section of Tennessee law before enrolling a child in school or any extracurricular activities. ',
             {
               text: 'Please print clearly\n\n',
               italics: true
@@ -77,7 +48,7 @@ let createDocDefinition = (inputInfo, childName) => {
         {
           text: [
             {
-              text: 'Part I:',
+              text: 'Part I: ',
               bold: true
             },
             'To be filled out and/or initialed by parent(s)/legal guardian(s).\n\n'
@@ -85,7 +56,7 @@ let createDocDefinition = (inputInfo, childName) => {
         },
         {
           text: [
-            '1.Minor Child’s Name ',
+            '1. Minor Child’s Name ',
             {
               text: `   ${child}  \n\n\n`,
               decoration: 'underline'
@@ -94,7 +65,7 @@ let createDocDefinition = (inputInfo, childName) => {
         },
         {
           text: [
-            '2.Mother/Legal Guardian’s Name & Address:\n\n',
+            '2. Mother/Legal Guardian’s Name & Address:\n\n',
             {
               text: `  ${inputInfo[MOTHER_ADDRESS].name}  \n\n`,
               decoration: 'underline'
@@ -113,7 +84,7 @@ let createDocDefinition = (inputInfo, childName) => {
         },
         {
           text: [
-            '3.Father/Legal Guardian’s Name & Address:\n\n',
+            '3. Father/Legal Guardian’s Name & Address:\n\n',
             {
               text: `  ${inputInfo[FATHER_ADDRESS].name}  \n\n`,
               decoration: 'underline'
@@ -132,7 +103,7 @@ let createDocDefinition = (inputInfo, childName) => {
         },
         {
           text: [
-            '4.Caregiver’s Name & Address:\n\n',
+            '4. Caregiver’s Name & Address:\n\n',
             {
               text: `  ${inputInfo[CAREGIVER_ADDRESS].name}  \n\n`,
               decoration: 'underline'
@@ -151,31 +122,31 @@ let createDocDefinition = (inputInfo, childName) => {
         },
         {
           text: [
-            `5.(_${
+            `5. (_${
               statuses.bothParents
-            }_) Both parents are living,have legal custody of the minor child and have signed this document\n`,
+            }_) Both parents are living, have legal custody of the minor child and have signed this document;\n\n`,
             {text: 'OR\n\n', bold: true},
-            `(_${statuses.parentDeceased}_) One parent is deceased;\n`,
+            `(_${statuses.parentDeceased}_) One parent is deceased;\n\n`,
             {text: 'OR\n\n', bold: true},
             `(_${
               statuses.legalCustodySigned
-            }_) One parent has legal custody of the minor child and both parents have signed this document and consent to the appointment of the caregiver;\n`,
+            }_) One parent has legal custody of the minor child and both parents have signed this document and consent to the appointment of the caregiver;\n\n`,
             {text: 'OR\n\n', bold: true},
             `(_${statusWithReason}_) One parent has legal custody of the minor child, and has sent by Certified Mail, Return Receipt requested, to the other parent at last known address, a copy of this document and a notice of the provisions in § 34-6-305; or the non-custodial parent has not consented to the appointment and consent cannot be obtained because _${statusReason}_.\n\n`
           ]
         },
         {
           text: [
-            '6.Temporary care-giving authority regarding the minor child is being given to the caregiver because of the following type of hardship',
+            '6. Temporary care-giving authority regarding the minor child is being given to the caregiver because of the following type of hardship ',
             {text: '(check at least one):\n\n', bold: true},
-            '(____) the serious illness or incarceration of a parent or legal guardian\n\n',
-            '(____) the physical or mental condition of the parent or legal guardian or the child is such that care and supervisionof the child cannot be provided;\n\n',
+            '(____) the serious illness or incarceration of a parent or legal guardian;\n\n',
+            '(____) the physical or mental condition of the parent or legal guardian or the child is such that care and supervision of the child cannot be provided;\n\n',
             '(____) the loss or uninhabitability of the child’s home as a result of a natural disaster;\n\n',
             '(____) the need for medical or mental health treatment (including substance abuse treatment) by the parent or legal guardian;\n\n',
             'or, (_X_) other (please describe)\n\n',
             {
               text:
-                'Custodial parent(s) has/have been detained by immigration authories and/or are involved in an immigration proceeding/ deportation__.\n\n',
+                'Custodial parent(s) has/have been detained by immigration authorities and/or are involved in an immigration proceeding/ deportation.\n\n',
               decoration: 'underline'
             }
           ]
@@ -195,7 +166,7 @@ let createDocDefinition = (inputInfo, childName) => {
             {text: '', width: 50},
             {
               text:
-                '(_____) enroll the child in school and extracurricular activities (including but not limited to Boy Scouts, Boys & Girls Club),\n\n'
+                '(____) enroll the child in school and extracurricular activities (including but not limited to Boy Scouts, Boys & Girls Club),\n\n'
             }
           ]
         },
@@ -204,7 +175,7 @@ let createDocDefinition = (inputInfo, childName) => {
             {text: '', width: 50},
             {
               text:
-                '    (_____) obtain medical, dental, and mental health treatment for the child, and\n\n'
+                '    (____) obtain medical, dental, and mental health treatment for the child, and\n\n'
             }
           ]
         },
@@ -213,7 +184,7 @@ let createDocDefinition = (inputInfo, childName) => {
             {text: '', width: 50},
             {
               text:
-                '    (_____) provide for the child’s food, lodging, housing, recreation and travel.\n\n'
+                '    (____) provide for the child’s food, lodging, housing, recreation and travel.\n\n'
             }
           ]
         },
@@ -239,7 +210,7 @@ let createDocDefinition = (inputInfo, childName) => {
         },
         {
           text: [
-            '9.(____) I / We understand that this document may be terminated in another written document signed by either parent with legal custody or by any order of a court with competent jurisdiction.\n\n'
+            '9. (____) I / We understand that this document may be terminated in another written document signed by either parent with legal custody or by any order of a court with competent jurisdiction.\n\n'
           ]
         },
 
@@ -259,14 +230,14 @@ let createDocDefinition = (inputInfo, childName) => {
               text: 'Part III: To be initialed by parent(s) and caregiver.\n\n',
               bold: true
             },
-            '15. (____) (____) We understand that, by accepting the power of attorney, if we enroll a student in a school system while fraudulently representing the child’s current residence or the parents’ hardship or circumstances for using the power of attorney, either or both of us is liable for restitution to the school district for an amount equal to the per pupil expenditure for the district in which the student is fraudulently enrolled. Restitution shall be cumulative for each year the child has been fraudulently enrolled in the system and may include costs and fees related to litigation.\n\n',
+            '15. (____) (____) I/We understand that, by accepting the power of attorney, if we enroll a student in a school system while fraudulently representing the child’s current residence or the parents’ hardship or circumstances for using the power of attorney, either or both of us is liable for restitution to the school district for an amount equal to the per pupil expenditure for the district in which the student is fraudulently enrolled. Restitution shall be cumulative for each year the child has been fraudulently enrolled in the system and may include costs and fees related to litigation.\n\n',
             'I/We declare under penalty of perjury under the laws of the State of Tennessee that the foregoing is true and correct.\n\n',
             // <!-- Start Mother Address -->
             'STATE OF ',
             {text: 'TENNESSEE ', decoration: 'underline'},
-            ')\n\n COUNTY OF ',
+            '\n\n COUNTY OF ',
             {text: 'DAVIDSON ', decoration: 'underline'},
-            ')\n\n______________________________ Date: ______________\n',
+            '\n\n______________________________ Date: ______________\n',
             {text: 'Mother/Legal Guardian\n\n', bold: true}
           ]
         },
@@ -292,9 +263,9 @@ let createDocDefinition = (inputInfo, childName) => {
           text: [
             'STATE OF ',
             {text: 'TENNESSEE ', decoration: 'underline'},
-            ')\n\n COUNTY OF ',
+            '\n\n COUNTY OF ',
             {text: 'DAVIDSON ', decoration: 'underline'},
-            ')\n\n______________________________ Date: ______________\n',
+            '\n\n______________________________ Date: ______________\n',
             {text: 'Father/Legal Guardian\n\n', bold: true}
           ]
         },
@@ -317,9 +288,9 @@ let createDocDefinition = (inputInfo, childName) => {
           text: [
             'STATE OF ',
             {text: 'TENNESSEE ', decoration: 'underline'},
-            ')\n\n COUNTY OF ',
+            '\n\n COUNTY OF ',
             {text: 'DAVIDSON ', decoration: 'underline'},
-            ')\n\n______________________________ Date: ______________\n',
+            '\n\n______________________________ Date: ______________\n',
             {text: 'Caregiver\n\n', bold: true}
           ]
         },
@@ -376,12 +347,6 @@ let createDocDefinition = (inputInfo, childName) => {
             'Pursuant to T.C.A. § 34-6-308, no person, school official or health care provider who acts in good faith reliance on a power of attorney for care of a minor child to enroll the child in school or to provide medical, dental or mental health care, without actual knowledge of facts contrary to those authorized, is subject to criminal or civil liability to any person, or is subject to professional disciplinary action for such reliance. This section shall apply even if medical, dental, or mental health care is provided to a minor child or the child is enrolled in a school in contravention of the wishes of the parent with legal custody of the minor child, as long as the person, school official or health care provider has been provided a copy of an appropriately executed power of attorney for care of a minor child, and has not been provided written documentation that the parent has revoked the power of attorney for care of a minor child.\n\n',
             'Additionally, pursuant to T.C.A. § 34-6-310, a person who relies on the power of attorney for care of a minor child has no obligation to make any further inquiry or investigation. Nothing in this part shall relieve any individual from liability for violations of other provisions of law.'
           ]
-        },
-        {
-          // blank page
-          text: '',
-          style: 'header',
-          pageBreak: 'before'
         }
       ]
     })
