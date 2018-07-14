@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {HashRouter as Router, Route} from 'react-router-dom'
 import {App as GrommetApp, Article, Footer} from 'grommet'
 import {I18nextProvider} from 'react-i18next'
 import {Header} from './components'
