@@ -1,7 +1,7 @@
 {
   "name": "power-of-attorney",
   "version": "0.1.0",
-  "homepage": "https://www.codefornashville.org/power-of-attorney/",
+  "homepage": "http://immigrantpoa.org/",
   "private": true,
   "dependencies": {
     "grommet": "^1.10.1",
