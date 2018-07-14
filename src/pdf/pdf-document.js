@@ -238,6 +238,7 @@ let createDocDefinition = (inputInfo, childName) => {
             '\n\n COUNTY OF ',
             {text: 'DAVIDSON ', decoration: 'underline'},
             '\n\n______________________________ Date: ______________\n',
+            {text: `${inputInfo[MOTHER_ADDRESS].name} `},
             {text: 'Mother/Legal Guardian\n\n', bold: true}
           ]
         },
@@ -266,6 +267,7 @@ let createDocDefinition = (inputInfo, childName) => {
             '\n\n COUNTY OF ',
             {text: 'DAVIDSON ', decoration: 'underline'},
             '\n\n______________________________ Date: ______________\n',
+            {text: `${inputInfo[FATHER_ADDRESS].name} `},
             {text: 'Father/Legal Guardian\n\n', bold: true}
           ]
         },
@@ -291,6 +293,7 @@ let createDocDefinition = (inputInfo, childName) => {
             '\n\n COUNTY OF ',
             {text: 'DAVIDSON ', decoration: 'underline'},
             '\n\n______________________________ Date: ______________\n',
+            {text: `${inputInfo[CAREGIVER_ADDRESS].name} `},
             {text: 'Caregiver\n\n', bold: true}
           ]
         },
