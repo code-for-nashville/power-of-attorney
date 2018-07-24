@@ -8,7 +8,8 @@ package-lock.json
 /coverage
 
 # production
-/build
+build/*
+!build/CNAME
 
 # misc
 .DS_Store
@@ -23,3 +24,4 @@ yarn-error.log*
 
 # css
 src/**/*.css
+
