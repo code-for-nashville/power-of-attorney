@@ -18,6 +18,7 @@ import {Disclaimer, AsyncDownloadPDF} from '../../components'
 import Stepper from 'react-stepper-horizontal'
 import {translate} from 'react-i18next'
 import {STATE_OPTIONS} from '../../strings'
+import Regex from '../../constants'
 import {
   PARENTAL_STATUSES,
   PARENTAL_STATUS_WITH_REASON
@@ -85,7 +86,7 @@ class PoAForm extends React.Component {
       region: isEmpty(address.region),
       // 5 digit postal codes only for now, though there is a valid 10 digit
       // format (e.g. 12345-4321).
-      postal_code: address.postal_code.length !== 5
+      postal_code: !Regex.postalCode.test(address.postal_code)
     }
   }
 
@@ -99,7 +100,11 @@ class PoAForm extends React.Component {
   updateAddress = e => {
     const inputName = e.target.name
     const addressType = e.target.dataset.addressType
-    const value = e.option ? e.option.value : e.target.value
+    let value = e.option ? e.option.value : e.target.value
+
+    if (addressType === 'postal_code') {
+      value = value.slice(0, 5)
+    }
     this.setState({
       [inputName]: {
         ...this.state[inputName],
