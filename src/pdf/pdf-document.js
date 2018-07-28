@@ -31,6 +31,25 @@ let createDocDefinition = (inputInfo, childName) => {
     .map(child => {
       return [
         {
+          text: 'Instructions for Completing Power of Attorney Form\n\n\n',
+          alignment: 'center',
+          bold: true,
+          decoration: 'underline'
+        },
+        {
+          text: [
+            '1. Print these documents and wait to sign them until you are in front of a notary public or two witnesses\n\n',
+            '2. Have the caregiver initial Part II (Questions 10 – 14)\n\n',
+            '3. Have the parent(s) and the caregiver initial Part III (Question 15)\n\n',
+            '4. Have the parent(s) and the caregiver sign the document in front a notary or two witnesses\n\n',
+            '5. Give an original signed copy to the caregiver to keep in a secure location.  You may also want to provide the caregiver with a copy of the child’s birth certificate, school information and doctor’s information.\n\n',
+            '6. Keep a copy of the document for yourself in a safe place.\n\n',
+            '7. Consider giving a copy to your child’s school and doctor.\n\n',
+            '8. You may revoke this power of attorney in writing at any time.  If you revoke the power of attorney, provide a copy of the written revocation to the caregiver(s) and any agency or person who has received a copy of the power of attorney so that they are on notice that it has been revoked.\n\n'
+          ],
+          pageBreak: 'after'
+        },
+        {
           text: 'POWER OF ATTORNEY FOR CARE OF A MINOR CHILD\n\n',
           alignment: 'center',
           bold: true,
