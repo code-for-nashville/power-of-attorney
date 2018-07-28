@@ -21,7 +21,7 @@ class App extends Component {
               <Route exact path={HOME_PATH} component={Home} />
               <Footer />
             </Article>
-          </I18nextProvider>,
+          </I18nextProvider>
         </GrommetApp>
       </Router>
     )
