@@ -15,7 +15,7 @@ const ANCHOR_DISABLED = `${GrommetClassnames.ANCHOR}--disabled`
 
 const POAHeader = props => {
   const {t} = props
-  
+
   const nextLanguage = i18n.language === 'en' ? 'es' : 'en'
   const label = i18n.language === 'en' ? 'Español' : 'English'
   const onClick = () => i18n.changeLanguage(nextLanguage)
@@ -40,11 +40,14 @@ const POAHeader = props => {
           >
             {t('FAQ')}
           </NavLink>
-
         </Menu>
-        <Box>
-        <Button className={'language-button'} label={label} onClick={onClick} secondary  hoverIndicator={{background: 'neutral-2'}}/>
-        </Box>
+        <Button
+          className={'language-button'}
+          label={label}
+          onClick={onClick}
+          secondary
+          hoverIndicator={{background: 'neutral-2'}}
+        />
       </Box>
     </Header>
   )

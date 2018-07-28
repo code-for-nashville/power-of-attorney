@@ -14,7 +14,15 @@ i18n.use(LanguageDetector).init({
     nsMode: 'default'
   },
   detection: {
-    order: [ 'navigator', 'querystring', 'cookie', 'localStorage', 'htmlTag', 'path', 'subdomain'],
+    order: [
+      'navigator',
+      'querystring',
+      'cookie',
+      'localStorage',
+      'htmlTag',
+      'path',
+      'subdomain'
+    ]
   }
 })
 
