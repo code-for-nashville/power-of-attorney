@@ -5,7 +5,7 @@ import {Box, Button, Header, Menu} from 'grommet'
 import GrommetClassnames from 'grommet/utils/CSSClassnames.js'
 import {translate} from 'react-i18next'
 import {FAQ_PATH, HOME_PATH} from '../../paths'
-import { getCurrentLanguage } from '../../helpers/i18n'
+import {getCurrentLanguage} from '../../helpers/i18n'
 import './style.css'
 
 // Class added to Grommet anchor when `disabled=True`
