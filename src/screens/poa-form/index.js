@@ -377,7 +377,7 @@ class PoAForm extends React.Component {
         <FieldHeader>{t('parentalStatus')}</FieldHeader>
         <FormField error={errorMessage}>
           {PARENTAL_STATUSES.map(value => (
-            <ParentRadioButton label={t(value)} key={value} value={value} />
+            <ParentRadioButton label={t(value)} key={value} value={value} /> 
           ))}
         </FormField>
         {// Conditionally render a reason they could not be reached when 4
@@ -391,6 +391,10 @@ class PoAForm extends React.Component {
             />
           </FormField>
         )}
+        //Added here. HTML tag didn't work inside map() for adding link to the RadioButton label. 
+        //Adding a link to the string just for the 34-6-305 text also failed for me. 
+        //Hardcoded link address may be avoided. Move to strings or global?
+        <a href='https://law.justia.com/codes/tennessee/2017/title-34/chapter-6/part-3/section-34-6-305/' target="_blank"> {t('legalCustodySentLink')} </a>
       </div>
     )
   }
