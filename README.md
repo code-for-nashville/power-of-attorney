@@ -16,7 +16,7 @@ The designs for this project are available on [Zeplin](https://app.zeplin.io/pro
 
 ## Installation
 
-Make sure you have [`yarn`](https://yarnpkg.com/) and a recent version of [`node.js`](https://nodejs.org/en/) installed.  Clone this repository, and run `yarn start` to start the dev server.
+Make sure you have [`yarn`](https://yarnpkg.com/) and a recent version of [`node.js`](https://nodejs.org/en/) installed.  Clone te repository, install the dependencies with `yarn install` then run `yarn start` to start the dev server.
 
 Check out the [Create React App User Guide](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md) for additional commands.
 
