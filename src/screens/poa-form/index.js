@@ -377,7 +377,7 @@ class PoAForm extends React.Component {
         <FieldHeader>{t('parentalStatus')}</FieldHeader>
         <FormField error={errorMessage}>
           {PARENTAL_STATUSES.map(value => (
-            <ParentRadioButton label={t(value)} key={value} value={value} /> 
+            <ParentRadioButton label={t(value)} key={value} value={value} />
           ))}
         </FormField>
         {// Conditionally render a reason they could not be reached when 4
