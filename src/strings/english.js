@@ -77,8 +77,7 @@ const ENGLISH: TranslateStringsType = {
     'You should provide a copy of the Power of Attorney and the child’s birth certificate to the caregiver.  You may also want to provide a copy of the Power of Attorney to both the child’s school and medical providers.',
   whereCanILearn:
     'Where can I learn more about Power of Attorney for the care of a minor child?',
-  lawCanBeFound:
-    'A copy of the Tennessee Code (T.C.A. 2017) can be found',
+  lawCanBeFound: 'A copy of the Tennessee Code (T.C.A. 2017) can be found',
   here: 'here',
   privacy: 'Privacy and Confidentiality',
   doesNotTrack:
