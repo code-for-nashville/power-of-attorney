@@ -37,6 +37,7 @@ const ENGLISH: TranslateStringsType = {
     'One parent has legal custody of the minor child and both parents have signed this document and consent to the appointment of the caregiver',
   legalCustodySent:
     'One parent has legal custody of the minor child, and has sent by Certified Mail, Return Receipt requested, to the other parent at last known address, a copy of this document and a notice of the provisions in § 34-6-305;',
+  legalCustodySentLink: 'Click here for the text of T.C.A. § 34-6-305',
   legalCustodyNoConsent:
     'The non-custodial parent has not consented to the appointment and consent cannot be obtained.',
   reasonNotReached: 'Reason non-custodial parent could not be reached:',
