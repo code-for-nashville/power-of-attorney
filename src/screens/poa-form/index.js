@@ -391,6 +391,16 @@ class PoAForm extends React.Component {
             />
           </FormField>
         )}
+        {
+          <a
+            href="https://law.justia.com/codes/tennessee/2017/title-34/chapter-6/part-3/section-34-6-305/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {' '}
+            {t('legalCustodySentLink')}{' '}
+          </a>
+        }
       </div>
     )
   }

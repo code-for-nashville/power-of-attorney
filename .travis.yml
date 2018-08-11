@@ -18,3 +18,4 @@ deploy:
   local-dir: build
   on:
     branch: master
+fqdn: immigrantpoa.org
