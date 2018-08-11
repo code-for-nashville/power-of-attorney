@@ -37,7 +37,7 @@ const Faq = props => {
         {t('lawCanBeFound')}{' '}
         <Anchor
           a11yTitle={t('lawCanBeFound')}
-          href="https://law.justia.com/codes/tennessee/2010/title-34/chapter-6/part-3/"
+          href="https://law.justia.com/codes/tennessee/2017/title-34/chapter-6/part-3/"
           target="_blank"
         >
           {t('here')}

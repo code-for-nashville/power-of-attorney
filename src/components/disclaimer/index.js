@@ -29,6 +29,16 @@ const Disclaimer = props => {
       </Box>
       <Box pad={{horizontal: 'medium', vertical: 'none'}}>
         <Paragraph margin="small">{t('useOfThisForm')}</Paragraph>
+        <Paragraph>
+          {t('lawCanBeFound')}{' '}
+          <Anchor
+            a11yTitle={t('lawCanBeFound')}
+            href="https://law.justia.com/codes/tennessee/2017/title-34/chapter-6/part-3/"
+            target="_blank"
+          >
+            {t('here')}
+          </Anchor>.
+        </Paragraph>
         <Paragraph margin="small">{t('thisFormIsToBeFilled')}</Paragraph>
         <Box
           direction="row"
