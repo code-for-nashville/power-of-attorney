@@ -37,7 +37,7 @@ const SPANISH: TranslateStringsType = {
     'Un Pariente tiene custodia legal de el menor y ambos Parientes han firmado este documento y citan su consentimiento al Guardian',
   legalCustodySent:
     'Un Pariente tiene custodia legal de el menor, y ha enviado por Correo Certificado, Recibo de Retorno pedido, hacia el otro Pariente a la ultima dirección conocida, una copia de este documento y un aviso en las provisiones en § 34-6-305;',
-  legalCustodySentLink: 
+  legalCustodySentLink:
     'Haz clic aqui para una copia del texto de T.C.A. § 34-6-305 (2017)',
   legalCustodyNoConsent:
     'El pariente sin custodia no a dado el consentimiento a la designacion o su consentimiento no puede ser obtenido.',
@@ -67,7 +67,7 @@ const SPANISH: TranslateStringsType = {
     'Usted puede terminar el Poder Notarial en cualquier momento al ponerlo en escrito.',
   whereCanILearn:
     '¿Donde puedo aprender mas sobre Poder Notarial para el cuido de un menor?',
-  lawCanBeFound: 
+  lawCanBeFound:
     'Una copia del Codigo Tennessee (T.C.A. 2017) puede ser encontrada',
   here: 'aqui',
   tnPOA: 'Ley de Poder Notarial en Tennessee para un menor',
