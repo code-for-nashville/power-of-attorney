@@ -6,7 +6,7 @@ import {Header} from './components'
 import {FAQ, Home, PoAForm} from './screens'
 
 import {FAQ_PATH, FORM_PATH, HOME_PATH} from './paths'
-import i18n from './strings/i18n'
+import i18n from './helpers/i18n'
 
 class App extends Component {
   render() {

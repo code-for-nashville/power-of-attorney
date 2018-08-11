@@ -5,7 +5,7 @@ import {Box, Button, Header, Menu} from 'grommet'
 import GrommetClassnames from 'grommet/utils/CSSClassnames.js'
 import {translate} from 'react-i18next'
 import {FAQ_PATH, HOME_PATH} from '../../paths'
-
+import {getCurrentLanguage} from '../../helpers/i18n'
 import './style.css'
 
 // Class added to Grommet anchor when `disabled=True`
@@ -16,8 +16,9 @@ const ANCHOR_DISABLED = `${GrommetClassnames.ANCHOR}--disabled`
 const POAHeader = props => {
   const {t} = props
 
-  const nextLanguage = i18n.language === 'en' ? 'es' : 'en'
-  const label = i18n.language === 'en' ? 'Español' : 'English'
+  const currentLanguage = getCurrentLanguage()
+  const nextLanguage = currentLanguage === 'en' ? 'es' : 'en'
+  const label = currentLanguage === 'en' ? 'Español' : 'English'
   const onClick = () => i18n.changeLanguage(nextLanguage)
 
   return (
