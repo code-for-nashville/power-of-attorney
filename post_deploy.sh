@@ -1,0 +1,1 @@
+cp CNAME build/CNAME

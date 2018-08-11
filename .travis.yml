@@ -10,6 +10,8 @@ script:
   - yarn test
 before_deploy:
   - yarn build
+after_deploy:
+  - ./post_deploy.sh
 deploy:
   provider: pages
   skip-cleanup: true
