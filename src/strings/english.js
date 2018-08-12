@@ -37,7 +37,8 @@ const ENGLISH: TranslateStringsType = {
     'One parent has legal custody of the minor child and both parents have signed this document and consent to the appointment of the caregiver',
   legalCustodySent:
     'One parent has legal custody of the minor child, and has sent by Certified Mail, Return Receipt requested, to the other parent at last known address, a copy of this document and a notice of the provisions in § 34-6-305;',
-  legalCustodySentLink: 'Click here for the text of T.C.A. § 34-6-305',
+  legalCustodySentLink:
+    'Click here for a copy of the text of T.C.A. § 34-6-305 (2017)',
   legalCustodyNoConsent:
     'The non-custodial parent has not consented to the appointment and consent cannot be obtained.',
   reasonNotReached: 'Reason non-custodial parent could not be reached:',
@@ -76,7 +77,7 @@ const ENGLISH: TranslateStringsType = {
     'You should provide a copy of the Power of Attorney and the child’s birth certificate to the caregiver.  You may also want to provide a copy of the Power of Attorney to both the child’s school and medical providers.',
   whereCanILearn:
     'Where can I learn more about Power of Attorney for the care of a minor child?',
-  lawCanBeFound: 'The law can be found',
+  lawCanBeFound: 'A copy of the Tennessee Code (T.C.A. 2017) can be found',
   here: 'here',
   privacy: 'Privacy and Confidentiality',
   doesNotTrack:
