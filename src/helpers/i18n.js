@@ -5,7 +5,8 @@ import spanish from '../strings/spanish'
 
 i18n.use(LanguageDetector).init({
   fallbackLng: 'en',
-  debug: process.env.NODE_ENV !== 'production',
+  // debug: process.env.NODE_ENV !== 'production',
+  debug: false,
   // react i18next special options (optional) https://react.i18next.com/components/i18next-instance
   react: {
     wait: false,
@@ -31,7 +32,8 @@ i18n.addResourceBundle('es', 'translation', spanish)
 
 export const getCurrentLanguage = () => {
   // English and Spanish are currently the only supported languages
-  if (i18n.language && i18n.language.includes('es')) {
+  // bitwise shifts -1 to 0, all else to not 0
+  if (i18n.language && i18n.language.indexOf('es') >= 0) {
     return 'es'
   }
   return 'en'
