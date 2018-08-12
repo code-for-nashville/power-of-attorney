@@ -32,7 +32,6 @@ i18n.addResourceBundle('es', 'translation', spanish)
 
 export const getCurrentLanguage = () => {
   // English and Spanish are currently the only supported languages
-  // bitwise shifts -1 to 0, all else to not 0
   if (i18n.language && i18n.language.indexOf('es') >= 0) {
     return 'es'
   }
