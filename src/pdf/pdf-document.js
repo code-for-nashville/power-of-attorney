@@ -31,21 +31,40 @@ let createDocDefinition = (inputInfo, childName) => {
     .map(child => {
       return [
         {
-          text: 'Instructions for Completing Power of Attorney Form\n\n\n',
+          text: 'Instructions for Completing Power of Attorney Form\n\n',
           alignment: 'center',
           bold: true,
           decoration: 'underline'
         },
         {
           text: [
-            '1. Print these documents and wait to sign them until you are in front of a notary public or two witnesses\n\n',
-            '2. Have the caregiver initial Part II (Questions 10 – 14)\n\n',
-            '3. Have the parent(s) and the caregiver initial Part III (Question 15)\n\n',
-            '4. Have the parent(s) and the caregiver sign the document in front a notary or two witnesses\n\n',
-            '5. Give an original signed copy to the caregiver to keep in a secure location.  You may also want to provide the caregiver with a copy of the child’s birth certificate, school information and doctor’s information.\n\n',
-            '6. Keep a copy of the document for yourself in a safe place.\n\n',
-            '7. Consider giving a copy to your child’s school and doctor.\n\n',
+            '1. Print two original copies (one for the caregiver, one for the parent(s)/legal guardian) of these documents and wait to sign both copies until you are in front of a notary public or two witnesses.\n\n',
+            '2. For both original copies: have the caregiver write their initials in Part II (Questions 10 – 14).\n\n',
+            '3. For both original copies: have the parent(s)/legal guardian(s) and the caregiver write their initials Part III (Question 15).\n\n',
+            '4. For both original copies: have the parent(s)/legal guardian(s) and the caregiver sign the document in front a notary or two witnesses.\n\n',
+            '5. Give one original signed copy to the caregiver to keep in a secure location.  You may also want to provide the caregiver with a copy of the child’s birth certificate, school information and doctor’s information.\n\n',
+            '6. Keep the other original signed copy of the document for yourself in a safe place.\n\n',
+            "7. Consider giving a copy to your child’s school and a copy to your child's doctor.\n\n",
             '8. You may revoke this power of attorney in writing at any time.  If you revoke the power of attorney, provide a copy of the written revocation to the caregiver(s) and any agency or person who has received a copy of the power of attorney so that they are on notice that it has been revoked.\n\n'
+          ]
+        },
+        {
+          text:
+            'Instrucciones para completar La Forma de Poder Notarial Para El Cuidado De Un Menor\n\n',
+          alignment: 'center',
+          bold: true,
+          decoration: 'underline'
+        },
+        {
+          text: [
+            '1. Imprima dos copias originales de estos documentos (una copia para el cuidador y otra para el/los padre(s) custodia legal) y fírme las dos copias solamente cuando este usted cara a cara con un notario público o, alternativamente, dos testigos.\n\n',
+            '2. Para las dos copias originales: el cuidador deberá escribir sus iniciales en Parte II (Preguntas 10 - 14).\n\n',
+            '3. Para las dos copias originales: el/los padre(s)/custodia legal y el cuidador deberán escribir sus iniciales en Parte III (Pregunta 15). \n\n',
+            '4. Para las dos copias originales: el/los padre(s)/custodia legal y el cuidador deberán firmar el documento cuando estén cara a cara con un notario público o, alternativamente, dos testigos. \n\n',
+            '5. Dele una copia original firmada al guardián para almacenar en un sitio seguro. Quizá querrá darle al guardián una copia de la acta de nacimiento del menor, información de su escuela, e información del médico. \n\n',
+            '6. Mantenga la otra copia original firmada para usted en un sitio seguro. \n\n',
+            '7. Considere darle una copia a la escuela y al médico del menor. \n\n',
+            '8. Usted puede revocar por escrito este poder notarial en cualquier momento. Si usted revoca el poder notarial, dele una copia de la revocación escrita a el/los guardián(es) y a cualquier agencia o persona que ha recibido una copia del poder notarial para que estén informados que se ha revocado. \n\n'
           ],
           pageBreak: 'after'
         },
@@ -235,7 +254,8 @@ let createDocDefinition = (inputInfo, childName) => {
 
         {
           text: [
-            {text: 'Part II: To be initialed by caregiver.\n\n', bold: true},
+            {text: 'Part II: To be initialed by caregiver', bold: true},
+            {text: ' (initial inside parenthesis).\n\n'},
             '10. (____) I understand that this document, properly executed, gives me the right to enroll the minor child in the local education agency serving the area where I reside.\n\n',
             '11. (____) I understand that this document does not provide me with legal custody.\n\n',
             '12. (____) I understand that, prior to enrollment, the local education agency may require documentation of the minor child’s residence with a caregiver and/or documentation or other verification of the validity of the stated hardship.\n\n',
@@ -246,9 +266,10 @@ let createDocDefinition = (inputInfo, childName) => {
         {
           text: [
             {
-              text: 'Part III: To be initialed by parent(s) and caregiver.\n\n',
+              text: 'Part III: To be initialed by parent(s) and caregiver',
               bold: true
             },
+            {text: '(initial inside parenthesis).\n\n'},
             '15. (____) (____) I/We understand that, by accepting the power of attorney, if we enroll a student in a school system while fraudulently representing the child’s current residence or the parents’ hardship or circumstances for using the power of attorney, either or both of us is liable for restitution to the school district for an amount equal to the per pupil expenditure for the district in which the student is fraudulently enrolled. Restitution shall be cumulative for each year the child has been fraudulently enrolled in the system and may include costs and fees related to litigation.\n\n',
             'I/We declare under penalty of perjury under the laws of the State of Tennessee that the foregoing is true and correct.\n\n',
             // <!-- Start Mother Address -->
