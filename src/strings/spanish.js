@@ -1,6 +1,5 @@
 // @flow
 const SPANISH: TranslateStringsType = {
-  chooseOne: 'Escojer uno',
   forTennessee: 'Para Tennessee',
   immigrantParents: 'Padres Inmigrantes',
   ensureCare:

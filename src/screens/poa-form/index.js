@@ -10,7 +10,6 @@ import {
   Paragraph,
   RadioButton,
   Section,
-  Select,
   TextInput
 } from 'grommet'
 
@@ -42,21 +41,21 @@ class PoAForm extends React.Component {
         name: '',
         street_address: '',
         locality: '',
-        region: '',
+        region: 'TN',
         postal_code: ''
       },
       fatherAddress: {
         name: '',
         street_address: '',
         locality: '',
-        region: '',
+        region: 'TN',
         postal_code: ''
       },
       caregiverAddress: {
         name: '',
         street_address: '',
         locality: '',
-        region: '',
+        region: 'TN',
         postal_code: ''
       },
       parentalStatus: '',
@@ -282,15 +281,17 @@ class PoAForm extends React.Component {
           error={errors.region ? t('pleaseAddState') : null}
           label={t('state')}
         >
-          <Select
+          <select
             onChange={this.updateAddress}
             className="input-class"
             value={this.state[name].region}
             name={name}
             data-address-type={'region'}
-            options={STATE_OPTIONS}
-            placeHolder={t('chooseOne')}
-          />
+          >
+            {STATE_OPTIONS.map(state => (
+              <option value={state.value}>{state.label}</option>
+            ))}
+          </select>
         </FormField>
         <FormField
           label={t('zip')}
