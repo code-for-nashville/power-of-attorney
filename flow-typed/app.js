@@ -1,5 +1,4 @@
 type TranslateStringsType = {
-  chooseOne: string,
   forTennessee: string,
   immigrantParents: string,
   ensureCare: string,
