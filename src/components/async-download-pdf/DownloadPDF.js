@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 
-import { Box, Button, Header } from 'grommet'
+import {Box, Button, Header} from 'grommet'
 
 import pdfFonts from 'pdfmake/build/vfs_fonts'
 import pdfMake from 'pdfmake/build/pdfmake'
@@ -13,27 +13,26 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs
 
 pdfMake.tableLayouts = {
   underlineLayout: {
-    hLineWidth: function (i, node) {
+    hLineWidth: function(i, node) {
       if (i === 0) {
-        return 0;
+        return 0
       }
-      return 1;
+      return 1
     },
-    vLineWidth: function (i) {
-      return 0;
-    },
-    hLineColor: function (i) {
-      return 'black';
-    },
-    paddingLeft: function (i) {
+    vLineWidth: function(i) {
       return 0
     },
-    paddingRight: function (i, node) {
+    hLineColor: function(i) {
+      return 'black'
+    },
+    paddingLeft: function(i) {
+      return 0
+    },
+    paddingRight: function(i, node) {
       return 0
     }
   }
 }
-
 
 export default class DownloadPDF extends Component {
   _downloadPDF = () => {
