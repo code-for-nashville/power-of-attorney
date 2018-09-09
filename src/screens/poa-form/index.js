@@ -430,7 +430,7 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
     )
 
     let errorMessage = null
-    if (this.state.errors.parental_status) {
+    if (this.state.errors.parentalStatus) {
       errorMessage = t('pleaseAddParentalStatus')
     } else if (this.state.errors.parentalStatusReason) {
       errorMessage = t('pleaseAddReason')
