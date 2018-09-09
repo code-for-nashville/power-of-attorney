@@ -38,9 +38,12 @@ This project is built with [Grommet](http://grommet.io/), and ships with a custo
 
 SCSS file will be automatically watched and built when you run `yarn start`.  The built `.css` output will have the same filename and live in the same directory as it's `.scss` counterpart.  Make sure to import the `.css` output in JavaScript files, not the raw `.scss`.  Create React App is not configured to import `.scss`.
 
+## Flow
+Library definitions can be installed with `node_modules/.bin/flow-typed install <library>@<version>`
+
 ## Partners
 
-TBD
+Music City Legal Hackers
 
 ## Deployment
 

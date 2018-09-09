@@ -1,4 +1,5 @@
-import * as React from 'react'
+// @flow
+import React, {Component} from 'react'
 
 import {
   Box,
@@ -16,6 +17,7 @@ import {
 import {Disclaimer, AsyncDownloadPDF} from '../../components'
 import Stepper from 'react-stepper-horizontal'
 import {translate} from 'react-i18next'
+import type {FormInputs} from '../../types'
 import {STATE_OPTIONS} from '../../strings'
 import Regex from '../../constants'
 import {
@@ -24,9 +26,36 @@ import {
 } from '../../pdf/pdf-document.js'
 import './styles.css'
 
+type AddressKeysType =
+  | 'name'
+  | 'street_address'
+  | 'locality'
+  | 'region'
+  | 'postal_code'
+
+type PoAFormProps = {
+  t: string => string
+}
+
+type FormInputErrors = {
+  childrenNames: ?boolean,
+  parentalStatus: ?boolean,
+  parentalStatusReason: ?boolean,
+  motherAddress: {[AddressKeysType]: ?boolean},
+  fatherAddress: {[AddressKeysType]: ?boolean},
+  caregiverAddress: {[AddressKeysType]: ?boolean}
+}
+type PoAFormState = {
+  acceptedModal: boolean,
+  step: number,
+  numberOfChildren: number,
+  submitted: boolean,
+  errors: FormInputErrors
+} & FormInputs
+
 const FieldHeader = props => <span {...props} />
 
-class PoAForm extends React.Component {
+class PoAForm extends Component<PoAFormProps, PoAFormState> {
   static navigationOptions = ({navigation}) => ({})
 
   constructor(props) {
@@ -41,7 +70,7 @@ class PoAForm extends React.Component {
         name: '',
         street_address: '',
         locality: '',
-        region: 'TN',
+        region: 'ZZ',
         postal_code: ''
       },
       fatherAddress: {
@@ -60,11 +89,24 @@ class PoAForm extends React.Component {
       },
       parentalStatus: '',
       parentalStatusReason: '',
-      errors: {}
+      errors: {
+        childrenNames: null,
+        motherAddress: {
+          name: null
+        },
+        fatherAddress: {
+          name: null
+        },
+        caregiverAddress: {
+          name: null
+        },
+        parentalStatus: null,
+        parentalStatusReason: null
+      }
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState: PoAFormState) {
     // if finished form and if no new changes, submit to access form, else if new changes hide 'open/download form'
     if (
       this.state.submitted === true &&
@@ -76,7 +118,8 @@ class PoAForm extends React.Component {
   }
 
   validateAddress = address => {
-    const isEmpty = value => value.length === 0
+    const isEmpty = value => (value && value.length === 0) || !value
+
     return {
       // 5 digit postal codes only for now, though there is a valid 10 digit
       // format (e.g. 12345-4321).
@@ -178,7 +221,7 @@ class PoAForm extends React.Component {
       to error objects.  The second element is a boolean that is True if any
       of the fields failed validation.
   */
-  stepErrors() {
+  stepErrors(): Object {
     const validators = [
       {
         // Only non-empty child names are valid
@@ -195,10 +238,10 @@ class PoAForm extends React.Component {
           this.validateAddress(this.state.caregiverAddress)
       },
       {
-        parentalStatus: () => false,
-        reason: () =>
+        parentalStatus: () => this.state.parentalStatus.length === 1,
+        parentalStatusReason: () =>
           this.state.parentalStatus === '5'
-            ? this.state.reason.length === 0
+            ? this.state.parentalStatusReason.length === 0
             : false
       }
     ][this.state.step]
@@ -206,7 +249,7 @@ class PoAForm extends React.Component {
     const errors = {}
 
     for (let [key, validator] of Object.entries(validators)) {
-      errors[key] = validator()
+      if (typeof validator === 'function') errors[key] = validator()
     }
 
     return errors
@@ -364,9 +407,9 @@ class PoAForm extends React.Component {
     )
 
     let errorMessage = null
-    if (this.state.errors.parental_status) {
+    if (this.state.errors.parentalStatus) {
       errorMessage = t('pleaseAddParentalStatus')
-    } else if (this.state.errors.reason) {
+    } else if (this.state.errors.parentalStatusReason) {
       errorMessage = t('pleaseAddReason')
     }
 
