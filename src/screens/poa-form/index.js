@@ -121,13 +121,11 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
     const isEmpty = value => (value && value.length === 0) || !value
 
     return {
-      name: isEmpty(address.name),
-      street_address: isEmpty(address.street_address),
-      locality: isEmpty(address.locality),
-      region: isEmpty(address.region),
       // 5 digit postal codes only for now, though there is a valid 10 digit
       // format (e.g. 12345-4321).
-      postal_code: !Regex.postalCode.test(address.postal_code)
+      postal_code:
+        !isEmpty(address.postal_code) &&
+        !Regex.postalCode.test(address.postal_code)
     }
   }
 
@@ -220,7 +218,7 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
     Returns an object containing validation errors for just the current step
 
     Returns: An Array of two elements. The first element is a key of field names
-      to error objects.  The second element is a boolen that is True if any
+      to error objects.  The second element is a boolean that is True if any
       of the fields failed validation.
   */
   stepErrors(): Object {
@@ -467,6 +465,7 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
     if (this.state.submitted) {
       return <AsyncDownloadPDF data={this.state} />
     }
+    return null
   }
 
   render() {
