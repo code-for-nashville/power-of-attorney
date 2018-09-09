@@ -1,17 +1,22 @@
+// @flow
 import React, {Component} from 'react'
 
 import {Box, Button, Header} from 'grommet'
 
 import pdfFonts from 'pdfmake/build/vfs_fonts'
 import pdfMake from 'pdfmake/build/pdfmake'
-
+import type {FormInputs} from '../../types'
 import createDocDefinition from '../../pdf/pdf-document'
 
 import './style.css'
 
+type DownloadPDFProps = {
+  data: FormInputs
+}
+
 pdfMake.vfs = pdfFonts.pdfMake.vfs
 
-export default class DownloadPDF extends Component {
+export default class DownloadPDF extends Component<DownloadPDFProps> {
   _downloadPDF = () => {
     const docDefinition = createDocDefinition(this.props.data)
     pdfMake.createPdf(docDefinition).download()

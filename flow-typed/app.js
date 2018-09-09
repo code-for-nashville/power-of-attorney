@@ -1,3 +1,5 @@
+declare var process: { env: { PUBLIC_URL: string, NODE_ENV: string } }
+
 type TranslateStringsType = {
   forTennessee: string,
   immigrantParents: string,
