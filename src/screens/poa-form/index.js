@@ -17,7 +17,6 @@ import {
 import {Disclaimer, AsyncDownloadPDF} from '../../components'
 import Stepper from 'react-stepper-horizontal'
 import {translate} from 'react-i18next'
-import type {StateAbbreviations} from 'geopolitical-flow-types'
 import type {FormInputs} from '../../types'
 import {STATE_OPTIONS} from '../../strings'
 import Regex from '../../constants'
@@ -50,29 +49,9 @@ type PoAFormState = {
   acceptedModal: boolean,
   step: number,
   numberOfChildren: number,
-  childrenNames: Array<string>,
   submitted: boolean,
-  motherAddress: {
-    name: string,
-    street_address: string,
-    locality: string,
-    region: StateAbbreviations,
-    postal_code: string
-  },
-  fatherAddress: {
-    name: string,
-    street_address: string,
-    locality: string,
-    region: string,
-    postal_code: string
-  },
-  caregiverAddress: {[AddressKeysType]: ?string},
-  parentalStatus: string,
-  parentalStatusReason: string,
   errors: FormInputErrors
-}
-
-const z: StateAbbreviations = 'ZZ'
+} & FormInputs
 
 const FieldHeader = props => <span {...props} />
 
