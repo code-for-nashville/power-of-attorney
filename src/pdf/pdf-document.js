@@ -1,3 +1,5 @@
+// @flow
+import type {FormInputs} from '../types'
 export const MOTHER_ADDRESS = 'motherAddress'
 export const FATHER_ADDRESS = 'fatherAddress'
 export const CAREGIVER_ADDRESS = 'caregiverAddress'
@@ -11,7 +13,7 @@ export const PARENTAL_STATUSES = [
   PARENTAL_STATUS_WITH_REASON
 ]
 
-let createDocDefinition = inputInfo => {
+let createDocDefinition = (inputInfo: FormInputs) => {
   const statuses = PARENTAL_STATUSES.reduce((m, s) => {
     return {
       ...m,

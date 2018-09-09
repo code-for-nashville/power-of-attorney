@@ -1,3 +1,4 @@
+// @flow
 import React from 'react'
 
 import {Anchor, Box, Layer, Paragraph} from 'grommet'
