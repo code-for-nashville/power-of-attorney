@@ -77,10 +77,6 @@ class PoAForm extends React.Component {
 
   validateAddress = address => {
     const isEmpty = value => value.length === 0
-    console.log(
-      !isEmpty(address.postal_code),
-      !Regex.postalCode.test(address.postal_code)
-    )
     return {
       // 5 digit postal codes only for now, though there is a valid 10 digit
       // format (e.g. 12345-4321).
