@@ -267,7 +267,7 @@ let createDocDefinition = (inputInfo: FormInputs) => {
                   [
                     `${inputInfo[MOTHER_ADDRESS].locality}, ${
                       inputInfo[MOTHER_ADDRESS].region
-                    }, ${inputInfo[MOTHER_ADDRESS].postal_code}`
+                    } ${inputInfo[MOTHER_ADDRESS].postal_code}`
                   ]
                 ]
               }
@@ -310,7 +310,7 @@ let createDocDefinition = (inputInfo: FormInputs) => {
                   [
                     `${inputInfo[FATHER_ADDRESS].locality}, ${
                       inputInfo[FATHER_ADDRESS].region
-                    }, ${inputInfo[FATHER_ADDRESS].postal_code}`
+                    } ${inputInfo[FATHER_ADDRESS].postal_code}`
                   ]
                 ]
               }
@@ -353,7 +353,7 @@ let createDocDefinition = (inputInfo: FormInputs) => {
                   [
                     `${inputInfo[CAREGIVER_ADDRESS].locality}, ${
                       inputInfo[CAREGIVER_ADDRESS].region
-                    }, ${inputInfo[CAREGIVER_ADDRESS].postal_code}`
+                    } ${inputInfo[CAREGIVER_ADDRESS].postal_code}`
                   ]
                 ]
               }
