@@ -49,7 +49,7 @@ const SPANISH: TranslateStringsType = {
   parentalstatus: 'Estado de Parientes',
   partI: 'Parte I:',
   submit: 'Someter',
-  Next: 'siguiente',
+  next: 'siguiente',
   formWithErrors: 'La forma tiene {{errorCount}} error(es)',
   faq: 'Preguntas Más Frequentes',
   whatIsPOA: '¿Que es un Poder Notarial?',
