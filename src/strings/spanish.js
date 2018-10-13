@@ -49,7 +49,7 @@ const SPANISH: TranslateStringsType = {
   parentalstatus: 'Estado de Parientes',
   partI: 'Parte I:',
   submit: 'Someter',
-  Next: 'siguiente',
+  next: 'siguiente',
   formWithErrors: 'La forma tiene {{errorCount}} error(es)',
   faq: 'Preguntas Más Frequentes',
   whatIsPOA: '¿Que es un Poder Notarial?',
@@ -73,6 +73,10 @@ const SPANISH: TranslateStringsType = {
   Home: 'Hogar',
   FAQ: 'FAQ',
   beforeStart: 'Antes de comenzar...',
+  legalInformationNotAdvice:
+    '',
+  doesNotTrackSaveRetain:
+    '',
   useOfThisForm:
     'El uso de esta froma es autorizado por T.C.A. § 34-6-301 et seq. Al completar esta forma, con las firmas apropiadas, es sufficiente para autorizar inscripción de un menor a una escuela y autorizar trato médico. Aunque, una escuela del distrito escolar pueda requerir documentación/información adicional puede mientras permitida por esta sección de la ley de Tennessee antes de inscribir a un menor en la escuela o cualquier actividad extracurricular.',
   thisFormIsToBeFilled:

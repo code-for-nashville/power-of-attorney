@@ -70,7 +70,7 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
         name: '',
         street_address: '',
         locality: '',
-        region: 'ZZ',
+        region: 'TN',
         postal_code: ''
       },
       fatherAddress: {
