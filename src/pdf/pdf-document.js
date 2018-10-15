@@ -422,9 +422,21 @@ let createDocDefinition = (inputInfo: FormInputs) => {
           columns: [
             {text: '', width: 45, margin: [20, 0, 5, 0]},
             {text: `(_${statusWithReason}_) `, width: 45, margin: [0, 0, 5, 0]},
-            {
-              text: `One parent has legal custody of the minor child, and has sent by Certified Mail, Return Receipt requested, to the other parent at last known address, a copy of this document and a notice of the provisions in § 34-6 - 305; or the non-custodial parent has not consented to the appointment and consent cannot be obtained because _${statusReason}_.\n\n`
-            }
+            [
+              {
+                text:
+                  'One parent has legal custody of the minor child, and has sent by Certified Mail, Return Receipt requested, to the other parent at last known address, a copy of this document and a notice of the provisions in § 34-6 - 305; or the non-custodial parent has not consented to the appointment and consent cannot be obtained because \n'
+              },
+              {
+                layout: 'underlineLayout',
+                table: {
+                  headerRows: 0,
+                  widths: ['*'],
+                  body: [[statusReason]]
+                }
+              },
+              {text: '.\n\n'}
+            ]
           ]
         },
         {text: '\n\n'},
