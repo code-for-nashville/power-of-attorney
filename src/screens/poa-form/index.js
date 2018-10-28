@@ -60,21 +60,21 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
         name: '',
         street_address: '',
         locality: '',
-        region: 'TN',
+        region: '',
         postal_code: ''
       },
       fatherAddress: {
         name: '',
         street_address: '',
         locality: '',
-        region: 'TN',
+        region: '',
         postal_code: ''
       },
       caregiverAddress: {
         name: '',
         street_address: '',
         locality: '',
-        region: 'TN',
+        region: '',
         postal_code: ''
       },
       parentalStatus: '',
@@ -109,14 +109,25 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
 
   validateAddress = address => {
     const isEmpty = value => (value && value.length === 0) || !value
-
-    return {
-      // 5 digit postal codes only for now, though there is a valid 10 digit
-      // format (e.g. 12345-4321).
-      postal_code:
-        !isEmpty(address.postal_code) &&
-        !Regex.postalCode.test(address.postal_code)
-    }
+    let areAllFieldsEmpty = true
+    const validatedAddress = Object.keys(address).reduce((result, field) => {
+      const isFieldEmpty = isEmpty(address[field])
+      if (areAllFieldsEmpty && !isFieldEmpty) areAllFieldsEmpty = false
+      return {
+        ...result,
+        [field]: isFieldEmpty
+      }
+    }, {})
+    // If all fields are empty, the address form is valid
+    return areAllFieldsEmpty === true
+      ? {}
+      : Object.assign(validatedAddress, {
+          // 5 digit postal codes only for now, though there is a valid 10 digit
+          // format (e.g. 12345-4321).
+          postal_code:
+            validatedAddress.postal_code ||
+            !Regex.postalCode.test(address.postal_code)
+        })
   }
 
   acceptModal = () => {
