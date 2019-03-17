@@ -60,21 +60,21 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
         name: '',
         street_address: '',
         locality: '',
-        region: '',
+        region: 'TN',
         postal_code: ''
       },
       fatherAddress: {
         name: '',
         street_address: '',
         locality: '',
-        region: '',
+        region: 'TN',
         postal_code: ''
       },
       caregiverAddress: {
         name: '',
         street_address: '',
         locality: '',
-        region: '',
+        region: 'TN',
         postal_code: ''
       },
       parentalStatus: '',
