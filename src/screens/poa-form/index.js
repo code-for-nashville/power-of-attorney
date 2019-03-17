@@ -181,15 +181,12 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
       of the fields failed validation.
   */
   stepErrors(): Object {
-    const {t} = this.props
     const validators = [
       {
         // Only non-empty child names are valid
         childrenNames: () =>
           this.state.childrenNames.filter(n => !!n).length !==
           this.state.numberOfChildren
-            ? t('pleaseAddChildName')
-            : ''
       },
       {
         motherAddress: () => this.validateAddress(this.state.motherAddress),
