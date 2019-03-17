@@ -37,7 +37,7 @@ export class AddressComponent extends Component<
   ) => {
     const addressType = e.target.dataset.addressType
     let value = e.option ? e.option.value : e.target.value
-    console.log({value, addressType})
+
     if (addressType === 'postal_code') {
       value = value.slice(0, 5)
     }
@@ -46,7 +46,7 @@ export class AddressComponent extends Component<
 
   render() {
     const {address, errors, name, t} = this.props
-    console.log({address})
+
     return (
       <Box margin={{vertical: 'medium'}}>
         <FormField

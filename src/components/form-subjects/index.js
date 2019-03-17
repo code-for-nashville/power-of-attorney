@@ -55,10 +55,13 @@ class FormSubjects extends Component<
   }
 
   render() {
-    const {t} = this.props
+    const {t, error} = this.props
     return (
       <Box>
-        <FormField label={t('numberOfChildren')}>
+        <FormField 
+          label={t('numberOfChildren')}
+          error={error ? t('pleaseAddChildName') : null}
+        >
           <NumberInput
             min={1}
             onChange={this.onNumberOfSubjectsChange}

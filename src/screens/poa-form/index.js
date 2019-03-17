@@ -177,8 +177,6 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
         childrenNames: () =>
           this.state.childrenNames.filter(n => !!n).length !==
           this.state.numberOfChildren
-            ? t('pleaseAddChildName')
-            : ''
       },
       {
         motherAddress: () => this.validateAddress(this.state.motherAddress),
