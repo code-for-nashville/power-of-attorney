@@ -58,7 +58,7 @@ class FormSubjects extends Component<
     const {t, error} = this.props
     return (
       <Box>
-        <FormField 
+        <FormField
           label={t('numberOfChildren')}
           error={error ? t('pleaseAddChildName') : null}
         >
