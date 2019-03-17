@@ -1,5 +1,4 @@
 const STATE_OPTIONS = [
-  {value: '', label: ''},
   {value: 'AL', label: 'Alabama'},
   {value: 'AK', label: 'Alaska'},
   {value: 'AZ', label: 'Arizona'},
