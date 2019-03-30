@@ -4,7 +4,7 @@ import {FormField, TextInput, RadioButton} from 'grommet'
 import {translate} from 'react-i18next'
 import FieldHeader from '../field-header'
 
-type ChoiceBoxPropType = {
+type RadioBoxPropType = {
   onChangeRadio: (data: string) => void,
   onChangeFreeAnswer: (data: string) => void,
   options: Array<string>,
@@ -15,7 +15,7 @@ type ChoiceBoxPropType = {
   t: string => string
 }
 
-type ChoiceBoxStateType = {}
+type RadioBoxStateType = {}
 
 const ParentRadioButton = props => (
   <RadioButton
@@ -26,8 +26,8 @@ const ParentRadioButton = props => (
   />
 )
 
-class ChoiceBox extends Component<ChoiceBoxPropType, ChoiceBoxStateType> {
-  constructor(props: ChoiceBoxPropType) {
+class RadioBox extends Component<RadioBoxPropType, RadioBoxStateType> {
+  constructor(props: RadioBoxPropType) {
     super(props)
     this.state = {}
   }
@@ -77,19 +77,17 @@ class ChoiceBox extends Component<ChoiceBoxPropType, ChoiceBoxStateType> {
           ))}
         </FormField>
         {this.renderFreeText()}
-        {
-          <a
-            href="https://law.justia.com/codes/tennessee/2017/title-34/chapter-6/part-3/section-34-6-305/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {' '}
-            {t('legalCustodySentLink')}{' '}
-          </a>
-        }
+        <a
+          href="https://law.justia.com/codes/tennessee/2017/title-34/chapter-6/part-3/section-34-6-305/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {' '}
+          {t('legalCustodySentLink')}{' '}
+        </a>
       </div>
     )
   }
 }
 
-export default translate()(ChoiceBox)
+export default translate()(RadioBox)

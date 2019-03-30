@@ -13,6 +13,8 @@ export const PARENTAL_STATUSES = [
   PARENTAL_STATUS_WITH_REASON
 ]
 
+const defaultSpace = (value: ?string) => value || '        '
+
 let createDocDefinition = (inputInfo: FormInputs) => {
   const statuses = PARENTAL_STATUSES.reduce((m, s) => {
     return {
@@ -325,8 +327,8 @@ let createDocDefinition = (inputInfo: FormInputs) => {
           margin: [20, 0, 0, 0],
           width: '50%',
           columns: [
-            {text: '4.', width: 45, margin: [0, 0, 5, 0]},
-            {text: 'Caregiver/Legal Guardian’s Name & Address:\n\n'}
+            {text: 'Successor Caregiver’s Full Name:\n\n', bold: true},
+            {text: '', width: 45, margin: [0, 0, 5, 0]}
           ]
         },
         {
@@ -336,27 +338,95 @@ let createDocDefinition = (inputInfo: FormInputs) => {
             widths: [200],
             body: [[inputInfo[CAREGIVER_ADDRESS].name]]
           }
-        },
-        {text: '\n\n'}
+        }
       ]
     },
     {
       columns: [
-        {text: '', width: '50%'},
+        {
+          margin: [20, 0, 0, 0],
+          width: '50%',
+          columns: [
+            {text: 'Relationship:\n\n', bold: true},
+            {text: '', width: 45, margin: [0, 0, 5, 0]}
+          ]
+        },
+        {
+          layout: 'underlineLayout',
+          table: {
+            headerRows: 0,
+            widths: [200],
+            body: [[inputInfo[CAREGIVER_ADDRESS].relationship]]
+          }
+        }
+      ]
+    },
+    {
+      columns: [
+        {
+          margin: [20, 0, 0, 0],
+          width: '50%',
+          columns: [
+            {text: 'Address:', bold: true},
+            {text: '', width: 45, margin: [0, 0, 5, 0]}
+          ]
+        },
         {
           layout: 'underlineLayout',
           table: {
             headerRows: 0,
             widths: [200],
             body: [
-              [inputInfo[CAREGIVER_ADDRESS].street_address],
+              [`${inputInfo[CAREGIVER_ADDRESS].street_address}`],
               [
-                `${inputInfo[CAREGIVER_ADDRESS].locality}, ${
+                `\n${inputInfo[CAREGIVER_ADDRESS].locality}, ${
                   inputInfo[CAREGIVER_ADDRESS].region
                 } ${inputInfo[CAREGIVER_ADDRESS].postal_code}`
               ]
             ]
           }
+        },
+        {text: '\n\n'}
+      ]
+    },
+    {
+      columns: [
+        {
+          margin: [20, 0, 0, 0],
+          width: '50%',
+          columns: [
+            {text: 'Phone Number:\n\n', bold: true},
+            {text: '', width: 45, margin: [0, 0, 5, 0]}
+          ]
+        },
+        {
+          layout: 'underlineLayout',
+          table: {
+            headerRows: 0,
+            widths: [200],
+            body: [[`\n${inputInfo[CAREGIVER_ADDRESS].phone_number}`]]
+          }
+        }
+      ]
+    },
+    {text: '\n\n'},
+    {
+      columns: [
+        {
+          text: `(${defaultSpace(inputInfo.consentInitials[0])}) `,
+          decoration: 'underline',
+          width: 45,
+          margin: [5, 0, 0, 0]
+        },
+        {
+          text: ` (${defaultSpace(inputInfo.consentInitials[1])})`,
+          decoration: 'underline',
+          width: 45,
+          margin: [5, 0, 0, 0]
+        },
+        {
+          text:
+            'I/We wish for the named persons above to serve jointly and severally as caregivers, working together and/or serving independently as caregiver(s) as needed and appropriate.  The successor caregiver instead may wait to serve only once the initial caregiver is no longer able or willing to serve as caregiver.'
         }
       ]
     },

@@ -1,4 +1,6 @@
 // @flow
+import type {TranslateStringsType} from './english'
+
 const SPANISH: TranslateStringsType = {
   forTennessee: 'Para Tennessee',
   immigrantParents: 'Padres Inmigrantes',
@@ -16,6 +18,9 @@ const SPANISH: TranslateStringsType = {
   streetAddress: 'Dirección',
   pleaseAddCity: 'Escojer una ciudad.',
   pleaseAddState: 'Escojer un estado.',
+  pleaseAddRelationship: 'Please add a caregiver relationship to children',
+  pleaseAddPhoneNumber: 'Please add a phone number to the caregiver',
+  pleaseAddInitials: 'Please add the initials of one parent to give consent',
   city: 'Ciudad',
   state: 'Estado',
   pleaseAddZip: 'Favor de ingresar su codigo postal.',
@@ -47,7 +52,6 @@ const SPANISH: TranslateStringsType = {
   guardianInformation: 'Información de el Guardian',
   caregiversInformation: 'Informacion de el Cuidador',
   parentalstatus: 'Estado de Parientes',
-  partI: 'Parte I:',
   submit: 'Someter',
   next: 'siguiente',
   formWithErrors: 'La forma tiene {{errorCount}} error(es)',
@@ -99,7 +103,12 @@ const SPANISH: TranslateStringsType = {
     'ID de prueba de Parientes y prueba de ID de el cuidador asignado sera requerido para notarizar el documento.  El documento debe ser firmado por todos los participantes frente a un notario o dos testigos.  Un documento notarizado es usualmente mas effectivo, y es altamente sugerido que notarize el documento mejor que simplemente buscar dos testigos.',
   whereSendDocuments: 'Donde necesito enviar los documentos?',
   whereSendDocumentsAnswer:
-    'Usted deberia proveer una copia de el Poder Notarial y el Certificado de Nacimiento de el menor al Cuidador.  Usted tambien podria proveer una copia de el Poder Notarial a ambos, la escuela y los doctores de el menor.'
+    'Usted deberia proveer una copia de el Poder Notarial y el Certificado de Nacimiento de el menor al Cuidador.  Usted tambien podria proveer una copia de el Poder Notarial a ambos, la escuela y los doctores de el menor.',
+  relationship: 'Relationship',
+  phoneNumber: 'Numéro de Téléphone',
+  initials: 'Initials',
+  serveJointlyAndSeveraly:
+    'I/We wish for the named persons above to serve jointly and severally as caregivers, working together and/or serving independently as caregiver(s) as needed and appropriate.  The successor caregiver instead may wait to serve only once the initial caregiver is no longer able or willing to serve as caregiver.'
 }
 
 export default SPANISH

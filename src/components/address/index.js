@@ -1,21 +1,14 @@
 //@flow
 
-import React, {Component} from 'react'
+import * as React from 'react'
 import {translate} from 'react-i18next'
 import {Box, FormField, TextInput} from 'grommet'
 
 import {STATE_OPTIONS} from '../../strings'
 
-type AddressKeysType =
-  | 'name'
-  | 'street_address'
-  | 'locality'
-  | 'region'
-  | 'postal_code'
-
 type AddressComponentPropType = {
   t: string => string,
-  onChange: (inputName: string, value: string) => void,
+  onChange: (inputName: string, value: string, name: string) => void,
   errors: {[AddressKeysType]: ?boolean},
   address: {[AddressKeysType]: ?boolean},
   name: string
@@ -23,7 +16,7 @@ type AddressComponentPropType = {
 
 type AddressComponentStateType = {}
 
-export class AddressComponent extends Component<
+export class AddressComponent extends React.Component<
   AddressComponentPropType,
   AddressComponentStateType
 > {
@@ -35,20 +28,21 @@ export class AddressComponent extends Component<
   updateAddress = (
     e: SyntheticInputEvent<HTMLInputElement> & {option: {value: string}}
   ) => {
+    const {name} = this.props
     const addressType = e.target.dataset.addressType
     let value = e.option ? e.option.value : e.target.value
 
     if (addressType === 'postal_code') {
       value = value.slice(0, 5)
     }
-    this.props.onChange(addressType, value)
+    this.props.onChange(addressType, value, name)
   }
 
   render() {
     const {address, errors, name, t} = this.props
 
     return (
-      <Box margin={{vertical: 'medium'}}>
+      <React.Fragment>
         <FormField
           label={t('name')}
           error={errors.name ? t('pleaseAddName') : null}
@@ -95,7 +89,9 @@ export class AddressComponent extends Component<
             data-address-type={'region'}
           >
             {STATE_OPTIONS.map(state => (
-              <option value={state.value}>{state.label}</option>
+              <option key={state.label} value={state.value}>
+                {state.label}
+              </option>
             ))}
           </select>
         </FormField>
@@ -111,7 +107,7 @@ export class AddressComponent extends Component<
             data-address-type={'postal_code'}
           />
         </FormField>
-      </Box>
+      </React.Fragment>
     )
   }
 }

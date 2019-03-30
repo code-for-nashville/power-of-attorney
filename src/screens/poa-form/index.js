@@ -1,7 +1,16 @@
 // @flow
 import React, {Component} from 'react'
 
-import {Box, Button, Form, Heading, Paragraph, Section} from 'grommet'
+import {
+  Box,
+  Button,
+  Form,
+  Heading,
+  Paragraph,
+  Section,
+  FormField,
+  TextInput
+} from 'grommet'
 
 import {
   Disclaimer,
@@ -9,7 +18,8 @@ import {
   FormSubjects,
   FieldHeader,
   Address,
-  ChoiceBox
+  RadioBox,
+  InitialsInput
 } from '../../components'
 import Stepper from 'react-stepper-horizontal'
 import {translate} from 'react-i18next'
@@ -17,13 +27,6 @@ import type {FormInputs} from '../../types'
 import Regex from '../../constants'
 import {PARENTAL_STATUSES} from '../../pdf/pdf-document.js'
 import './styles.css'
-
-type AddressKeysType =
-  | 'name'
-  | 'street_address'
-  | 'locality'
-  | 'region'
-  | 'postal_code'
 
 type PoAFormProps = {
   t: string => string
@@ -42,8 +45,9 @@ type PoAFormState = {
   step: number,
   numberOfChildren: number,
   submitted: boolean,
-  errors: FormInputErrors
-} & FormInputs
+  errors: FormInputErrors,
+  ...FormInputs
+}
 
 class PoAForm extends Component<PoAFormProps, PoAFormState> {
   static navigationOptions = ({navigation}) => ({})
@@ -52,16 +56,16 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
     super(props)
     this.state = {
       acceptedModal: false,
-      step: 0,
-      numberOfChildren: 1,
-      childrenNames: [],
+      step: 2,
+      numberOfChildren: 2,
+      childrenNames: ['asdf', 'asdf'],
       submitted: false,
       motherAddress: {
-        name: '',
-        street_address: '',
-        locality: '',
+        name: 'asdf',
+        street_address: 'asdf',
+        locality: 'asdf',
         region: 'TN',
-        postal_code: ''
+        postal_code: '88888'
       },
       fatherAddress: {
         name: '',
@@ -77,6 +81,9 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
         region: 'TN',
         postal_code: ''
       },
+      caregiverPhoneNumber: '',
+      caregiverRelationship: '',
+      consentInitials: [],
       parentalStatus: '',
       parentalStatusReason: '',
       errors: {
@@ -90,6 +97,9 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
         caregiverAddress: {
           name: null
         },
+        caregiverPhoneNumber: null,
+        caregiverRelationship: null,
+        consentInitials: null,
         parentalStatus: null,
         parentalStatusReason: null
       }
@@ -115,6 +125,7 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
       if (areAllFieldsEmpty && !isFieldEmpty) areAllFieldsEmpty = false
       return {
         ...result,
+        postal_code: false,
         [field]: isFieldEmpty
       }
     }, {})
@@ -124,9 +135,7 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
       : Object.assign(validatedAddress, {
           // 5 digit postal codes only for now, though there is a valid 10 digit
           // format (e.g. 12345-4321).
-          postal_code:
-            validatedAddress.postal_code ||
-            !Regex.postalCode.test(address.postal_code)
+          postal_code: !Regex.postalCode.test(address.postal_code)
         })
   }
 
@@ -181,34 +190,48 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
       of the fields failed validation.
   */
   stepErrors(): Object {
+    const {
+      childrenNames,
+      motherAddress,
+      numberOfChildren,
+      fatherAddress,
+      parentalStatus,
+      parentalStatusReason,
+      caregiverPhoneNumber,
+      caregiverRelationship,
+      consentInitials
+    } = this.state
     const validators = [
       {
         // Only non-empty child names are valid
         childrenNames: () =>
-          this.state.childrenNames.filter(n => !!n).length !==
-          this.state.numberOfChildren
+          childrenNames.filter(n => !!n).length !== numberOfChildren
       },
       {
-        motherAddress: () => this.validateAddress(this.state.motherAddress),
-        fatherAddress: () => this.validateAddress(this.state.fatherAddress)
+        motherAddress: () => this.validateAddress(motherAddress),
+        fatherAddress: () => this.validateAddress(fatherAddress)
       },
       {
         caregiverAddress: () =>
-          this.validateAddress(this.state.caregiverAddress)
+          this.validateAddress(this.state.caregiverAddress),
+        caregiverPhoneNumber: () =>
+          !Regex.postalCode.test(caregiverPhoneNumber),
+        caregiverRelationship: () => !!!caregiverRelationship,
+        consentInitials: () => consentInitials.filter(i => i).length === 0
       },
       {
         parentalStatus: () => this.state.parentalStatus.length === 1,
         parentalStatusReason: () =>
-          this.state.parentalStatus === '5'
-            ? this.state.parentalStatusReason.length === 0
-            : false
+          parentalStatus === '5' ? parentalStatusReason.length === 0 : false
       }
     ][this.state.step]
 
     const errors = {}
 
     for (let [key, validator] of Object.entries(validators)) {
-      if (typeof validator === 'function') errors[key] = validator()
+      if (typeof validator === 'function') {
+        errors[key] = validator()
+      }
     }
 
     return errors
@@ -218,21 +241,60 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
     return this.state.step === 3
   }
 
+  addressOnChange = (inputName, value, name) => {
+    this.setState(prevState => ({
+      [name]: {
+        ...prevState[name],
+        [inputName]: value
+      }
+    }))
+  }
+
+  steps = () => {
+    const {t} = this.props
+    return [
+      {
+        title: t('childInformation'),
+        onClick: () => {
+          this.setState(() => ({step: 0}))
+        },
+        component: this.renderStepOne()
+      },
+      {
+        title: t('guardianInformation'),
+        onClick: () => {
+          this.setState(() => ({step: 1}))
+        },
+        component: this.renderStepTwo()
+      },
+      {
+        title: t('caregiversInformation'),
+        onClick: () => {
+          this.setState(() => ({step: 2}))
+        },
+        component: this.renderCaregiverStep()
+      },
+      {
+        title: t('parentalstatus'),
+        onClick: () => {
+          this.setState(() => ({step: 3}))
+        },
+        component: this.renderStepFour()
+      }
+    ]
+  }
+
+  onChangeInitialsInput = (initial: {[string]: [?string, ?string]}) => {
+    this.setState(initial)
+  }
+
   renderAddress = name => {
     const errors = this.state.errors[name] || {}
-
     return (
       <Address
         errors={errors}
         address={this.state[name]}
-        onChange={(inputName, value) =>
-          this.setState(prevState => ({
-            [name]: {
-              ...prevState[name],
-              [inputName]: value
-            }
-          }))
-        }
+        onChange={this.addressOnChange}
         name={name}
       />
     )
@@ -263,19 +325,70 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
     return (
       <div>
         <FieldHeader>{t('motherName')}</FieldHeader>
-        {this.renderAddress('motherAddress')}
+        <Box margin={{vertical: 'medium'}}>
+          {this.renderAddress('motherAddress')}
+        </Box>
         <FieldHeader>{t('fatherName')}</FieldHeader>
-        {this.renderAddress('fatherAddress')}
+        <Box margin={{vertical: 'medium'}}>
+          {this.renderAddress('fatherAddress')}
+        </Box>
       </div>
     )
   }
 
-  renderStepThree() {
+  renderCaregiverStep() {
     const {t} = this.props
+    const {
+      consentInitials,
+      errors: stateErrors,
+      caregiverRelationship,
+      caregiverPhoneNumber
+    } = this.state
+    const errors = stateErrors['caregiverAddress'] || {}
+    const {
+      caregiverPhoneNumber: phoneNumberError,
+      caregiverRelationship: relationshipError,
+      consentInitials: initialsError
+    } = stateErrors
+    const onChange = e => {
+      const {name, value} = e.target
+      this.addressOnChange(name, value, 'caregiverAddress')
+    }
     return (
       <div>
         <FieldHeader>{t('caregiverName')}</FieldHeader>
-        {this.renderAddress('caregiverAddress')}
+        <Box margin={{vertical: 'medium'}}>
+          {this.renderAddress('caregiverAddress')}
+          <FormField
+            label={t('relationship')}
+            error={relationshipError ? t('pleaseAddRelationship') : null}
+          >
+            <TextInput
+              onDOMChange={onChange}
+              className="input-class"
+              value={caregiverRelationship}
+              name={'caregiverRelationship'}
+            />
+          </FormField>
+          <FormField
+            label={t('phoneNumber')}
+            error={phoneNumberError ? t('pleaseAddPhoneNumber') : null}
+          >
+            <TextInput
+              onDOMChange={onChange}
+              className="input-class"
+              value={caregiverPhoneNumber}
+              name={caregiverPhoneNumber}
+            />
+          </FormField>
+        </Box>
+        <InitialsInput
+          error={initialsError ? t('pleaseAddInitials') : null}
+          onChange={this.onChangeInitialsInput}
+          name="consentInitials"
+          text={'serveJointlyAndSeveraly'}
+          initials={consentInitials}
+        />
       </div>
     )
   }
@@ -291,7 +404,7 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
     }
 
     return (
-      <ChoiceBox
+      <RadioBox
         choice={this.state.parentalStatus}
         onChangeRadio={parentalStatus => this.setState({parentalStatus})}
         onChangeFreeAnswer={parentalStatusReason =>
@@ -307,18 +420,9 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
   }
 
   renderForm() {
-    switch (this.state.step) {
-      case 0:
-        return this.renderStepOne()
-      case 1:
-        return this.renderStepTwo()
-      case 2:
-        return this.renderStepThree()
-      case 3:
-        return this.renderStepFour()
-      default:
-        return this.renderStepOne()
-    }
+    const {step} = this.state
+    const steps = this.steps()
+    return steps[step].component
   }
 
   renderDownloadButtons() {
@@ -341,32 +445,7 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
         <div>
           <div className="stepper">
             <Stepper
-              steps={[
-                {
-                  title: t('childInformation'),
-                  onClick: () => {
-                    this.setState(state => ({step: 0}))
-                  }
-                },
-                {
-                  title: t('guardianInformation'),
-                  onClick: () => {
-                    this.setState(state => ({step: 1}))
-                  }
-                },
-                {
-                  title: t('caregiversInformation'),
-                  onClick: () => {
-                    this.setState(state => ({step: 2}))
-                  }
-                },
-                {
-                  title: t('parentalstatus'),
-                  onClick: () => {
-                    this.setState(state => ({step: 3}))
-                  }
-                }
-              ]}
+              steps={this.steps()}
               activeColor="#679ba1"
               completeColor="#679ba1"
               activeBorderColor="#679ba1"
@@ -376,7 +455,6 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
         </div>
 
         <Paragraph className="align-center">
-          <strong>{t('partI')}</strong>
           {t('thisFormIsToBeFilled')}
         </Paragraph>
         <Box direction="row" justify="between">

@@ -4,7 +4,8 @@ import Header from './header'
 import FormSubjects from './form-subjects'
 import Address from './address'
 import FieldHeader from './field-header'
-import ChoiceBox from './choice-box'
+import RadioBox from './radio-box'
+import InitialsInput from './initials-input'
 
 export {
   AsyncDownloadPDF,
@@ -13,5 +14,6 @@ export {
   FormSubjects,
   Address,
   FieldHeader,
-  ChoiceBox
+  RadioBox,
+  InitialsInput
 }

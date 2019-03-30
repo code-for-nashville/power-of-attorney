@@ -1,5 +1,5 @@
 // @flow
-const ENGLISH: TranslateStringsType = {
+const ENGLISH = {
   forTennessee: 'For Tennessee',
   immigrantParents: 'Immigrant Parents',
   ensureCare:
@@ -16,6 +16,9 @@ const ENGLISH: TranslateStringsType = {
   streetAddress: 'Street Address',
   pleaseAddCity: 'Please add a city.',
   pleaseAddState: 'Please add at state.',
+  pleaseAddRelationship: 'Please add a caregiver relationship to children',
+  pleaseAddPhoneNumber: 'Please add a phone number to the caregiver',
+  pleaseAddInitials: 'Please add the initials of one parent to give consent',
   city: 'City',
   state: 'State',
   pleaseAddZip: 'Please enter a 5 digit zip code.',
@@ -46,9 +49,8 @@ const ENGLISH: TranslateStringsType = {
   guardianInformation: 'Guardian Information',
   caregiversInformation: 'Caregiver’s Information',
   parentalstatus: 'Parental Status',
-  partI: 'Part I:',
   submit: 'Submit',
-  Next: 'next',
+  next: 'next',
   formWithErrors: 'The form has {{errorCount}} error(s)',
   faq: 'Frequently Asked Questions',
   whatIsPOA: 'What is a Power of Attorney?',
@@ -96,7 +98,14 @@ const ENGLISH: TranslateStringsType = {
   unknownError:
     'An unknown error that occured - please refresh the page and try again.',
   cuteBabyBoy: 'Cute baby boy looking up.',
-  back: 'Back'
+  back: 'Back',
+  relationship: 'Relationship',
+  phoneNumber: 'Phone Number',
+  initials: 'Parent Initials',
+  serveJointlyAndSeveraly:
+    'I/We wish for the named persons above to serve jointly and severally as caregivers, working together and/or serving independently as caregiver(s) as needed and appropriate.  The successor caregiver instead may wait to serve only once the initial caregiver is no longer able or willing to serve as caregiver.'
 }
+
+export type TranslateStringsType = typeof ENGLISH
 
 export default ENGLISH

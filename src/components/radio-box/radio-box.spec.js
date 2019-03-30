@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {mount} from 'enzyme'
-import ChoiceBox from './'
+import RadioBox from '.'
 
 it('renders without crashing', () => {
   const div = document.createElement('div')
   ReactDOM.render(
-    <ChoiceBox
+    <RadioBox
       error={null}
       onChangeRadio={jest.fn()}
       onChangeFreeAnswer={jest.fn()}
@@ -22,7 +22,7 @@ it('renders without crashing', () => {
 
 it('does not render free input', () => {
   const component = mount(
-    <ChoiceBox
+    <RadioBox
       error={null}
       onChangeRadio={jest.fn()}
       onChangeFreeAnswer={jest.fn()}
@@ -40,7 +40,7 @@ it('does not render free input', () => {
 
 it('renders free input', () => {
   const component = mount(
-    <ChoiceBox
+    <RadioBox
       error={null}
       onChangeRadio={jest.fn()}
       onChangeFreeAnswer={jest.fn()}
