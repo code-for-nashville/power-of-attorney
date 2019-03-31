@@ -11,12 +11,11 @@ export const SUCCESSOR_CAREGIVER_ADDRESS = `${SUCCESSOR_CAREGIVER}Address`
 export const SUCCESSOR_CAREGIVER_PHONE_NUMBER = `${SUCCESSOR_CAREGIVER}PhoneNumber`
 export const SUCCESSOR_CAREGIVER_RELATIONSHIP = `${SUCCESSOR_CAREGIVER}Relationship`
 
-export const PARENTAL_STATUS_WITH_REASON = 'legalCustodyNoConsent'
+export const PARENTAL_STATUS_WITH_REASON = 'legalCustodySent'
 export const PARENTAL_STATUSES = [
   'bothParents',
   'parentDeceased',
   'legalCustodySigned',
-  'legalCustodySent',
   PARENTAL_STATUS_WITH_REASON
 ]
 
@@ -38,6 +37,22 @@ let createDocDefinition = (inputInfo: FormInputs) => {
       ? inputInfo.parentalStatusReason
       : '____________________________'
   const childTableBody = inputInfo.childrenNames.map(child => [`\n${child}`])
+
+  const statusReasonObj =
+    statusReason.length > 0
+      ? {
+          width: '*',
+          text: statusReason,
+          decoration: 'underline'
+        }
+      : {
+          layout: 'underlineLayout',
+          table: {
+            headerRows: 0,
+            widths: ['*'],
+            body: [[defaultSpace(statusReason)]]
+          }
+        }
   const form = [
     {
       text: 'Instructions for Completing Power of Attorney Form\n\n',
@@ -591,17 +606,10 @@ let createDocDefinition = (inputInfo: FormInputs) => {
         [
           {
             text:
-              'One parent has legal custody of the minor child, and has sent by Certified Mail, Return Receipt requested, to the other parent at last known address, a copy of this document and a notice of the provisions in § 34-6 - 305; or the non-custodial parent has not consented to the appointment and consent cannot be obtained because \n'
+              'One parent has legal custody of the minor child, and has sent by Certified Mail, Return Receipt requested, to the other parent at last known address, a copy of this document and a notice of the provisions in § 34-6 - 305; or the non-custodial parent has not consented to the appointment and consent cannot be obtained because \n\n'
           },
-          {
-            layout: 'underlineLayout',
-            table: {
-              headerRows: 0,
-              widths: ['*'],
-              body: [[statusReason]]
-            }
-          },
-          {text: '.\n\n'}
+          statusReasonObj,
+          {text: '\n\n'}
         ]
       ]
     },
