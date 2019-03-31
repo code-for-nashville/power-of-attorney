@@ -15,13 +15,14 @@ import './style.css'
 
   This component accesses the layerRef to use the _removeLayer property function and manage its own visiblity.
 */
-class Disclaimer extends React.Component {
+class Disclaimer extends React.Component<*,*> {
+  layerRef: Layer
+
   setLayerRef = (layerRef: Layer) => {
     this.layerRef = layerRef
   }
 
   onClick = () => {
-    this.setState({hide: 'hide'})
     if (this.layerRef) {
       this.layerRef._removeLayer()
     }
