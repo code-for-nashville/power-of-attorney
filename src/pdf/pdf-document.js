@@ -32,10 +32,7 @@ let createDocDefinition = (inputInfo: FormInputs) => {
     inputInfo.parentalStatus === PARENTAL_STATUS_WITH_REASON
       ? 'X'
       : statuses.legalCustodySent
-  const statusReason =
-    inputInfo.parentalStatus === PARENTAL_STATUS_WITH_REASON
-      ? inputInfo.parentalStatusReason
-      : '____________________________'
+  const statusReason = inputInfo.parentalStatusReason
   const childTableBody = inputInfo.childrenNames.map(child => [`\n${child}`])
 
   const statusReasonObj =
