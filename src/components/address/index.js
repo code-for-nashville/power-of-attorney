@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import {translate} from 'react-i18next'
-import {Box, FormField, TextInput} from 'grommet'
+import {FormField, TextInput} from 'grommet'
 
 import {STATE_OPTIONS} from '../../strings'
 

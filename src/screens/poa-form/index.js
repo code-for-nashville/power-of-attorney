@@ -383,10 +383,6 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
       phoneNumberError,
       caregiverPhoneNumber
     } = state
-    const onChange = e => {
-      const {name, value} = e.target
-      this.addressOnChange(name, value, `${key}Address`)
-    }
     return (
       <React.Fragment>
         <FieldHeader>{t(`${key}Name`)}</FieldHeader>
@@ -436,10 +432,6 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
       successorCaregiverRelationship: successorRelationshipError,
       consentInitials: initialsError
     } = stateErrors
-    const onChange = e => {
-      const {name, value} = e.target
-      this.addressOnChange(name, value, 'caregiverAddress')
-    }
     return (
       <div>
         {this.renderCaregiverInfo(INITIAL_CAREGIVER, {
