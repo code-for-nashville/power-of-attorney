@@ -41,7 +41,6 @@ type FormInputErrors = {
   caregiverAddress: {[AddressKeysType]: ?boolean}
 }
 type PoAFormState = {
-  acceptedModal: boolean,
   step: number,
   numberOfChildren: number,
   submitted: boolean,
@@ -55,7 +54,6 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
   constructor(props) {
     super(props)
     this.state = {
-      acceptedModal: false,
       step: 2,
       numberOfChildren: 2,
       childrenNames: ['asdf', 'asdf'],
@@ -137,10 +135,6 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
           // format (e.g. 12345-4321).
           postal_code: !Regex.postalCode.test(address.postal_code)
         })
-  }
-
-  acceptModal = () => {
-    this.setState({acceptedModal: true})
   }
 
   submit = () => {
@@ -433,14 +427,10 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
   }
 
   render() {
-    // Hide the disclaimer if `acceptedModal` is true
-    const disclaimer = !this.state.acceptedModal ? (
-      <Disclaimer onClose={this.acceptModal} />
-    ) : null
     const {t} = this.props
     return (
       <Section>
-        {disclaimer}
+        <Disclaimer />
         <Heading tag="h1">{t('powerOfAttorney')}</Heading>
         <div>
           <div className="stepper">
