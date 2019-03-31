@@ -306,6 +306,27 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
           this.setState(() => ({step: 3}))
         },
         component: this.renderStepFour()
+      },
+      {
+        title: t('temporaryAuthority'),
+        onClick: () => {
+          this.setState(() => ({step: 4}))
+        },
+        component: this.renderStepFive()
+      },
+      {
+        title: t('notProvideCustody'),
+        onClick: () => {
+          this.setState(() => ({step: 5}))
+        },
+        component: this.renderStepSix()
+      },
+      {
+        title: t('mayBeTerminated'),
+        onClick: () => {
+          this.setState(() => ({step: 6}))
+        },
+        component: this.renderStepSeven()
       }
     ]
   }
@@ -482,6 +503,12 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
       />
     )
   }
+
+  renderStepFive = () => {}
+
+  renderStepSix = () => {}
+
+  renderStepSeven = () => {}
 
   renderForm() {
     const {step} = this.state
