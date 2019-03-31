@@ -2,7 +2,14 @@
 import type {FormInputs} from '../types'
 export const MOTHER_ADDRESS = 'motherAddress'
 export const FATHER_ADDRESS = 'fatherAddress'
-export const CAREGIVER_ADDRESS = 'caregiverAddress'
+export const INITIAL_CAREGIVER = 'initialCaregiver'
+export const INITIAL_CAREGIVER_ADDRESS = `${INITIAL_CAREGIVER}Address`
+export const INITIAL_CAREGIVER_PHONE_NUMBER = `${INITIAL_CAREGIVER}PhoneNumber`
+export const INITIAL_CAREGIVER_RELATIONSHIP = `${INITIAL_CAREGIVER}Relationship`
+export const SUCCESSOR_CAREGIVER = 'successorCaregiver'
+export const SUCCESSOR_CAREGIVER_ADDRESS = `${SUCCESSOR_CAREGIVER}Address`
+export const SUCCESSOR_CAREGIVER_PHONE_NUMBER = `${SUCCESSOR_CAREGIVER}PhoneNumber`
+export const SUCCESSOR_CAREGIVER_RELATIONSHIP = `${SUCCESSOR_CAREGIVER}Relationship`
 
 export const PARENTAL_STATUS_WITH_REASON = 'legalCustodyNoConsent'
 export const PARENTAL_STATUSES = [
@@ -327,7 +334,7 @@ let createDocDefinition = (inputInfo: FormInputs) => {
           margin: [20, 0, 0, 0],
           width: '50%',
           columns: [
-            {text: 'Successor Caregiver’s Full Name:\n\n', bold: true},
+            {text: 'Initial Caregiver’s Full Name:\n\n', bold: true},
             {text: '', width: 45, margin: [0, 0, 5, 0]}
           ]
         },
@@ -336,7 +343,7 @@ let createDocDefinition = (inputInfo: FormInputs) => {
           table: {
             headerRows: 0,
             widths: [200],
-            body: [[inputInfo[CAREGIVER_ADDRESS].name]]
+            body: [[inputInfo[INITIAL_CAREGIVER_ADDRESS].name]]
           }
         }
       ]
@@ -356,7 +363,7 @@ let createDocDefinition = (inputInfo: FormInputs) => {
           table: {
             headerRows: 0,
             widths: [200],
-            body: [[inputInfo[CAREGIVER_ADDRESS].relationship]]
+            body: [[inputInfo[INITIAL_CAREGIVER_RELATIONSHIP]]]
           }
         }
       ]
@@ -377,11 +384,11 @@ let createDocDefinition = (inputInfo: FormInputs) => {
             headerRows: 0,
             widths: [200],
             body: [
-              [`${inputInfo[CAREGIVER_ADDRESS].street_address}`],
+              [`${inputInfo[INITIAL_CAREGIVER_ADDRESS].street_address}`],
               [
-                `\n${inputInfo[CAREGIVER_ADDRESS].locality}, ${
-                  inputInfo[CAREGIVER_ADDRESS].region
-                } ${inputInfo[CAREGIVER_ADDRESS].postal_code}`
+                `\n${inputInfo[INITIAL_CAREGIVER_ADDRESS].locality}, ${
+                  inputInfo[INITIAL_CAREGIVER_ADDRESS].region
+                } ${inputInfo[INITIAL_CAREGIVER_ADDRESS].postal_code}`
               ]
             ]
           }
@@ -404,7 +411,96 @@ let createDocDefinition = (inputInfo: FormInputs) => {
           table: {
             headerRows: 0,
             widths: [200],
-            body: [[`\n${inputInfo[CAREGIVER_ADDRESS].phone_number}`]]
+            body: [[`\n${inputInfo[INITIAL_CAREGIVER_PHONE_NUMBER]}`]]
+          }
+        }
+      ]
+    },
+    {text: '\n\n'},
+    {
+      columns: [
+        {
+          margin: [20, 0, 0, 0],
+          width: '50%',
+          columns: [
+            {text: 'Successor Caregiver’s Full Name:\n\n', bold: true},
+            {text: '', width: 45, margin: [0, 0, 5, 0]}
+          ]
+        },
+        {
+          layout: 'underlineLayout',
+          table: {
+            headerRows: 0,
+            widths: [200],
+            body: [[inputInfo[SUCCESSOR_CAREGIVER_ADDRESS].name]]
+          }
+        }
+      ]
+    },
+    {
+      columns: [
+        {
+          margin: [20, 0, 0, 0],
+          width: '50%',
+          columns: [
+            {text: 'Relationship:\n\n', bold: true},
+            {text: '', width: 45, margin: [0, 0, 5, 0]}
+          ]
+        },
+        {
+          layout: 'underlineLayout',
+          table: {
+            headerRows: 0,
+            widths: [200],
+            body: [[inputInfo[SUCCESSOR_CAREGIVER_RELATIONSHIP]]]
+          }
+        }
+      ]
+    },
+    {
+      columns: [
+        {
+          margin: [20, 0, 0, 0],
+          width: '50%',
+          columns: [
+            {text: 'Address:', bold: true},
+            {text: '', width: 45, margin: [0, 0, 5, 0]}
+          ]
+        },
+        {
+          layout: 'underlineLayout',
+          table: {
+            headerRows: 0,
+            widths: [200],
+            body: [
+              [`${inputInfo[SUCCESSOR_CAREGIVER_ADDRESS].street_address}`],
+              [
+                `\n${inputInfo[SUCCESSOR_CAREGIVER_ADDRESS].locality}, ${
+                  inputInfo[SUCCESSOR_CAREGIVER_ADDRESS].region
+                } ${inputInfo[SUCCESSOR_CAREGIVER_ADDRESS].postal_code}`
+              ]
+            ]
+          }
+        },
+        {text: '\n\n'}
+      ]
+    },
+    {
+      columns: [
+        {
+          margin: [20, 0, 0, 0],
+          width: '50%',
+          columns: [
+            {text: 'Phone Number:\n\n', bold: true},
+            {text: '', width: 45, margin: [0, 0, 5, 0]}
+          ]
+        },
+        {
+          layout: 'underlineLayout',
+          table: {
+            headerRows: 0,
+            widths: [200],
+            body: [[`\n${inputInfo[SUCCESSOR_CAREGIVER_PHONE_NUMBER]}`]]
           }
         }
       ]

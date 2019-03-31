@@ -25,7 +25,17 @@ import Stepper from 'react-stepper-horizontal'
 import {translate} from 'react-i18next'
 import type {FormInputs} from '../../types'
 import Regex from '../../constants'
-import {PARENTAL_STATUSES} from '../../pdf/pdf-document.js'
+import {
+  PARENTAL_STATUSES,
+  INITIAL_CAREGIVER,
+  INITIAL_CAREGIVER_ADDRESS,
+  INITIAL_CAREGIVER_PHONE_NUMBER,
+  INITIAL_CAREGIVER_RELATIONSHIP,
+  SUCCESSOR_CAREGIVER,
+  SUCCESSOR_CAREGIVER_ADDRESS,
+  SUCCESSOR_CAREGIVER_PHONE_NUMBER,
+  SUCCESSOR_CAREGIVER_RELATIONSHIP
+} from '../../pdf/pdf-document.js'
 import './styles.css'
 
 type PoAFormProps = {
@@ -47,41 +57,49 @@ type PoAFormState = {
   errors: FormInputErrors,
   ...FormInputs
 }
-
 class PoAForm extends Component<PoAFormProps, PoAFormState> {
   static navigationOptions = ({navigation}) => ({})
 
   constructor(props) {
     super(props)
     this.state = {
-      step: 2,
-      numberOfChildren: 2,
-      childrenNames: ['asdf', 'asdf'],
+      step: 0,
+      numberOfChildren: 1,
+      childrenNames: ['', ''],
       submitted: false,
       motherAddress: {
-        name: 'asdf',
-        street_address: 'asdf',
-        locality: 'asdf',
-        region: 'TN',
-        postal_code: '88888'
+        name: '',
+        street_address: '',
+        locality: '',
+        region: '',
+        postal_code: ''
       },
       fatherAddress: {
         name: '',
         street_address: '',
         locality: '',
-        region: 'TN',
+        region: '',
         postal_code: ''
       },
-      caregiverAddress: {
+      [INITIAL_CAREGIVER_ADDRESS]: {
         name: '',
         street_address: '',
         locality: '',
-        region: 'TN',
+        region: '',
         postal_code: ''
       },
-      caregiverPhoneNumber: '',
-      caregiverRelationship: '',
-      consentInitials: [],
+      [INITIAL_CAREGIVER_RELATIONSHIP]: '',
+      [INITIAL_CAREGIVER_PHONE_NUMBER]: '',
+      [SUCCESSOR_CAREGIVER_ADDRESS]: {
+        name: '',
+        street_address: '',
+        locality: '',
+        region: '',
+        postal_code: ''
+      },
+      [SUCCESSOR_CAREGIVER_RELATIONSHIP]: '',
+      [SUCCESSOR_CAREGIVER_PHONE_NUMBER]: '',
+      consentInitials: ['', ''],
       parentalStatus: '',
       parentalStatusReason: '',
       errors: {
@@ -92,11 +110,16 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
         fatherAddress: {
           name: null
         },
-        caregiverAddress: {
+        [INITIAL_CAREGIVER_ADDRESS]: {
           name: null
         },
-        caregiverPhoneNumber: null,
-        caregiverRelationship: null,
+        [INITIAL_CAREGIVER_RELATIONSHIP]: null,
+        [INITIAL_CAREGIVER_PHONE_NUMBER]: null,
+        [SUCCESSOR_CAREGIVER_ADDRESS]: {
+          name: null
+        },
+        [SUCCESSOR_CAREGIVER_RELATIONSHIP]: null,
+        [SUCCESSOR_CAREGIVER_PHONE_NUMBER]: null,
         consentInitials: null,
         parentalStatus: null,
         parentalStatusReason: null
@@ -191,8 +214,12 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
       fatherAddress,
       parentalStatus,
       parentalStatusReason,
-      caregiverPhoneNumber,
-      caregiverRelationship,
+      initialCaregiverPhoneNumber,
+      initialCaregiverRelationship,
+      initialCaregiverAddress,
+      successorCaregiverAddress,
+      successorCaregiverPhoneNumber,
+      successorCaregiverRelationship,
       consentInitials
     } = this.state
     const validators = [
@@ -206,11 +233,16 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
         fatherAddress: () => this.validateAddress(fatherAddress)
       },
       {
-        caregiverAddress: () =>
-          this.validateAddress(this.state.caregiverAddress),
-        caregiverPhoneNumber: () =>
-          !Regex.postalCode.test(caregiverPhoneNumber),
-        caregiverRelationship: () => !!!caregiverRelationship,
+        initialCaregiverAddress: () =>
+          this.validateAddress(initialCaregiverAddress),
+        initialCaregiverPhoneNumber: () =>
+          !Regex.phoneNumber.test(initialCaregiverPhoneNumber),
+        initialCaregiverRelationship: () => !!!initialCaregiverRelationship,
+        successorCaregiverAddress: () =>
+          this.validateAddress(successorCaregiverAddress),
+        successorCaregiverPhoneNumber: () =>
+          !Regex.phoneNumber.test(successorCaregiverPhoneNumber),
+        successorCaregiverRelationship: () => !!!successorCaregiverRelationship,
         consentInitials: () => consentInitials.filter(i => i).length === 0
       },
       {
@@ -282,6 +314,11 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
     this.setState(initial)
   }
 
+  eventDefaultSetState = e => {
+    const {value, name} = e.target
+    this.setState({[name]: value})
+  }
+
   renderAddress = name => {
     const errors = this.state.errors[name] || {}
     return (
@@ -330,18 +367,73 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
     )
   }
 
+  renderCaregiverInfo = (
+    key: string,
+    state: {
+      relationshipError: boolean,
+      caregiverRelationship: string,
+      phoneNumberError: boolean,
+      caregiverPhoneNumber: string
+    }
+  ) => {
+    const {t} = this.props
+    const {
+      relationshipError,
+      caregiverRelationship,
+      phoneNumberError,
+      caregiverPhoneNumber
+    } = state
+    const onChange = e => {
+      const {name, value} = e.target
+      this.addressOnChange(name, value, `${key}Address`)
+    }
+    return (
+      <React.Fragment>
+        <FieldHeader>{t(`${key}Name`)}</FieldHeader>
+        <Box margin={{vertical: 'medium'}}>
+          {this.renderAddress(`${key}Address`)}
+          <FormField
+            label={t('relationship')}
+            error={relationshipError ? t('pleaseAddRelationship') : null}
+          >
+            <TextInput
+              onDOMChange={this.eventDefaultSetState}
+              className="input-class"
+              value={caregiverRelationship}
+              name={`${key}Relationship`}
+            />
+          </FormField>
+          <FormField
+            label={t('phoneNumber')}
+            error={phoneNumberError ? t('pleaseAddPhoneNumber') : null}
+          >
+            <TextInput
+              onDOMChange={this.eventDefaultSetState}
+              className="input-class"
+              value={caregiverPhoneNumber}
+              name={`${key}PhoneNumber`}
+            />
+          </FormField>
+        </Box>
+      </React.Fragment>
+    )
+  }
+
   renderCaregiverStep() {
     const {t} = this.props
     const {
-      consentInitials,
+      successorCaregiverRelationship,
+      successorCaregiverPhoneNumber,
       errors: stateErrors,
-      caregiverRelationship,
-      caregiverPhoneNumber
+      consentInitials,
+      initialCaregiverRelationship,
+      initialCaregiverPhoneNumber
     } = this.state
-    const errors = stateErrors['caregiverAddress'] || {}
     const {
-      caregiverPhoneNumber: phoneNumberError,
-      caregiverRelationship: relationshipError,
+      initialCaregiverPhoneNumber: initialPhoneNumberError,
+      initialCaregiverRelationship: initialRelationshipError,
+      successorCaregiverPhoneNumber: successorPhoneNumberError,
+      successorCaregiverRelationship: successorRelationshipError,
       consentInitials: initialsError
     } = stateErrors
     const onChange = e => {
@@ -350,32 +442,18 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
     }
     return (
       <div>
-        <FieldHeader>{t('caregiverName')}</FieldHeader>
-        <Box margin={{vertical: 'medium'}}>
-          {this.renderAddress('caregiverAddress')}
-          <FormField
-            label={t('relationship')}
-            error={relationshipError ? t('pleaseAddRelationship') : null}
-          >
-            <TextInput
-              onDOMChange={onChange}
-              className="input-class"
-              value={caregiverRelationship}
-              name={'caregiverRelationship'}
-            />
-          </FormField>
-          <FormField
-            label={t('phoneNumber')}
-            error={phoneNumberError ? t('pleaseAddPhoneNumber') : null}
-          >
-            <TextInput
-              onDOMChange={onChange}
-              className="input-class"
-              value={caregiverPhoneNumber}
-              name={caregiverPhoneNumber}
-            />
-          </FormField>
-        </Box>
+        {this.renderCaregiverInfo(INITIAL_CAREGIVER, {
+          relationshipError: initialRelationshipError,
+          caregiverRelationship: initialCaregiverRelationship,
+          phoneNumberError: initialPhoneNumberError,
+          caregiverPhoneNumber: initialCaregiverPhoneNumber
+        })}
+        {this.renderCaregiverInfo(SUCCESSOR_CAREGIVER, {
+          relationshipError: successorRelationshipError,
+          caregiverRelationship: successorCaregiverRelationship,
+          phoneNumberError: successorPhoneNumberError,
+          caregiverPhoneNumber: successorCaregiverPhoneNumber
+        })}
         <InitialsInput
           error={initialsError ? t('pleaseAddInitials') : null}
           onChange={this.onChangeInitialsInput}
