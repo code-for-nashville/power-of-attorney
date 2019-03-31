@@ -25,8 +25,8 @@ let createDocDefinition = (inputInfo: FormInputs) => {
       ? 'X'
       : statuses.legalCustodySent
   const statusReason = inputInfo.parentalStatusReason
-  
-    const statusReasonObj =
+
+  const statusReasonObj =
     statusReason.length > 0
       ? {
           width: '*',

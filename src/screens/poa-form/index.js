@@ -42,8 +42,9 @@ type PoAFormState = {
   step: number,
   numberOfChildren: number,
   submitted: boolean,
-  errors: FormInputErrors
-} & FormInputs
+  errors: FormInputErrors,
+  ...FormInputs,
+}
 
 class PoAForm extends Component<PoAFormProps, PoAFormState> {
   static navigationOptions = ({navigation}) => ({})
