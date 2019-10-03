@@ -38,13 +38,14 @@ type FormInputErrors = {|
   caregiverAddress: {[AddressKeysType]: ?boolean}
 |}
 
-type PoAFormState = {
+type PoAFormState = {|
   acceptedModal: boolean,
   step: number,
   numberOfChildren: number,
   submitted: boolean,
   errors: FormInputErrors,
-} & FormInputs
+  ...FormInputs
+|}
 
 class PoAForm extends Component<PoAFormProps, PoAFormState> {
   static navigationOptions = ({navigation}) => ({})
