@@ -43,7 +43,7 @@ type PoAFormState = {
   numberOfChildren: number,
   submitted: boolean,
   errors: FormInputErrors,
-  ...FormInputs,
+  ...FormInputs
 }
 
 class PoAForm extends Component<PoAFormProps, PoAFormState> {
