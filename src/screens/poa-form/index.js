@@ -25,31 +25,31 @@ type AddressKeysType =
   | 'region'
   | 'postal_code'
 
-type PoAFormProps = {
+type PoAFormProps = {|
   t: string => string
-}
+|}
 
-type FormInputErrors = {
+type FormInputErrors = {|
   childrenNames: ?boolean,
   parentalStatus: ?boolean,
   parentalStatusReason: ?boolean,
   motherAddress: {[AddressKeysType]: ?boolean},
   fatherAddress: {[AddressKeysType]: ?boolean},
   caregiverAddress: {[AddressKeysType]: ?boolean}
-}
+|}
+
 type PoAFormState = {
   acceptedModal: boolean,
   step: number,
   numberOfChildren: number,
   submitted: boolean,
   errors: FormInputErrors,
-  ...FormInputs
-}
+} & FormInputs
 
 class PoAForm extends Component<PoAFormProps, PoAFormState> {
   static navigationOptions = ({navigation}) => ({})
 
-  constructor(props) {
+  constructor(props: PoAFormProps) {
     super(props)
     this.state = {
       acceptedModal: false,
@@ -97,7 +97,9 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
     }
   }
 
-  componentDidUpdate(prevProps, prevState: PoAFormState) {
+  state: PoAFormState
+
+  componentDidUpdate(prevProps: PoAFormProps, prevState: PoAFormState) {
     // if finished form and if no new changes, submit to access form, else if new changes hide 'open/download form'
     if (
       this.state.submitted === true &&
@@ -108,10 +110,10 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
     }
   }
 
-  validateAddress = address => {
+  validateAddress = (address: {[AddressKeysType]: string}) => {
     const isEmpty = value => (value && value.length === 0) || !value
     let areAllFieldsEmpty = true
-    const validatedAddress = Object.keys(address).reduce((result, field) => {
+    const validatedAddress: {[AddressKeysType]: string} = Object.keys(address).reduce((result, field) => {
       const isFieldEmpty = isEmpty(address[field])
       if (areAllFieldsEmpty && !isFieldEmpty) areAllFieldsEmpty = false
       return {
@@ -240,10 +242,11 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
   }
 
   renderStepOne() {
+    const { errors, numberOfChildren, childrenNames: subjectNames } = this.state
     return (
       <FormSubjects
-        error={this.state.errors.childrenNames}
-        subjectNumberValue={this.state.numberOfChildren}
+        error={errors.childrenNames}
+        subjectNumberValue={numberOfChildren}
         onChangeSubjectNumber={num =>
           this.setState(prevState => {
             const childrenNames = prevState.childrenNames.slice(0, num)
@@ -253,7 +256,7 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
             }
           })
         }
-        subjectNames={this.state.childrenNames}
+        subjectNames={subjectNames}
         onChangeSubjectName={names => this.setState({childrenNames: names})}
       />
     )
