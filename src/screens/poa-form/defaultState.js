@@ -1,22 +1,22 @@
 // @flow
-const { REACT_APP_MOCK_FORM, REACT_APP_FORM_STEP }  = process.env
+const {REACT_APP_MOCK_FORM, REACT_APP_FORM_STEP} = process.env
 
 const emptyAddress = {
-    name: '',
-    street_address: '',
-    locality: '',
-    region: 'TN',
-    postal_code: ''
-  }
+  name: '',
+  street_address: '',
+  locality: '',
+  region: 'TN',
+  postal_code: ''
+}
 const MOCK_FORM = REACT_APP_MOCK_FORM === 'true'
 const FORM_STEP = REACT_APP_FORM_STEP ? parseInt(REACT_APP_FORM_STEP, 10) : 0
 
 const mockedAddress = (name: string) => ({
-    name,
-    street_address: 'street_address',
-    locality: 'locality',
-    region: 'TN',
-    postal_code: '11111'
+  name,
+  street_address: 'street_address',
+  locality: 'locality',
+  region: 'TN',
+  postal_code: '11111'
 })
 
 export const defaultState = {
