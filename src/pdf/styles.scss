@@ -1,0 +1,27 @@
+.hiddenPDF {
+  display: none;
+}
+
+.page {
+  margin-top: 20pt;
+  margin-bottom: 40pt;
+  margin-left: 16pt;
+  margin-right: 16pt;
+}
+
+.title {
+  font-size: 20px;
+  margin: auto;
+  margin-bottom: 16px;
+  text-align: center;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+ol > li {
+  margin-bottom: 16px;
+}
+
+.text {
+  line-height: 22 px;
+}
