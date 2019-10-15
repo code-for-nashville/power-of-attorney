@@ -43,6 +43,8 @@ Sample values
 REACT_APP_MOCK_FORM=true
 REACT_APP_FORM_STEP=3
 ```
+For example, you could put the above values in a file called `.env`.
+Or you can use any other way you set environment variables.
 
 
 ## Styling

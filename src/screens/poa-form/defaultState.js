@@ -23,7 +23,7 @@ export const defaultState = {
   acceptedModal: MOCK_FORM,
   step: FORM_STEP,
   numberOfChildren: 1,
-  childrenNames: ['child'],
+  childrenNames: MOCK_FORM ? ['child'] : [],
   submitted: MOCK_FORM,
   motherAddress: MOCK_FORM ? mockedAddress('mother') : emptyAddress,
   fatherAddress: MOCK_FORM ? mockedAddress('father') : emptyAddress,
