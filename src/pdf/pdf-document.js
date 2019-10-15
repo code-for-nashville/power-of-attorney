@@ -24,23 +24,10 @@ let createDocDefinition = (inputInfo: FormInputs) => {
     inputInfo.parentalStatus === PARENTAL_STATUS_WITH_REASON
       ? 'X'
       : statuses.legalCustodySent
-  const statusReason = inputInfo.parentalStatusReason
-
-  const statusReasonObj =
-    statusReason.length > 0
-      ? {
-          width: '*',
-          text: statusReason,
-          decoration: 'underline'
-        }
-      : {
-          layout: 'underlineLayout',
-          table: {
-            headerRows: 0,
-            widths: ['*'],
-            body: [[statusReason]]
-          }
-        }
+  const statusReason =
+    inputInfo.parentalStatus === PARENTAL_STATUS_WITH_REASON
+      ? inputInfo.parentalStatusReason
+      : '____________________________'
 
   let multipleFrom = inputInfo.childrenNames
     .map(child => {
@@ -438,9 +425,16 @@ let createDocDefinition = (inputInfo: FormInputs) => {
             [
               {
                 text:
-                  'One parent has legal custody of the minor child, and has sent by Certified Mail, Return Receipt requested, to the other parent at last known address, a copy of this document and a notice of the provisions in § 34-6 - 305; or the non-custodial parent has not consented to the appointment and consent cannot be obtained because \n\n'
+                  'One parent has legal custody of the minor child, and has sent by Certified Mail, Return Receipt requested, to the other parent at last known address, a copy of this document and a notice of the provisions in § 34-6 - 305; or the non-custodial parent has not consented to the appointment and consent cannot be obtained because \n'
               },
-              statusReasonObj,
+              {
+                layout: 'underlineLayout',
+                table: {
+                  headerRows: 0,
+                  widths: ['*'],
+                  body: [[statusReason]]
+                }
+              },
               {text: '.\n\n'}
             ]
           ]
