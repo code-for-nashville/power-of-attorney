@@ -32,6 +32,23 @@ Watches changes to your sass files for development.
 
 Compiles sass files into css for production
 
+## ENV VARS
+## `REACT_APP_MOCK_FORM=true 
+Start the with mocked form data. This is useful if you are working on the form and don't want to repeatedly enter form information to get to the screen you are working on. 
+## `REACT_APP_FORM_STEP=4`
+Sets the default form step to a specific value.
+
+Sample values
+```
+REACT_APP_MOCK_FORM=true
+REACT_APP_FORM_STEP=3
+```
+For example, you could put the above values in a file called `.env.development.local`.
+Or you can use any other way you set environment variables.
+
+Check out the [Adding Custom Environment Variables](https://create-react-app.dev/docs/adding-custom-environment-variables) for more details on how create react app handles env variables.
+
+
 ## Styling
 
 This project is built with [Grommet](http://grommet.io/), and ships with a custom [SCSS](http://sass-lang.com/) Grommet theme in  `styles/grommet/`.
