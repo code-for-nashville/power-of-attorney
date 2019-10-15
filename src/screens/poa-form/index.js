@@ -114,7 +114,9 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
   validateAddress = (address: {[AddressKeysType]: string}) => {
     const isEmpty = value => (value && value.length === 0) || !value
     let areAllFieldsEmpty = true
-    const validatedAddress: {[AddressKeysType]: string} = Object.keys(address).reduce((result, field) => {
+    const validatedAddress: {[AddressKeysType]: string} = Object.keys(
+      address
+    ).reduce((result, field) => {
       const isFieldEmpty = isEmpty(address[field])
       if (areAllFieldsEmpty && !isFieldEmpty) areAllFieldsEmpty = false
       return {
@@ -243,7 +245,7 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
   }
 
   renderStepOne() {
-    const { errors, numberOfChildren, childrenNames: subjectNames } = this.state
+    const {errors, numberOfChildren, childrenNames: subjectNames} = this.state
     return (
       <FormSubjects
         error={errors.childrenNames}
