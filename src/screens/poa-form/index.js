@@ -1,7 +1,8 @@
 // @flow
 import React, {Component} from 'react'
-
+import {translate} from 'react-i18next'
 import {Box, Button, Form, Heading, Paragraph, Section} from 'grommet'
+import Stepper from 'react-stepper-horizontal'
 
 import {
   Disclaimer,
@@ -11,11 +12,10 @@ import {
   Address,
   ChoiceBox
 } from '../../components'
-import Stepper from 'react-stepper-horizontal'
-import {translate} from 'react-i18next'
 import type {FormInputs} from '../../types'
 import Regex from '../../constants'
 import {PARENTAL_STATUSES} from '../../pdf/pdf-document.js'
+import defaultState from './defaultState'
 import './styles.css'
 
 type AddressKeysType =
@@ -48,54 +48,9 @@ type PoAFormState = {|
 |}
 
 class PoAForm extends Component<PoAFormProps, PoAFormState> {
-  static navigationOptions = ({navigation}) => ({})
-
   constructor(props: PoAFormProps) {
     super(props)
-    this.state = {
-      acceptedModal: false,
-      step: 0,
-      numberOfChildren: 1,
-      childrenNames: [],
-      submitted: false,
-      motherAddress: {
-        name: '',
-        street_address: '',
-        locality: '',
-        region: 'TN',
-        postal_code: ''
-      },
-      fatherAddress: {
-        name: '',
-        street_address: '',
-        locality: '',
-        region: 'TN',
-        postal_code: ''
-      },
-      caregiverAddress: {
-        name: '',
-        street_address: '',
-        locality: '',
-        region: 'TN',
-        postal_code: ''
-      },
-      parentalStatus: '',
-      parentalStatusReason: '',
-      errors: {
-        childrenNames: null,
-        motherAddress: {
-          name: null
-        },
-        fatherAddress: {
-          name: null
-        },
-        caregiverAddress: {
-          name: null
-        },
-        parentalStatus: null,
-        parentalStatusReason: null
-      }
-    }
+    this.state = defaultState
   }
 
   state: PoAFormState

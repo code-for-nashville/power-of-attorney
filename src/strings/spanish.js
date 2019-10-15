@@ -74,7 +74,7 @@ const SPANISH: TranslateStringsType = {
   FAQ: 'FAQ',
   beforeStart: 'Antes de comenzar...',
   useOfThisForm:
-    'El uso de esta froma es autorizado por T.C.A. § 34-6-301 et seq. Al completar esta forma, con las firmas apropiadas, es sufficiente para autorizar inscripción de un menor a una escuela y autorizar trato médico. Aunque, una escuela del distrito escolar pueda requerir documentación/información adicional puede mientras permitida por esta sección de la ley de Tennessee antes de inscribir a un menor en la escuela o cualquier actividad extracurricular.',
+    'Esta forma es información, no consejo legal. Aunque esta forma no cancela sus derechos como Pariente, la forma provee a un guardian la autoridad para el cuido de su menor. Si no está seguro(a) de sus derechos o necesidad, debería consultar con un abogado para discutir sus necesidades legales. Este sitio web no rastrea, guarda o retiene ninguna informacion. Si usted sale de este sitio web sin descargar la forma, tendrí que comenzar desde el principio. El uso de esta froma es autorizado por T.C.A. § 34-6-301 et seq. Al completar esta forma, con las firmas apropiadas, es sufficiente para autorizar inscripción de un menor a una escuela y autorizar trato médico. Aunque, una escuela del distrito escolar pueda requerir documentación/información adicional puede mientras permitida por esta sección de la ley de Tennessee antes de inscribir a un menor en la escuela o cualquier actividad extracurricular.',
   thisFormIsToBeFilled:
     'Esta forma es para ser iniciada y/o completada por pariente(es)/guardian legal).',
   MORE_INFORMATION: 'MAS INFORMACIÓN',
@@ -89,7 +89,7 @@ const SPANISH: TranslateStringsType = {
   doesNotTrack:
     'Su información y privacidad es importante para nosotros.  Esta pagina web no rastrea, mantiene o monitorea la información ingresada.',
   formWasCreatedNote:
-    'NOTA: Cada menor debe tener una forma de Poder Notarial por separado.  Usted no puede usar una forma para todos los menores.',
+    'NOTA: Cada menor debe tener una forma de Poder Notarial por separado.  Usted no puede usar solo una forma para todos los menores.',
   howMuch: 'Cuanto cuesta un Poder Notarial?',
   howMuchAnswer:
     'Es libre de cargo.  Puede haber un pequeno cargo debido al notario publico por noratizar el documento.',
