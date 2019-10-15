@@ -43,8 +43,10 @@ Sample values
 REACT_APP_MOCK_FORM=true
 REACT_APP_FORM_STEP=3
 ```
-For example, you could put the above values in a file called `.env`.
+For example, you could put the above values in a file called `.env.development.local`.
 Or you can use any other way you set environment variables.
+
+Check out the [Adding Custom Environment Variables](https://create-react-app.dev/docs/adding-custom-environment-variables) for more details on how create react app handles env variables.
 
 
 ## Styling
