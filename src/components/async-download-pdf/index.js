@@ -9,7 +9,6 @@ const ErrorNotification = ({t}) => (
   <Toast status="critical">{t('unknownError')}</Toast>
 )
 
-
 export default asyncComponent({
   ErrorComponent: translate()(ErrorNotification),
   LoadingComponent: Spinning,
