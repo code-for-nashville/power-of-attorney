@@ -48,7 +48,7 @@ const ENGLISH: TranslateStringsType = {
   parentalstatus: 'Parental Status',
   partI: 'Part I:',
   submit: 'Submit',
-  Next: 'next',
+  next: 'next',
   formWithErrors: 'The form has {{errorCount}} error(s)',
   faq: 'Frequently Asked Questions',
   whatIsPOA: 'What is a Power of Attorney?',

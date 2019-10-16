@@ -40,7 +40,7 @@ type TranslateStringsType = {
   parentalstatus: string,
   partI: string,
   submit: string,
-  Next: string,
+  next: string,
   formWithErrors: string,
   faq: string,
   whatIsPOA: string,
