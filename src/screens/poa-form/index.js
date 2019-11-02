@@ -27,7 +27,7 @@ import Regex from '../../constants'
 import {
   PARENTAL_STATUSES,
   INITIAL_CAREGIVER,
-  SUCCESSOR_CAREGIVER,
+  SUCCESSOR_CAREGIVER
 } from '../../pdf/pdf-document.js'
 import defaultState from './defaultState'
 import './styles.css'

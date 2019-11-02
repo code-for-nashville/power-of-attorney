@@ -6,4 +6,4 @@ export type FormInputs = {|
   fatherAddress: {[AddressKeysType]: string},
   caregiverAddress: {[AddressKeysType]: string},
   consentInitials: [string, string]
-}
+|}
