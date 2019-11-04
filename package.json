@@ -4,7 +4,7 @@
   "homepage": "http://immigrantpoa.org/",
   "private": false,
   "engines": {
-    "node": "12.13.0"
+    "node": "8"
   },
   "dependencies": {
     "core-js": "^2.5.7",
