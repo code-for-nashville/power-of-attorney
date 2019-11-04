@@ -2,7 +2,10 @@
   "name": "power-of-attorney",
   "version": "0.1.0",
   "homepage": "http://immigrantpoa.org/",
-  "private": true,
+  "private": false,
+  "engines": {
+    "node": "12.13.0"
+  },
   "dependencies": {
     "core-js": "^2.5.7",
     "grommet": "^1.10.1",
