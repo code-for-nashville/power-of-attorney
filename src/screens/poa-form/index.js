@@ -1,6 +1,5 @@
 // @flow
 import React, {Component} from 'react'
-
 import {
   Box,
   Button,
@@ -28,106 +27,47 @@ import Regex from '../../constants'
 import {
   PARENTAL_STATUSES,
   INITIAL_CAREGIVER,
-  INITIAL_CAREGIVER_ADDRESS,
-  INITIAL_CAREGIVER_PHONE_NUMBER,
-  INITIAL_CAREGIVER_RELATIONSHIP,
-  SUCCESSOR_CAREGIVER,
-  SUCCESSOR_CAREGIVER_ADDRESS,
-  SUCCESSOR_CAREGIVER_PHONE_NUMBER,
-  SUCCESSOR_CAREGIVER_RELATIONSHIP
+  SUCCESSOR_CAREGIVER
 } from '../../pdf/pdf-document.js'
+import defaultState from './defaultState'
 import './styles.css'
 
-type PoAFormProps = {
-  t: string => string
-}
+type AddressKeysType =
+  | 'name'
+  | 'street_address'
+  | 'locality'
+  | 'region'
+  | 'postal_code'
 
-type FormInputErrors = {
+type PoAFormProps = {|
+  t: string => string
+|}
+
+type FormInputErrors = {|
   childrenNames: ?boolean,
   parentalStatus: ?boolean,
   parentalStatusReason: ?boolean,
   motherAddress: {[AddressKeysType]: ?boolean},
   fatherAddress: {[AddressKeysType]: ?boolean},
   caregiverAddress: {[AddressKeysType]: ?boolean}
-}
-type PoAFormState = {
+|}
+
+type PoAFormState = {|
   step: number,
   numberOfChildren: number,
   submitted: boolean,
   errors: FormInputErrors,
   ...FormInputs
-}
+|}
 class PoAForm extends Component<PoAFormProps, PoAFormState> {
-  static navigationOptions = ({navigation}) => ({})
-
-  constructor(props) {
+  constructor(props: PoAFormProps) {
     super(props)
-    this.state = {
-      step: 0,
-      numberOfChildren: 1,
-      childrenNames: ['', ''],
-      submitted: false,
-      motherAddress: {
-        name: '',
-        street_address: '',
-        locality: '',
-        region: '',
-        postal_code: ''
-      },
-      fatherAddress: {
-        name: '',
-        street_address: '',
-        locality: '',
-        region: '',
-        postal_code: ''
-      },
-      [INITIAL_CAREGIVER_ADDRESS]: {
-        name: '',
-        street_address: '',
-        locality: '',
-        region: '',
-        postal_code: ''
-      },
-      [INITIAL_CAREGIVER_RELATIONSHIP]: '',
-      [INITIAL_CAREGIVER_PHONE_NUMBER]: '',
-      [SUCCESSOR_CAREGIVER_ADDRESS]: {
-        name: '',
-        street_address: '',
-        locality: '',
-        region: '',
-        postal_code: ''
-      },
-      [SUCCESSOR_CAREGIVER_RELATIONSHIP]: '',
-      [SUCCESSOR_CAREGIVER_PHONE_NUMBER]: '',
-      consentInitials: ['', ''],
-      parentalStatus: '',
-      parentalStatusReason: '',
-      errors: {
-        childrenNames: null,
-        motherAddress: {
-          name: null
-        },
-        fatherAddress: {
-          name: null
-        },
-        [INITIAL_CAREGIVER_ADDRESS]: {
-          name: null
-        },
-        [INITIAL_CAREGIVER_RELATIONSHIP]: null,
-        [INITIAL_CAREGIVER_PHONE_NUMBER]: null,
-        [SUCCESSOR_CAREGIVER_ADDRESS]: {
-          name: null
-        },
-        [SUCCESSOR_CAREGIVER_RELATIONSHIP]: null,
-        [SUCCESSOR_CAREGIVER_PHONE_NUMBER]: null,
-        consentInitials: null,
-        parentalStatus: null,
-        parentalStatusReason: null
-      }
-    }
+    this.state = defaultState
   }
 
-  componentDidUpdate(prevProps, prevState: PoAFormState) {
+  state: PoAFormState
+
+  componentDidUpdate(prevProps: PoAFormProps, prevState: PoAFormState) {
     // if finished form and if no new changes, submit to access form, else if new changes hide 'open/download form'
     if (
       this.state.submitted === true &&
@@ -138,15 +78,16 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
     }
   }
 
-  validateAddress = address => {
+  validateAddress = (address: {[AddressKeysType]: string}) => {
     const isEmpty = value => (value && value.length === 0) || !value
     let areAllFieldsEmpty = true
-    const validatedAddress = Object.keys(address).reduce((result, field) => {
+    const validatedAddress: {[AddressKeysType]: string} = Object.keys(
+      address
+    ).reduce((result, field) => {
       const isFieldEmpty = isEmpty(address[field])
       if (areAllFieldsEmpty && !isFieldEmpty) areAllFieldsEmpty = false
       return {
         ...result,
-        postal_code: false,
         [field]: isFieldEmpty
       }
     }, {})
@@ -353,10 +294,11 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
   }
 
   renderStepOne() {
+    const {errors, numberOfChildren, childrenNames: subjectNames} = this.state
     return (
       <FormSubjects
-        error={this.state.errors.childrenNames}
-        subjectNumberValue={this.state.numberOfChildren}
+        error={errors.childrenNames}
+        subjectNumberValue={numberOfChildren}
         onChangeSubjectNumber={num =>
           this.setState(prevState => {
             const childrenNames = prevState.childrenNames.slice(0, num)
@@ -366,7 +308,7 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
             }
           })
         }
-        subjectNames={this.state.childrenNames}
+        subjectNames={subjectNames}
         onChangeSubjectName={names => this.setState({childrenNames: names})}
       />
     )

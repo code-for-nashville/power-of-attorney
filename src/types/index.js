@@ -1,4 +1,4 @@
-export type FormInputs = {
+export type FormInputs = {|
   childrenNames: Array<string>,
   parentalStatus: string,
   parentalStatusReason: string,
@@ -6,4 +6,4 @@ export type FormInputs = {
   fatherAddress: {[AddressKeysType]: string},
   caregiverAddress: {[AddressKeysType]: string},
   consentInitials: [string, string]
-}
+|}

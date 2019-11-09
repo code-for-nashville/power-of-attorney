@@ -22,6 +22,7 @@ const ParentRadioButton = props => (
     checked={props.checked}
     id={`parental-status-${props.value}`}
     name="parental_status"
+    label="Parental Status"
     {...props}
   />
 )
