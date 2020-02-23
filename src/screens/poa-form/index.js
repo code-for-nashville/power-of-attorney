@@ -55,7 +55,7 @@ type FormInputErrors = {|
   initialCaregiverPhoneNumber: string,
   successorCaregiverRelationship: string,
   successorCaregiverPhoneNumber: string,
-  consentInitials: Array<string, string>
+  consentInitials: [string, string]
 |}
 
 type PoAFormState = {|
