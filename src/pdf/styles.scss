@@ -61,7 +61,7 @@ ol > li {
 }
 
 .underline {
-    border-bottom: 1.5px solid black;
+    border-bottom: 1.25px solid black;
     padding-bottom: .5px;
 }
 
@@ -87,5 +87,13 @@ ol > li {
     div:first-child {
       padding-top: 0;
     }
+  }
+}
+
+.check-here {
+  > span {
+    min-width: 30px;
+    display: inline-block;
+    text-align: center;
   }
 }

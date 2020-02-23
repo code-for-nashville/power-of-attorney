@@ -30,16 +30,16 @@ const ENGLISH = {
   fatherName: 'Father/Legal Guardian’s Name & Address',
   initialCaregiverName: 'Initial Caregiver’s Name & Address',
   successorCaregiverName: 'Successor Caregiver’s Name & Address',
-  parentalStatus: 'Parental Status',
-  pleaseAddParentalStatus: 'Please add a parental status.',
+  parentalCustody: 'Parental Custody',
+  pleaseAddParentalStatus: '(check the appropriate custody status)',
   pleaseAddReason: 'Please add a reason.',
   bothParents:
-    'Both parents are living, have legal custody of the minor child and have signed this document',
-  parentDeceased: 'One parent is deceased',
+    'Both parents are living, have legal custody of the minor child/children, and have signed this document;',
+  parentDeceased: 'One parent is deceased;',
   legalCustodySigned:
-    'One parent has legal custody of the minor child and both parents have signed this document and consent to the appointment of the caregiver',
+    'One parent has legal custody of the minor child/children, and both parents have signed this document and consent to the appointment of the caregiver(s);',
   legalCustodySent:
-    'One parent has legal custody of the minor child, and has sent by Certified Mail, Return Receipt requested, to the other parent at last known address, a copy of this document and a notice of the provisions in § 34-6-305;',
+    'One parent has legal custody of the minor child/children, and s/he has sent by Certified Mail, Return Receipt requested, to the other parent at their last known address, a copy of this document and a notice of the provisions in T.C.A. § 34-6-305; or the non-custodial parent has not consented to the appointment and consent cannot be obtained because',
   legalCustodySentLink:
     'Click here for a copy of the text of T.C.A. § 34-6-305 (2017)',
   reasonNotReached: 'Reason non-custodial parent could not be reached:',
@@ -47,7 +47,6 @@ const ENGLISH = {
   childInformation: 'Child Information',
   guardianInformation: 'Guardian Information',
   caregiversInformation: 'Caregiver’s Information',
-  parentalstatus: 'Parental Status',
   submit: 'Submit',
   next: 'next',
   formWithErrors: 'The form has {{errorCount}} error(s)',

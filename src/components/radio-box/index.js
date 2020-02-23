@@ -65,7 +65,7 @@ class RadioBox extends Component<RadioBoxPropType, RadioBoxStateType> {
 
     return (
       <div>
-        <FieldHeader>{t('parentalStatus')}</FieldHeader>
+        <FieldHeader>{t('parentalCustody')}</FieldHeader>
         <FormField error={error}>
           {options.map(value => (
             <ParentRadioButton

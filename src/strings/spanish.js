@@ -32,7 +32,7 @@ const SPANISH: TranslateStringsType = {
   fatherName: 'Padre/Guardian Legal, Nombre & Dirección',
   initialCaregiverName: 'Initial Caregiver’s Name & Address',
   successorCaregiverName: 'Successor Caregiver’s Name & Address',
-  parentalStatus: 'Estado de los Padres',
+  parentalCustody: '',
   pleaseAddParentalStatus: 'Porfavor añadir estado de los Padres.',
   pleaseAddReason: 'Añadir una razón.',
   bothParents:

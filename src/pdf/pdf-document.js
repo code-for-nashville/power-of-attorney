@@ -3,7 +3,7 @@ import * as React from 'react'
 import html2pdf from 'html2pdf.js'
 import Strings from '../strings/pdf'
 import './styles.css'
-import {NumberedContent} from './components'
+import {NumberedContent, CheckHere} from './components'
 import type {FormInputs} from '../types'
 export const MOTHER_ADDRESS = 'motherAddress'
 export const FATHER_ADDRESS = 'fatherAddress'
@@ -69,9 +69,9 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
       initialCaregiverRelationship,
       initialCaregiverPhoneNumber,
       successorCaregiverRelationship,
-      successorCaregiverPhoneNumber
+      successorCaregiverPhoneNumber,
+      consentInitials
     } = data
-
     return (
       <div id={PDF_ID} className="hiddenPDF">
         <div className="pdfContainer">
@@ -195,6 +195,16 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
                 <span className="underline half-width">
                   {successorCaregiverPhoneNumber}
                 </span>
+              </div>
+              <div className="row">
+                <CheckHere text={consentInitials[0]} />
+                <CheckHere text={consentInitials[1]} />
+                <span>{Strings.serveJointlyAndSeveraly}</span>
+              </div>
+            </NumberedContent>
+            <NumberedContent number={3}>
+              <div className="row">
+                <span className="bold">{Strings.parentalCustody}:</span>
               </div>
             </NumberedContent>
           </div>

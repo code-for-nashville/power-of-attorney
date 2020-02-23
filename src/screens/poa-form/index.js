@@ -253,7 +253,7 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
         component: this.renderCaregiverStep()
       },
       {
-        title: t('parentalstatus'),
+        title: t('parentalCustody'),
         onClick: () => {
           this.setState(() => ({step: 3}))
         },

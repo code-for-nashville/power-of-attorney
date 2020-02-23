@@ -50,7 +50,8 @@ const PDF_STRINGS = {
     'Initial Caregiver’s Full Name, Relationship, Address, & Phone',
   successorCaregiverAddress:
     'Successor Caregiver’s Full Name, Relationship, Address, & Phone',
-  bothLibing:
+  parentalCustody: 'Parental Custody (check the appropriate custody status)',
+  bothLiving:
     'Both parents are living, have legal custody of the minor child and have signed this document; ',
   or: 'OR',
   oneParentDeceased: 'One parent is deceased; ',
@@ -130,7 +131,9 @@ const PDF_STRINGS = {
   pursuantTo:
     'Pursuant to T.C.A. § 34-6-308, no person, school official or health care provider who acts in good faith reliance on a power of attorney for care of a minor child to enroll the child in school or to provide medical, dental or mental health care, without actual knowledge of facts contrary to those authorized, is subject to criminal or civil liability to any person, or is subject to professional disciplinary action for such reliance. This section shall apply even if medical, dental, or mental health care is provided to a minor child or the child is enrolled in a school in contravention of the wishes of the parent with legal custody of the minor child, as long as the person, school official or health care provider has been provided a copy of an appropriately executed power of attorney for care of a minor child, and has not been provided written documentation that the parent has revoked the power of attorney for care of a minor child.',
   additionallyPursuantTo:
-    'Additionally, pursuant to T.C.A. § 34-6-310, a person who relies on the power of attorney for care of a minor child has no obligation to make any further inquiry or investigation. Nothing in this part shall relieve any individual from liability for violations of other provisions of law.'
+    'Additionally, pursuant to T.C.A. § 34-6-310, a person who relies on the power of attorney for care of a minor child has no obligation to make any further inquiry or investigation. Nothing in this part shall relieve any individual from liability for violations of other provisions of law.',
+  serveJointlyAndSeveraly:
+    'I/We wish for the named persons above to serve jointly and severally as caregivers, working together and/or serving independently as caregiver(s) as needed and appropriate.  The successor caregiver instead may wait to serve only once the initial caregiver is no longer able or willing to serve as caregiver.'
 }
 
 export default PDF_STRINGS

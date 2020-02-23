@@ -15,3 +15,9 @@ export const NumberedContent = ({
     <div className="content">{children}</div>
   </div>
 )
+
+export const CheckHere = ({text}: {text: string}) => (
+  <div className="check-here">
+    (<span className="underline">{text}</span>)
+  </div>
+)
