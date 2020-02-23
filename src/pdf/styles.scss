@@ -31,11 +31,21 @@
   display: flex;
   flex: 1;
   width: 100%;
+  padding: 10px 0;
+}
+
+.row.center {
+  justify-content: center;
 }
 
 .full-width {
   display: flex;
   flex-grow: 1;
+}
+
+.half-width {
+  display: flex;
+  width: 60%;
 }
 
 ol > li {
@@ -44,6 +54,10 @@ ol > li {
 
 .text {
   line-height: 22 px;
+}
+
+.bold {
+  font-weight: bold;
 }
 
 .underline {
@@ -70,10 +84,8 @@ ol > li {
     flex: 1;
     flex-direction: column;
 
-    .row {
-      * {
-        // display: inline-block;
-      }
+    div:first-child {
+      padding-top: 0;
     }
   }
 }

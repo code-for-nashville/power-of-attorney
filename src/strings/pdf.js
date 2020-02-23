@@ -43,9 +43,13 @@ const PDF_STRINGS = {
   filledOut:
     'To be filled out and/or initialed by parent(s)/legal guardian(s).',
   minorChildName: 'Minor Child’s full name',
-  motherAddress: 'Mother/Legal Guardian’s Name & Address:',
-  fatherAddress: 'Father/Legal Guardian’s Name & Address:',
-  caregiverAddress: 'Caregiver/Legal Guardian’s Name & Address:',
+  motherAddress: 'Mother/Legal Guardian’s Full Name',
+  fatherAddress: 'Father/Legal Guardian’s Full Name',
+  address: 'Address',
+  initalCaregiverAddress:
+    'Initial Caregiver’s Full Name, Relationship, Address, & Phone',
+  successorCaregiverAddress:
+    'Successor Caregiver’s Full Name, Relationship, Address, & Phone',
   bothLibing:
     'Both parents are living, have legal custody of the minor child and have signed this document; ',
   or: 'OR',

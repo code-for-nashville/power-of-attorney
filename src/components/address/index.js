@@ -28,14 +28,14 @@ export class AddressComponent extends React.Component<
   updateAddress = (
     e: SyntheticInputEvent<HTMLInputElement> & {option: {value: string}}
   ) => {
-    const {name} = this.props
+    const {name, onChange} = this.props
     const addressType = e.target.dataset.addressType
     let value = e.option ? e.option.value : e.target.value
 
     if (addressType === 'postal_code') {
       value = value.slice(0, 5)
     }
-    this.props.onChange(addressType, value, name)
+    onChange(addressType, value, name)
   }
 
   render() {

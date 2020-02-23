@@ -31,6 +31,9 @@ const opt = {
   pagebreak: {mode: 'avoid-all', before: '.page'},
   margin: [20, 16]
 }
+const formatAddress = ({street_address, locality, region, postal_code}) => {
+  return `${street_address}, ${locality}, ${region} ${postal_code}`
+}
 
 class HiddenPDF extends React.Component<HiddenPDFProps> {
   static downloadPDF() {
@@ -57,7 +60,18 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
 
   render() {
     const {data} = this.props
-    const {childrenNames} = data
+    const {
+      childrenNames,
+      motherAddress,
+      fatherAddress,
+      initialCaregiverAddress: initalCaregiver,
+      successorCaregiverAddress: successorCaregiver,
+      initialCaregiverRelationship,
+      initialCaregiverPhoneNumber,
+      successorCaregiverRelationship,
+      successorCaregiverPhoneNumber
+    } = data
+
     return (
       <div id={PDF_ID} className="hiddenPDF">
         <div className="pdfContainer">
@@ -95,20 +109,92 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
             <br />
             <NumberedContent number={1}>
               <div className="row">
-                <span className="label">{Strings.minorChildName}:</span>
+                <span className="label bold">{Strings.minorChildName}:</span>
                 <div className="underline full-width">{childrenNames[0]}</div>
               </div>
               <div className="row">
-                <span className="label">{Strings.minorChildName}:</span>
+                <span className="label bold">{Strings.minorChildName}:</span>
                 <span className="underline full-width">{childrenNames[1]}</span>
               </div>
               <div className="row">
-                <span className="label">{Strings.minorChildName}:</span>
+                <span className="label bold">{Strings.minorChildName}:</span>
                 <span className="underline full-width">{childrenNames[2]}</span>
               </div>
               <div className="row">
-                <span className="label">{Strings.minorChildName}:</span>
+                <span className="label bold">{Strings.minorChildName}:</span>
                 <span className="underline full-width">{childrenNames[3]}</span>
+              </div>
+            </NumberedContent>
+            <br />
+            <div className="row">
+              <span className="label bold">{Strings.motherAddress}:</span>
+              <span className="underline full-width">{motherAddress.name}</span>
+            </div>
+            <div className="row">
+              <span className="label bold">{Strings.address}:</span>
+              <span className="underline full-width">
+                {formatAddress(motherAddress)}
+              </span>
+            </div>
+            <div className="row">
+              <span className="label bold">{Strings.fatherAddress}:</span>
+              <span className="underline full-width">{fatherAddress.name}</span>
+            </div>
+            <div className="row">
+              <span className="label bold">{Strings.address}:</span>
+              <span className="underline full-width">
+                {formatAddress(fatherAddress)}
+              </span>
+            </div>
+            <br />
+            <NumberedContent number={2}>
+              <div className="row">
+                <span className="bold">{Strings.initalCaregiverAddress}:</span>
+              </div>
+              <div className="row center">
+                <span className="underline half-width">
+                  {initalCaregiver.name}
+                </span>
+              </div>
+              <div className="row center">
+                <span className="underline half-width">
+                  {initialCaregiverRelationship}
+                </span>
+              </div>
+              <div className="row center">
+                <span className="underline half-width">
+                  {formatAddress(initalCaregiver)}
+                </span>
+              </div>
+              <div className="row center">
+                <span className="underline half-width">
+                  {initialCaregiverPhoneNumber}
+                </span>
+              </div>
+              <div className="row">
+                <span className="bold">
+                  {Strings.successorCaregiverAddress}:
+                </span>
+              </div>
+              <div className="row center">
+                <span className="underline half-width">
+                  {successorCaregiver.name}
+                </span>
+              </div>
+              <div className="row center">
+                <span className="underline half-width">
+                  {successorCaregiverRelationship}
+                </span>
+              </div>
+              <div className="row center">
+                <span className="underline half-width">
+                  {formatAddress(successorCaregiver)}
+                </span>
+              </div>
+              <div className="row center">
+                <span className="underline half-width">
+                  {successorCaregiverPhoneNumber}
+                </span>
               </div>
             </NumberedContent>
           </div>

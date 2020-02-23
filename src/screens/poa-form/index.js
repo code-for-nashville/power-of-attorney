@@ -49,7 +49,13 @@ type FormInputErrors = {|
   parentalStatusReason: ?boolean,
   motherAddress: {[AddressKeysType]: ?boolean},
   fatherAddress: {[AddressKeysType]: ?boolean},
-  caregiverAddress: {[AddressKeysType]: ?boolean}
+  initialCaregiverAddress: {[AddressKeysType]: ?boolean},
+  successorCaregiverAddress: {[AddressKeysType]: ?boolean},
+  initialCaregiverRelationship: string,
+  initialCaregiverPhoneNumber: string,
+  successorCaregiverRelationship: string,
+  successorCaregiverPhoneNumber: string,
+  consentInitials: Array<string, string>
 |}
 
 type PoAFormState = {|
@@ -287,11 +293,13 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
   }
 
   renderAddress = name => {
-    const errors = this.state.errors[name] || {}
+    const {errors} = this.state
+    const address = this.state[name]
+    const addressErrors = errors[name] || {}
     return (
       <Address
-        errors={errors}
-        address={this.state[name]}
+        errors={addressErrors}
+        address={address}
         onChange={this.addressOnChange}
         name={name}
       />
