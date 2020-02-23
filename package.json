@@ -21,7 +21,7 @@
     "react-dom": "^16.3.1",
     "react-i18next": "^7.6.1",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "^1.1.4",
+    "react-scripts": "^3.3.0",
     "react-stepper-horizontal": "^1.0.10",
     "source-map-explorer": "^1.5.0",
     "yarn-run-all": "^3.1.1"
@@ -62,5 +62,17 @@
     "flow-typed": "^2.5.1",
     "stylelint": "^9.2.0",
     "stylelint-config-standard": "^18.2.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
