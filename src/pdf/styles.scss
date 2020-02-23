@@ -18,10 +18,62 @@
   text-decoration: underline;
 }
 
+.uppercase {
+  text-transform: uppercase;
+}
+
+.label {
+  display: flex;
+  margin-right: 10px;
+}
+
+.row {
+  display: flex;
+  flex: 1;
+  width: 100%;
+}
+
+.full-width {
+  display: flex;
+  flex-grow: 1;
+}
+
 ol > li {
   margin-bottom: 16px;
 }
 
 .text {
   line-height: 22 px;
+}
+
+.underline {
+    border-bottom: 1.5px solid black;
+    padding-bottom: .5px;
+}
+
+.numbered-content {
+  display: flex;
+  flex-direction: row;
+
+  .number {
+    display: flex;
+    flex-direction: column;
+    width: 50px;
+
+    p {
+      margin-top: 0 !important;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+
+    .row {
+      * {
+        // display: inline-block;
+      }
+    }
+  }
 }

@@ -3,7 +3,7 @@ import * as React from 'react'
 import html2pdf from 'html2pdf.js'
 import Strings from '../strings/pdf'
 import './styles.css'
-
+import {NumberedContent} from './components'
 import type {FormInputs} from '../types'
 export const MOTHER_ADDRESS = 'motherAddress'
 export const FATHER_ADDRESS = 'fatherAddress'
@@ -57,8 +57,9 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
 
   render() {
     const {data} = this.props
-    let multipleFrom = data.childrenNames.map(child => {
-      return (
+    const {childrenNames} = data
+    return (
+      <div id={PDF_ID} className="hiddenPDF">
         <div className="pdfContainer">
           <div>
             <p className="title">{Strings.instructions}</p>
@@ -88,12 +89,30 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
               <li className="text">{Strings.revokeEsp}</li>
             </ol>
           </div>
+          <div className="page break">
+            <p className="title uppercase">{Strings.poaTitle}</p>
+            <p>{Strings.useOfThisForm}</p>
+            <br />
+            <NumberedContent number={1}>
+              <div className="row">
+                <span className="label">{Strings.minorChildName}:</span>
+                <div className="underline full-width">{childrenNames[0]}</div>
+              </div>
+              <div className="row">
+                <span className="label">{Strings.minorChildName}:</span>
+                <span className="underline full-width">{childrenNames[1]}</span>
+              </div>
+              <div className="row">
+                <span className="label">{Strings.minorChildName}:</span>
+                <span className="underline full-width">{childrenNames[2]}</span>
+              </div>
+              <div className="row">
+                <span className="label">{Strings.minorChildName}:</span>
+                <span className="underline full-width">{childrenNames[3]}</span>
+              </div>
+            </NumberedContent>
+          </div>
         </div>
-      )
-    })
-    return (
-      <div id={PDF_ID} className="hiddenPDF">
-        {multipleFrom}
       </div>
     )
   }

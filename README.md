@@ -33,7 +33,7 @@ Watches changes to your sass files for development.
 Compiles sass files into css for production
 
 ## ENV VARS
-## `REACT_APP_MOCK_FORM=true 
+## `REACT_APP_MOCK_FORM=true`
 Start the with mocked form data. This is useful if you are working on the form and don't want to repeatedly enter form information to get to the screen you are working on. 
 ## `REACT_APP_FORM_STEP=4`
 Sets the default form step to a specific value.

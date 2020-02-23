@@ -43,7 +43,7 @@ const ENGLISH = {
   legalCustodySentLink:
     'Click here for a copy of the text of T.C.A. § 34-6-305 (2017)',
   reasonNotReached: 'Reason non-custodial parent could not be reached:',
-  powerOfAttorney: 'POWER OF ATTORNEY FOR CARE OF A MINOR CHILD',
+  powerOfAttorney: 'POWER OF ATTORNEY FOR CARE OF A MINOR CHILD OR CHILDREN',
   childInformation: 'Child Information',
   guardianInformation: 'Guardian Information',
   caregiversInformation: 'Caregiver’s Information',
@@ -102,7 +102,10 @@ const ENGLISH = {
   phoneNumber: 'Phone Number',
   initials: 'Parent Initials',
   serveJointlyAndSeveraly:
-    'I/We wish for the named persons above to serve jointly and severally as caregivers, working together and/or serving independently as caregiver(s) as needed and appropriate.  The successor caregiver instead may wait to serve only once the initial caregiver is no longer able or willing to serve as caregiver.'
+    'I/We wish for the named persons above to serve jointly and severally as caregivers, working together and/or serving independently as caregiver(s) as needed and appropriate.  The successor caregiver instead may wait to serve only once the initial caregiver is no longer able or willing to serve as caregiver.',
+  temporaryAuthority: 'Temporary Authority',
+  notProvideCustody: 'Does not Provide Custody',
+  mayBeTerminated: 'Can Be Terminated'
 }
 
 export type TranslateStringsType = typeof ENGLISH

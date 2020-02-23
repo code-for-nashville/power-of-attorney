@@ -36,13 +36,13 @@ const PDF_STRINGS = {
     'Considere darle una copia a la escuela y al médico del menor.',
   revokeEsp:
     'Usted puede revocar por escrito este poder notarial en cualquier momento. Si usted revoca el poder notarial, dele una copia de la revocación escrita a el/los guardián(es) y a cualquier agencia o persona que ha recibido una copia del poder notarial para que estén informados que se ha revocado.',
-  poaTitle: 'POWER OF ATTORNEY FOR CARE OF A MINOR CHILD',
+  poaTitle: 'POWER OF ATTORNEY FOR CARE OF A MINOR CHILD or children',
   useOfThisForm:
-    'Use of this form is authorized by T.C.A. § 34-6-301 et seq.  Completion of this form, along with the proper signatures, is sufficient to authorize enrollment of a minor in school and to authorize medical treatment.  However, a school district may require additional documentation/information as permitted by this section of Tennessee law before enrolling a child in school or any extracurricular activities.',
+    'Use of this form is authorized by T.C.A. § 34-6-301 et seq. Completion of this form, along with the proper signatures, is sufficient to authorize enrollment of a minor in school and to authorize medical treatment. However, a school district may require additional documentation/information as permitted by this section of Tennessee law before enrolling a child/children in school or any extracurricular activities. Please print clearly.  The form is to be filled out and/or initialed by parent(s)/legal guardian(s).',
   pleasePrintClearly: 'Please print clearly.',
   filledOut:
     'To be filled out and/or initialed by parent(s)/legal guardian(s).',
-  minorChildName: 'Minor Child’s Name',
+  minorChildName: 'Minor Child’s full name',
   motherAddress: 'Mother/Legal Guardian’s Name & Address:',
   fatherAddress: 'Father/Legal Guardian’s Name & Address:',
   caregiverAddress: 'Caregiver/Legal Guardian’s Name & Address:',

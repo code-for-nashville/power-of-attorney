@@ -68,10 +68,11 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
   state: PoAFormState
 
   componentDidUpdate(prevProps: PoAFormProps, prevState: PoAFormState) {
+    const {submitted} = this.state
     // if finished form and if no new changes, submit to access form, else if new changes hide 'open/download form'
     if (
-      this.state.submitted === true &&
-      this.state.submitted === prevState.submitted &&
+      submitted === true &&
+      submitted === prevState.submitted &&
       this.state !== prevState
     ) {
       this.setState({submitted: false})
@@ -161,7 +162,8 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
       successorCaregiverAddress,
       successorCaregiverPhoneNumber,
       successorCaregiverRelationship,
-      consentInitials
+      consentInitials,
+      step
     } = this.state
     const validators = [
       {
@@ -190,8 +192,11 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
         parentalStatus: () => this.state.parentalStatus.length === 1,
         parentalStatusReason: () =>
           parentalStatus === '5' ? parentalStatusReason.length === 0 : false
-      }
-    ][this.state.step]
+      },
+      {},
+      {},
+      {}
+    ][step]
 
     const errors = {}
 
@@ -205,7 +210,7 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
   }
 
   isLastStep = () => {
-    return this.state.step === 3
+    return this.state.step === 6
   }
 
   addressOnChange = (inputName, value, name) => {
@@ -459,7 +464,8 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
   }
 
   renderDownloadButtons() {
-    if (this.state.submitted) {
+    const {submitted} = this.state
+    if (submitted) {
       return <AsyncDownloadPDF data={this.state} />
     }
     return null

@@ -107,7 +107,10 @@ const SPANISH: TranslateStringsType = {
   phoneNumber: 'Numéro de Téléphone',
   initials: 'Initials',
   serveJointlyAndSeveraly:
-    'I/We wish for the named persons above to serve jointly and severally as caregivers, working together and/or serving independently as caregiver(s) as needed and appropriate.  The successor caregiver instead may wait to serve only once the initial caregiver is no longer able or willing to serve as caregiver.'
+    'I/We wish for the named persons above to serve jointly and severally as caregivers, working together and/or serving independently as caregiver(s) as needed and appropriate.  The successor caregiver instead may wait to serve only once the initial caregiver is no longer able or willing to serve as caregiver.',
+  temporaryAuthority: '',
+  notProvideCustody: '',
+  mayBeTerminated: ''
 }
 
 export default SPANISH
