@@ -1,7 +1,8 @@
 // @flow
 import * as React from 'react'
 import html2pdf from 'html2pdf.js'
-import Strings from '../strings/pdf'
+import PDFStrings from '../strings/pdf'
+import Strings from '../strings/english'
 import './styles.css'
 import {NumberedContent, CheckHere} from './components'
 import type {FormInputs} from '../types'
@@ -16,13 +17,12 @@ export const SUCCESSOR_CAREGIVER_ADDRESS = `${SUCCESSOR_CAREGIVER}Address`
 export const SUCCESSOR_CAREGIVER_PHONE_NUMBER = `${SUCCESSOR_CAREGIVER}PhoneNumber`
 export const SUCCESSOR_CAREGIVER_RELATIONSHIP = `${SUCCESSOR_CAREGIVER}Relationship`
 
-export const PARENTAL_STATUS_WITH_REASON = 'legalCustodySent'
-export const PARENTAL_STATUSES = [
-  'bothParents',
-  'parentDeceased',
-  'legalCustodySigned',
-  PARENTAL_STATUS_WITH_REASON
-]
+export const PARENTAL_STATUSES = {
+  bothParents: 'bothParents',
+  parentDeceased: 'parentDeceased',
+  legalCustodySigned: 'legalCustodySigned',
+  legalCustodySent: 'legalCustodySent'
+}
 
 const PDF_ID = 'print-container'
 type HiddenPDFProps = {data: FormInputs}
@@ -70,78 +70,80 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
       initialCaregiverPhoneNumber,
       successorCaregiverRelationship,
       successorCaregiverPhoneNumber,
-      consentInitials
+      consentInitials,
+      parentalStatus,
+      parentalStatusReason
     } = data
     return (
       <div id={PDF_ID} className="hiddenPDF">
         <div className="pdfContainer">
           <div>
-            <p className="title">{Strings.instructions}</p>
+            <p className="title">{PDFStrings.instructions}</p>
             <br />
             <ol>
-              <li className="text">{Strings.printInstructions}</li>
-              <li className="text">{Strings.bothCopiesCaregiver}</li>
-              <li className="text">{Strings.bothInitials}</li>
-              <li className="text">{Strings.bothCopiesParent}</li>
-              <li className="text">{Strings.originalCopyCaregiver}</li>
-              <li className="text">{Strings.originalCopyYou}</li>
-              <li className="text">{Strings.originalCopyThirdParty}</li>
-              <li className="text">{Strings.revoke}</li>
+              <li className="text">{PDFStrings.printInstructions}</li>
+              <li className="text">{PDFStrings.bothCopiesCaregiver}</li>
+              <li className="text">{PDFStrings.bothInitials}</li>
+              <li className="text">{PDFStrings.bothCopiesParent}</li>
+              <li className="text">{PDFStrings.originalCopyCaregiver}</li>
+              <li className="text">{PDFStrings.originalCopyYou}</li>
+              <li className="text">{PDFStrings.originalCopyThirdParty}</li>
+              <li className="text">{PDFStrings.revoke}</li>
             </ol>
           </div>
           <div className="page break">
-            <p className="title">{Strings.instructionsEsp}</p>
+            <p className="title">{PDFStrings.instructionsEsp}</p>
             <br />
             <ol>
-              <li className="text">{Strings.printInstructionsEsp}</li>
-              <li className="text">{Strings.bothCopiesCaregiverEsp}</li>
-              <li className="text">{Strings.bothInitialsEsp}</li>
-              <li className="text">{Strings.bothCopiesParentEsp}</li>
-              <li className="text">{Strings.originalCopyCaregiverEsp}</li>
-              <li className="text">{Strings.originalCopyYouEsp}</li>
-              <li className="text">{Strings.originalCopyThirdPartyEsp}</li>
-              <li className="text">{Strings.revokeEsp}</li>
+              <li className="text">{PDFStrings.printInstructionsEsp}</li>
+              <li className="text">{PDFStrings.bothCopiesCaregiverEsp}</li>
+              <li className="text">{PDFStrings.bothInitialsEsp}</li>
+              <li className="text">{PDFStrings.bothCopiesParentEsp}</li>
+              <li className="text">{PDFStrings.originalCopyCaregiverEsp}</li>
+              <li className="text">{PDFStrings.originalCopyYouEsp}</li>
+              <li className="text">{PDFStrings.originalCopyThirdPartyEsp}</li>
+              <li className="text">{PDFStrings.revokeEsp}</li>
             </ol>
           </div>
           <div className="page break">
-            <p className="title uppercase">{Strings.poaTitle}</p>
-            <p>{Strings.useOfThisForm}</p>
+            <p className="title uppercase">{PDFStrings.poaTitle}</p>
+            <p>{PDFStrings.useOfThisForm}</p>
             <br />
             <NumberedContent number={1}>
               <div className="row">
-                <span className="label bold">{Strings.minorChildName}:</span>
+                <span className="label bold">{PDFStrings.minorChildName}:</span>
                 <div className="underline full-width">{childrenNames[0]}</div>
               </div>
               <div className="row">
-                <span className="label bold">{Strings.minorChildName}:</span>
+                <span className="label bold">{PDFStrings.minorChildName}:</span>
                 <span className="underline full-width">{childrenNames[1]}</span>
               </div>
               <div className="row">
-                <span className="label bold">{Strings.minorChildName}:</span>
+                <span className="label bold">{PDFStrings.minorChildName}:</span>
                 <span className="underline full-width">{childrenNames[2]}</span>
               </div>
               <div className="row">
-                <span className="label bold">{Strings.minorChildName}:</span>
+                <span className="label bold">{PDFStrings.minorChildName}:</span>
                 <span className="underline full-width">{childrenNames[3]}</span>
               </div>
             </NumberedContent>
             <br />
             <div className="row">
-              <span className="label bold">{Strings.motherAddress}:</span>
+              <span className="label bold">{PDFStrings.motherAddress}:</span>
               <span className="underline full-width">{motherAddress.name}</span>
             </div>
             <div className="row">
-              <span className="label bold">{Strings.address}:</span>
+              <span className="label bold">{PDFStrings.address}:</span>
               <span className="underline full-width">
                 {formatAddress(motherAddress)}
               </span>
             </div>
             <div className="row">
-              <span className="label bold">{Strings.fatherAddress}:</span>
+              <span className="label bold">{PDFStrings.fatherAddress}:</span>
               <span className="underline full-width">{fatherAddress.name}</span>
             </div>
             <div className="row">
-              <span className="label bold">{Strings.address}:</span>
+              <span className="label bold">{PDFStrings.address}:</span>
               <span className="underline full-width">
                 {formatAddress(fatherAddress)}
               </span>
@@ -149,7 +151,9 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
             <br />
             <NumberedContent number={2}>
               <div className="row">
-                <span className="bold">{Strings.initalCaregiverAddress}:</span>
+                <span className="bold">
+                  {PDFStrings.initalCaregiverAddress}:
+                </span>
               </div>
               <div className="row center">
                 <span className="underline half-width">
@@ -173,7 +177,7 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
               </div>
               <div className="row">
                 <span className="bold">
-                  {Strings.successorCaregiverAddress}:
+                  {PDFStrings.successorCaregiverAddress}:
                 </span>
               </div>
               <div className="row center">
@@ -199,12 +203,70 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
               <div className="row">
                 <CheckHere text={consentInitials[0]} />
                 <CheckHere text={consentInitials[1]} />
-                <span>{Strings.serveJointlyAndSeveraly}</span>
+                <span>{PDFStrings.serveJointlyAndSeveraly}</span>
               </div>
             </NumberedContent>
             <NumberedContent number={3}>
               <div className="row">
-                <span className="bold">{Strings.parentalCustody}:</span>
+                <span className="bold">{PDFStrings.parentalCustody}:</span>
+              </div>
+              <div className="row">
+                <CheckHere
+                  text={
+                    parentalStatus === PARENTAL_STATUSES.bothParents ? 'X' : ''
+                  }
+                />
+                <CheckHere
+                  text={
+                    parentalStatus === PARENTAL_STATUSES.bothParents ? 'X' : ''
+                  }
+                />
+                <span>
+                  {Strings.bothParents}
+                  {PDFStrings.or}
+                </span>
+              </div>
+              <div className="row">
+                <CheckHere
+                  text={
+                    parentalStatus === PARENTAL_STATUSES.parentDeceased
+                      ? 'X'
+                      : ''
+                  }
+                />
+                <span>
+                  {Strings.parentDeceased}
+                  {PDFStrings.or}
+                </span>
+              </div>
+              <div className="row">
+                <CheckHere
+                  text={
+                    parentalStatus === PARENTAL_STATUSES.legalCustodySigned
+                      ? 'X'
+                      : ''
+                  }
+                />
+                <span>
+                  {Strings.legalCustodySigned}
+                  {PDFStrings.or}
+                </span>
+              </div>
+              <div className="row">
+                <CheckHere
+                  text={
+                    parentalStatus === PARENTAL_STATUSES.legalCustodySent
+                      ? 'X'
+                      : ''
+                  }
+                />
+                <span>
+                  {Strings.legalCustodySent}
+                  <span className="underline half-width">
+                    {parentalStatusReason || '\u00A0'}
+                  </span>
+                  {PDFStrings.legalCustodyExample}
+                </span>
               </div>
             </NumberedContent>
           </div>

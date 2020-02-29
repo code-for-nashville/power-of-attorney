@@ -54,7 +54,7 @@ const PDF_STRINGS = {
   bothLiving:
     'Both parents are living, have legal custody of the minor child and have signed this document; ',
   or: 'OR',
-  oneParentDeceased: 'One parent is deceased; ',
+  legalCustodyExample: '(e.g., imprisonment, whereabouts unknown). ',
   oneParentLegalCustodyBothSigned:
     'One parent has legal custody of the minor child and both parents have signed this document and consent to the appointment of the caregiver; ',
   oneParentLegalCustodyMail:

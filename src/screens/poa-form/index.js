@@ -451,7 +451,7 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
           this.setState({parentalStatusReason})
         }
         error={errorMessage}
-        options={PARENTAL_STATUSES}
+        options={Object.values(PARENTAL_STATUSES)}
         value={this.state.parentalStatus}
         freeText
         freeTextValue={this.state.parentalStatusReason}
