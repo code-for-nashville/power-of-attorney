@@ -43,6 +43,26 @@ const ENGLISH = {
   legalCustodySentLink:
     'Click here for a copy of the text of T.C.A. § 34-6-305 (2017)',
   reasonNotReached: 'Reason non-custodial parent could not be reached:',
+  condition: 'Condition',
+  hardships: 'Hardships',
+  effectiveImmediatly:
+    'effective immediately upon signing this document, but with the intention that the caregiver(s) will only take charge of my/our child/children if and when one or more of the following type(s) of hardship may occur (check at least one below):',
+  untilHardships:
+    'only if and when one or more of the following type(s) of hardship may occur (check at least one below):',
+  seriousIllness: 'the serious illness of a parent or legal guardian;',
+  physicalOrMentalCondition:
+    'the physical or mental condition of the parent or legal guardian or the child/children is such that care and supervision of the child/children cannot be provided;',
+  uninhabitability:
+    'the loss or uninhabitability of the child/children’s home as a result of a natural disaster or otherwise;',
+  needTreatment:
+    'the need for medical or mental health treatment (including substance abuse treatment) by the parent or legal guardian;',
+  incarceration: 'the incarceration of a parent or legal guardian;',
+  detention: 'the detention or deportation of a parent or guardian; and/or',
+  describe: 'other',
+  pleaseDescribe: '(please describe):',
+  describeHardshipError: 'Description required',
+  hardshipsError: 'Please select at least one',
+  conditionError: 'Please select one',
   powerOfAttorney: 'POWER OF ATTORNEY FOR CARE OF A MINOR CHILD OR CHILDREN',
   childInformation: 'Child Information',
   guardianInformation: 'Guardian Information',

@@ -4,7 +4,7 @@ import Header from './header'
 import FormSubjects from './form-subjects'
 import Address from './address'
 import FieldHeader from './field-header'
-import RadioBox from './radio-box'
+import {RadioBox, MultiSelectBox} from './selection-box'
 import InitialsInput from './initials-input'
 
 export {
@@ -15,5 +15,6 @@ export {
   Address,
   FieldHeader,
   RadioBox,
+  MultiSelectBox,
   InitialsInput
 }

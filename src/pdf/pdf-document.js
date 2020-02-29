@@ -24,6 +24,21 @@ export const PARENTAL_STATUSES = {
   legalCustodySent: 'legalCustodySent'
 }
 
+export const AUTHORITY_GIVEN_CONDITIONS = {
+  effectiveImmediatly: 'effectiveImmediatly',
+  untilHardships: 'untilHardships'
+}
+
+export const HARDSHIPS = {
+  seriousIllness: 'seriousIllness',
+  physicalOrMentalCondition: 'physicalOrMentalCondition',
+  uninhabitability: 'uninhabitability',
+  needTreatment: 'needTreatment',
+  incarceration: 'incarceration',
+  detention: 'detention',
+  describe: 'describe'
+}
+
 const PDF_ID = 'print-container'
 type HiddenPDFProps = {data: FormInputs}
 

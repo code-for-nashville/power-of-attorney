@@ -27,8 +27,10 @@ import Regex from '../../constants'
 import {
   PARENTAL_STATUSES,
   INITIAL_CAREGIVER,
-  SUCCESSOR_CAREGIVER
+  SUCCESSOR_CAREGIVER,
+  HARDSHIPS
 } from '../../pdf/pdf-document.js'
+import StepFive from './step-five'
 import defaultState from './defaultState'
 import './styles.css'
 
@@ -135,6 +137,7 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
 
   _next = () => {
     const errors = this.stepErrors()
+    console.log({errors})
     if (this.hasError(errors)) {
       this.setState({errors: errors})
     } else {
@@ -169,6 +172,9 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
       successorCaregiverPhoneNumber,
       successorCaregiverRelationship,
       consentInitials,
+      condition,
+      hardships,
+      describeHardship,
       step
     } = this.state
     const validators = [
@@ -195,11 +201,16 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
         consentInitials: () => consentInitials.filter(i => i).length === 0
       },
       {
-        parentalStatus: () => this.state.parentalStatus.length === 1,
+        parentalStatus: () => parentalStatus.length === 1,
         parentalStatusReason: () =>
           parentalStatus === '5' ? parentalStatusReason.length === 0 : false
       },
-      {},
+      {
+        condition: () => !condition,
+        hardships: () => hardships.length < 1,
+        describeHardship: () =>
+          hardships.indexOf(HARDSHIPS.describe) > -1 && !describeHardship
+      },
       {},
       {}
     ][step]
@@ -209,6 +220,7 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
     for (let [key, validator] of Object.entries(validators)) {
       if (typeof validator === 'function') {
         errors[key] = validator()
+        console.log(errors, key, validator())
       }
     }
 
@@ -435,31 +447,71 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
 
   renderStepFour() {
     const {t} = this.props
-
+    const {errors, parentalStatus, parentalStatusReason} = this.state
     let errorMessage = null
-    if (this.state.errors.parentalStatus) {
+    if (errors.parentalStatus) {
       errorMessage = t('pleaseAddParentalStatus')
-    } else if (this.state.errors.parentalStatusReason) {
+    } else if (errors.parentalStatusReason) {
       errorMessage = t('pleaseAddReason')
     }
-
     return (
-      <RadioBox
-        choice={this.state.parentalStatus}
-        onChangeRadio={parentalStatus => this.setState({parentalStatus})}
-        onChangeFreeAnswer={parentalStatusReason =>
-          this.setState({parentalStatusReason})
-        }
-        error={errorMessage}
-        options={Object.values(PARENTAL_STATUSES)}
-        value={this.state.parentalStatus}
-        freeText
-        freeTextValue={this.state.parentalStatusReason}
-      />
+      <div>
+        <RadioBox
+          header={t('parentalCustody')}
+          choice={parentalStatus}
+          onChange={parentalStatus => this.setState({parentalStatus})}
+          onChangeFreeAnswer={parentalStatusReason =>
+            this.setState({parentalStatusReason})
+          }
+          error={errorMessage}
+          options={Object.values(PARENTAL_STATUSES)}
+          value={parentalStatus}
+          freeTextKey={PARENTAL_STATUSES.legalCustodySent}
+          freeTextLabel={t('reasonNotReached')}
+          freeTextValue={parentalStatusReason}
+        />
+        <a
+          href="https://law.justia.com/codes/tennessee/2017/title-34/chapter-6/part-3/section-34-6-305/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {' '}
+          {t('legalCustodySentLink')}{' '}
+        </a>
+      </div>
     )
   }
 
-  renderStepFive = () => {}
+  renderStepFive = () => {
+    const {t} = this.props
+    const {condition, hardships, describeHardship, errors} = this.state
+    const {
+      describeHardship: describeHardshipError,
+      hardships: hardshipsError,
+      condition: conditionError
+    } = errors
+    let errorCondition = conditionError ? t('conditionError') : null
+    let errorHardship = null
+    if (hardshipsError) {
+      errorHardship = t('hardshipsError')
+    } else if (describeHardshipError) {
+      errorHardship = t('describeHardshipError')
+    }
+    return (
+      <StepFive
+        errorCondition={errorCondition}
+        valueCondition={condition}
+        onChangeCondition={condition => this.setState({condition})}
+        errorHardship={errorHardship}
+        valueHardship={hardships}
+        onChangeHardship={hardships => this.setState({hardships})}
+        onChangeFreeAnswer={describeHardship =>
+          this.setState({describeHardship})
+        }
+        describeHardship={describeHardship}
+      />
+    )
+  }
 
   renderStepSix = () => {}
 

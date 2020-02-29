@@ -40,6 +40,9 @@ export const defaultState = {
   consentInitials: MOCK_FORM ? ['XX', 'XX'] : ['', ''],
   parentalStatus: MOCK_FORM ? 'bothParents' : '',
   parentalStatusReason: '',
+  condition: '',
+  hardships: [],
+  describeHardship: '',
   errors: {
     childrenNames: null,
     motherAddress: {
@@ -52,7 +55,9 @@ export const defaultState = {
       name: null
     },
     parentalStatus: null,
-    parentalStatusReason: null
+    parentalStatusReason: null,
+    conditionError: null,
+    hardshipsError: null
   }
 }
 
