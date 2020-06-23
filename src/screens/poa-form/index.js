@@ -126,7 +126,7 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
   static errorCount(errorEntry: boolean | Object): number {
     if (typeof errorEntry === 'boolean') {
       return errorEntry ? 1 : 0
-    } else if (typeof errorEntry === 'object') {
+    } else if (typeof errorEntry === 'object' && errorEntry !== null) {
       return Object.values(errorEntry).reduce((sum, errorEntry) => sum + PoAForm.errorCount(errorEntry), 0)
     }
     return 0
