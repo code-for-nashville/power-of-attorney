@@ -2,6 +2,12 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "command": "REACT_APP_MOCK_FORM=true yarn start",
+      "name": "Start dev server with mock form data",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
       "name": "Chrome",
       "type": "chrome",
       "request": "launch",

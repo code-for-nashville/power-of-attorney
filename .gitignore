@@ -25,3 +25,4 @@ yarn-error.log*
 # css
 src/**/*.css
 
+.vscode/settings.json

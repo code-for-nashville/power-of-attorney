@@ -15,7 +15,7 @@ const ENGLISH: TranslateStringsType = {
   pleaseAddName: 'Please add a name.',
   streetAddress: 'Street Address',
   pleaseAddCity: 'Please add a city.',
-  pleaseAddState: 'Please add at state.',
+  pleaseAddState: 'Please add a state.',
   city: 'City',
   state: 'State',
   pleaseAddZip: 'Please enter a 5 digit zip code.',
