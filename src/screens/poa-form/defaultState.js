@@ -9,7 +9,10 @@ const emptyAddress = {
   postal_code: ''
 }
 const MOCK_FORM = REACT_APP_MOCK_FORM === 'true'
-const FORM_STEP = REACT_APP_FORM_STEP ? parseInt(REACT_APP_FORM_STEP, 10) : 0
+const FORM_STEP = {
+  number: REACT_APP_FORM_STEP ? parseInt(REACT_APP_FORM_STEP, 10) : 0,
+  attempted: false
+}
 
 const mockedAddress = (name: string) => ({
   name,

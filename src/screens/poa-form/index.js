@@ -10,6 +10,8 @@ import {
   FormField,
   TextInput
 } from 'grommet'
+import {translate} from 'react-i18next'
+import Stepper from 'react-stepper-horizontal'
 
 import {
   Disclaimer,
@@ -20,8 +22,6 @@ import {
   RadioBox,
   InitialsInput
 } from '../../components'
-import Stepper from 'react-stepper-horizontal'
-import {translate} from 'react-i18next'
 import type {FormInputs} from '../../types'
 import Regex from '../../constants'
 import {
@@ -61,12 +61,17 @@ type FormInputErrors = {|
 |}
 
 type PoAFormState = {|
-  step: number,
+  acceptedModal: boolean,
+  step: {
+    number: number,
+    attempted: boolean
+  },
   numberOfChildren: number,
   submitted: boolean,
   errors: FormInputErrors,
   ...FormInputs
 |}
+
 class PoAForm extends Component<PoAFormProps, PoAFormState> {
   constructor(props: PoAFormProps) {
     super(props)
@@ -115,47 +120,59 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
   }
 
   _back = () => {
-    if (this.state.step > 0) {
-      this.setState(state => ({step: --state.step}))
+    if (this.state.step.number > 0) {
+      this.setState(state => ({
+        step: {
+          number: state.step.number - 1,
+          attempted: false
+        }
+      }))
     }
   }
 
   /*
-    Recursively check if an object has errors.
+    Recursively check if an error object has errors.
 
     Error objects are expected to have booleans(true/false) or a nested error
     object as values.
   */
-  hasError(object) {
-    return Object.values(object).reduce((result, value) => {
-      if (typeof value === 'boolean') {
-        return result || value
-      }
-      return result || this.hasError(value)
-    }, false)
+  static hasError(errorEntry: boolean | Object): boolean {
+    return PoAForm.errorCount(errorEntry) > 0
+  }
+
+  static errorCount(errorEntry: boolean | Object): number {
+    if (typeof errorEntry === 'boolean') {
+      return errorEntry ? 1 : 0
+    } else if (typeof errorEntry === 'object' && errorEntry !== null) {
+      return Object.values(errorEntry).reduce((sum, errorEntry) => sum + PoAForm.errorCount(errorEntry), 0)
+    }
+    return 0
   }
 
   _next = () => {
     const errors = this.stepErrors()
-    console.log({errors})
-    if (this.hasError(errors)) {
+    this.setState(state => ({
+      step: {...state.step, attempted: true}
+    }))
+    if (PoAForm.hasError(errors)) {
       this.setState({errors: errors})
     } else {
       if (this.isLastStep()) {
         this.submit()
       } else {
-        this.setState(state => ({step: state.step + 1}))
+        this.setState(state => ({
+          step: {
+            number: state.step.number + 1,
+            attempted: false
+          }
+        }))
         if (typeof window !== 'undefined') window.scrollTo(0, 0)
       }
     }
   }
 
   /*
-    Returns an object containing validation errors for just the current step
-
-    Returns: An Array of two elements. The first element is a key of field names
-      to error objects.  The second element is a boolean that is True if any
-      of the fields failed validation.
+    Returns an object containing validation errors for just the current step.
   */
   stepErrors(): Object {
     const {
@@ -175,7 +192,6 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
       condition,
       hardships,
       describeHardship,
-      step
     } = this.state
     const validators = [
       {
@@ -213,14 +229,13 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
       },
       {},
       {}
-    ][step]
+    ][this.state.step.number]
 
     const errors = {}
 
     for (let [key, validator] of Object.entries(validators)) {
       if (typeof validator === 'function') {
         errors[key] = validator()
-        console.log(errors, key, validator())
       }
     }
 
@@ -520,13 +535,38 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
   renderForm() {
     const {step} = this.state
     const steps = this.steps()
-    return steps[step].component
+    return steps[step.number].component
   }
 
   renderDownloadButtons() {
     const {submitted} = this.state
     if (submitted) {
       return <AsyncDownloadPDF data={this.state} />
+    }
+    return null
+  }
+
+  /*
+    Checks if the step has been attempted. If so, checks to see if there are errors for the current step.
+    If so, renders a box with an error message. Otherwise, returns null.
+   */
+  renderErrorMessage() {
+    if (this.state.step && this.state.step.attempted) {
+      const stepErrorKeys = Object.keys(this.stepErrors())
+      const errors = this.state.errors
+      const errorCount = stepErrorKeys.map(stepErrorKey => errors[stepErrorKey])
+        .map(PoAForm.errorCount)
+        .reduce((sum, errorCount) => sum + errorCount, 0)
+      const {t} = this.props
+      if (errorCount > 0) {
+        return (
+          <Box align="end" className="form-error-message">
+            {t('formWithErrors', {errorCount: errorCount.toString()})}
+            {/* The version of grommet being used doesn't support padding only on one side */}
+            <Box pad={{vertical: "small"}}/>
+          </Box>
+        )
+      }
     }
     return null
   }
@@ -544,12 +584,13 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
               activeColor="#679ba1"
               completeColor="#679ba1"
               activeBorderColor="#679ba1"
-              activeStep={this.state.step}
+              activeStep={this.state.step.number}
             />
           </div>
         </div>
 
         <Paragraph className="align-center">
+          <strong>{t('partI')} </strong>
           {t('thisFormIsToBeFilled')}
         </Paragraph>
         <Box direction="row" justify="between">
@@ -557,6 +598,7 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
           <Box basis="1/3">
             <Form autoComplete="off" className="align-center">
               <Box pad={{vertical: 'medium'}}>{this.renderForm()}</Box>
+              {this.renderErrorMessage()}
               <Box
                 alignSelf="center"
                 direction="row"
@@ -570,7 +612,7 @@ class PoAForm extends Component<PoAFormProps, PoAFormState> {
                   primary={true}
                   className="button hidden-large"
                   style={
-                    this.state.step === 0
+                    this.state.step.number === 0
                       ? {backgroundColor: 'grey', borderColor: 'grey'}
                       : {}
                   }
