@@ -41,7 +41,13 @@ class Disclaimer extends React.Component<*, *> {
           <div>{t('beforeStart')}</div>
         </Box>
         <Box pad={{horizontal: 'medium', vertical: 'none'}}>
-          <Paragraph margin="small">{t('useOfThisForm')}</Paragraph>
+          <Paragraph margin="small">
+            {t('legalInformationNotAdvice')}
+            <span className="disclaimer-bold">
+              {t('doesNotTrackSaveRetain')}
+            </span>
+            {t('useOfThisForm')}
+          </Paragraph>
           <Paragraph>
             {t('lawCanBeFound')}{' '}
             <Anchor
