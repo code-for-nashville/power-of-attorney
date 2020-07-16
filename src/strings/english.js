@@ -1,5 +1,5 @@
 // @flow
-const ENGLISH: TranslateStringsType = {
+const ENGLISH = {
   forTennessee: 'For Tennessee',
   immigrantParents: 'Immigrant Parents',
   ensureCare:
@@ -15,7 +15,10 @@ const ENGLISH: TranslateStringsType = {
   pleaseAddName: 'Please add a name.',
   streetAddress: 'Street Address',
   pleaseAddCity: 'Please add a city.',
-  pleaseAddState: 'Please add at state.',
+  pleaseAddRelationship: 'Please add a caregiver relationship to children',
+  pleaseAddPhoneNumber: 'Please add a phone number to the caregiver',
+  pleaseAddInitials: 'Please add the initials of one parent to give consent',
+  pleaseAddState: 'Please add a state.',
   city: 'City',
   state: 'State',
   pleaseAddZip: 'Please enter a 5 digit zip code.',
@@ -25,30 +28,47 @@ const ENGLISH: TranslateStringsType = {
   pleaseAddChildName: 'Please add the name of each child.',
   motherName: 'Mother/Legal Guardian’s Name & Address',
   fatherName: 'Father/Legal Guardian’s Name & Address',
-  caregiverName: 'Caregiver’s Name & Address',
-  parentalStatus: 'Parental Status',
-  pleaseAddParentalStatus: 'Please add a parental status.',
+  initialCaregiverName: 'Initial Caregiver’s Name & Address',
+  successorCaregiverName: 'Successor Caregiver’s Name & Address',
+  parentalCustody: 'Parental Custody',
+  pleaseAddParentalStatus: '(check the appropriate custody status)',
   pleaseAddReason: 'Please add a reason.',
   bothParents:
-    'Both parents are living, have legal custody of the minor child and have signed this document',
-  parentDeceased: 'One parent is deceased',
+    'Both parents are living, have legal custody of the minor child/children, and have signed this document;',
+  parentDeceased: 'One parent is deceased;',
   legalCustodySigned:
-    'One parent has legal custody of the minor child and both parents have signed this document and consent to the appointment of the caregiver',
+    'One parent has legal custody of the minor child/children, and both parents have signed this document and consent to the appointment of the caregiver(s);',
   legalCustodySent:
-    'One parent has legal custody of the minor child, and has sent by Certified Mail, Return Receipt requested, to the other parent at last known address, a copy of this document and a notice of the provisions in § 34-6-305;',
+    'One parent has legal custody of the minor child/children, and s/he has sent by Certified Mail, Return Receipt requested, to the other parent at their last known address, a copy of this document and a notice of the provisions in T.C.A. § 34-6-305; or the non-custodial parent has not consented to the appointment and consent cannot be obtained because',
   legalCustodySentLink:
     'Click here for a copy of the text of T.C.A. § 34-6-305 (2017)',
-  legalCustodyNoConsent:
-    'The non-custodial parent has not consented to the appointment and consent cannot be obtained.',
   reasonNotReached: 'Reason non-custodial parent could not be reached:',
-  powerOfAttorney: 'POWER OF ATTORNEY FOR CARE OF A MINOR CHILD',
+  condition: 'Condition',
+  hardships: 'Hardships',
+  effectiveImmediatly:
+    'effective immediately upon signing this document, but with the intention that the caregiver(s) will only take charge of my/our child/children if and when one or more of the following type(s) of hardship may occur (check at least one below):',
+  untilHardships:
+    'only if and when one or more of the following type(s) of hardship may occur (check at least one below):',
+  seriousIllness: 'the serious illness of a parent or legal guardian;',
+  physicalOrMentalCondition:
+    'the physical or mental condition of the parent or legal guardian or the child/children is such that care and supervision of the child/children cannot be provided;',
+  uninhabitability:
+    'the loss or uninhabitability of the child/children’s home as a result of a natural disaster or otherwise;',
+  needTreatment:
+    'the need for medical or mental health treatment (including substance abuse treatment) by the parent or legal guardian;',
+  incarceration: 'the incarceration of a parent or legal guardian;',
+  detention: 'the detention or deportation of a parent or guardian; and/or',
+  describe: 'other',
+  pleaseDescribe: '(please describe):',
+  describeHardshipError: 'Description required',
+  hardshipsError: 'Please select at least one',
+  conditionError: 'Please select one',
+  powerOfAttorney: 'POWER OF ATTORNEY FOR CARE OF A MINOR CHILD OR CHILDREN',
   childInformation: 'Child Information',
   guardianInformation: 'Guardian Information',
   caregiversInformation: 'Caregiver’s Information',
-  parentalstatus: 'Parental Status',
-  partI: 'Part I:',
   submit: 'Submit',
-  Next: 'next',
+  next: 'next',
   formWithErrors: 'The form has {{errorCount}} error(s)',
   faq: 'Frequently Asked Questions',
   whatIsPOA: 'What is a Power of Attorney?',
@@ -100,7 +120,17 @@ const ENGLISH: TranslateStringsType = {
   unknownError:
     'An unknown error that occured - please refresh the page and try again.',
   cuteBabyBoy: 'Cute baby boy looking up.',
-  back: 'Back'
+  back: 'Back',
+  relationship: 'Relationship',
+  phoneNumber: 'Phone Number',
+  initials: 'Parent Initials',
+  serveJointlyAndSeveraly:
+    'I/We wish for the named persons above to serve jointly and severally as caregivers, working together and/or serving independently as caregiver(s) as needed and appropriate.  The successor caregiver instead may wait to serve only once the initial caregiver is no longer able or willing to serve as caregiver.',
+  temporaryAuthority: 'Temporary Authority',
+  notProvideCustody: 'Does not Provide Custody',
+  mayBeTerminated: 'Can Be Terminated'
 }
+
+export type TranslateStringsType = typeof ENGLISH
 
 export default ENGLISH

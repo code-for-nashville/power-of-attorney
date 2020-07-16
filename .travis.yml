@@ -9,7 +9,6 @@ script:
   - yarn lint
   - yarn test
   - yarn flow
-before_deploy:
   - yarn build
 deploy:
   provider: pages

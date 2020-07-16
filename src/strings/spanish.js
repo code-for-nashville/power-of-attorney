@@ -1,4 +1,6 @@
 // @flow
+import type {TranslateStringsType} from './english'
+
 const SPANISH: TranslateStringsType = {
   forTennessee: 'Para Tennessee',
   immigrantParents: 'Padres Inmigrantes',
@@ -16,6 +18,9 @@ const SPANISH: TranslateStringsType = {
   streetAddress: 'Dirección',
   pleaseAddCity: 'Escojer una ciudad.',
   pleaseAddState: 'Escojer un estado.',
+  pleaseAddRelationship: 'Please add a caregiver relationship to children',
+  pleaseAddPhoneNumber: 'Please add a phone number to the caregiver',
+  pleaseAddInitials: 'Please add the initials of one parent to give consent',
   city: 'Ciudad',
   state: 'Estado',
   pleaseAddZip: 'Favor de ingresar su codigo postal.',
@@ -25,8 +30,9 @@ const SPANISH: TranslateStringsType = {
   pleaseAddChildName: 'Favor de añadir nombre de cada menor.',
   motherName: 'Madre/Guardian Legal, Nombre & Dirección',
   fatherName: 'Padre/Guardian Legal, Nombre & Dirección',
-  caregiverName: 'Nombre & Direccion del Cuidador',
-  parentalStatus: 'Estado de los Padres',
+  initialCaregiverName: 'Initial Caregiver’s Name & Address',
+  successorCaregiverName: 'Successor Caregiver’s Name & Address',
+  parentalCustody: '',
   pleaseAddParentalStatus: 'Porfavor añadir estado de los Padres.',
   pleaseAddReason: 'Añadir una razón.',
   bothParents:
@@ -38,16 +44,28 @@ const SPANISH: TranslateStringsType = {
     'Un Pariente tiene custodia legal de el menor, y ha enviado por Correo Certificado, Recibo de Retorno pedido, hacia el otro Pariente a la ultima dirección conocida, una copia de este documento y un aviso en las provisiones en § 34-6-305;',
   legalCustodySentLink:
     'Haz clic aqui para una copia del texto de T.C.A. § 34-6-305 (2017)',
-  legalCustodyNoConsent:
-    'El pariente sin custodia no a dado el consentimiento a la designacion o su consentimiento no puede ser obtenido.',
   reasonNotReached:
     'Razon la cual el Pariente sin custodia no puede ser alcanzado:',
+  condition: '',
+  hardships: '',
+  effectiveImmediatly: '',
+  untilHardships: '',
+  seriousIllness: '',
+  physicalOrMentalCondition: '',
+  uninhabitability: '',
+  needTreatment: '',
+  incarceration: '',
+  detention: '',
+  describe: '',
+  pleaseDescribe: '',
+  describeHardshipError: '',
+  hardshipsError: '',
+  conditionError: '',
   powerOfAttorney: 'PODER NOTARIAL PARA EL CUIDO DE UN MENOR',
   childInformation: 'Información de el Menor',
   guardianInformation: 'Información de el Guardian',
   caregiversInformation: 'Informacion de el Cuidador',
   parentalstatus: 'Estado de Parientes',
-  partI: 'Parte I:',
   submit: 'Someter',
   next: 'siguiente',
   formWithErrors: 'La forma tiene {{errorCount}} error(es)',
@@ -76,7 +94,7 @@ const SPANISH: TranslateStringsType = {
   legalInformationNotAdvice: '',
   doesNotTrackSaveRetain: '',
   useOfThisForm:
-    'El uso de esta froma es autorizado por T.C.A. § 34-6-301 et seq. Al completar esta forma, con las firmas apropiadas, es sufficiente para autorizar inscripción de un menor a una escuela y autorizar trato médico. Aunque, una escuela del distrito escolar pueda requerir documentación/información adicional puede mientras permitida por esta sección de la ley de Tennessee antes de inscribir a un menor en la escuela o cualquier actividad extracurricular.',
+    'Esta forma es información, no consejo legal. Aunque esta forma no cancela sus derechos como Pariente, la forma provee a un guardian la autoridad para el cuido de su menor. Si no está seguro(a) de sus derechos o necesidad, debería consultar con un abogado para discutir sus necesidades legales. Este sitio web no rastrea, guarda o retiene ninguna informacion. Si usted sale de este sitio web sin descargar la forma, tendrí que comenzar desde el principio. El uso de esta froma es autorizado por T.C.A. § 34-6-301 et seq. Al completar esta forma, con las firmas apropiadas, es sufficiente para autorizar inscripción de un menor a una escuela y autorizar trato médico. Aunque, una escuela del distrito escolar pueda requerir documentación/información adicional puede mientras permitida por esta sección de la ley de Tennessee antes de inscribir a un menor en la escuela o cualquier actividad extracurricular.',
   thisFormIsToBeFilled:
     'Esta forma es para ser iniciada y/o completada por pariente(es)/guardian legal).',
   MORE_INFORMATION: 'MAS INFORMACIÓN',
@@ -91,7 +109,7 @@ const SPANISH: TranslateStringsType = {
   doesNotTrack:
     'Su información y privacidad es importante para nosotros.  Esta pagina web no rastrea, mantiene o monitorea la información ingresada.',
   formWasCreatedNote:
-    'NOTA: Cada menor debe tener una forma de Poder Notarial por separado.  Usted no puede usar una forma para todos los menores.',
+    'NOTA: Cada menor debe tener una forma de Poder Notarial por separado.  Usted no puede usar solo una forma para todos los menores.',
   howMuch: 'Cuanto cuesta un Poder Notarial?',
   howMuchAnswer:
     'Es libre de cargo.  Puede haber un pequeno cargo debido al notario publico por noratizar el documento.',
@@ -101,7 +119,15 @@ const SPANISH: TranslateStringsType = {
     'ID de prueba de Parientes y prueba de ID de el cuidador asignado sera requerido para notarizar el documento.  El documento debe ser firmado por todos los participantes frente a un notario o dos testigos.  Un documento notarizado es usualmente mas effectivo, y es altamente sugerido que notarize el documento mejor que simplemente buscar dos testigos.',
   whereSendDocuments: 'Donde necesito enviar los documentos?',
   whereSendDocumentsAnswer:
-    'Usted deberia proveer una copia de el Poder Notarial y el Certificado de Nacimiento de el menor al Cuidador.  Usted tambien podria proveer una copia de el Poder Notarial a ambos, la escuela y los doctores de el menor.'
+    'Usted deberia proveer una copia de el Poder Notarial y el Certificado de Nacimiento de el menor al Cuidador.  Usted tambien podria proveer una copia de el Poder Notarial a ambos, la escuela y los doctores de el menor.',
+  relationship: 'Relationship',
+  phoneNumber: 'Numéro de Téléphone',
+  initials: 'Initials',
+  serveJointlyAndSeveraly:
+    'I/We wish for the named persons above to serve jointly and severally as caregivers, working together and/or serving independently as caregiver(s) as needed and appropriate.  The successor caregiver instead may wait to serve only once the initial caregiver is no longer able or willing to serve as caregiver.',
+  temporaryAuthority: '',
+  notProvideCustody: '',
+  mayBeTerminated: ''
 }
 
 export default SPANISH

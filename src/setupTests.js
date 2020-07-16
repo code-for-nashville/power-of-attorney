@@ -1,3 +1,8 @@
+import Adapter from 'enzyme-adapter-react-16'
+import Enzyme from 'enzyme'
+
+Enzyme.configure({adapter: new Adapter()})
+
 jest.mock('react-i18next', () => ({
   __esModule: true,
   I18nextProvider: Component => Component.children,
