@@ -2,16 +2,17 @@
 import * as React from 'react'
 import {asyncComponent} from 'react-async-component'
 import DownloadPDF from './DownloadPDF'
-import {Spinning, Toast} from 'grommet'
-import {translate} from 'react-i18next'
+import {withTranslation} from 'react-i18next'
 
+// TODO Toast for error
 const ErrorNotification = ({t}) => (
-  <Toast status="critical">{t('unknownError')}</Toast>
+  <alert>{t('unknownError')}</alert>
 )
 
+// TODO Add spinner back for loading component
 const asyncDownload: typeof DownloadPDF = asyncComponent({
-  ErrorComponent: translate()(ErrorNotification),
-  LoadingComponent: Spinning,
+  ErrorComponent: withTranslation()(ErrorNotification),
+  LoadingComponent: () => (<div>Please wait...</div>),
   name: 'AsyncDownloadPDF',
   resolve: () => import('./DownloadPDF')
 })

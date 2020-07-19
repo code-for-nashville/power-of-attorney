@@ -15,6 +15,7 @@ const ENGLISH = {
   pleaseAddName: 'Please add a name.',
   streetAddress: 'Street Address',
   pleaseAddCity: 'Please add a city.',
+  pleaseAddStreetAddress: 'Please add a street address',
   pleaseAddRelationship: 'Please add a caregiver relationship to children',
   pleaseAddPhoneNumber: 'Please add a phone number to the caregiver',
   pleaseAddInitials: 'Please add the initials of one parent to give consent',
@@ -104,6 +105,7 @@ const ENGLISH = {
   Home: 'Home',
   FAQ: 'FAQ',
   beforeStart: 'Before you start...',
+  partI: "Part I:",
   useOfThisForm:
     'This form is legal information, not legal advice. While this form in no way terminates your rights as a parent, it does provide a caregiver authority to care for your child(ren). If you are unsure of your rights or needs, you should consult an attorney to discuss your legal needs. This site does not track, save, or retain any information entered. If you leave this site before completing and downloading the form, you will need to start over. Use of this form is authorized by T.C.A. § 34-6-301 et seq. Completion of this form, along with the proper signatures, is sufficient to authorize enrollment of a minor in school and to authorize medical treatment. However, a school district may require additional documentation/information as permitted by this section of Tennessee law before enrolling a child in school or any extracurricular activities.',
   thisFormIsToBeFilled:
