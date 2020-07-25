@@ -5,6 +5,7 @@ import { useLocation, useHistory, useRouteMatch, Route, Switch, Redirect } from 
 import { withTranslation } from "react-i18next"
 import Disclaimer from "./disclaimer"
 import Stepper from "react-stepper-horizontal"
+import { POA_CORAL_BLUE } from "../styles/grommet/theme"
 
 const FormStep = ({
   stepPath,
@@ -120,9 +121,9 @@ const FormStepper = ({ initialFormState, onFormComplete, t, children }) => {
         <div className="stepper">
           <Stepper
             steps={stepperBarSteps}
-            activeColor="#679ba1"
-            completeColor="#679ba1"
-            activeBorderColor="#679ba1"
+            activeColor={POA_CORAL_BLUE}
+            completeColor={POA_CORAL_BLUE}
+            activeBorderColor={POA_CORAL_BLUE}
             activeStep={currentStepNumber}
           />
         </div>
