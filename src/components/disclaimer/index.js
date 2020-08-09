@@ -1,48 +1,39 @@
 // @flow
-import React from 'react'
+import React, {useState} from 'react'
+import { useHistory } from "react-router-dom"
 
-import {Anchor, Box, Layer, Paragraph} from 'grommet'
-import {translate} from 'react-i18next'
+import {Anchor, Box, Layer, Paragraph, Button} from 'grommet'
+import {withTranslation} from 'react-i18next'
 import {FAQ_PATH} from '../../paths.js'
 
 import './style.css'
 
 /*
-  The Disclaimer modal to display before the user is allowed to complet the form
+  The Disclaimer modal to display before the user is allowed to complete the form.
 
   We want to make sure the significance of filling out the form before it is
   filled out.
-
-  This component accesses the layerRef to use the _removeLayer property function and manage its own visiblity.
 */
-class Disclaimer extends React.Component<*, *> {
-  layerRef: Layer
-
-  setLayerRef = (layerRef: Layer) => {
-    this.layerRef = layerRef
+function Disclaimer({t}) {
+  const [open, setOpen] = useState(true)
+  const history = useHistory();
+  if (!open) {
+    return null
   }
-
-  onClick = () => {
-    if (this.layerRef) {
-      this.layerRef._removeLayer()
-    }
-  }
-
-  render() {
-    const {t} = this.props
-    return (
-      <Layer ref={this.setLayerRef} className={'Disclaimer'} align="center">
+  return (
+    <Layer className='Disclaimer' align="center" margin="medium">
+      <Box overflow="auto" gap="small" width="large">
         <Box
           className="DisclaimerHeader"
-          full="true"
+          fill="horizontal"
           justify="center"
           pad={{horizontal: 'medium', vertical: 'small'}}
         >
           <div>{t('beforeStart')}</div>
         </Box>
         <Box pad={{horizontal: 'medium', vertical: 'none'}}>
-          <Paragraph margin="small">{t('useOfThisForm')}</Paragraph>
-          <Paragraph>
+          <Paragraph margin="small" fill={true}>{t('useOfThisForm')}</Paragraph>
+          <Paragraph fill={true} margin="small">
             {t('lawCanBeFound')}{' '}
             <Anchor
               a11yTitle={t('lawCanBeFound')}
@@ -52,22 +43,23 @@ class Disclaimer extends React.Component<*, *> {
               {t('here')}
             </Anchor>.
           </Paragraph>
-          <Paragraph margin="small">{t('thisFormIsToBeFilled')}</Paragraph>
+          <Paragraph margin="small" fill={true}>
+            {t('thisFormIsToBeFilled')}
+          </Paragraph>
           <Box
+            fill="horizontal"
+            align="center"
             direction="row"
             justify="between"
-            pad={{vertical: 'medium', horizontal: 'medium'}}
-            size="large"
+            pad={{vertical: 'large', horizontal: 'medium'}}
           >
-            <Anchor className="DisclaimerMoreInformation" path={FAQ_PATH}>
-              {t('MORE_INFORMATION')}
-            </Anchor>
-            <Anchor onClick={this.onClick}>{t('I_UNDERSTAND')}</Anchor>
+            <Button size="small" className="DisclaimerMoreInformation" onClick={() => history.push(FAQ_PATH)} label={t('MORE_INFORMATION')}/>
+            <Button size="small" primary={true} onClick={() => setOpen(false)} label={t('I_UNDERSTAND')}/>
           </Box>
         </Box>
-      </Layer>
-    )
-  }
+      </Box>
+    </Layer>
+  )
 }
 
-export default translate()(Disclaimer)
+export default withTranslation()(Disclaimer)

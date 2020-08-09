@@ -11,5 +11,7 @@ import registerServiceWorker from './registerServiceWorker'
 
 import './index.css'
 
+import './helpers/i18n'
+
 ReactDOM.render(<App />, document.getElementById('root'))
 registerServiceWorker()

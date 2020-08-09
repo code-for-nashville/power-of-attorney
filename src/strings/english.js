@@ -15,6 +15,7 @@ const ENGLISH = {
   pleaseAddName: 'Please add a name.',
   streetAddress: 'Street Address',
   pleaseAddCity: 'Please add a city.',
+  pleaseAddStreetAddress: 'Please add a street address',
   pleaseAddRelationship: 'Please add a caregiver relationship to children',
   pleaseAddPhoneNumber: 'Please add a phone number to the caregiver',
   pleaseAddInitials: 'Please add the initials of one parent to give consent',
@@ -104,6 +105,7 @@ const ENGLISH = {
   Home: 'Home',
   FAQ: 'FAQ',
   beforeStart: 'Before you start...',
+  partI: "Part I:",
   useOfThisForm:
     'This form is legal information, not legal advice. While this form in no way terminates your rights as a parent, it does provide a caregiver authority to care for your child(ren). If you are unsure of your rights or needs, you should consult an attorney to discuss your legal needs. This site does not track, save, or retain any information entered. If you leave this site before completing and downloading the form, you will need to start over. Use of this form is authorized by T.C.A. § 34-6-301 et seq. Completion of this form, along with the proper signatures, is sufficient to authorize enrollment of a minor in school and to authorize medical treatment. However, a school district may require additional documentation/information as permitted by this section of Tennessee law before enrolling a child in school or any extracurricular activities.',
   thisFormIsToBeFilled:
@@ -124,7 +126,24 @@ const ENGLISH = {
     'I/We wish for the named persons above to serve jointly and severally as caregivers, working together and/or serving independently as caregiver(s) as needed and appropriate.  The successor caregiver instead may wait to serve only once the initial caregiver is no longer able or willing to serve as caregiver.',
   temporaryAuthority: 'Temporary Authority',
   notProvideCustody: 'Does not Provide Custody',
-  mayBeTerminated: 'Can Be Terminated'
+  mayBeTerminated: 'Can Be Terminated',
+  authorizations: 'Authorizations',
+  iOrWeAuthorize: 'I/We the undersigned, authorize the named caregiver to do one or more of the following:',
+  enrollInSchoolAndExtracurriculars: 'enroll the child/children in school and extracurricular activities (including but not limited to Boy Scouts, Boys & Girls Club, etc.)',
+  obtainMedicalTreatment: 'obtain medical, dental, and mental health treatment for the child/children',
+  accessEducationalAndMedicalRecords: 'access educational and medical records, per HIPAA rules, as needed',
+  provideEssentials: 'provide for the child/children’s food, lodging, housing, recreation, and travel',
+  obtainPassport: 'obtain a passport for the child/children',
+  travelAlone: 'travel alone with the child/children within the United States',
+  makeTravelArrangements: 'to make travel arrangements for the child/children to travel outside the United States, together with the caregiver or on their own, for the SOLE purpose of being reunited with me/us in our country of residence',
+  additionalPowers: 'exercise additional power(s) as described below',
+  additionalPowersError: 'Please describe the additional powers',
+  acknowledgements: 'Acknowledgements',
+  notProvidingLegalCustody: 'I/We understand that this document does not provide legal custody to the caregiver.  If at any time I/we disagree with a decision of the named caregiver or choose to regain or take back caregiving duties from the named person(s), including making healthcare or educational decisions for my/our child/children, I/we must revoke the power of attorney, in writing, and provide written documentation to the health care provider and the local education agency (i.e., school).',
+  documentMayBeTerminated: 'I/We understand that this document may be terminated in another written document signed by either parent with legal custody or by any order of a court with competent jurisdiction.',
+  iOrWeUnderstand: 'I/We understand',
+  iOrWeDoNotUnderstand: 'I/We do not understand',
+  acknowledgementsError: 'Please read and acknowledge that you understand the above'
 }
 
 export type TranslateStringsType = typeof ENGLISH

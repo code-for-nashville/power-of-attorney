@@ -1,10 +1,14 @@
 // @flow
 import i18n from 'i18next'
+import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector'
 import english from '../strings/english'
 import spanish from '../strings/spanish'
 
-i18n.use(LanguageDetector).init({
+i18n
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
   fallbackLng: 'en',
   // debug: process.env.NODE_ENV !== 'production',
   debug: false,
@@ -14,6 +18,14 @@ i18n.use(LanguageDetector).init({
     bindI18n: 'languageChanged loaded',
     bindStore: 'added removed',
     nsMode: 'default'
+  },
+  resources: {
+    en: {
+      translation: english
+    },
+    es: {
+      translation: spanish
+    }
   },
   detection: {
     order: [
@@ -27,9 +39,6 @@ i18n.use(LanguageDetector).init({
     ]
   }
 })
-
-i18n.addResourceBundle('en', 'translation', english)
-i18n.addResourceBundle('es', 'translation', spanish)
 
 export const getCurrentLanguage = () => {
   // English and Spanish are currently the only supported languages

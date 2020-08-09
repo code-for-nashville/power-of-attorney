@@ -77,6 +77,7 @@ const SPANISH: TranslateStringsType = {
   formWasCreated:
     'Esta forma fue creada para parientes en Tennessee que enfrentan una amenaza de ser detenidos y/o deportados. Esta permite a parientes a encomendar a un cuidador temporero, derechos para hacer desiciones por el menor de su parte. El Poder Notarial entra en effecto solo solo si los Parientes han sido detenidos o deportados. Al completar esta forma, junto con las debidas firmas, autoriza al cuidador a inscribir a el menor en una escuela, obtener trato medico para el menor, y proveer comida para el menor, hogar, y viaje.',
   whoShouldIChoose: '¿A quién debo escoger como cuidador?',
+  partI: 'Parte I:',
   yourCaregiver:
     'Su cuidador debe ser alguien en quien confia. Este documento le permite a el cuidador el derecho y responsabilidad de tomar desiciones por su menor de su parte. La persona a la que ha designado para el cuido de su menor debe ser ciudadano EE.UU. o alquien con un estado migratorio no incluya a alguien que tambien enfrenta amenaza de detenimiento o deportacion.',
   howCanITerminate: '¿Como yo puedo terminar el Poder Notarial?',
