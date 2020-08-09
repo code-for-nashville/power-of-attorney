@@ -10,6 +10,8 @@ import guardianInformation from '../../components/steps/GuardianInformation'
 import caregiverInformation from "../../components/steps/CaregiverInformation"
 import parentalStatus from "../../components/steps/ParentalStatus"
 import parentalCondition from "../../components/steps/ParentalCondition"
+import authorizations from "../../components/steps/Authorizations"
+import acknowledgements from "../../components/steps/Acknowledgements"
 import AsyncDownloadPDF from "../../components/async-download-pdf"
 
 const PoAForm = ({initialState = defaultState, t}) => (
@@ -32,7 +34,7 @@ const PoAForm = ({initialState = defaultState, t}) => (
     />
     <FormStep
       stepPath="caregiver-information"
-      title={t('caregiverInformation')}
+      title={t('caregiversInformation')}
       component={caregiverInformation.component}
       mapFormStateToFields={caregiverInformation.mapFormStateToFields}
       mapFieldsToFormState={caregiverInformation.mapFieldsToFormState}
@@ -50,6 +52,20 @@ const PoAForm = ({initialState = defaultState, t}) => (
       component={parentalCondition.component}
       mapFormStateToFields={parentalCondition.mapFormStateToFields}
       mapFieldsToFormState={parentalCondition.mapFieldsToFormState}
+    />
+    <FormStep
+      stepPath="authorizations"
+      title={t('authorizations')}
+      component={authorizations.component}
+      mapFormStateToFields={authorizations.mapFormStateToFields}
+      mapFieldsToFormState={authorizations.mapFieldsToFormState}
+    />
+    <FormStep
+      stepPath="acknowledgements"
+      title={t('acknowledgements')}
+      component={acknowledgements.component}
+      mapFormStateToFields={acknowledgements.mapFormStateToFields}
+      mapFieldsToFormState={acknowledgements.mapFieldsToFormState}
     />
     <FormStep
       stepPath="download"

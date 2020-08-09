@@ -46,22 +46,10 @@ export const defaultState = {
   condition: '',
   hardships: [],
   describeHardship: '',
-  errors: {
-    childrenNames: null,
-    motherAddress: {
-      name: null
-    },
-    fatherAddress: {
-      name: null
-    },
-    caregiverAddress: {
-      name: null
-    },
-    parentalStatus: null,
-    parentalStatusReason: null,
-    conditionError: null,
-    hardshipsError: null
-  }
+  authorizations: [],
+  additionalPowers: '',
+  acknowledgedNotProvidingLegalCustody: false,
+  acknowledgedDocumentMayBeTerminated: false
 }
 
 export default defaultState
