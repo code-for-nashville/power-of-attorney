@@ -1,6 +1,6 @@
 // @flow
 import React, {useState} from 'react'
-import { useHistory } from "react-router-dom"
+import {useHistory} from 'react-router-dom'
 
 import {Anchor, Box, Layer, Paragraph, Button} from 'grommet'
 import {withTranslation} from 'react-i18next'
@@ -16,12 +16,12 @@ import './style.css'
 */
 function Disclaimer({t}) {
   const [open, setOpen] = useState(true)
-  const history = useHistory();
+  const history = useHistory()
   if (!open) {
     return null
   }
   return (
-    <Layer className='Disclaimer' align="center" margin="medium">
+    <Layer className="Disclaimer" align="center" margin="medium">
       <Box overflow="auto" gap="small" width="large">
         <Box
           className="DisclaimerHeader"
@@ -32,7 +32,9 @@ function Disclaimer({t}) {
           <div>{t('beforeStart')}</div>
         </Box>
         <Box pad={{horizontal: 'medium', vertical: 'none'}}>
-          <Paragraph margin="small" fill={true}>{t('useOfThisForm')}</Paragraph>
+          <Paragraph margin="small" fill={true}>
+            {t('useOfThisForm')}
+          </Paragraph>
           <Paragraph fill={true} margin="small">
             {t('lawCanBeFound')}{' '}
             <Anchor
@@ -53,8 +55,18 @@ function Disclaimer({t}) {
             justify="between"
             pad={{vertical: 'large', horizontal: 'medium'}}
           >
-            <Button size="small" className="DisclaimerMoreInformation" onClick={() => history.push(FAQ_PATH)} label={t('MORE_INFORMATION')}/>
-            <Button size="small" primary={true} onClick={() => setOpen(false)} label={t('I_UNDERSTAND')}/>
+            <Button
+              size="small"
+              className="DisclaimerMoreInformation"
+              onClick={() => history.push(FAQ_PATH)}
+              label={t('MORE_INFORMATION')}
+            />
+            <Button
+              size="small"
+              primary={true}
+              onClick={() => setOpen(false)}
+              label={t('I_UNDERSTAND')}
+            />
           </Box>
         </Box>
       </Box>
