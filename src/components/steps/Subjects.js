@@ -1,6 +1,6 @@
-import React from "react"
-import { withTranslation } from "react-i18next"
-import { FormField, TextInput, Header } from "grommet"
+import React from 'react'
+import {withTranslation} from 'react-i18next'
+import {FormField, TextInput, Header} from 'grommet'
 
 const DEFAULT_NUBMER_OF_CHILDREN = 1
 
@@ -13,26 +13,34 @@ const Subjects = ({fields, t}) => {
       <FormField
         name="numberOfChildren"
         label={t('numberOfChildren')}
-        validate={value => value <= 0 && {
-          message: t('mustBeGreaterThanZero'),
-          status: "error"
-        }}>
+        validate={value =>
+          value <= 0 && {
+            message: t('mustBeGreaterThanZero'),
+            status: 'error'
+          }
+        }
+      >
         <TextInput name="numberOfChildren" type="number" />
       </FormField>
 
       <Header level={1}>{t('minorName')}</Header>
-      {Array(numberOfChildren).fill().map((_, i) => 
-        <FormField
-          key={i}
-          name={`child${i}`}
-          label={t('childsFullName')}
-          validate={value => !value && {
-            message: t('pleaseAddChildName'),
-            status: "error"
-          }}>
-          <TextInput name={`child${i}`}/>
-        </FormField>
-      )}
+      {Array(numberOfChildren)
+        .fill()
+        .map((_, i) => (
+          <FormField
+            key={i}
+            name={`child${i}`}
+            label={t('childsFullName')}
+            validate={value =>
+              !value && {
+                message: t('pleaseAddChildName'),
+                status: 'error'
+              }
+            }
+          >
+            <TextInput name={`child${i}`} />
+          </FormField>
+        ))}
     </>
   )
 }
@@ -48,7 +56,7 @@ const mapFormStateToFields = ({childrenNames}) => {
   }
 }
 
-const mapFieldsToFormState = (fields) => {
+const mapFieldsToFormState = fields => {
   const childrenNames = []
   for (var i = 0; i < fields.numberOfChildren.length; i++) {
     childrenNames.push(fields[`child${i}`])

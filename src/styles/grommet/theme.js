@@ -1,5 +1,5 @@
-const POA_CORAL_BLUE = "#679ba1"
-const POA_DARK_RED = "#f55d3e"
+const POA_CORAL_BLUE = '#679ba1'
+const POA_DARK_RED = '#f55d3e'
 
 const GROMMET_THEME = {
   global: {
@@ -12,24 +12,24 @@ const GROMMET_THEME = {
   button: {
     primary: {
       extend: {
-        color: "white",
+        color: 'white'
       }
     },
     extend: {
       // Center the label within the button
-      alignItems: "center",
-      direction: "column",
-      justifyContent: "center",
+      alignItems: 'center',
+      direction: 'column',
+      justifyContent: 'center',
 
       // Make it square
-      borderRadius: "0",
+      borderRadius: '0',
 
       // Lower max-width
-      maxWidth: "12rem",
+      maxWidth: '12rem',
 
       // Match the padding of the design
-      padding: "15px 2rem !important",
-      textTransform: "uppercase"
+      padding: '15px 2rem !important',
+      textTransform: 'uppercase'
     }
   },
   heading: {
@@ -53,7 +53,4 @@ const GROMMET_THEME = {
   }
 }
 
-export {
-  POA_CORAL_BLUE,
-  GROMMET_THEME
-}
+export {POA_CORAL_BLUE, GROMMET_THEME}

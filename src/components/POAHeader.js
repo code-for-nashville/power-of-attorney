@@ -6,7 +6,7 @@ import {Box, Button, Header, Nav, Anchor} from 'grommet'
 import {withTranslation} from 'react-i18next'
 import {FAQ_PATH, HOME_PATH} from '../paths'
 import {getCurrentLanguage} from '../helpers/i18n'
-import { useLocation, useHistory } from 'react-router-dom'
+import {useLocation, useHistory} from 'react-router-dom'
 
 // Class added to Grommet anchor when `disabled=True`
 // Below we use NavLink instead of <Anchor tag={NavLink}...> to work around
@@ -20,18 +20,31 @@ const POAHeader = props => {
   const nextLanguage = currentLanguage === 'en' ? 'es' : 'en'
   const label = currentLanguage === 'en' ? 'Español' : 'English'
   const onClick = () => i18n.changeLanguage(nextLanguage)
-  const { pathname } = useLocation()
+  const {pathname} = useLocation()
   const history = useHistory()
 
   return (
     <Header>
-      <Box flex={true} justify="between" direction="row" responsive={false}
-        gap="medium" align="center" margin="medium">
+      <Box
+        flex={true}
+        justify="between"
+        direction="row"
+        responsive={false}
+        gap="medium"
+        align="center"
+        margin="medium"
+      >
         <Nav direction="row">
-          <Anchor disabled={pathname === HOME_PATH}
-            label={t('Home')} onClick={() => history.push(HOME_PATH)}/>
-          <Anchor disabled={pathname === FAQ_PATH}
-            label={t('FAQ')} onClick={() => history.push(FAQ_PATH)}/>
+          <Anchor
+            disabled={pathname === HOME_PATH}
+            label={t('Home')}
+            onClick={() => history.push(HOME_PATH)}
+          />
+          <Anchor
+            disabled={pathname === FAQ_PATH}
+            label={t('FAQ')}
+            onClick={() => history.push(FAQ_PATH)}
+          />
         </Nav>
         <Button
           className={'language-button'}

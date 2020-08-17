@@ -1,11 +1,18 @@
-import React from "react"
-import { useState } from "react"
-import { Form, Box, Button, Heading, Paragraph } from "grommet"
-import { useLocation, useHistory, useRouteMatch, Route, Switch, Redirect } from "react-router-dom"
-import { withTranslation } from "react-i18next"
-import Disclaimer from "./disclaimer"
-import Stepper from "react-stepper-horizontal"
-import { POA_CORAL_BLUE } from "../styles/grommet/theme"
+import React from 'react'
+import {useState} from 'react'
+import {Form, Box, Button, Heading, Paragraph} from 'grommet'
+import {
+  useLocation,
+  useHistory,
+  useRouteMatch,
+  Route,
+  Switch,
+  Redirect
+} from 'react-router-dom'
+import {withTranslation} from 'react-i18next'
+import Disclaimer from './disclaimer'
+import Stepper from 'react-stepper-horizontal'
+import {POA_CORAL_BLUE} from '../styles/grommet/theme'
 
 const FormStep = ({
   stepPath,
@@ -15,7 +22,15 @@ const FormStep = ({
   mapFieldsToFormState
 }) => {}
 
-const InnerFormStep = ({initialState, onComplete, onBack, t, component, mapFormStateToFields, mapFieldsToFormState}) => {
+const InnerFormStep = ({
+  initialState,
+  onComplete,
+  onBack,
+  t,
+  component,
+  mapFormStateToFields,
+  mapFieldsToFormState
+}) => {
   const [fields, setFields] = useState(mapFormStateToFields(initialState))
   return (
     <Box direction="row" justify="center" alignContent="center">
@@ -24,7 +39,10 @@ const InnerFormStep = ({initialState, onComplete, onBack, t, component, mapFormS
           value={fields}
           onChange={setFields}
           validate="blur"
-          onSubmit={({value: fields}) => onComplete(mapFieldsToFormState(fields))}>
+          onSubmit={({value: fields}) =>
+            onComplete(mapFieldsToFormState(fields))
+          }
+        >
           <Box pad={{vertical: 'medium'}}>
             {React.createElement(component, {fields})}
           </Box>
@@ -35,14 +53,14 @@ const InnerFormStep = ({initialState, onComplete, onBack, t, component, mapFormS
             basis="medium"
             className="button-box"
           >
-            {onBack
-              ? <Button
-                  label={t('back')}
-                  onClick={onBack}
-                  primary={false}
-                  className="button hidden-large"
-                />
-              : null}
+            {onBack ? (
+              <Button
+                label={t('back')}
+                onClick={onBack}
+                primary={false}
+                className="button hidden-large"
+              />
+            ) : null}
             <Button
               label={t('next')}
               primary={true}
@@ -56,12 +74,31 @@ const InnerFormStep = ({initialState, onComplete, onBack, t, component, mapFormS
   )
 }
 
-const createStepRoute = (basePath, initialState, t, onComplete, onBack, formStepChild) => {
-  const { stepPath, component, mapFormStateToFields, mapFieldsToFormState } = formStepChild.props
+const createStepRoute = (
+  basePath,
+  initialState,
+  t,
+  onComplete,
+  onBack,
+  formStepChild
+) => {
+  const {
+    stepPath,
+    component,
+    mapFormStateToFields,
+    mapFieldsToFormState
+  } = formStepChild.props
   return (
     <Route key={stepPath} path={`${basePath}/${stepPath}`}>
-      <InnerFormStep initialState={initialState} onComplete={onComplete} onBack={onBack} t={t} component={component}
-        mapFormStateToFields={mapFormStateToFields} mapFieldsToFormState={mapFieldsToFormState}/>
+      <InnerFormStep
+        initialState={initialState}
+        onComplete={onComplete}
+        onBack={onBack}
+        t={t}
+        component={component}
+        mapFormStateToFields={mapFormStateToFields}
+        mapFieldsToFormState={mapFieldsToFormState}
+      />
     </Route>
   )
 }
@@ -78,10 +115,13 @@ const getCurrentStep = (baseUrl, pathname, stepPaths) => {
 const getAdjacentStepUrls = (baseUrl, currentStepPath, stepPaths) => {
   let previousStepPath = undefined
   for (const [stepNumber, stepPath] of stepPaths.entries()) {
-    let nextStepPath = stepNumber + 1 >= stepPaths.length ? undefined : stepPaths[stepNumber + 1]
+    let nextStepPath =
+      stepNumber + 1 >= stepPaths.length ? undefined : stepPaths[stepNumber + 1]
     if (stepPath === currentStepPath) {
       return {
-        previousStepUrl: previousStepPath ? `${baseUrl}/${previousStepPath}` : undefined,
+        previousStepUrl: previousStepPath
+          ? `${baseUrl}/${previousStepPath}`
+          : undefined,
         nextStepUrl: nextStepPath ? `${baseUrl}/${nextStepPath}` : undefined
       }
     }
@@ -90,25 +130,35 @@ const getAdjacentStepUrls = (baseUrl, currentStepPath, stepPaths) => {
   return {}
 }
 
-const FormStepper = ({ initialFormState, onFormComplete, t, children }) => {
-  const { url, path } = useRouteMatch();
-  const [formState, setFormState] = useState(initialFormState);
-  const history = useHistory();
-  const { pathname } = useLocation();
+const FormStepper = ({initialFormState, onFormComplete, t, children}) => {
+  const {url, path} = useRouteMatch()
+  const [formState, setFormState] = useState(initialFormState)
+  const history = useHistory()
+  const {pathname} = useLocation()
   const stepPaths = React.Children.map(children, child => child.props.stepPath)
-  const {currentStepPath, currentStepNumber} = getCurrentStep(url, pathname, stepPaths)
-  const {previousStepUrl, nextStepUrl} = getAdjacentStepUrls(url, currentStepPath, stepPaths)
+  const {currentStepPath, currentStepNumber} = getCurrentStep(
+    url,
+    pathname,
+    stepPaths
+  )
+  const {previousStepUrl, nextStepUrl} = getAdjacentStepUrls(
+    url,
+    currentStepPath,
+    stepPaths
+  )
   const onComplete = nextStepUrl
-    ? (formStateUpdates) => {
+    ? formStateUpdates => {
         setFormState(formState => ({...formState, ...formStateUpdates}))
         history.push(nextStepUrl)
       }
-    : (formStateUpdates) => {
+    : formStateUpdates => {
         setFormState(formState => ({...formState, ...formStateUpdates}))
         const finalFormState = {...formState, ...formStateUpdates}
         onFormComplete(finalFormState)
       }
-  const onBack = previousStepUrl ? () => history.push(previousStepUrl) : undefined
+  const onBack = previousStepUrl
+    ? () => history.push(previousStepUrl)
+    : undefined
   const stepperBarSteps = React.Children.map(children, child => ({
     title: child.props.title,
     onClick: () => history.push(`${url}/${child.props.stepPath}`)
@@ -135,10 +185,11 @@ const FormStepper = ({ initialFormState, onFormComplete, t, children }) => {
       <Box direction="row" justify="center">
         <Box width="large">
           <Switch>
-            {React.Children.map(children,
-              child => createStepRoute(path, formState, t, onComplete, onBack, child))}
+            {React.Children.map(children, child =>
+              createStepRoute(path, formState, t, onComplete, onBack, child)
+            )}
             {/* If no more specific route matches, redirect to the first step */}
-            <Redirect to={`${url}/${stepPaths[0]}`}/>
+            <Redirect to={`${url}/${stepPaths[0]}`} />
           </Switch>
         </Box>
       </Box>
@@ -146,7 +197,5 @@ const FormStepper = ({ initialFormState, onFormComplete, t, children }) => {
   )
 }
 
-export {
-  FormStep
-}
+export {FormStep}
 export default withTranslation()(FormStepper)

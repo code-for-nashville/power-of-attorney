@@ -11,9 +11,9 @@ it('renders without crashing', () => {
 it('displays an error message when form fields are missing', () => {
   const div = document.createElement('div')
   const ref = ReactDOM.render(<POAForm />, div)
-  expect(div.getElementsByClassName("form-error-message").length).toEqual(0)
+  expect(div.getElementsByClassName('form-error-message').length).toEqual(0)
 
   ref._next()
 
-  expect(div.getElementsByClassName("form-error-message").length).toEqual(1)
+  expect(div.getElementsByClassName('form-error-message').length).toEqual(1)
 })

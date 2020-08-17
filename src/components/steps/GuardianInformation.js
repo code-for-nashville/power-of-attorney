@@ -1,7 +1,7 @@
-import React from "react"
-import { Header, Box } from "grommet"
-import { withTranslation } from "react-i18next"
-import AddressInput from "../AddressInput"
+import React from 'react'
+import {Header, Box} from 'grommet'
+import {withTranslation} from 'react-i18next'
+import AddressInput from '../AddressInput'
 
 const GuardianInformation = ({fields, t}) => {
   return (
@@ -13,7 +13,8 @@ const GuardianInformation = ({fields, t}) => {
           streetAddressFieldName="motherStreetAddress"
           cityFieldName="motherCity"
           stateFieldName="motherState"
-          postalCodeFieldName="motherPostalCode"/>
+          postalCodeFieldName="motherPostalCode"
+        />
       </Box>
       <Box>
         <Header level={1}>{t('fatherName')}</Header>
@@ -22,7 +23,8 @@ const GuardianInformation = ({fields, t}) => {
           streetAddressFieldName="fatherStreetAddress"
           cityFieldName="fatherCity"
           stateFieldName="fatherState"
-          postalCodeFieldName="fatherPostalCode"/>
+          postalCodeFieldName="fatherPostalCode"
+        />
       </Box>
     </>
   )
@@ -43,7 +45,7 @@ const mapFormStateToFields = ({motherAddress, fatherAddress}) => {
   }
 }
 
-const mapFieldsToFormState = (fields) => ({
+const mapFieldsToFormState = fields => ({
   motherAddress: {
     name: fields.motherName,
     street_address: fields.motherStreetAddress,

@@ -2,45 +2,50 @@ import React from 'react'
 import {Header, FormField, Paragraph, RadioButtonGroup} from 'grommet'
 import {withTranslation} from 'react-i18next'
 
-const createIOrWeUnderstandOptions = (t) => [
+const createIOrWeUnderstandOptions = t => [
   {
     label: t('iOrWeUnderstand'),
-    value: true,
+    value: true
   },
   {
     label: t('iOrWeDoNotUnderstand'),
-    value: false,
+    value: false
   }
 ]
 
-const Acknowledgements = ({
-  fields,
-  t
-}) => {
+const Acknowledgements = ({fields, t}) => {
   return (
     <>
       <Header level={1}>{t('acknowledgements')}</Header>
       <Paragraph>{t('notProvidingLegalCustody')}</Paragraph>
       <FormField
         name="acknowledgedNotProvidingLegalCustody"
-        validate={value => !value && {
-          message: t('acknowledgementsError'),
-          status: "error"
-        }}>
+        validate={value =>
+          !value && {
+            message: t('acknowledgementsError'),
+            status: 'error'
+          }
+        }
+      >
         <RadioButtonGroup
           name="acknowledgedNotProvidingLegalCustody"
-          options={createIOrWeUnderstandOptions(t)}/>
+          options={createIOrWeUnderstandOptions(t)}
+        />
       </FormField>
       <Paragraph>{t('documentMayBeTerminated')}</Paragraph>
       <FormField
         name="acknowledgedDocumentMayBeTerminated"
-        validate={value => !value && {
-          message: t('acknowledgementsError'),
-          status: "error"
-        }}>
+        validate={value =>
+          !value && {
+            message: t('acknowledgementsError'),
+            status: 'error'
+          }
+        }
+      >
         <RadioButtonGroup
           name="acknowledgedDocumentMayBeTerminated"
-          options={createIOrWeUnderstandOptions(t)}/>
+          options={createIOrWeUnderstandOptions(t)}
+        />
       </FormField>
     </>
   )

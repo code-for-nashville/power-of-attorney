@@ -13,16 +13,11 @@ const AUTHORIZATIONS = [
   'additionalPowers'
 ]
 
-const Authorizations = ({
-  fields,
-  t
-}) => {
+const Authorizations = ({fields, t}) => {
   return (
     <>
       <Header level={1}>{t('iOrWeAuthorize')}</Header>
-      <FormField
-        name="authorizations"
-        validate={value => true}>
+      <FormField name="authorizations" validate={value => true}>
         <CheckBoxGroup
           name="authorizations"
           options={Object.values(AUTHORIZATIONS).map(authorization => ({
@@ -30,37 +25,35 @@ const Authorizations = ({
             value: authorization
           }))}
           labelKey="label"
-          valueKey="value"/>
+          valueKey="value"
+        />
       </FormField>
-      {fields.authorizations.includes('additionalPowers') &&
+      {fields.authorizations.includes('additionalPowers') && (
         <>
           <Header level={1}>{t('pleaseDescribe')}</Header>
           <FormField
             name="additionalPowers"
-            validate={value => !value && {
-              message: t('additionalPowersError'),
-              status: "error"
-            }}>
-            <TextArea name="additionalPowers"/>
+            validate={value =>
+              !value && {
+                message: t('additionalPowersError'),
+                status: 'error'
+              }
+            }
+          >
+            <TextArea name="additionalPowers" />
           </FormField>
         </>
-      }
+      )}
     </>
   )
 }
 
-const mapFormStateToFields = ({
-  authorizations,
-  additionalPowers
-}) => ({
+const mapFormStateToFields = ({authorizations, additionalPowers}) => ({
   authorizations,
   additionalPowers
 })
 
-const mapFieldsToFormState = ({
-  authorizations,
-  additionalPowers
-}) => ({
+const mapFieldsToFormState = ({authorizations, additionalPowers}) => ({
   authorizations,
   additionalPowers
 })
