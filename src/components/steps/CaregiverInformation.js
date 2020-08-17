@@ -1,8 +1,8 @@
-import React from "react"
-import { Header, FormField, TextInput } from "grommet"
-import { withTranslation } from "react-i18next"
-import AddressInput from "../AddressInput"
-import Regex from "../../constants"
+import React from 'react'
+import {Header, FormField, TextInput} from 'grommet'
+import {withTranslation} from 'react-i18next'
+import AddressInput from '../AddressInput'
+import Regex from '../../constants'
 
 const CaregiverInformation = ({fields, t}) => {
   return (
@@ -13,24 +13,31 @@ const CaregiverInformation = ({fields, t}) => {
         streetAddressFieldName="initialCaregiverStreetAddress"
         cityFieldName="initalCaregiverCity"
         stateFieldName="initialCaregiverState"
-        postalCodeFieldName="initialCaregiverPostalCode"/>
+        postalCodeFieldName="initialCaregiverPostalCode"
+      />
       <FormField
         name="initialCaregiverRelationship"
         label={t('relationship')}
-        validate={value => !value && {
-          message: t('pleaseAddRelationship'),
-          status: "error"
-        }}>
-        <TextInput name="initialCaregiverRelationship"/>
+        validate={value =>
+          !value && {
+            message: t('pleaseAddRelationship'),
+            status: 'error'
+          }
+        }
+      >
+        <TextInput name="initialCaregiverRelationship" />
       </FormField>
       <FormField
         name="initialCaregiverPhoneNumber"
         label={t('phoneNumber')}
-        validate={value => !Regex.phoneNumber.test(value) && {
-          message: t('pleaseAddPhoneNumber'),
-          status: "error"
-        }}>
-        <TextInput name="initialCaregiverPhoneNumber"/>
+        validate={value =>
+          !Regex.phoneNumber.test(value) && {
+            message: t('pleaseAddPhoneNumber'),
+            status: 'error'
+          }
+        }
+      >
+        <TextInput name="initialCaregiverPhoneNumber" />
       </FormField>
       <Header level={1}>{t('successorCaregiverName')}</Header>
       <AddressInput
@@ -38,34 +45,44 @@ const CaregiverInformation = ({fields, t}) => {
         streetAddressFieldName="successorCaregiverStreetAddress"
         cityFieldName="successorCaregiverCity"
         stateFieldName="successorCaregiverState"
-        postalCodeFieldName="successorCaregiverPostalCode"/>
+        postalCodeFieldName="successorCaregiverPostalCode"
+      />
       <FormField
         name="successorCaregiverRelationship"
         label={t('relationship')}
-        validate={value => !value && {
-          message: t('pleaseAddRelationship'),
-          status: "error"
-        }}>
-        <TextInput name="successorCaregiverRelationship"/>
+        validate={value =>
+          !value && {
+            message: t('pleaseAddRelationship'),
+            status: 'error'
+          }
+        }
+      >
+        <TextInput name="successorCaregiverRelationship" />
       </FormField>
       <FormField
         name="successorCaregiverPhoneNumber"
         label={t('phoneNumber')}
-        validate={value => !Regex.phoneNumber.test(value) && {
-          message: t('pleaseAddPhoneNumber'),
-          status: "error"
-        }}>
-        <TextInput name="successorCaregiverPhoneNumber"/>
+        validate={value =>
+          !Regex.phoneNumber.test(value) && {
+            message: t('pleaseAddPhoneNumber'),
+            status: 'error'
+          }
+        }
+      >
+        <TextInput name="successorCaregiverPhoneNumber" />
       </FormField>
       <Header level={1}>{t('initials')}</Header>
       <FormField
         name="consentInitials"
         label={t('serveJointlyAndSeveraly')}
-        validate={value => !/^[a-zA-Z]{2}$/.test(value) && {
-          message: t('initials'),
-          status: "error"
-        }}>
-          <TextInput name="consentInitials"/>
+        validate={value =>
+          !/^[a-zA-Z]{2}$/.test(value) && {
+            message: t('initials'),
+            status: 'error'
+          }
+        }
+      >
+        <TextInput name="consentInitials" />
       </FormField>
     </>
   )
@@ -96,7 +113,7 @@ const mapFormStateToFields = ({
   successorCaregiverRelationship,
   successorCaregiverPhoneNumber,
 
-  consentInitials,
+  consentInitials
 })
 
 const mapFieldsToFormState = ({

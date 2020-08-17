@@ -1,23 +1,24 @@
 // @flow
 import React from 'react'
 import {withTranslation} from 'react-i18next'
-import FormStepper, { FormStep } from "../../components/FormStepper"
+import FormStepper, {FormStep} from '../../components/FormStepper'
 
 import defaultState from './defaultState'
 import './styles.css'
 import subjects from '../../components/steps/Subjects'
 import guardianInformation from '../../components/steps/GuardianInformation'
-import caregiverInformation from "../../components/steps/CaregiverInformation"
-import parentalStatus from "../../components/steps/ParentalStatus"
-import parentalCondition from "../../components/steps/ParentalCondition"
-import authorizations from "../../components/steps/Authorizations"
-import acknowledgements from "../../components/steps/Acknowledgements"
-import AsyncDownloadPDF from "../../components/async-download-pdf"
+import caregiverInformation from '../../components/steps/CaregiverInformation'
+import parentalStatus from '../../components/steps/ParentalStatus'
+import parentalCondition from '../../components/steps/ParentalCondition'
+import authorizations from '../../components/steps/Authorizations'
+import acknowledgements from '../../components/steps/Acknowledgements'
+import AsyncDownloadPDF from '../../components/async-download-pdf'
 
 const PoAForm = ({initialState = defaultState, t}) => (
   <FormStepper
     initialFormState={initialState}
-    onFormComplete={(formState) => console.info("Done!", formState)}>
+    onFormComplete={formState => console.info('Done!', formState)}
+  >
     <FormStep
       stepPath="subjects"
       title={t('childInformation')}
@@ -70,7 +71,7 @@ const PoAForm = ({initialState = defaultState, t}) => (
     <FormStep
       stepPath="download"
       title={t('download')}
-      component={({fields}) => <AsyncDownloadPDF data={fields}/>}
+      component={({fields}) => <AsyncDownloadPDF data={fields} />}
       mapFormStateToFields={formState => formState}
       mapFieldsToFormState={() => {}}
     />
