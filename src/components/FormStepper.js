@@ -42,14 +42,15 @@ const InnerFormStep = ({
           onSubmit={({value: fields}) =>
             onComplete(mapFieldsToFormState(fields))
           }
+          className="form-stepper"
         >
-          <Box pad={{vertical: 'medium'}}>
+          <Box pad={{vertical: 'medium'}} data-testid='aaa'>
             {React.createElement(component, {fields})}
           </Box>
           <Box
             alignSelf="center"
             direction="row"
-            justify="between"
+            justify="around"
             basis="medium"
             className="button-box"
           >
