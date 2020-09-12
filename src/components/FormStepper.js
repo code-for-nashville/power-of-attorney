@@ -44,7 +44,7 @@ const InnerFormStep = ({
           }
           className="form-stepper"
         >
-          <Box pad={{vertical: 'medium'}} data-testid='aaa'>
+          <Box pad={{vertical: 'medium'}}>
             {React.createElement(component, {fields})}
           </Box>
           <Box
