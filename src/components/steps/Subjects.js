@@ -2,6 +2,11 @@ import React from 'react'
 import {withTranslation} from 'react-i18next'
 import {FormField, TextInput, Header} from 'grommet'
 
+export const TEST_IDS = {
+  ChildNumber: 'child-number',
+  ChildInput: 'child-input'
+}
+
 const DEFAULT_NUBMER_OF_CHILDREN = 1
 
 const Subjects = ({fields, t}) => {
@@ -19,11 +24,10 @@ const Subjects = ({fields, t}) => {
             status: 'error'
           }
         }
+        data-testid={TEST_IDS.ChildNumber}
       >
         <TextInput name="numberOfChildren" type="number" />
       </FormField>
-
-      <Header level={1}>{t('minorName')}</Header>
       {Array(numberOfChildren)
         .fill()
         .map((_, i) => (
@@ -37,6 +41,7 @@ const Subjects = ({fields, t}) => {
                 status: 'error'
               }
             }
+            data-testid={TEST_IDS.ChildInput}
           >
             <TextInput name={`child${i}`} />
           </FormField>
