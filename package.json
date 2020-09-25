@@ -62,8 +62,9 @@
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
     "eslint-plugin-prettier": "^2.6.0",
-    "flow-bin": "^0.89.0",
+    "flow-bin": "^0.107.0",
     "flow-typed": "^2.5.1",
+    "jest-canvas-mock": "^2.2.0",
     "stylelint": "^9.2.0",
     "stylelint-config-standard": "^18.2.0"
   },

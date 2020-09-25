@@ -1,5 +1,6 @@
 import Adapter from 'enzyme-adapter-react-16'
 import Enzyme from 'enzyme'
+require('jest-canvas-mock')
 
 Enzyme.configure({adapter: new Adapter()})
 
@@ -10,5 +11,9 @@ jest.mock('react-i18next', () => ({
   withTranslation: () => Component => {
     Component.defaultProps = {...Component.defaultProps, t: () => ''}
     return Component
+  },
+  initReactI18next: {
+    type: '3rdParty',
+    init() {}
   }
 }))

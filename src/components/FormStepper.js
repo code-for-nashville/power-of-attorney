@@ -14,6 +14,10 @@ import Disclaimer from './disclaimer'
 import Stepper from 'react-stepper-horizontal'
 import {POA_CORAL_BLUE} from '../styles/grommet/theme'
 
+export const TEST_IDS = {
+  FormStepperSubmit: 'form-stepper-submit'
+}
+
 const FormStep = ({
   stepPath,
   title,
@@ -66,6 +70,7 @@ const InnerFormStep = ({
               primary={true}
               type="submit"
               className="button"
+              data-testid={TEST_IDS.FormStepperSubmit}
             />
           </Box>
         </Form>
