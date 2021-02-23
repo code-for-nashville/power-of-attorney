@@ -5,7 +5,7 @@
       "command": "yarn test",
       "name": "Run and watch all tests",
       "request": "launch",
-      "type": "node-terminal"
+      "type": "node-terminal",
     },
     {
       "command": "REACT_APP_MOCK_FORM=true yarn start",

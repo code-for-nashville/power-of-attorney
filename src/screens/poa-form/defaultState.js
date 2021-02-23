@@ -30,23 +30,26 @@ export const defaultState = {
   submitted: MOCK_FORM,
   motherAddress: MOCK_FORM ? mockedAddress('mother') : emptyAddress,
   fatherAddress: MOCK_FORM ? mockedAddress('father') : emptyAddress,
-  caregiverAddress: MOCK_FORM ? mockedAddress('caregiver') : emptyAddress,
+  initialCaregiverAddress: MOCK_FORM
+    ? mockedAddress('initialCaregiver')
+    : emptyAddress,
+  successorCaregiverAddress: MOCK_FORM
+    ? mockedAddress('successorCaregiver')
+    : emptyAddress,
+  initialCaregiverRelationship: MOCK_FORM ? 'friend' : '',
+  initialCaregiverPhoneNumber: MOCK_FORM ? '555-555-5555' : '',
+  successorCaregiverRelationship: MOCK_FORM ? 'friend' : '',
+  successorCaregiverPhoneNumber: MOCK_FORM ? '555-555-5555' : '',
+  consentInitials: MOCK_FORM ? ['XX', 'XX'] : ['', ''],
   parentalStatus: MOCK_FORM ? 'bothParents' : '',
   parentalStatusReason: '',
-  errors: {
-    childrenNames: null,
-    motherAddress: {
-      name: null
-    },
-    fatherAddress: {
-      name: null
-    },
-    caregiverAddress: {
-      name: null
-    },
-    parentalStatus: null,
-    parentalStatusReason: null
-  }
+  condition: '',
+  hardships: [],
+  describeHardship: '',
+  authorizations: [],
+  additionalPowers: '',
+  acknowledgedNotProvidingLegalCustody: false,
+  acknowledgedDocumentMayBeTerminated: false
 }
 
 export default defaultState
