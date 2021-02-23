@@ -18,6 +18,6 @@ export const NumberedContent = ({
 
 export const CheckHere = ({text}: {text: string}) => (
   <div className="check-here">
-    (<span className="underline">{text}</span>)
+    <div className="underline">({text})</div>
   </div>
 )
