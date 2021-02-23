@@ -18,8 +18,14 @@
   min-width: 350px;
 }
 
-.grommetux-headline.grommetux-headline--large.home-headline {
-  @media screen and (max-width: 355px) {
-    font-size: 3rem;
-  }
+.HomeTitleTopText {
+  line-height: 1.225 !important;
+}
+
+.HomeTitleMiddleText {
+  line-height: 1 !important;
+}
+
+.HomeTitleBottomText {
+  line-height: 1.23 !important;
 }

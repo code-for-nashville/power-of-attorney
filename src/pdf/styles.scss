@@ -1,0 +1,101 @@
+.hiddenPDF {
+  display: none;
+}
+
+.page {
+  margin-top: 20pt;
+  margin-bottom: 40pt;
+  margin-left: 16pt;
+  margin-right: 16pt;
+}
+
+.title {
+  font-size: 20px;
+  margin: auto;
+  margin-bottom: 16px;
+  text-align: center;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.label {
+  display: flex;
+  margin-right: 10px;
+}
+
+.row {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.row.center {
+  justify-content: center;
+}
+
+.full-width {
+  display: flex;
+  flex-grow: 1;
+}
+
+.half-width {
+  display: flex;
+  width: 60%;
+}
+
+ol > li {
+  margin-bottom: 16px;
+}
+
+.text {
+  line-height: 22 px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.underline {
+  border-bottom: 1.25px solid black;
+  padding-bottom: 0.5px;
+}
+
+.numbered-content {
+  display: flex;
+  flex-direction: row;
+
+  .number {
+    display: flex;
+    flex-direction: column;
+    width: 50px;
+
+    p {
+      margin-top: 0 !important;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+
+    div:first-child {
+      padding-top: 0;
+    }
+  }
+}
+
+.check-here {
+  padding-right: 5px;
+
+  > span {
+    min-width: 30px;
+    display: inline-block;
+    text-align: center;
+  }
+}

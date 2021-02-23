@@ -2,23 +2,32 @@
   "name": "power-of-attorney",
   "version": "0.1.0",
   "homepage": "http://immigrantpoa.org/",
-  "private": true,
+  "private": false,
+  "engines": {
+    "node": ">=8"
+  },
   "dependencies": {
-    "grommet": "^1.10.1",
-    "i18next": "^11.2.3",
-    "i18next-browser-languagedetector": "^2.2.0",
+    "core-js": "^2.5.7",
+    "grommet": "^2.14.0",
+    "html2pdf.js": "^0.9.1",
+    "i18next": "^19.5.4",
+    "i18next-browser-languagedetector": "^5.0.0",
     "lint-staged": "^7.0.4",
     "node-sass-chokidar": "^1.2.2",
-    "pdfmake": "^0.1.36",
     "prettier": "1.12.1",
-    "react": "^16.3.1",
+    "prop-types": "^15.7.2",
+    "raf": "^3.4.0",
+    "react": "^16.8.6",
     "react-async-component": "^2.0.0",
-    "react-dom": "^16.3.1",
-    "react-i18next": "^7.6.1",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "^1.1.4",
+    "react-dom": "^16.8.6",
+    "react-i18next": "^10.0.0",
+    "react-loader-spinner": "^3.1.14",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^3.3.0",
     "react-stepper-horizontal": "^1.0.10",
     "source-map-explorer": "^1.5.0",
+    "styled-components": "^5.1.1",
+    "yarn": "^1.22.4",
     "yarn-run-all": "^3.1.1"
   },
   "scripts": {
@@ -50,9 +59,25 @@
     ]
   },
   "devDependencies": {
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.6.0",
     "eslint-plugin-prettier": "^2.6.0",
-    "flow-bin": "^0.73.0",
+    "flow-bin": "^0.107.0",
+    "flow-typed": "^2.5.1",
+    "jest-canvas-mock": "^2.2.0",
     "stylelint": "^9.2.0",
     "stylelint-config-standard": "^18.2.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
