@@ -25,7 +25,7 @@ export const PARENTAL_STATUSES = {
 }
 
 export const AUTHORITY_GIVEN_CONDITIONS = {
-  effectiveImmediatly: 'effectiveImmediatly',
+  effectiveImmediately: 'effectiveImmediately',
   untilHardships: 'untilHardships'
 }
 
@@ -37,6 +37,22 @@ export const HARDSHIPS = {
   incarceration: 'incarceration',
   detention: 'detention',
   describe: 'describe'
+}
+
+export const AUTHORIZATION = {
+  undersigned: 'undersigned',
+  enrollInSchool: 'enrollInSchool',
+  obtainTreatment: 'obtainTreatment',
+  provideNeeds: 'provideNeeds',
+  obtainPassport: 'obtainPassport',
+  travelAlone: 'travelAlone',
+  arrangeTravel: 'arrangeTravel',
+  grantAdditionalPower: 'grantAdditionalPower'
+}
+
+export const UNDERSTAND = {
+  understandCustody: 'understandCustody',
+  understandTermination: 'understandTermination'
 }
 
 const PDF_ID = 'print-container'
@@ -87,7 +103,11 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
       successorCaregiverPhoneNumber,
       consentInitials,
       parentalStatus,
-      parentalStatusReason
+      parentalStatusReason,
+      authorityGivenConditions,
+      hardships,
+      authorization,
+      understand
     } = data
     return (
       <div id={PDF_ID} className="hiddenPDF">
@@ -216,8 +236,12 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
                 </span>
               </div>
               <div className="row">
-                <CheckHere text={consentInitials[0]} />
-                <CheckHere text={consentInitials[1]} />
+                <CheckHere
+                  text={consentInitials[0] === '' ? '    ' : consentInitials[0]}
+                />
+                <CheckHere
+                  text={consentInitials[1] === '' ? '    ' : consentInitials[1]}
+                />
                 <span>{PDFStrings.serveJointlyAndSeveraly}</span>
               </div>
             </NumberedContent>
@@ -228,12 +252,16 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
               <div className="row">
                 <CheckHere
                   text={
-                    parentalStatus === PARENTAL_STATUSES.bothParents ? 'X' : ''
+                    parentalStatus === PARENTAL_STATUSES.bothParents
+                      ? 'X'
+                      : '    '
                   }
                 />
                 <CheckHere
                   text={
-                    parentalStatus === PARENTAL_STATUSES.bothParents ? 'X' : ''
+                    parentalStatus === PARENTAL_STATUSES.bothParents
+                      ? 'X'
+                      : '    '
                   }
                 />
                 <span>
@@ -246,7 +274,7 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
                   text={
                     parentalStatus === PARENTAL_STATUSES.parentDeceased
                       ? 'X'
-                      : ''
+                      : '    '
                   }
                 />
                 <span>
@@ -259,7 +287,7 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
                   text={
                     parentalStatus === PARENTAL_STATUSES.legalCustodySigned
                       ? 'X'
-                      : ''
+                      : '    '
                   }
                 />
                 <span>
@@ -272,7 +300,7 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
                   text={
                     parentalStatus === PARENTAL_STATUSES.legalCustodySent
                       ? 'X'
-                      : ''
+                      : '    '
                   }
                 />
                 <span>
@@ -284,6 +312,422 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
                 </span>
               </div>
             </NumberedContent>
+            <NumberedContent number={4}>
+              <div className="row">
+                <span className="bold">{PDFStrings.temporaryAuthority}:</span>
+              </div>
+              <div className="row">
+                <CheckHere
+                  text={
+                    authorityGivenConditions ===
+                    AUTHORITY_GIVEN_CONDITIONS.effectiveImmediately
+                      ? 'X'
+                      : '    '
+                  }
+                />
+                <CheckHere
+                  text={
+                    authorityGivenConditions ===
+                    AUTHORITY_GIVEN_CONDITIONS.effectiveImmediately
+                      ? 'X'
+                      : '    '
+                  }
+                />
+                <span>
+                  {PDFStrings.effectiveImmediately}
+                  {PDFStrings.checkAtLeastOne}
+                </span>
+              </div>
+              <div className="row">
+                <span className="bold">{PDFStrings.or}:</span>
+              </div>
+              <div className="row">
+                <CheckHere
+                  text={
+                    authorityGivenConditions ===
+                    AUTHORITY_GIVEN_CONDITIONS.untilHardships
+                      ? 'X'
+                      : '    '
+                  }
+                />
+                <CheckHere
+                  text={
+                    authorityGivenConditions ===
+                    AUTHORITY_GIVEN_CONDITIONS.untilHardships
+                      ? 'X'
+                      : '    '
+                  }
+                />
+
+                <span>
+                  {PDFStrings.hardshipType}
+                  {PDFStrings.checkAtLeastOne}
+                </span>
+              </div>
+              <div>
+                <div className="row">
+                  <CheckHere
+                    text={hardships === HARDSHIPS.seriousIllness ? 'X' : '    '}
+                  />
+                  <CheckHere
+                    text={hardships === HARDSHIPS.seriousIllness ? 'X' : '    '}
+                  />
+
+                  <span>{PDFStrings.illnessOrIncarceration}</span>
+                </div>
+                <div className="row">
+                  <CheckHere
+                    text={
+                      hardships === HARDSHIPS.physicalOrMentalCondition
+                        ? 'X'
+                        : '    '
+                    }
+                  />
+                  <CheckHere
+                    text={
+                      hardships === HARDSHIPS.physicalOrMentalCondition
+                        ? 'X'
+                        : '    '
+                    }
+                  />
+
+                  <span>{PDFStrings.physicalOrMentalCondition}</span>
+                </div>
+                <div className="row">
+                  <CheckHere
+                    text={
+                      hardships === HARDSHIPS.uninhabitability ? 'X' : '    '
+                    }
+                  />
+                  <CheckHere
+                    text={
+                      hardships === HARDSHIPS.uninhabitability ? 'X' : '    '
+                    }
+                  />
+
+                  <span>{PDFStrings.lossOfHome}</span>
+                </div>
+                <div className="row">
+                  <CheckHere
+                    text={hardships === HARDSHIPS.needTreatment ? 'X' : '    '}
+                  />
+                  <CheckHere
+                    text={hardships === HARDSHIPS.needTreatment ? 'X' : '    '}
+                  />
+
+                  <span>{PDFStrings.needForTreatment}</span>
+                </div>
+                <div className="row">
+                  <CheckHere
+                    text={hardships === HARDSHIPS.incarceration ? 'X' : '    '}
+                  />
+                  <CheckHere
+                    text={hardships === HARDSHIPS.incarceration ? 'X' : '    '}
+                  />
+
+                  <span>{PDFStrings.parentIncarceration}</span>
+                </div>
+                <div className="row">
+                  <CheckHere
+                    text={hardships === HARDSHIPS.detention ? 'X' : '    '}
+                  />
+                  <CheckHere
+                    text={hardships === HARDSHIPS.detention ? 'X' : '    '}
+                  />
+
+                  <span>{PDFStrings.detentionDeportation}</span>
+                </div>
+                <div className="row">
+                  <CheckHere
+                    text={hardships === HARDSHIPS.describe ? 'X' : '    '}
+                  />
+                  <CheckHere
+                    text={hardships === HARDSHIPS.describe ? 'X' : '    '}
+                  />
+                  <span className="underline full-width">
+                    {PDFStrings.other}
+                  </span>
+                </div>{' '}
+                <div className="row" />
+                <div>
+                  <span className="underline full-width">{}</span>
+                </div>{' '}
+                <div className="row" />
+              </div>
+            </NumberedContent>
+            <NumberedContent number={5}>
+              <div className="row">
+                <CheckHere
+                  text={
+                    authorization === AUTHORIZATION.undersigned ? 'X' : '    '
+                  }
+                />
+                <CheckHere
+                  text={
+                    authorization === AUTHORIZATION.undersigned ? 'X' : '    '
+                  }
+                />
+                <span>{PDFStrings.undersignedAuthorize}</span>
+              </div>
+              <div className="row">
+                <CheckHere
+                  text={
+                    authorization === AUTHORIZATION.enrollInSchool
+                      ? 'X'
+                      : '    '
+                  }
+                />
+                <CheckHere
+                  text={
+                    authorization === AUTHORIZATION.enrollInSchool
+                      ? 'X'
+                      : '    '
+                  }
+                />
+                <span>{PDFStrings.enrollInSchool}</span>
+              </div>
+              <div className="row">
+                <CheckHere
+                  text={
+                    authorization === AUTHORIZATION.obtainTreatment
+                      ? 'X'
+                      : '    '
+                  }
+                />
+                <CheckHere
+                  text={
+                    authorization === AUTHORIZATION.obtainTreatment
+                      ? 'X'
+                      : '    '
+                  }
+                />
+                <span>{PDFStrings.obtainTreatment}</span>
+              </div>
+              <div className="row">
+                <CheckHere
+                  text={
+                    authorization === AUTHORIZATION.provideNeeds ? 'X' : '    '
+                  }
+                />
+                <CheckHere
+                  text={
+                    authorization === AUTHORIZATION.provideNeeds ? 'X' : '    '
+                  }
+                />
+                <span>{PDFStrings.provideNeeds}</span>
+              </div>
+              <div className="row">
+                <CheckHere
+                  text={
+                    authorization === AUTHORIZATION.obtainPassport
+                      ? 'X'
+                      : '    '
+                  }
+                />
+                <CheckHere
+                  text={
+                    authorization === AUTHORIZATION.obtainPassport
+                      ? 'X'
+                      : '    '
+                  }
+                />
+                <span>{PDFStrings.obtainPassport}</span>
+              </div>
+              <div className="row">
+                <CheckHere
+                  text={
+                    authorization === AUTHORIZATION.travelAlone ? 'X' : '    '
+                  }
+                />
+                <CheckHere
+                  text={
+                    authorization === AUTHORIZATION.travelAlone ? 'X' : '    '
+                  }
+                />
+                <span>{PDFStrings.travelAlone}</span>
+              </div>
+              <div className="row">
+                <CheckHere
+                  text={
+                    authorization === AUTHORIZATION.arrangeTravel ? 'X' : '    '
+                  }
+                />
+                <CheckHere
+                  text={
+                    authorization === AUTHORIZATION.arrangeTravel ? 'X' : '    '
+                  }
+                />
+                <span>{PDFStrings.arrangeTravel}</span>
+              </div>
+              <div className="row">
+                <CheckHere
+                  text={
+                    authorization === AUTHORIZATION.grantAdditionalPower
+                      ? 'X'
+                      : '    '
+                  }
+                />
+                <CheckHere
+                  text={
+                    authorization === AUTHORIZATION.grantAdditionalPower
+                      ? 'X'
+                      : '    '
+                  }
+                />
+                <span>{PDFStrings.grantAdditionalPower}</span>
+              </div>
+              <div className="row" />
+              <div>
+                <span className="underline full-width">{}</span>
+              </div>{' '}
+              <div className="row" />
+              <div>
+                <span className="underline full-width">{}</span>
+              </div>{' '}
+              <div className="row" />
+            </NumberedContent>
+            <NumberedContent number={6}>
+              <div className="row">
+                <CheckHere
+                  text={
+                    understand === UNDERSTAND.understandCustody ? 'X' : '    '
+                  }
+                />
+                <CheckHere
+                  text={
+                    understand === UNDERSTAND.understandCustody ? 'X' : '    '
+                  }
+                />
+                <span>{PDFStrings.doesNotProvideCustody}</span>
+              </div>
+            </NumberedContent>
+            <NumberedContent number={7}>
+              <div className="row">
+                <CheckHere
+                  text={
+                    understand === UNDERSTAND.understandTermination
+                      ? 'X'
+                      : '    '
+                  }
+                />
+                <CheckHere
+                  text={
+                    understand === UNDERSTAND.understandTermination
+                      ? 'X'
+                      : '    '
+                  }
+                />
+                <span>{PDFStrings.documentTerminated}</span>
+              </div>
+            </NumberedContent>
+            <div className="row">
+              <span>{PDFStrings.declareUnderPenalty}</span>
+            </div>
+            <div className="row">
+              <span>{PDFStrings.stateOF}</span>
+              <span className="underline half-width">{}</span>
+            </div>
+            <div className="row">
+              <span>{PDFStrings.countyOf}</span>
+              <span className="underline half-width">{}</span>
+            </div>
+            <div className="row" /> <div className="row" />
+            <div className="row">
+              <span className="underline half-width">{motherAddress.name}</span>
+            </div>
+            <div className="row">
+              <span>{PDFStrings.motherGuardian}</span>
+              <span className="underline half-width">{PDFStrings.date}</span>
+            </div>
+            <div className="row">
+              <span>{PDFStrings.motherSignature}</span>
+            </div>
+            <div className="page break" />
+            <div className="row">
+              <span className="underline half-width">{}</span>
+            </div>
+            <div className="row">
+              <span>{PDFStrings.notaryPublic}</span>
+            </div>
+            <div className="row">
+              <span>{PDFStrings.commissionExpires}</span>
+              <span className="underline half-width">{}</span>
+            </div>
+            <div className="row">
+              <span>{PDFStrings.stateOF}</span>
+              <span className="underline half-width">{}</span>
+            </div>
+            <div className="row">
+              <span>{PDFStrings.countyOf}</span>
+              <span className="underline half-width">{}</span>
+            </div>
+            <div className="row" /> <div className="row" />
+            <div className="row">
+              <span className="underline half-width">{fatherAddress.name}</span>
+            </div>
+            <div className="row">
+              <span>{PDFStrings.fatherGuardian}</span>
+              <span className="underline half-width">{PDFStrings.date}</span>
+            </div>
+            <div className="row">
+              <span>{PDFStrings.fatherSignature}</span>
+            </div>
+            <div className="row" /> <div className="row" />
+            <div className="row" /> <div className="row" />
+            <div className="row">
+              <span className="underline half-width">{}</span>
+            </div>
+            <div className="row">
+              <span>{PDFStrings.notaryPublic}</span>
+            </div>
+            <div className="row">
+              <span>{PDFStrings.commissionExpires}</span>
+              <span className="underline half-width">{}</span>
+            </div>
+            <div className="row">
+              <span>{PDFStrings.inLieuOfNotary}</span>
+            </div>
+            <div className="row">
+              <span className="underline full-width">
+                {PDFStrings.signatureOfWitnessOne}
+              </span>
+              <span className="underline full-width">
+                {PDFStrings.signatureOfWitnessTwo}
+              </span>
+            </div>
+            <div className="row">
+              <span className="underline half-width">{PDFStrings.date}</span>
+              <span className="underline half-width">{PDFStrings.date}</span>
+            </div>
+            <div className="row" /> <div className="row" />
+            <div className="page break" />
+            <div className="row">
+              <span className="label bold">
+                {PDFStrings.directionsToParents}
+              </span>
+            </div>
+            <div className="row">
+              <span>{PDFStrings.giveOriginal}</span>
+            </div>
+            <div className="row">
+              <span>{PDFStrings.keepCopy}</span>
+            </div>
+            <div className="row">
+              <span>{PDFStrings.discussCaregiving}</span>
+            </div>
+            <div>
+              <span>{PDFStrings.mayRevoke}</span>
+              <span>{PDFStrings.ifYouRevoke}</span>
+            </div>
+            <div className="row" /> <div className="row" />
+            <div>
+              <span className="label bold">
+                {PDFStrings.noticeToAgencyProvider}
+              </span>
+              <span>{PDFStrings.pursuantTo}</span>
+              <span>{PDFStrings.additionallyPursuantTo}</span>
+              <span>{PDFStrings.serveJointlyAndSeveraly}</span>
+            </div>
           </div>
         </div>
       </div>
