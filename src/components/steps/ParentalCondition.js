@@ -32,6 +32,30 @@ const ParentalCondition = ({fields, t}) => {
           }))}
         />
       </FormField>
+      {fields.condition === AUTHORITY_GIVEN_CONDITIONS.effectiveImmediately && (
+        <>
+          <Header level={1}>{t('hardships')}</Header>
+          <FormField
+            name="hardships"
+            validate={value =>
+              !value && {
+                message: t('hardshipsError'),
+                status: 'error'
+              }
+            }
+          >
+            <CheckBoxGroup
+              name="hardships"
+              options={Object.values(HARDSHIPS).map(hardship => ({
+                label: t(hardship),
+                value: hardship
+              }))}
+              labelKey="label"
+              valueKey="value"
+            />
+          </FormField>
+        </>
+      )}
       {fields.condition === AUTHORITY_GIVEN_CONDITIONS.untilHardships && (
         <>
           <Header level={1}>{t('hardships')}</Header>

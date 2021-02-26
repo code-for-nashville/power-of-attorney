@@ -1,17 +1,7 @@
 import React from 'react'
 import {Header, FormField, TextArea, CheckBoxGroup} from 'grommet'
 import {withTranslation} from 'react-i18next'
-
-const AUTHORIZATIONS = [
-  'enrollInSchoolAndExtracurriculars',
-  'obtainMedicalTreatment',
-  'accessEducationalAndMedicalRecords',
-  'provideEssentials',
-  'obtainPassport',
-  'travelAlone',
-  'makeTravelArrangements',
-  'additionalPowers'
-]
+import {AUTHORIZATIONS} from '../../pdf/pdf-document.js'
 
 const Authorizations = ({fields, t}) => {
   return (
@@ -20,9 +10,9 @@ const Authorizations = ({fields, t}) => {
       <FormField name="authorizations" validate={value => true}>
         <CheckBoxGroup
           name="authorizations"
-          options={Object.values(AUTHORIZATIONS).map(authorization => ({
-            label: t(authorization),
-            value: authorization
+          options={Object.values(AUTHORIZATIONS).map(authorizations => ({
+            label: t(authorizations),
+            value: authorizations
           }))}
           labelKey="label"
           valueKey="value"

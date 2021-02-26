@@ -39,20 +39,20 @@ export const HARDSHIPS = {
   describe: 'describe'
 }
 
-export const AUTHORIZATION = {
-  undersigned: 'undersigned',
-  enrollInSchool: 'enrollInSchool',
-  obtainTreatment: 'obtainTreatment',
-  provideNeeds: 'provideNeeds',
+export const AUTHORIZATIONS = {
+  enrollInSchoolAndExtracurriculars: 'enrollInSchoolAndExtracurriculars',
+  obtainMedicalTreatment: 'obtainMedicalTreatment',
+  accessEducationalAndMedicalRecords: 'accessEducationalAndMedicalRecords',
+  provideEssentials: 'provideEssentials',
   obtainPassport: 'obtainPassport',
   travelAlone: 'travelAlone',
-  arrangeTravel: 'arrangeTravel',
-  grantAdditionalPower: 'grantAdditionalPower'
+  makeTravelArrangements: 'makeTravelArrangements',
+  additionalPowers: 'additionalPowers'
 }
 
 export const UNDERSTAND = {
-  understandCustody: 'understandCustody',
-  understandTermination: 'understandTermination'
+  iOrWeUnderstand: 'iOrWeUnderstand',
+  iOrWeDoNotUnderstand: 'iOrWeDoNotUnderstand'
 }
 
 const PDF_ID = 'print-container'
@@ -104,10 +104,13 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
       consentInitials,
       parentalStatus,
       parentalStatusReason,
-      authorityGivenConditions,
+      authorizations,
+      additionalPowers,
+      condition,
       hardships,
-      authorization,
-      understand
+      describeHardship,
+      acknowledgedNotProvidingLegalCustody,
+      acknowledgedDocumentMayBeTerminated
     } = data
     return (
       <div id={PDF_ID} className="hiddenPDF">
@@ -319,7 +322,7 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
               <div className="row">
                 <CheckHere
                   text={
-                    authorityGivenConditions ===
+                    condition ===
                     AUTHORITY_GIVEN_CONDITIONS.effectiveImmediately
                       ? 'X'
                       : '    '
@@ -327,16 +330,13 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
                 />
                 <CheckHere
                   text={
-                    authorityGivenConditions ===
+                    condition ===
                     AUTHORITY_GIVEN_CONDITIONS.effectiveImmediately
                       ? 'X'
                       : '    '
                   }
                 />
-                <span>
-                  {PDFStrings.effectiveImmediately}
-                  {PDFStrings.checkAtLeastOne}
-                </span>
+                <span>{Strings.effectiveImmediately}</span>
               </div>
               <div className="row">
                 <span className="bold">{PDFStrings.or}:</span>
@@ -344,33 +344,36 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
               <div className="row">
                 <CheckHere
                   text={
-                    authorityGivenConditions ===
-                    AUTHORITY_GIVEN_CONDITIONS.untilHardships
+                    condition === AUTHORITY_GIVEN_CONDITIONS.untilHardships
                       ? 'X'
                       : '    '
                   }
                 />
                 <CheckHere
                   text={
-                    authorityGivenConditions ===
-                    AUTHORITY_GIVEN_CONDITIONS.untilHardships
+                    condition === AUTHORITY_GIVEN_CONDITIONS.untilHardships
                       ? 'X'
                       : '    '
                   }
                 />
 
-                <span>
-                  {PDFStrings.hardshipType}
-                  {PDFStrings.checkAtLeastOne}
-                </span>
+                <span>{Strings.untilHardships}</span>
               </div>
               <div>
                 <div className="row">
                   <CheckHere
-                    text={hardships === HARDSHIPS.seriousIllness ? 'X' : '    '}
+                    text={
+                      hardships.includes(HARDSHIPS.seriousIllness)
+                        ? 'X'
+                        : '    '
+                    }
                   />
                   <CheckHere
-                    text={hardships === HARDSHIPS.seriousIllness ? 'X' : '    '}
+                    text={
+                      hardships.includes(HARDSHIPS.seriousIllness)
+                        ? 'X'
+                        : '    '
+                    }
                   />
 
                   <span>{PDFStrings.illnessOrIncarceration}</span>
@@ -378,14 +381,14 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
                 <div className="row">
                   <CheckHere
                     text={
-                      hardships === HARDSHIPS.physicalOrMentalCondition
+                      hardships.includes(HARDSHIPS.physicalOrMentalCondition)
                         ? 'X'
                         : '    '
                     }
                   />
                   <CheckHere
                     text={
-                      hardships === HARDSHIPS.physicalOrMentalCondition
+                      hardships.includes(HARDSHIPS.physicalOrMentalCondition)
                         ? 'X'
                         : '    '
                     }
@@ -396,12 +399,16 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
                 <div className="row">
                   <CheckHere
                     text={
-                      hardships === HARDSHIPS.uninhabitability ? 'X' : '    '
+                      hardships.includes(HARDSHIPS.uninhabitability)
+                        ? 'X'
+                        : '    '
                     }
                   />
                   <CheckHere
                     text={
-                      hardships === HARDSHIPS.uninhabitability ? 'X' : '    '
+                      hardships.includes(HARDSHIPS.uninhabitability)
+                        ? 'X'
+                        : '    '
                     }
                   />
 
@@ -409,193 +416,242 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
                 </div>
                 <div className="row">
                   <CheckHere
-                    text={hardships === HARDSHIPS.needTreatment ? 'X' : '    '}
+                    text={
+                      hardships.includes(HARDSHIPS.needTreatment) ? 'X' : '    '
+                    }
                   />
                   <CheckHere
-                    text={hardships === HARDSHIPS.needTreatment ? 'X' : '    '}
+                    text={
+                      hardships.includes(HARDSHIPS.needTreatment) ? 'X' : '    '
+                    }
                   />
 
                   <span>{PDFStrings.needForTreatment}</span>
                 </div>
                 <div className="row">
                   <CheckHere
-                    text={hardships === HARDSHIPS.incarceration ? 'X' : '    '}
+                    text={
+                      hardships.includes(HARDSHIPS.incarceration) ? 'X' : '    '
+                    }
                   />
                   <CheckHere
-                    text={hardships === HARDSHIPS.incarceration ? 'X' : '    '}
+                    text={
+                      hardships.includes(HARDSHIPS.incarceration) ? 'X' : '    '
+                    }
                   />
 
                   <span>{PDFStrings.parentIncarceration}</span>
                 </div>
                 <div className="row">
                   <CheckHere
-                    text={hardships === HARDSHIPS.detention ? 'X' : '    '}
+                    text={
+                      hardships.includes(HARDSHIPS.detention) ? 'X' : '    '
+                    }
                   />
                   <CheckHere
-                    text={hardships === HARDSHIPS.detention ? 'X' : '    '}
+                    text={
+                      hardships.includes(HARDSHIPS.detention) ? 'X' : '    '
+                    }
                   />
 
                   <span>{PDFStrings.detentionDeportation}</span>
                 </div>
                 <div className="row">
                   <CheckHere
-                    text={hardships === HARDSHIPS.describe ? 'X' : '    '}
+                    text={hardships.includes(HARDSHIPS.describe) ? 'X' : '    '}
                   />
                   <CheckHere
-                    text={hardships === HARDSHIPS.describe ? 'X' : '    '}
+                    text={hardships.includes(HARDSHIPS.describe) ? 'X' : '    '}
                   />
-                  <span className="underline full-width">
-                    {PDFStrings.other}
+                  <span>
+                    {Strings.describe}
+                    <span className="underline">
+                      {describeHardship || '\u00A0'}
+                    </span>
                   </span>
-                </div>{' '}
-                <div className="row" />
-                <div>
-                  <span className="underline full-width">{}</span>
-                </div>{' '}
-                <div className="row" />
+                </div>
               </div>
             </NumberedContent>
             <NumberedContent number={5}>
               <div className="row">
-                <CheckHere
-                  text={
-                    authorization === AUTHORIZATION.undersigned ? 'X' : '    '
-                  }
-                />
-                <CheckHere
-                  text={
-                    authorization === AUTHORIZATION.undersigned ? 'X' : '    '
-                  }
-                />
+                <CheckHere text={authorizations !== '' ? 'X' : '    '} />
+                <CheckHere text={authorizations !== '' ? 'X' : '    '} />
                 <span>{PDFStrings.undersignedAuthorize}</span>
               </div>
               <div className="row">
                 <CheckHere
                   text={
-                    authorization === AUTHORIZATION.enrollInSchool
+                    authorizations.includes(
+                      AUTHORIZATIONS.enrollInSchoolAndExtracurriculars
+                    )
                       ? 'X'
                       : '    '
                   }
                 />
                 <CheckHere
                   text={
-                    authorization === AUTHORIZATION.enrollInSchool
+                    authorizations.includes(
+                      AUTHORIZATIONS.enrollInSchoolAndExtracurriculars
+                    )
                       ? 'X'
                       : '    '
                   }
                 />
-                <span>{PDFStrings.enrollInSchool}</span>
+                <span>{Strings.enrollInSchoolAndExtracurriculars}</span>
               </div>
               <div className="row">
                 <CheckHere
                   text={
-                    authorization === AUTHORIZATION.obtainTreatment
+                    authorizations.includes(
+                      AUTHORIZATIONS.obtainMedicalTreatment
+                    )
                       ? 'X'
                       : '    '
                   }
                 />
                 <CheckHere
                   text={
-                    authorization === AUTHORIZATION.obtainTreatment
+                    authorizations.includes(
+                      AUTHORIZATIONS.obtainMedicalTreatment
+                    )
                       ? 'X'
                       : '    '
                   }
                 />
-                <span>{PDFStrings.obtainTreatment}</span>
+                <span>{Strings.obtainMedicalTreatment}</span>
               </div>
               <div className="row">
                 <CheckHere
                   text={
-                    authorization === AUTHORIZATION.provideNeeds ? 'X' : '    '
-                  }
-                />
-                <CheckHere
-                  text={
-                    authorization === AUTHORIZATION.provideNeeds ? 'X' : '    '
-                  }
-                />
-                <span>{PDFStrings.provideNeeds}</span>
-              </div>
-              <div className="row">
-                <CheckHere
-                  text={
-                    authorization === AUTHORIZATION.obtainPassport
+                    authorizations.includes(
+                      AUTHORIZATIONS.accessEducationalAndMedicalRecords
+                    )
                       ? 'X'
                       : '    '
                   }
                 />
                 <CheckHere
                   text={
-                    authorization === AUTHORIZATION.obtainPassport
+                    authorizations.includes(
+                      AUTHORIZATIONS.accessEducationalAndMedicalRecords
+                    )
                       ? 'X'
                       : '    '
                   }
                 />
-                <span>{PDFStrings.obtainPassport}</span>
+                <span>{Strings.accessEducationalAndMedicalRecords}</span>
               </div>
               <div className="row">
                 <CheckHere
                   text={
-                    authorization === AUTHORIZATION.travelAlone ? 'X' : '    '
-                  }
-                />
-                <CheckHere
-                  text={
-                    authorization === AUTHORIZATION.travelAlone ? 'X' : '    '
-                  }
-                />
-                <span>{PDFStrings.travelAlone}</span>
-              </div>
-              <div className="row">
-                <CheckHere
-                  text={
-                    authorization === AUTHORIZATION.arrangeTravel ? 'X' : '    '
-                  }
-                />
-                <CheckHere
-                  text={
-                    authorization === AUTHORIZATION.arrangeTravel ? 'X' : '    '
-                  }
-                />
-                <span>{PDFStrings.arrangeTravel}</span>
-              </div>
-              <div className="row">
-                <CheckHere
-                  text={
-                    authorization === AUTHORIZATION.grantAdditionalPower
+                    authorizations.includes(AUTHORIZATIONS.provideEssentials)
                       ? 'X'
                       : '    '
                   }
                 />
                 <CheckHere
                   text={
-                    authorization === AUTHORIZATION.grantAdditionalPower
+                    authorizations.includes(AUTHORIZATIONS.provideEssentials)
                       ? 'X'
                       : '    '
                   }
                 />
-                <span>{PDFStrings.grantAdditionalPower}</span>
+                <span>{Strings.provideEssentials}</span>
               </div>
-              <div className="row" />
-              <div>
-                <span className="underline full-width">{}</span>
-              </div>{' '}
-              <div className="row" />
-              <div>
-                <span className="underline full-width">{}</span>
-              </div>{' '}
-              <div className="row" />
+              <div className="row">
+                <CheckHere
+                  text={
+                    authorizations.includes(AUTHORIZATIONS.obtainPassport)
+                      ? 'X'
+                      : '    '
+                  }
+                />
+                <CheckHere
+                  text={
+                    authorizations.includes(AUTHORIZATIONS.obtainPassport)
+                      ? 'X'
+                      : '    '
+                  }
+                />
+                <span>{Strings.obtainPassport}</span>
+              </div>
+              <div className="row">
+                <CheckHere
+                  text={
+                    authorizations.includes(AUTHORIZATIONS.travelAlone)
+                      ? 'X'
+                      : '    '
+                  }
+                />
+                <CheckHere
+                  text={
+                    authorizations.includes(AUTHORIZATIONS.travelAlone)
+                      ? 'X'
+                      : '    '
+                  }
+                />
+                <span>{Strings.travelAlone}</span>
+              </div>
+              <div className="row">
+                <CheckHere
+                  text={
+                    authorizations.includes(
+                      AUTHORIZATIONS.makeTravelArrangements
+                    )
+                      ? 'X'
+                      : '    '
+                  }
+                />
+                <CheckHere
+                  text={
+                    authorizations.includes(
+                      AUTHORIZATIONS.makeTravelArrangements
+                    )
+                      ? 'X'
+                      : '    '
+                  }
+                />
+                <span>{Strings.makeTravelArrangements}</span>
+              </div>
+              <div className="row">
+                <CheckHere
+                  text={
+                    authorizations.includes(AUTHORIZATIONS.additionalPowers)
+                      ? 'X'
+                      : '    '
+                  }
+                />
+                <CheckHere
+                  text={
+                    authorizations.includes(AUTHORIZATIONS.additionalPowers)
+                      ? 'X'
+                      : '    '
+                  }
+                />
+                <span>
+                  {PDFStrings.grantAdditionalPower}
+                  <span className="underline full-width">
+                    {additionalPowers || '\u00A0'}
+                  </span>
+                </span>
+              </div>
             </NumberedContent>
             <NumberedContent number={6}>
               <div className="row">
                 <CheckHere
                   text={
-                    understand === UNDERSTAND.understandCustody ? 'X' : '    '
+                    acknowledgedNotProvidingLegalCustody ===
+                    UNDERSTAND.iOrWeUnderstand
+                      ? 'X'
+                      : '    '
                   }
                 />
                 <CheckHere
                   text={
-                    understand === UNDERSTAND.understandCustody ? 'X' : '    '
+                    acknowledgedNotProvidingLegalCustody ===
+                    UNDERSTAND.iOrWeUnderstand
+                      ? 'X'
+                      : '    '
                   }
                 />
                 <span>{PDFStrings.doesNotProvideCustody}</span>
@@ -605,14 +661,16 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
               <div className="row">
                 <CheckHere
                   text={
-                    understand === UNDERSTAND.understandTermination
+                    acknowledgedDocumentMayBeTerminated ===
+                    UNDERSTAND.iOrWeUnderstand
                       ? 'X'
                       : '    '
                   }
                 />
                 <CheckHere
                   text={
-                    understand === UNDERSTAND.understandTermination
+                    acknowledgedDocumentMayBeTerminated ===
+                    UNDERSTAND.iOrWeUnderstand
                       ? 'X'
                       : '    '
                   }
@@ -623,6 +681,7 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
             <div className="row">
               <span>{PDFStrings.declareUnderPenalty}</span>
             </div>
+            <div className="page break" />
             <div className="row">
               <span>{PDFStrings.stateOF}</span>
               <span className="underline half-width">{}</span>
@@ -642,7 +701,6 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
             <div className="row">
               <span>{PDFStrings.motherSignature}</span>
             </div>
-            <div className="page break" />
             <div className="row">
               <span className="underline half-width">{}</span>
             </div>
@@ -707,16 +765,28 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
               </span>
             </div>
             <div className="row">
-              <span>{PDFStrings.giveOriginal}</span>
+              <span>
+                {PDFStrings.leadingDash}
+                {PDFStrings.giveOriginal}
+              </span>
             </div>
             <div className="row">
-              <span>{PDFStrings.keepCopy}</span>
+              <span>
+                {PDFStrings.leadingDash}
+                {PDFStrings.keepCopy}
+              </span>
             </div>
             <div className="row">
-              <span>{PDFStrings.discussCaregiving}</span>
+              <span>
+                {PDFStrings.leadingDash}
+                {PDFStrings.discussCaregiving}
+              </span>
             </div>
             <div>
-              <span>{PDFStrings.mayRevoke}</span>
+              <span>
+                {PDFStrings.leadingDash}
+                {PDFStrings.mayRevoke}
+              </span>
               <span>{PDFStrings.ifYouRevoke}</span>
             </div>
             <div className="row" /> <div className="row" />

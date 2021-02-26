@@ -46,7 +46,7 @@ const ENGLISH = {
   reasonNotReached: 'Reason non-custodial parent could not be reached:',
   condition: 'Condition',
   hardships: 'Hardships',
-  effectiveImmediatly:
+  effectiveImmediately:
     'effective immediately upon signing this document, but with the intention that the caregiver(s) will only take charge of my/our child/children if and when one or more of the following type(s) of hardship may occur (check at least one below):',
   untilHardships:
     'only if and when one or more of the following type(s) of hardship may occur (check at least one below):',
@@ -59,7 +59,7 @@ const ENGLISH = {
     'the need for medical or mental health treatment (including substance abuse treatment) by the parent or legal guardian;',
   incarceration: 'the incarceration of a parent or legal guardian;',
   detention: 'the detention or deportation of a parent or guardian; and/or',
-  describe: 'other',
+  describe: 'other (please describe):',
   pleaseDescribe: '(please describe):',
   describeHardshipError: 'Description required',
   hardshipsError: 'Please select at least one',
@@ -141,8 +141,8 @@ const ENGLISH = {
   obtainPassport: 'obtain a passport for the child/children',
   travelAlone: 'travel alone with the child/children within the United States',
   makeTravelArrangements:
-    'to make travel arrangements for the child/children to travel outside the United States, together with the caregiver or on their own, for the SOLE purpose of being reunited with me/us in our country of residence',
-  additionalPowers: 'exercise additional power(s) as described below',
+    'to make travel arrangements for the child/children to travel outside the United States, together with the caregiver or on their own, for the SOLE purpose of being reunited with me/us in our country of residence; and/or',
+  additionalPowers: 'exercise additional power(s) as described below:',
   additionalPowersError: 'Please describe the additional powers',
   acknowledgements: 'Acknowledgements',
   notProvidingLegalCustody:

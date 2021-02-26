@@ -1,8 +1,9 @@
 import React from 'react'
 import {Header, FormField, Paragraph, RadioButtonGroup} from 'grommet'
 import {withTranslation} from 'react-i18next'
+import {UNDERSTAND} from '../../pdf/pdf-document.js'
 
-const createIOrWeUnderstandOptions = t => [
+/*const createIOrWeUnderstandOptions = t => [
   {
     label: t('iOrWeUnderstand'),
     value: true
@@ -11,7 +12,7 @@ const createIOrWeUnderstandOptions = t => [
     label: t('iOrWeDoNotUnderstand'),
     value: false
   }
-]
+]*/
 
 const Acknowledgements = ({fields, t}) => {
   return (
@@ -21,7 +22,7 @@ const Acknowledgements = ({fields, t}) => {
       <FormField
         name="acknowledgedNotProvidingLegalCustody"
         validate={value =>
-          !value && {
+          !(value === 'iOrWeUnderstand') && {
             message: t('acknowledgementsError'),
             status: 'error'
           }
@@ -29,14 +30,19 @@ const Acknowledgements = ({fields, t}) => {
       >
         <RadioButtonGroup
           name="acknowledgedNotProvidingLegalCustody"
-          options={createIOrWeUnderstandOptions(t)}
+          options={Object.values(UNDERSTAND).map(
+            acknowledgedNotProvidingLegalCustody => ({
+              label: t(acknowledgedNotProvidingLegalCustody),
+              value: acknowledgedNotProvidingLegalCustody
+            })
+          )}
         />
       </FormField>
       <Paragraph>{t('documentMayBeTerminated')}</Paragraph>
       <FormField
         name="acknowledgedDocumentMayBeTerminated"
         validate={value =>
-          !value && {
+          !(value === 'iOrWeUnderstand') && {
             message: t('acknowledgementsError'),
             status: 'error'
           }
@@ -44,7 +50,12 @@ const Acknowledgements = ({fields, t}) => {
       >
         <RadioButtonGroup
           name="acknowledgedDocumentMayBeTerminated"
-          options={createIOrWeUnderstandOptions(t)}
+          options={Object.values(UNDERSTAND).map(
+            acknowledgedDocumentMayBeTerminated => ({
+              label: t(acknowledgedDocumentMayBeTerminated),
+              value: acknowledgedDocumentMayBeTerminated
+            })
+          )}
         />
       </FormField>
     </>
