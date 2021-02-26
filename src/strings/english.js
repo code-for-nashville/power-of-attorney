@@ -59,7 +59,7 @@ const ENGLISH = {
     'the need for medical or mental health treatment (including substance abuse treatment) by the parent or legal guardian;',
   incarceration: 'the incarceration of a parent or legal guardian;',
   detention: 'the detention or deportation of a parent or guardian; and/or',
-  describe: 'other',
+  describe: 'other (please describe):',
   pleaseDescribe: '(please describe):',
   describeHardshipError: 'Description required',
   hardshipsError: 'Please select at least one',
