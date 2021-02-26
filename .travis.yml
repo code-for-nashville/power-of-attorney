@@ -8,7 +8,7 @@ cache:
 script:
   - yarn lint
   - yarn test
-before_deploy:
+  - yarn flow
   - yarn build
 deploy:
   provider: pages
@@ -18,4 +18,4 @@ deploy:
   local-dir: build
   on:
     branch: master
-fqdn: immigrantpoa.org
+  fqdn: immigrantpoa.org

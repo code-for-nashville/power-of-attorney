@@ -1,44 +1,71 @@
+// @flow
 import React from 'react'
 
-import {
-  Box,
-  Button,
-  Heading,
-  Headline,
-  Image,
-  Paragraph,
-  Section
-} from 'grommet'
-import {translate} from 'react-i18next'
+import {Box, Button, Heading, Image, Paragraph} from 'grommet'
+import {withTranslation} from 'react-i18next'
 import {FORM_PATH} from '../../paths.js'
 
 import './styles.css'
+import {useHistory} from 'react-router-dom'
 
-const Home = props => {
-  const {t} = props
-
+const Home = ({t}) => {
+  const history = useHistory()
   return (
-    <Section basis="full" direction="row" justify="between">
-      <Box className="HomeImageSection" pad={{horizontal: 'large'}}>
+    <Box tag="section" basis="full" direction="row" justify="between">
+      <Box
+        className="HomeImageSection"
+        pad={{horizontal: 'large'}}
+        width={{max: '448px'}}
+      >
         <div className="HomeImageShadowWrapper">
           <Image
             alt={t('cuteBabyBoy')}
-            size="large"
+            fill="horizontal"
             src={`${process.env.PUBLIC_URL}/images/cute-baby.jpg`}
           />
         </div>
       </Box>
-      <Section className="HomeCopy" pad={{vertical: 'none'}} primary={true}>
-        <Heading tag="h1">{t('forTennessee')}</Heading>
-        <Headline size="large" className="home-headline">
+      <Box
+        tag="section"
+        basis="auto"
+        className="HomeCopy"
+        pad={{vertical: 'medium'}}
+        primary={true}
+        width={{max: '610px'}}
+      >
+        <Heading
+          tag="h1"
+          margin="none"
+          size="3rem"
+          className="HomeTitleTopText"
+        >
+          {t('forTennessee')}
+        </Heading>
+        <Heading
+          tag="h1"
+          size="6rem"
+          margin="none"
+          className="HomeTitleMiddleText"
+        >
           {t('immigrantParents')}
-        </Headline>
-        <Heading tag="h2">{t('ensureCare')}</Heading>
+        </Heading>
+        <Heading
+          tag="h1"
+          margin="none"
+          size="2.25rem"
+          className="HomeTitleBottomText"
+        >
+          {t('ensureCare')}
+        </Heading>
         <Paragraph>{t('immigrant')}</Paragraph>
         <Paragraph>{t('gettingStarted')}</Paragraph>
-        <Button label={t('startForm')} path={FORM_PATH} primary={true} />
-      </Section>
-    </Section>
+        <Button
+          label={t('startForm')}
+          primary={true}
+          onClick={() => history.push(FORM_PATH)}
+        />
+      </Box>
+    </Box>
   )
 }
-export default translate()(Home)
+export default withTranslation()(Home)

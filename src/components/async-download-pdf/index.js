@@ -1,24 +1,51 @@
-import React from 'react'
+// @flow
+import React, {useState} from 'react'
 import {asyncComponent} from 'react-async-component'
+import DownloadPDF from './DownloadPDF'
+import {withTranslation} from 'react-i18next'
+import Loader from 'react-loader-spinner'
+import {Box, Layer, Paragraph, Button} from 'grommet'
+import {POA_CORAL_BLUE} from '../../styles/grommet/theme'
 
-import {Spinning, Toast} from 'grommet'
-import {translate} from 'react-i18next'
+const ErrorNotification = ({t}) => {
+  const [open, setOpen] = useState(true)
+  if (!open) {
+    return null
+  }
+  return (
+    <Layer className="Disclaimer" align="center" margin="medium">
+      <Box overflow="auto" gap="small" width="large">
+        <Box pad={{horizontal: 'medium', vertical: 'medium'}}>
+          <Paragraph margin="small" fill={true}>
+            {t('unknownError')}
+          </Paragraph>
+          <Box
+            fill="horizontal"
+            align="center"
+            direction="row"
+            justify="between"
+            pad={{vertical: 'large', horizontal: 'medium'}}
+          >
+            <Button
+              size="small"
+              primary={true}
+              onClick={() => setOpen(false)}
+              label={t('OK')}
+            />
+          </Box>
+        </Box>
+      </Box>
+    </Layer>
+  )
+}
 
-const ErrorNotification = ({t}) => (
-  <Toast status="critical">{t('unknownError')}</Toast>
-)
-
-/*
-We use PDFMake, a fantastic library for generating client side PDFS
-
-The downside is that it is about 500kb (about half the size of our app
-when we split this up). This wraps the DownloadPDF component that uses
-PDFMake so that it only loads after the user enters the PDF generation
-screen.
-*/
-export default asyncComponent({
-  ErrorComponent: translate()(ErrorNotification),
-  LoadingComponent: Spinning,
+const asyncDownload: typeof DownloadPDF = asyncComponent({
+  ErrorComponent: withTranslation()(ErrorNotification),
+  LoadingComponent: () => (
+    <Loader type="Oval" color={POA_CORAL_BLUE} height={80} width={80} />
+  ),
   name: 'AsyncDownloadPDF',
   resolve: () => import('./DownloadPDF')
 })
+
+export default asyncDownload

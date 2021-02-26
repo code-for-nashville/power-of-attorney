@@ -1,52 +1,53 @@
+// @flow
 import React from 'react'
 
-import {Anchor, Heading, Image, Paragraph, Section} from 'grommet'
-import {translate} from 'react-i18next'
+import {Anchor, Heading, Image, Paragraph} from 'grommet'
+import {withTranslation} from 'react-i18next'
 
 const Faq = props => {
   const {t} = props
   return (
-    <Section pad={{vertical: 'none'}}>
+    <div>
       <Image
         alt="Dangling light bulb."
-        full="horizontal"
+        fill="horizontal"
         src={`${process.env.PUBLIC_URL}/images/light-bulb.jpg`}
       />
-      <Heading tag="h1">{t('faq')}</Heading>
-      <Heading tag="h2">{t('whatIsPOA')}</Heading>
+      <Heading level={1}>{t('faq')}</Heading>
+      <Heading level={2}>{t('whatIsPOA')}</Heading>
       <Paragraph>{t('poaIs')}</Paragraph>
-      <Heading tag="h2">{t('WhatIsThisFormUsedFor')}</Heading>
+      <Heading level={2}>{t('WhatIsThisFormUsedFor')}</Heading>
       <Paragraph>
         {t('formWasCreated')}
         <br />
         <br />
         {t('formWasCreatedNote')}
       </Paragraph>
-      <Heading tag="h2">{t('whoShouldIChoose')}</Heading>
+      <Heading level={2}>{t('whoShouldIChoose')}</Heading>
       <Paragraph>{t('yourCaregiver')}</Paragraph>
-      <Heading tag="h2">{t('howCanITerminate')}</Heading>
+      <Heading level={2}>{t('howCanITerminate')}</Heading>
       <Paragraph>{t('youCanTerminate')}</Paragraph>
-      <Heading tag="h2">{t('whatDocuments')}</Heading>
+      <Heading level={2}>{t('whatDocuments')}</Heading>
       <Paragraph>{t('whatDocumentsAnswer')}</Paragraph>
-      <Heading tag="h2">{t('howMuch')}</Heading>
+      <Heading level={2}>{t('howMuch')}</Heading>
       <Paragraph>{t('howMuchAnswer')}</Paragraph>
-      <Heading tag="h2">{t('whereSendDocuments')}</Heading>
+      <Heading level={2}>{t('whereSendDocuments')}</Heading>
       <Paragraph>{t('whereSendDocumentsAnswer')}</Paragraph>
-      <Heading tag="h2">{t('whereCanILearn')}</Heading>
+      <Heading level={2}>{t('whereCanILearn')}</Heading>
       <Paragraph>
         {t('lawCanBeFound')}{' '}
         <Anchor
           a11yTitle={t('lawCanBeFound')}
-          href="https://law.justia.com/codes/tennessee/2010/title-34/chapter-6/part-3/"
+          href="https://law.justia.com/codes/tennessee/2017/title-34/chapter-6/part-3/"
           target="_blank"
         >
           {t('here')}
         </Anchor>.
       </Paragraph>
-      <Heading tag="h2">{t('privacy')}</Heading>
+      <Heading level={2}>{t('privacy')}</Heading>
       <Paragraph>{t('doesNotTrack')}</Paragraph>
-    </Section>
+    </div>
   )
 }
 
-export default translate()(Faq)
+export default withTranslation()(Faq)

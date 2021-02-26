@@ -1,27 +1,27 @@
+// @flow
 import React, {Component} from 'react'
 
 import {Box, Button, Header} from 'grommet'
 
-import pdfFonts from 'pdfmake/build/vfs_fonts'
-import pdfMake from 'pdfmake/build/pdfmake'
-
-import createDocDefinition from '../../pdf/pdf-document'
+import type {FormInputs} from '../../types'
+import HiddenPDF from '../../pdf/pdf-document'
 
 import './style.css'
 
-pdfMake.vfs = pdfFonts.pdfMake.vfs
+type DownloadPDFProps = {
+  data: FormInputs
+}
 
-export default class DownloadPDF extends Component {
+export default class DownloadPDF extends Component<DownloadPDFProps> {
   _downloadPDF = () => {
-    const docDefinition = createDocDefinition(this.props.data)
-    pdfMake.createPdf(docDefinition).download()
+    HiddenPDF.downloadPDF()
   }
   viewPDF = () => {
-    const docDefinition = createDocDefinition(this.props.data)
-    pdfMake.createPdf(docDefinition).open()
+    HiddenPDF.viewPDF()
   }
 
   render() {
+    const {data} = this.props
     return (
       <Header>
         <Box
@@ -33,16 +33,17 @@ export default class DownloadPDF extends Component {
           <h3>Form</h3>
           <Button
             className="download-btn"
-            onClick={() => this.viewPDF()}
+            onClick={this.viewPDF}
             label="Open"
           />
           <Button
             className="download-btn"
-            onClick={() => this._downloadPDF()}
+            onClick={this._downloadPDF}
             label="Download"
           />
           <hr />
         </Box>
+        <HiddenPDF data={data} />
       </Header>
     )
   }

@@ -16,7 +16,7 @@ The designs for this project are available on [Zeplin](https://app.zeplin.io/pro
 
 ## Installation
 
-Make sure you have [`yarn`](https://yarnpkg.com/) and a recent version of [`node.js`](https://nodejs.org/en/) installed.  Clone te repository, install the dependencies with `yarn install` then run `yarn start` to start the dev server.
+Make sure you have [`yarn`](https://yarnpkg.com/) and a recent version of [`node.js`](https://nodejs.org/en/) installed.  Clone the repository, install the dependencies with `yarn install` then run `yarn start` to start the dev server.
 
 Check out the [Create React App User Guide](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md) for additional commands.
 
@@ -32,15 +32,35 @@ Watches changes to your sass files for development.
 
 Compiles sass files into css for production
 
+## ENV VARS
+## `REACT_APP_MOCK_FORM=true`
+Start the with mocked form data. This is useful if you are working on the form and don't want to repeatedly enter form information to get to the screen you are working on. 
+## `REACT_APP_FORM_STEP=4`
+Sets the default form step to a specific value.
+
+Sample values
+```
+REACT_APP_MOCK_FORM=true
+REACT_APP_FORM_STEP=3
+```
+For example, you could put the above values in a file called `.env.development.local`.
+Or you can use any other way you set environment variables.
+
+Check out the [Adding Custom Environment Variables](https://create-react-app.dev/docs/adding-custom-environment-variables) for more details on how create react app handles env variables.
+
+
 ## Styling
 
 This project is built with [Grommet](http://grommet.io/), and ships with a custom [SCSS](http://sass-lang.com/) Grommet theme in  `styles/grommet/`.
 
 SCSS file will be automatically watched and built when you run `yarn start`.  The built `.css` output will have the same filename and live in the same directory as it's `.scss` counterpart.  Make sure to import the `.css` output in JavaScript files, not the raw `.scss`.  Create React App is not configured to import `.scss`.
 
+## Flow
+Library definitions can be installed with `node_modules/.bin/flow-typed install <library>@<version>`
+
 ## Partners
 
-TBD
+Music City Legal Hackers
 
 ## Deployment
 

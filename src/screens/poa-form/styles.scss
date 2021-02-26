@@ -6,6 +6,10 @@
   margin: 6px 0;
 }
 
+.form-stepper {
+  width: inherit;
+}
+
 .error {
   color: #c00;
   display: block;
@@ -34,7 +38,7 @@
 
 // Prevent "Select" button and dropdown from sticking
 .grommetux-select .grommetux-button {
-  padding: 0px 0rem !important;
+  padding: 0 0 !important;
 }
 
 .grommetux-box.grommetux-box--direction-row.grommetux-box--justify-end.grommetux-box--flex.grommetux-box--pad-none.download-container {
