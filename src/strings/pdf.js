@@ -87,11 +87,11 @@ const PDF_STRINGS = {
   arrangeTravel:
     'to make travel arrangements for the child/children to travel outside the United States, together with the caregiver or on their own, for the SOLE purpose of being reunited with me/us in our country of residence; and/or',
   grantAdditionalPower:
-    'I/We grant the following additional power to the named caregiver:',
+    'I/We grant the following additional power(s) to the named caregiver:',
   doesNotProvideCustody:
     'I/We understand that this document does not provide legal custody to the caregiver. If at any time I/we disagree with a decision of the named caregiver or choose to make any healthcare or educational decisions for my/our child, I/we must revoke the power of attorney, in writing, and provide written documentation to the health care provider and the local education agency (i.e., school).',
   documentTerminated:
-    'I / We understand that this document may be terminated in another written document signed by either parent with legal custody or by any order of a court with competent jurisdiction.',
+    'I/We understand that this document may be terminated in another written document signed by either parent with legal custody or by any order of a court with competent jurisdiction.',
   partTwo: 'Part II: To be initialed by caregiver',
   initialInside: '(initial inside parenthesis).',
   properlyExecuted:
@@ -141,7 +141,8 @@ const PDF_STRINGS = {
   keepCopy: 'Keep a copy for yourself in a safe place.',
   discussCaregiving:
     'Discuss caregiving expectations with the caregiver(s).  Caregivers may refuse to serve if they are not able or willing to be a caregiver.',
-  mayRevoke: 'You may revoke this power of attorney in writing at any time.',
+  mayRevoke:
+    'You may revoke this power of attorney in writing at any time.',
   ifYouRevoke:
     'If you revoke the power of attorney, provide a copy of the written revocation to the caregiver(s) and any agency or person who has received a copy of the power of attorney so that they are on notice that it has been revoked.',
   noticeToAgencyProvider:

@@ -3,7 +3,7 @@ import {Header, FormField, Paragraph, RadioButtonGroup} from 'grommet'
 import {withTranslation} from 'react-i18next'
 import {UNDERSTAND} from '../../pdf/pdf-document.js'
 
-const createIOrWeUnderstandOptions = t => [
+/*const createIOrWeUnderstandOptions = t => [
   {
     label: t('iOrWeUnderstand'),
     value: true
@@ -12,7 +12,7 @@ const createIOrWeUnderstandOptions = t => [
     label: t('iOrWeDoNotUnderstand'),
     value: false
   }
-]
+]*/
 
 const Acknowledgements = ({fields, t}) => {
   return (
@@ -22,7 +22,7 @@ const Acknowledgements = ({fields, t}) => {
       <FormField
         name="acknowledgedNotProvidingLegalCustody"
         validate={value =>
-          !(value === 'iOrWeUnderstand') && {
+          !(value === 'iOrWeUnderstand')&& {
             message: t('acknowledgementsError'),
             status: 'error'
           }
@@ -30,12 +30,10 @@ const Acknowledgements = ({fields, t}) => {
       >
         <RadioButtonGroup
           name="acknowledgedNotProvidingLegalCustody"
-          options={Object.values(UNDERSTAND).map(
-            acknowledgedNotProvidingLegalCustody => ({
-              label: t(acknowledgedNotProvidingLegalCustody),
-              value: acknowledgedNotProvidingLegalCustody
-            })
-          )}
+          options={Object.values(UNDERSTAND).map(acknowledgedNotProvidingLegalCustody => ({
+            label: t(acknowledgedNotProvidingLegalCustody),
+            value: acknowledgedNotProvidingLegalCustody
+          }))}
         />
       </FormField>
       <Paragraph>{t('documentMayBeTerminated')}</Paragraph>
@@ -50,12 +48,10 @@ const Acknowledgements = ({fields, t}) => {
       >
         <RadioButtonGroup
           name="acknowledgedDocumentMayBeTerminated"
-          options={Object.values(UNDERSTAND).map(
-            acknowledgedDocumentMayBeTerminated => ({
-              label: t(acknowledgedDocumentMayBeTerminated),
-              value: acknowledgedDocumentMayBeTerminated
-            })
-          )}
+          options={Object.values(UNDERSTAND).map(acknowledgedDocumentMayBeTerminated => ({
+            label: t(acknowledgedDocumentMayBeTerminated),
+            value: acknowledgedDocumentMayBeTerminated
+          }))}
         />
       </FormField>
     </>

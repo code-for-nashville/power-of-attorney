@@ -141,8 +141,8 @@ const ENGLISH = {
   obtainPassport: 'obtain a passport for the child/children',
   travelAlone: 'travel alone with the child/children within the United States',
   makeTravelArrangements:
-    'to make travel arrangements for the child/children to travel outside the United States, together with the caregiver or on their own, for the SOLE purpose of being reunited with me/us in our country of residence',
-  additionalPowers: 'exercise additional power(s) as described below',
+    'to make travel arrangements for the child/children to travel outside the United States, together with the caregiver or on their own, for the SOLE purpose of being reunited with me/us in our country of residence; and/or',
+  additionalPowers: 'exercise additional power(s) as described below:',
   additionalPowersError: 'Please describe the additional powers',
   acknowledgements: 'Acknowledgements',
   notProvidingLegalCustody:
