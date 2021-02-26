@@ -46,7 +46,7 @@ const ENGLISH = {
   reasonNotReached: 'Reason non-custodial parent could not be reached:',
   condition: 'Condition',
   hardships: 'Hardships',
-  effectiveImmediatly:
+  effectiveImmediately:
     'effective immediately upon signing this document, but with the intention that the caregiver(s) will only take charge of my/our child/children if and when one or more of the following type(s) of hardship may occur (check at least one below):',
   untilHardships:
     'only if and when one or more of the following type(s) of hardship may occur (check at least one below):',

@@ -51,8 +51,8 @@ export const AUTHORIZATION = {
 }
 
 export const UNDERSTAND = {
-  understandCustody: 'understandCustody',
-  understandTermination: 'understandTermination'
+  iOrWeUnderstand: 'iOrWeUnderstand',
+  iOrWeDoNotUnderstand : 'iOrWeDoNotUnderstand'
 }
 
 const PDF_ID = 'print-container'
@@ -107,7 +107,8 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
       authorityGivenConditions,
       hardships,
       authorization,
-      understand
+      acknowledgedNotProvidingLegalCustody,
+      acknowledgedDocumentMayBeTerminated
     } = data
     return (
       <div id={PDF_ID} className="hiddenPDF">
@@ -334,8 +335,7 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
                   }
                 />
                 <span>
-                  {PDFStrings.effectiveImmediately}
-                  {PDFStrings.checkAtLeastOne}
+                  {Strings.effectiveImmediately}
                 </span>
               </div>
               <div className="row">
@@ -360,8 +360,7 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
                 />
 
                 <span>
-                  {PDFStrings.hardshipType}
-                  {PDFStrings.checkAtLeastOne}
+                  {Strings.untilHardships}
                 </span>
               </div>
               <div>
@@ -590,12 +589,12 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
               <div className="row">
                 <CheckHere
                   text={
-                    understand === UNDERSTAND.understandCustody ? 'X' : '    '
+                    acknowledgedNotProvidingLegalCustody === UNDERSTAND.iOrWeUnderstand ? 'X' : '    '
                   }
                 />
                 <CheckHere
                   text={
-                    understand === UNDERSTAND.understandCustody ? 'X' : '    '
+                    acknowledgedNotProvidingLegalCustody === UNDERSTAND.iOrWeUnderstand ? 'X' : '    '
                   }
                 />
                 <span>{PDFStrings.doesNotProvideCustody}</span>
@@ -605,14 +604,14 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
               <div className="row">
                 <CheckHere
                   text={
-                    understand === UNDERSTAND.understandTermination
+                    acknowledgedDocumentMayBeTerminated === UNDERSTAND.iOrWeUnderstand
                       ? 'X'
                       : '    '
                   }
                 />
                 <CheckHere
                   text={
-                    understand === UNDERSTAND.understandTermination
+                    acknowledgedDocumentMayBeTerminated === UNDERSTAND.iOrWeUnderstand
                       ? 'X'
                       : '    '
                   }
@@ -707,16 +706,16 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
               </span>
             </div>
             <div className="row">
-              <span>{PDFStrings.giveOriginal}</span>
+              <span>{PDFStrings.leadingDash}{PDFStrings.giveOriginal}</span>
             </div>
             <div className="row">
-              <span>{PDFStrings.keepCopy}</span>
+              <span>{PDFStrings.leadingDash}{PDFStrings.keepCopy}</span>
             </div>
             <div className="row">
-              <span>{PDFStrings.discussCaregiving}</span>
+              <span>{PDFStrings.leadingDash}{PDFStrings.discussCaregiving}</span>
             </div>
             <div>
-              <span>{PDFStrings.mayRevoke}</span>
+              <span>{PDFStrings.leadingDash}{PDFStrings.mayRevoke}</span>
               <span>{PDFStrings.ifYouRevoke}</span>
             </div>
             <div className="row" /> <div className="row" />

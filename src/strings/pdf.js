@@ -52,20 +52,15 @@ const PDF_STRINGS = {
     'Successor Caregiver’s Full Name, Relationship, Address, & Phone',
   parentalCustody: 'Parental Custody (check the appropriate custody status)',
   bothLiving:
-    'Both parents are living, have legal custody of the minor child and have signed this document; ',
-  or: ' OR',
-  legalCustodyExample: '(e.g., imprisonment, whereabouts unknown). ',
+    'Both parents are living, have legal custody of the minor child and have signed this document;',
+  or: 'OR',
+  legalCustodyExample: '(e.g., imprisonment, whereabouts unknown).',
   oneParentLegalCustodyBothSigned:
-    'One parent has legal custody of the minor child and both parents have signed this document and consent to the appointment of the caregiver; ',
+    'One parent has legal custody of the minor child and both parents have signed this document and consent to the appointment of the caregiver;',
   oneParentLegalCustodyMail:
-    'One parent has legal custody of the minor child, and has sent by Certified Mail, Return Receipt requested, to the other parent at last known address, a copy of this document and a notice of the provisions in § 34-6 - 305; or the non-custodial parent has not consented to the appointment and consent cannot be obtained because ',
+    'One parent has legal custody of the minor child, and has sent by Certified Mail, Return Receipt requested, to the other parent at last known address, a copy of this document and a notice of the provisions in § 34-6 - 305; or the non-custodial parent has not consented to the appointment and consent cannot be obtained because',
   temporaryAuthority:
-    'Temporary care-giving authority regarding the minor child is being given to the caregiver because of the following type of hardship ',
-  effectiveImmediately:
-    'Effective immediately upon signing this document, but with the intention that the caregiver(s) will only take charge of my/our child/children if and when one or more of the following type(s) of hardship may occur',
-  hardshipType:
-    'only if and when one or more of the following type(s) of hardship may occur',
-  checkAtLeastOne: ' (check at least one below):',
+    'Temporary care-giving authority regarding the minor child is being given to the caregiver because of the following type of hardship',
   illnessOrIncarceration: 'the serious illness of a parent or legal guardian;',
   physicalOrMentalCondition:
     'the physical or mental condition of the parent or legal guardian or the child is such that care and supervision of the child cannot be provided;',
@@ -76,7 +71,7 @@ const PDF_STRINGS = {
   parentIncarceration: 'the incarceration of a parent or legal guardian;',
   detentionDeportation:
     'the detention or deportation of a parent or guardian; and/or',
-  other: `other (please describe) `,
+  other: 'other (please describe)',
   custodialParentDetained:
     'Custodial parent(s) has/have been detained by immigration authorities and/or are involved in an immigration proceeding/ deportation.',
   undersignedAuthorize:
@@ -92,13 +87,13 @@ const PDF_STRINGS = {
   arrangeTravel:
     'to make travel arrangements for the child/children to travel outside the United States, together with the caregiver or on their own, for the SOLE purpose of being reunited with me/us in our country of residence; and/or',
   grantAdditionalPower:
-    'I/We grant the following additional power to the named caregiver: ',
+    'I/We grant the following additional power to the named caregiver:',
   doesNotProvideCustody:
     'I/We understand that this document does not provide legal custody to the caregiver. If at any time I/we disagree with a decision of the named caregiver or choose to make any healthcare or educational decisions for my/our child, I/we must revoke the power of attorney, in writing, and provide written documentation to the health care provider and the local education agency (i.e., school).',
   documentTerminated:
     'I / We understand that this document may be terminated in another written document signed by either parent with legal custody or by any order of a court with competent jurisdiction.',
   partTwo: 'Part II: To be initialed by caregiver',
-  initialInside: ' (initial inside parenthesis).',
+  initialInside: '(initial inside parenthesis).',
   properlyExecuted:
     'I understand that this document, properly executed, gives me the right to enroll the minor child in the local education agency serving the area where I reside.',
   notProvideLegalCustody:
@@ -115,15 +110,15 @@ const PDF_STRINGS = {
     'I/We understand that, by accepting the power of attorney, if we enroll a student in a school system while fraudulently representing the child’s current residence or the parents’ hardship or circumstances for using the power of attorney, either or both of us is liable for restitution to the school district for an amount equal to the per pupil expenditure for the district in which the student is fraudulently enrolled. Restitution shall be cumulative for each year the child has been fraudulently enrolled in the system and may include costs and fees related to litigation.',
   declareUnderPenalty:
     'I/We declare under penalty of perjury under the laws of the State of Tennessee that the foregoing is true and correct.',
-  stateOF: 'STATE OF ',
-  countyOf: 'COUNTY OF ',
+  stateOF: 'STATE OF',
+  countyOf: 'COUNTY OF',
   date: 'Date:',
-  motherGuardian: 'Mother/Legal Guardian  ',
+  motherGuardian: 'Mother/Legal Guardian',
   motherSignature:
     'The Mother/Legal Guardian, ___, personally appeared before me this _____ day of ____________, 20___.',
   notaryPublic: 'NOTARY PUBLIC',
-  commissionExpires: 'My commission expires: ',
-  fatherGuardian: 'Father/Legal Guardian  ',
+  commissionExpires: 'My commission expires:',
+  fatherGuardian: 'Father/Legal Guardian',
   fatherSignature:
     'The Father/Legal Guardian, ___, personally appeared before me this _____ day of ____________, 20___.',
   caregiver: 'Caregiver',
@@ -139,15 +134,17 @@ const PDF_STRINGS = {
   dateParenthesis: '(Date)',
   signatureOfWitnessTwo: '(Signature of Witness #2)',
   directionsToParents: 'DIRECTIONS TO PARENTS:',
+  leadingDash: '-        ',
+  space: ' ',
   giveOriginal:
-    '-        Give an original signed copy to each named caregiver to keep in a secure location.',
-  keepCopy: '-        Keep a copy for yourself in a safe place.',
+    'Give an original signed copy to each named caregiver to keep in a secure location.',
+  keepCopy: 'Keep a copy for yourself in a safe place.',
   discussCaregiving:
-    '-        Discuss caregiving expectations with the caregiver(s).  Caregivers may refuse to serve if they are not able or willing to be a caregiver.',
+    'Discuss caregiving expectations with the caregiver(s).  Caregivers may refuse to serve if they are not able or willing to be a caregiver.',
   mayRevoke:
-    '-        You may revoke this power of attorney in writing at any time.',
+    'You may revoke this power of attorney in writing at any time.',
   ifYouRevoke:
-    ' If you revoke the power of attorney, provide a copy of the written revocation to the caregiver(s) and any agency or person who has received a copy of the power of attorney so that they are on notice that it has been revoked.',
+    'If you revoke the power of attorney, provide a copy of the written revocation to the caregiver(s) and any agency or person who has received a copy of the power of attorney so that they are on notice that it has been revoked.',
   noticeToAgencyProvider:
     'NOTICE TO THE LOCAL EDUCATION AGENCY AND/OR HEALTH CARE PROVIDER:',
   pursuantTo:
