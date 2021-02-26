@@ -52,7 +52,7 @@ export const AUTHORIZATIONS = {
 
 export const UNDERSTAND = {
   iOrWeUnderstand: 'iOrWeUnderstand',
-  iOrWeDoNotUnderstand : 'iOrWeDoNotUnderstand'
+  iOrWeDoNotUnderstand: 'iOrWeDoNotUnderstand'
 }
 
 const PDF_ID = 'print-container'
@@ -336,9 +336,7 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
                       : '    '
                   }
                 />
-                <span>
-                  {Strings.effectiveImmediately}
-                </span>
+                <span>{Strings.effectiveImmediately}</span>
               </div>
               <div className="row">
                 <span className="bold">{PDFStrings.or}:</span>
@@ -346,32 +344,36 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
               <div className="row">
                 <CheckHere
                   text={
-                    condition ===
-                    AUTHORITY_GIVEN_CONDITIONS.untilHardships
+                    condition === AUTHORITY_GIVEN_CONDITIONS.untilHardships
                       ? 'X'
                       : '    '
                   }
                 />
                 <CheckHere
                   text={
-                    condition ===
-                    AUTHORITY_GIVEN_CONDITIONS.untilHardships
+                    condition === AUTHORITY_GIVEN_CONDITIONS.untilHardships
                       ? 'X'
                       : '    '
                   }
                 />
 
-                <span>
-                  {Strings.untilHardships}
-                </span>
+                <span>{Strings.untilHardships}</span>
               </div>
               <div>
                 <div className="row">
                   <CheckHere
-                    text={hardships.includes(HARDSHIPS.seriousIllness) ? 'X' : '    '}
+                    text={
+                      hardships.includes(HARDSHIPS.seriousIllness)
+                        ? 'X'
+                        : '    '
+                    }
                   />
                   <CheckHere
-                    text={hardships.includes(HARDSHIPS.seriousIllness) ? 'X' : '    '}
+                    text={
+                      hardships.includes(HARDSHIPS.seriousIllness)
+                        ? 'X'
+                        : '    '
+                    }
                   />
 
                   <span>{PDFStrings.illnessOrIncarceration}</span>
@@ -397,12 +399,16 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
                 <div className="row">
                   <CheckHere
                     text={
-                      hardships.includes(HARDSHIPS.uninhabitability) ? 'X' : '    '
+                      hardships.includes(HARDSHIPS.uninhabitability)
+                        ? 'X'
+                        : '    '
                     }
                   />
                   <CheckHere
                     text={
-                      hardships.includes(HARDSHIPS.uninhabitability) ? 'X' : '    '
+                      hardships.includes(HARDSHIPS.uninhabitability)
+                        ? 'X'
+                        : '    '
                     }
                   />
 
@@ -410,30 +416,42 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
                 </div>
                 <div className="row">
                   <CheckHere
-                    text={hardships.includes(HARDSHIPS.needTreatment) ? 'X' : '    '}
+                    text={
+                      hardships.includes(HARDSHIPS.needTreatment) ? 'X' : '    '
+                    }
                   />
                   <CheckHere
-                    text={hardships.includes(HARDSHIPS.needTreatment) ? 'X' : '    '}
+                    text={
+                      hardships.includes(HARDSHIPS.needTreatment) ? 'X' : '    '
+                    }
                   />
 
                   <span>{PDFStrings.needForTreatment}</span>
                 </div>
                 <div className="row">
                   <CheckHere
-                    text={hardships.includes(HARDSHIPS.incarceration) ? 'X' : '    '}
+                    text={
+                      hardships.includes(HARDSHIPS.incarceration) ? 'X' : '    '
+                    }
                   />
                   <CheckHere
-                    text={hardships.includes(HARDSHIPS.incarceration) ? 'X' : '    '}
+                    text={
+                      hardships.includes(HARDSHIPS.incarceration) ? 'X' : '    '
+                    }
                   />
 
                   <span>{PDFStrings.parentIncarceration}</span>
                 </div>
                 <div className="row">
                   <CheckHere
-                    text={hardships.includes(HARDSHIPS.detention) ? 'X' : '    '}
+                    text={
+                      hardships.includes(HARDSHIPS.detention) ? 'X' : '    '
+                    }
                   />
                   <CheckHere
-                    text={hardships.includes(HARDSHIPS.detention) ? 'X' : '    '}
+                    text={
+                      hardships.includes(HARDSHIPS.detention) ? 'X' : '    '
+                    }
                   />
 
                   <span>{PDFStrings.detentionDeportation}</span>
@@ -449,37 +467,32 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
                     {Strings.describe}
                     <span className="underline">
                       {describeHardship || '\u00A0'}
-                    </span>  
+                    </span>
                   </span>
                 </div>
-                
               </div>
             </NumberedContent>
             <NumberedContent number={5}>
               <div className="row">
-                <CheckHere
-                  text={
-                    authorizations != '' ? 'X' : '    '
-                  }
-                />
-                <CheckHere
-                  text={
-                    authorizations != '' ? 'X' : '    '
-                  }
-                />
+                <CheckHere text={authorizations !== '' ? 'X' : '    '} />
+                <CheckHere text={authorizations !== '' ? 'X' : '    '} />
                 <span>{PDFStrings.undersignedAuthorize}</span>
               </div>
               <div className="row">
                 <CheckHere
                   text={
-                    authorizations.includes(AUTHORIZATIONS.enrollInSchoolAndExtracurriculars)
+                    authorizations.includes(
+                      AUTHORIZATIONS.enrollInSchoolAndExtracurriculars
+                    )
                       ? 'X'
                       : '    '
                   }
                 />
                 <CheckHere
                   text={
-                    authorizations.includes(AUTHORIZATIONS.enrollInSchoolAndExtracurriculars)
+                    authorizations.includes(
+                      AUTHORIZATIONS.enrollInSchoolAndExtracurriculars
+                    )
                       ? 'X'
                       : '    '
                   }
@@ -489,31 +502,39 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
               <div className="row">
                 <CheckHere
                   text={
-                    authorizations.includes(AUTHORIZATIONS.obtainMedicalTreatment)
+                    authorizations.includes(
+                      AUTHORIZATIONS.obtainMedicalTreatment
+                    )
                       ? 'X'
                       : '    '
                   }
                 />
                 <CheckHere
                   text={
-                    authorizations.includes(AUTHORIZATIONS.obtainMedicalTreatment)
+                    authorizations.includes(
+                      AUTHORIZATIONS.obtainMedicalTreatment
+                    )
                       ? 'X'
                       : '    '
                   }
                 />
                 <span>{Strings.obtainMedicalTreatment}</span>
               </div>
-                <div className="row">
+              <div className="row">
                 <CheckHere
                   text={
-                    authorizations.includes(AUTHORIZATIONS.accessEducationalAndMedicalRecords)
+                    authorizations.includes(
+                      AUTHORIZATIONS.accessEducationalAndMedicalRecords
+                    )
                       ? 'X'
                       : '    '
                   }
                 />
                 <CheckHere
                   text={
-                    authorizations.includes(AUTHORIZATIONS.accessEducationalAndMedicalRecords)
+                    authorizations.includes(
+                      AUTHORIZATIONS.accessEducationalAndMedicalRecords
+                    )
                       ? 'X'
                       : '    '
                   }
@@ -523,12 +544,16 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
               <div className="row">
                 <CheckHere
                   text={
-                    authorizations.includes(AUTHORIZATIONS.provideEssentials) ? 'X' : '    '
+                    authorizations.includes(AUTHORIZATIONS.provideEssentials)
+                      ? 'X'
+                      : '    '
                   }
                 />
                 <CheckHere
                   text={
-                    authorizations.includes(AUTHORIZATIONS.provideEssentials) ? 'X' : '    '
+                    authorizations.includes(AUTHORIZATIONS.provideEssentials)
+                      ? 'X'
+                      : '    '
                   }
                 />
                 <span>{Strings.provideEssentials}</span>
@@ -553,12 +578,16 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
               <div className="row">
                 <CheckHere
                   text={
-                    authorizations.includes(AUTHORIZATIONS.travelAlone) ? 'X' : '    '
+                    authorizations.includes(AUTHORIZATIONS.travelAlone)
+                      ? 'X'
+                      : '    '
                   }
                 />
                 <CheckHere
                   text={
-                    authorizations.includes(AUTHORIZATIONS.travelAlone) ? 'X' : '    '
+                    authorizations.includes(AUTHORIZATIONS.travelAlone)
+                      ? 'X'
+                      : '    '
                   }
                 />
                 <span>{Strings.travelAlone}</span>
@@ -566,12 +595,20 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
               <div className="row">
                 <CheckHere
                   text={
-                    authorizations.includes(AUTHORIZATIONS.makeTravelArrangements) ? 'X' : '    '
+                    authorizations.includes(
+                      AUTHORIZATIONS.makeTravelArrangements
+                    )
+                      ? 'X'
+                      : '    '
                   }
                 />
                 <CheckHere
                   text={
-                    authorizations.includes(AUTHORIZATIONS.makeTravelArrangements) ? 'X' : '    '
+                    authorizations.includes(
+                      AUTHORIZATIONS.makeTravelArrangements
+                    )
+                      ? 'X'
+                      : '    '
                   }
                 />
                 <span>{Strings.makeTravelArrangements}</span>
@@ -595,7 +632,7 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
                   {PDFStrings.grantAdditionalPower}
                   <span className="underline full-width">
                     {additionalPowers || '\u00A0'}
-                  </span>  
+                  </span>
                 </span>
               </div>
             </NumberedContent>
@@ -603,12 +640,18 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
               <div className="row">
                 <CheckHere
                   text={
-                    acknowledgedNotProvidingLegalCustody === UNDERSTAND.iOrWeUnderstand ? 'X' : '    '
+                    acknowledgedNotProvidingLegalCustody ===
+                    UNDERSTAND.iOrWeUnderstand
+                      ? 'X'
+                      : '    '
                   }
                 />
                 <CheckHere
                   text={
-                    acknowledgedNotProvidingLegalCustody === UNDERSTAND.iOrWeUnderstand ? 'X' : '    '
+                    acknowledgedNotProvidingLegalCustody ===
+                    UNDERSTAND.iOrWeUnderstand
+                      ? 'X'
+                      : '    '
                   }
                 />
                 <span>{PDFStrings.doesNotProvideCustody}</span>
@@ -618,14 +661,16 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
               <div className="row">
                 <CheckHere
                   text={
-                    acknowledgedDocumentMayBeTerminated === UNDERSTAND.iOrWeUnderstand
+                    acknowledgedDocumentMayBeTerminated ===
+                    UNDERSTAND.iOrWeUnderstand
                       ? 'X'
                       : '    '
                   }
                 />
                 <CheckHere
                   text={
-                    acknowledgedDocumentMayBeTerminated === UNDERSTAND.iOrWeUnderstand
+                    acknowledgedDocumentMayBeTerminated ===
+                    UNDERSTAND.iOrWeUnderstand
                       ? 'X'
                       : '    '
                   }
@@ -720,16 +765,28 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
               </span>
             </div>
             <div className="row">
-              <span>{PDFStrings.leadingDash}{PDFStrings.giveOriginal}</span>
+              <span>
+                {PDFStrings.leadingDash}
+                {PDFStrings.giveOriginal}
+              </span>
             </div>
             <div className="row">
-              <span>{PDFStrings.leadingDash}{PDFStrings.keepCopy}</span>
+              <span>
+                {PDFStrings.leadingDash}
+                {PDFStrings.keepCopy}
+              </span>
             </div>
             <div className="row">
-              <span>{PDFStrings.leadingDash}{PDFStrings.discussCaregiving}</span>
+              <span>
+                {PDFStrings.leadingDash}
+                {PDFStrings.discussCaregiving}
+              </span>
             </div>
             <div>
-              <span>{PDFStrings.leadingDash}{PDFStrings.mayRevoke}</span>
+              <span>
+                {PDFStrings.leadingDash}
+                {PDFStrings.mayRevoke}
+              </span>
               <span>{PDFStrings.ifYouRevoke}</span>
             </div>
             <div className="row" /> <div className="row" />
