@@ -52,7 +52,7 @@ export const AUTHORIZATION = {
 
 export const UNDERSTAND = {
   iOrWeUnderstand: 'iOrWeUnderstand',
-  iOrWeDoNotUnderstand : 'iOrWeDoNotUnderstand'
+  iOrWeDoNotUnderstand: 'iOrWeDoNotUnderstand'
 }
 
 const PDF_ID = 'print-container'
@@ -334,9 +334,7 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
                       : '    '
                   }
                 />
-                <span>
-                  {Strings.effectiveImmediately}
-                </span>
+                <span>{Strings.effectiveImmediately}</span>
               </div>
               <div className="row">
                 <span className="bold">{PDFStrings.or}:</span>
@@ -359,9 +357,7 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
                   }
                 />
 
-                <span>
-                  {Strings.untilHardships}
-                </span>
+                <span>{Strings.untilHardships}</span>
               </div>
               <div>
                 <div className="row">
@@ -589,12 +585,18 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
               <div className="row">
                 <CheckHere
                   text={
-                    acknowledgedNotProvidingLegalCustody === UNDERSTAND.iOrWeUnderstand ? 'X' : '    '
+                    acknowledgedNotProvidingLegalCustody ===
+                    UNDERSTAND.iOrWeUnderstand
+                      ? 'X'
+                      : '    '
                   }
                 />
                 <CheckHere
                   text={
-                    acknowledgedNotProvidingLegalCustody === UNDERSTAND.iOrWeUnderstand ? 'X' : '    '
+                    acknowledgedNotProvidingLegalCustody ===
+                    UNDERSTAND.iOrWeUnderstand
+                      ? 'X'
+                      : '    '
                   }
                 />
                 <span>{PDFStrings.doesNotProvideCustody}</span>
@@ -604,14 +606,16 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
               <div className="row">
                 <CheckHere
                   text={
-                    acknowledgedDocumentMayBeTerminated === UNDERSTAND.iOrWeUnderstand
+                    acknowledgedDocumentMayBeTerminated ===
+                    UNDERSTAND.iOrWeUnderstand
                       ? 'X'
                       : '    '
                   }
                 />
                 <CheckHere
                   text={
-                    acknowledgedDocumentMayBeTerminated === UNDERSTAND.iOrWeUnderstand
+                    acknowledgedDocumentMayBeTerminated ===
+                    UNDERSTAND.iOrWeUnderstand
                       ? 'X'
                       : '    '
                   }
@@ -706,16 +710,28 @@ class HiddenPDF extends React.Component<HiddenPDFProps> {
               </span>
             </div>
             <div className="row">
-              <span>{PDFStrings.leadingDash}{PDFStrings.giveOriginal}</span>
+              <span>
+                {PDFStrings.leadingDash}
+                {PDFStrings.giveOriginal}
+              </span>
             </div>
             <div className="row">
-              <span>{PDFStrings.leadingDash}{PDFStrings.keepCopy}</span>
+              <span>
+                {PDFStrings.leadingDash}
+                {PDFStrings.keepCopy}
+              </span>
             </div>
             <div className="row">
-              <span>{PDFStrings.leadingDash}{PDFStrings.discussCaregiving}</span>
+              <span>
+                {PDFStrings.leadingDash}
+                {PDFStrings.discussCaregiving}
+              </span>
             </div>
             <div>
-              <span>{PDFStrings.leadingDash}{PDFStrings.mayRevoke}</span>
+              <span>
+                {PDFStrings.leadingDash}
+                {PDFStrings.mayRevoke}
+              </span>
               <span>{PDFStrings.ifYouRevoke}</span>
             </div>
             <div className="row" /> <div className="row" />

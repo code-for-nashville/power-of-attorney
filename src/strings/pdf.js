@@ -141,8 +141,7 @@ const PDF_STRINGS = {
   keepCopy: 'Keep a copy for yourself in a safe place.',
   discussCaregiving:
     'Discuss caregiving expectations with the caregiver(s).  Caregivers may refuse to serve if they are not able or willing to be a caregiver.',
-  mayRevoke:
-    'You may revoke this power of attorney in writing at any time.',
+  mayRevoke: 'You may revoke this power of attorney in writing at any time.',
   ifYouRevoke:
     'If you revoke the power of attorney, provide a copy of the written revocation to the caregiver(s) and any agency or person who has received a copy of the power of attorney so that they are on notice that it has been revoked.',
   noticeToAgencyProvider:
